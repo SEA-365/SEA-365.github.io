@@ -18,15 +18,15 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="回溯算法">
+    <meta name="description" content="回溯算法_LeetCode_T39题目描述 给定一个候选人编号的集合 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。 candidates 中的每个数字在每个组合中只能使用 一次 。 注意：解集不能包含重复的组合。 来源：力扣（LeetCode）链接：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;combin">
 <meta property="og:type" content="article">
-<meta property="og:title" content="回溯算法">
-<meta property="og:url" content="http://sea-365.site/2023/02/07/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:title" content="回溯算法_LeetCode_T39">
+<meta property="og:url" content="http://sea-365.site/2023/02/08/T39/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="回溯算法">
+<meta property="og:description" content="回溯算法_LeetCode_T39题目描述 给定一个候选人编号的集合 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。 candidates 中的每个数字在每个组合中只能使用 一次 。 注意：解集不能包含重复的组合。 来源：力扣（LeetCode）链接：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;combin">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-02-07T09:59:12.180Z">
-<meta property="article:modified_time" content="2023-02-07T10:55:40.589Z">
+<meta property="article:published_time" content="2023-02-08T09:37:24.763Z">
+<meta property="article:modified_time" content="2023-02-08T09:38:34.731Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="回溯算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +35,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>回溯算法 - SEA-365的读研日记</title>
+  <title>回溯算法_LeetCode_T39 - SEA-365的读研日记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="回溯算法"></span>
+            <span id="subtitle" data-typed-text="回溯算法_LeetCode_T39"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-07 17:59" pubdate>
-          2023年2月7日 下午
+        <time datetime="2023-02-08 17:37" pubdate>
+          2023年2月8日 下午
         </time>
       </span>
     
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4 字
+          1.2k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          1 分钟
+          10 分钟
         
       </span>
     
@@ -272,12 +272,28 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">回溯算法</h1>
+            <h1 style="display: none">回溯算法_LeetCode_T39</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h3>
+                <h3 id="回溯算法-LeetCode-T39"><a href="#回溯算法-LeetCode-T39" class="headerlink" title="回溯算法_LeetCode_T39"></a>回溯算法_LeetCode_T39</h3><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
+<li><p>给定一个候选人编号的集合 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。</p>
+<p>candidates 中的每个数字在每个组合中只能使用 一次 。</p>
+<p>注意：解集不能包含重复的组合。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/combination-sum-ii">https://leetcode.cn/problems/combination-sum-ii</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+</li>
+</ul>
+<h3 id="超时写法"><a href="#超时写法" class="headerlink" title="超时写法"></a>超时写法</h3><ul>
+<li>回溯遍历所有组合；</li>
+<li>最后对所有满足条件的组合进行去重；</li>
+<li>ps：我一开始就是这么写的，然后直接提交，“超出时间限制”。</li>
+</ul>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><ul>
+<li>代码随想录给出的题解；</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>  List&lt;List&lt;Integer&gt;&gt; res = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>  LinkedList&lt;Integer&gt; path = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<br>  <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>  <br>  <span class="hljs-keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="hljs-title function_">combinationSum2</span><span class="hljs-params">( <span class="hljs-type">int</span>[] candidates, <span class="hljs-type">int</span> target )</span> &#123;<br>    <span class="hljs-comment">//为了将重复的数字都放到一起，所以先进行排序</span><br>    Arrays.sort( candidates );<br>    backTracking( candidates, target, <span class="hljs-number">0</span> );<br>    <span class="hljs-keyword">return</span> res;<br>  &#125;<br>  <br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">backTracking</span><span class="hljs-params">( <span class="hljs-type">int</span>[] candidates, <span class="hljs-type">int</span> target, <span class="hljs-type">int</span> start )</span> &#123;<br>    <span class="hljs-keyword">if</span> ( sum == target ) &#123;<br>      res.add( <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;( path ) );<br>      <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-keyword">for</span> ( <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> start; i &lt; candidates.length &amp;&amp; sum + candidates[i] &lt;= target; i++ ) &#123;<br>      <span class="hljs-comment">//正确剔除重复解的办法</span><br>      <span class="hljs-comment">//跳过同一树层使用过的元素</span><br>      <span class="hljs-keyword">if</span> ( i &gt; start &amp;&amp; candidates[i] == candidates[i - <span class="hljs-number">1</span>] ) &#123;<br>        <span class="hljs-keyword">continue</span>;<br>      &#125;<br><br>      sum += candidates[i];<br>      path.add( candidates[i] );<br>      <span class="hljs-comment">// i+1 代表当前组内元素只选取一次</span><br>      backTracking( candidates, target, i + <span class="hljs-number">1</span> );<br><br>      <span class="hljs-type">int</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> path.getLast();<br>      sum -= temp;<br>      path.removeLast();<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
                 
               </div>
             
@@ -329,8 +345,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>回溯算法</div>
-      <div>http://sea-365.site/2023/02/07/回溯算法/</div>
+      <div>回溯算法_LeetCode_T39</div>
+      <div>http://sea-365.site/2023/02/08/T39/</div>
     </div>
     <div class="license-meta">
       
@@ -342,7 +358,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年2月7日</div>
+          <div>2023年2月8日</div>
         </div>
       
       
@@ -374,18 +390,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/08/T39/" title="回溯算法_LeetCode_T39">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">回溯算法_LeetCode_T39</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B8%80%E8%88%AC%E8%A7%A3%E9%A2%98%E6%AD%A5%E9%AA%A4/" title="动态规划一般解题步骤">
-                        <span class="hidden-mobile">动态规划一般解题步骤</span>
+                      <a href="/2023/02/07/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" title="回溯算法">
+                        <span class="hidden-mobile">回溯算法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
