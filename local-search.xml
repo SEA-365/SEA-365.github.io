@@ -4,6 +4,64 @@
   
   
   <entry>
+    <title>Java学习-将基本数据类型封装成包装类的好处</title>
+    <link href="/2023/02/10/%E5%B0%86%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%B0%81%E8%A3%85%E6%88%90%E5%8C%85%E8%A3%85%E7%B1%BB%E7%9A%84%E5%A5%BD%E5%A4%84/"/>
+    <url>/2023/02/10/%E5%B0%86%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%B0%81%E8%A3%85%E6%88%90%E5%8C%85%E8%A3%85%E7%B1%BB%E7%9A%84%E5%A5%BD%E5%A4%84/</url>
+    
+    <content type="html"><![CDATA[<h2 id="将基本数据类型封装成包装类的好处"><a href="#将基本数据类型封装成包装类的好处" class="headerlink" title="将基本数据类型封装成包装类的好处"></a>将基本数据类型封装成包装类的好处</h2><ul><li>1.可以赋null值；</li></ul><ul><li><pre><code class="hljs"> 2.有缓存机制。例如Integer缓存了-128~127区间的数值；</code></pre></li><li><pre><code class="hljs"> 3.集合中只能存放Object及其子类 类型的数据，不能存放基本数据类型；</code></pre></li><li><pre><code class="hljs"> 可能还有其它的；</code></pre></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java学习</category>
+      
+      <category>Wrapper类</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+      <tag>Wrapper类</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>集合框架体系整理</title>
+    <link href="/2023/02/10/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%BD%93%E7%B3%BB/"/>
+    <url>/2023/02/10/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%BD%93%E7%B3%BB/</url>
+    
+    <content type="html"><![CDATA[<h2 id="集合框架体系"><a href="#集合框架体系" class="headerlink" title="集合框架体系"></a>集合框架体系</h2><h3 id="Collection-单列集合"><a href="#Collection-单列集合" class="headerlink" title="Collection  (单列集合)"></a>Collection  (单列集合)</h3><ul><li>List<ul><li>ArrayList *</li><li>LinkedList</li><li>Vector</li></ul></li><li>Set<ul><li>HashSet *</li><li>LinkedHashSet</li><li>TreeSet</li></ul></li></ul><h3 id="Map（双列集合）"><a href="#Map（双列集合）" class="headerlink" title="Map（双列集合）"></a>Map（双列集合）</h3><ul><li>HahMap *</li><li>HahTable</li><li>LinkedHahMap</li><li>TreeMap</li><li>Properties</li></ul><h3 id="Collections"><a href="#Collections" class="headerlink" title="Collections"></a>Collections</h3>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java学习</category>
+      
+      <category>集合</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+      <tag>集合</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>回溯算法-LeetCode_T40</title>
     <link href="/2023/02/08/T40/"/>
     <url>/2023/02/08/T40/</url>
