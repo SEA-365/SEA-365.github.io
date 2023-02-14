@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Java-运算符总结</title>
+    <link href="/2023/02/14/Java-%E8%BF%90%E7%AE%97%E7%AC%A6%E6%80%BB%E7%BB%93/"/>
+    <url>/2023/02/14/Java-%E8%BF%90%E7%AE%97%E7%AC%A6%E6%80%BB%E7%BB%93/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Java-运算符总结"><a href="#Java-运算符总结" class="headerlink" title="Java-运算符总结"></a>Java-运算符总结</h1><h2 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h2><table><thead><tr><th>操作符</th><th>描述</th></tr></thead><tbody><tr><td>+</td><td>加法</td></tr><tr><td>-</td><td>减法</td></tr><tr><td>*</td><td>乘法</td></tr><tr><td>&#x2F;</td><td>除法</td></tr><tr><td>%</td><td>取余</td></tr><tr><td>++</td><td>自增</td></tr><tr><td>–</td><td>自减</td></tr></tbody></table><h2 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h2><table><thead><tr><th>操作符</th><th>描述</th></tr></thead><tbody><tr><td>&#x3D;&#x3D;</td><td>等于</td></tr><tr><td>!&#x3D;</td><td>不等于</td></tr><tr><td>&gt;</td><td>大于</td></tr><tr><td>&lt;</td><td>小于</td></tr><tr><td>&gt;&#x3D;</td><td>大于等于</td></tr><tr><td>&lt;&#x3D;</td><td>小于等于</td></tr></tbody></table><h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><table><thead><tr><th>操作符</th><th>描述</th></tr></thead><tbody><tr><td>&amp;</td><td>按位与，（5&amp;6） &#x3D;&#x3D;&gt; (0101 &amp; 0110) &#x3D;&#x3D;&gt; 4</td></tr><tr><td>|</td><td>按位或，（5|6） &#x3D;&#x3D;&gt; (0101 | 0110) &#x3D;&#x3D;&gt; 0111 &#x3D;&#x3D;&#x3D;&gt; 7</td></tr><tr><td>^</td><td>按位异或，（5^6） &#x3D;&#x3D;&gt; (0101 ^ 0110) &#x3D;&#x3D;&gt; 0011 &#x3D;&#x3D;&gt; 3</td></tr><tr><td>~</td><td>按位取反，（~5） &#x3D;&#x3D;&gt; 0101 &#x3D;&#x3D;&gt; 1010(负数的补码转换成原码，按位取反加一) &#x3D;&#x3D;&gt; -6</td></tr><tr><td>&lt;&lt;</td><td>按位左移，5&lt;&lt;2  &#x3D;&#x3D;&gt; 0101 &gt;&gt; 2 &#x3D;&#x3D;&gt;010100 &#x3D;&#x3D;&gt; 20</td></tr><tr><td>&gt;&gt;</td><td>按位右移，5&gt;&gt;2  &#x3D;&#x3D;&gt; 0101 &gt;&gt; 2 &#x3D;&#x3D;&gt; 1</td></tr><tr><td>&gt;&gt;&gt;</td><td>按位右移补零，5&gt;&gt;&gt;2  &#x3D;&#x3D;&gt; 0101 &gt;&gt;&gt; 2 &#x3D;&#x3D;&gt;0001 &#x3D;&#x3D;&gt; 1</td></tr></tbody></table><h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><table><thead><tr><th>操作符</th><th>描述</th></tr></thead><tbody><tr><td>&amp;&amp;</td><td>逻辑与</td></tr><tr><td>||</td><td>逻辑或</td></tr><tr><td>!</td><td>逻辑非</td></tr></tbody></table><h2 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h2><table><thead><tr><th>操作符</th><th>描述</th></tr></thead><tbody><tr><td>&#x3D;</td><td>简单的赋值</td></tr><tr><td>+&#x3D;</td><td>加和赋值，A +&#x3D; B &#x3D;&#x3D;&#x3D;&gt; A &#x3D; A + B</td></tr><tr><td>-&#x3D;</td><td>减和赋值</td></tr><tr><td>*&#x3D;</td><td>乘和赋值</td></tr><tr><td>&#x2F;&#x3D;</td><td>除和赋值</td></tr><tr><td>%&#x3D;</td><td>取模和赋值，A%B &#x3D;&#x3D;&#x3D;&gt; A &#x3D; A % B</td></tr><tr><td>&lt;&lt;&#x3D;</td><td>左移位赋值，A&lt;&lt;&#x3D;2 &#x3D;&#x3D;&#x3D;&gt; A &#x3D; A&lt;&lt;2</td></tr><tr><td>&gt;&gt;&#x3D;</td><td>右移位赋值</td></tr><tr><td>&amp;&#x3D;</td><td>按位与赋值</td></tr><tr><td>^&#x3D;</td><td>按位异或赋值</td></tr><tr><td>|</td><td>按位或赋值</td></tr></tbody></table><h2 id="其他运算符"><a href="#其他运算符" class="headerlink" title="其他运算符"></a>其他运算符</h2><table><thead><tr><th>操作符</th><th>描述</th></tr></thead><tbody><tr><td>?  :</td><td>三元运算符</td></tr><tr><td>instanceof</td><td>用于操作对象实例，检查该对象是否是一个特定的类型（类类型或累接口）</td></tr></tbody></table><h2 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h2><p>表中，自上而下优先级依次降低。</p><table><thead><tr><th>类别</th><th>操作符</th><th>运算顺序</th></tr></thead><tbody><tr><td>后缀</td><td>()、 []、 .(点操作符)</td><td>自左向右</td></tr><tr><td>一元</td><td>a++、a–</td><td>自左向右</td></tr><tr><td>一元</td><td>++a、–a、+、-、~、!</td><td>自右向左</td></tr><tr><td>乘 除 取模</td><td>*、&#x2F;、%</td><td>自左向右</td></tr><tr><td>加 减</td><td>+、-</td><td>自左向右</td></tr><tr><td>移位</td><td>&gt;&gt;、&gt;&gt;&gt;、&lt;&lt;</td><td>自左向右</td></tr><tr><td>关系</td><td>&gt;、&gt;&#x3D;、&lt;、&lt;&#x3D;</td><td>自左向右</td></tr><tr><td>相等</td><td>&#x3D;&#x3D;、!&#x3D;</td><td>自左向右</td></tr><tr><td>按位与</td><td>&amp;</td><td>自左向右</td></tr><tr><td>按位异或</td><td>^</td><td>自左向右</td></tr><tr><td>按位或</td><td>|</td><td>自左向右</td></tr><tr><td>逻辑与</td><td>&amp;&amp;</td><td>自左向右</td></tr><tr><td>逻辑或</td><td>||</td><td>自左向右</td></tr><tr><td>条件</td><td>? :</td><td>自右向左</td></tr><tr><td>赋值</td><td>&#x3D;、+&#x3D;、-&#x3D;、*&#x3D;、&#x2F;&#x3D;、%&#x3D;、&gt;&gt;&#x3D;、&lt;&lt;&#x3D;、&amp;&#x3D;、|&#x3D;、^&#x3D;、、</td><td>自右向左</td></tr><tr><td>逗号</td><td>,</td><td>自左向右</td></tr></tbody></table>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>回溯算法-经典同层去重（剪枝）</title>
     <link href="/2023/02/13/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95-%E7%BB%8F%E5%85%B8%E5%90%8C%E5%B1%82%E5%8E%BB%E9%87%8D%EF%BC%88%E5%89%AA%E6%9E%9D%EF%BC%89/"/>
     <url>/2023/02/13/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95-%E7%BB%8F%E5%85%B8%E5%90%8C%E5%B1%82%E5%8E%BB%E9%87%8D%EF%BC%88%E5%89%AA%E6%9E%9D%EF%BC%89/</url>
