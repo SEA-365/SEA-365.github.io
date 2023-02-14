@@ -18,15 +18,15 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="回溯算法-经典同层去重（剪枝）LeetCode参考题目： T40  给你一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。 解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。 来源：力扣（LeetCode）链接：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;subsets  T90  给你一个整数数组 nums ，其中可能包含重复元素，请你返">
+    <meta name="description" content="回溯算法-经典同层去重（剪枝）LeetCode参考题目： LeetCode_40  给你一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。 解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。 来源：力扣（LeetCode）链接：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;subsets  LeetCode_90  给你一个整数数组 nums">
 <meta property="og:type" content="article">
 <meta property="og:title" content="回溯算法-经典同层去重（剪枝）">
 <meta property="og:url" content="http://sea-365.site/2023/02/13/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95-%E7%BB%8F%E5%85%B8%E5%90%8C%E5%B1%82%E5%8E%BB%E9%87%8D%EF%BC%88%E5%89%AA%E6%9E%9D%EF%BC%89/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="回溯算法-经典同层去重（剪枝）LeetCode参考题目： T40  给你一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。 解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。 来源：力扣（LeetCode）链接：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;subsets  T90  给你一个整数数组 nums ，其中可能包含重复元素，请你返">
+<meta property="og:description" content="回溯算法-经典同层去重（剪枝）LeetCode参考题目： LeetCode_40  给你一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。 解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。 来源：力扣（LeetCode）链接：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;subsets  LeetCode_90  给你一个整数数组 nums">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-02-13T12:04:01.247Z">
-<meta property="article:modified_time" content="2023-02-13T12:03:37.344Z">
+<meta property="article:modified_time" content="2023-02-14T09:52:32.118Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="回溯算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1.2k 字
         
       </span>
     
@@ -278,18 +278,18 @@
               <div class="markdown-body">
                 
                 <h3 id="回溯算法-经典同层去重（剪枝）"><a href="#回溯算法-经典同层去重（剪枝）" class="headerlink" title="回溯算法-经典同层去重（剪枝）"></a>回溯算法-经典同层去重（剪枝）</h3><h4 id="LeetCode参考题目："><a href="#LeetCode参考题目：" class="headerlink" title="LeetCode参考题目："></a>LeetCode参考题目：</h4><ul>
-<li>T40</li>
+<li>LeetCode_40</li>
 </ul>
 <p>给你一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。</p>
 <p>解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。</p>
 <p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/subsets">https://leetcode.cn/problems/subsets</a></p>
 <ul>
-<li>T90</li>
+<li>LeetCode_90</li>
 </ul>
 <p>给你一个整数数组 nums ，其中可能包含重复元素，请你返回该数组所有可能的子集（幂集）。</p>
 <p>解集 不能 包含重复的子集。返回的解集中，子集可以按 任意顺序 排列。</p>
 <p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/subsets-ii">https://leetcode.cn/problems/subsets-ii</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<p><strong>T40之前发过一篇文章，没怎么懂，但是回溯过程如果不去重（剪枝），会超出时间限制！！</strong></p>
+<p><strong>LeetCode_40之前发过一篇文章，没怎么懂，但是回溯过程如果不去重（剪枝），会超出时间限制！！</strong></p>
 <p><strong>下面是去重的写法</strong></p>
 <h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">static</span> List&lt;List&lt;Integer&gt;&gt; ansList;<br>    <span class="hljs-keyword">static</span> List&lt;Integer&gt; cur_list;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">backTrack</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums, <span class="hljs-type">int</span> index)</span>&#123;<br>        <span class="hljs-keyword">if</span>(index == nums.length)<br>            <span class="hljs-keyword">return</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> index; i &lt; nums.length; i++) &#123;<br>            <span class="hljs-comment">//关键地方：同层去重，剪枝操作！</span><br>            <span class="hljs-keyword">if</span>(i &gt; index &amp;&amp; nums[i] == nums[i-<span class="hljs-number">1</span>])<br>                <span class="hljs-keyword">continue</span>;<br>            <br>            cur_list.add(nums[i]);<br><br>            List&lt;Integer&gt; list1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(cur_list);<span class="hljs-comment">//重新保存，防止覆盖</span><br>            ansList.add(list1);<br><br>            backTrack(nums, i+<span class="hljs-number">1</span>);<br><br>            cur_list.remove(cur_list.size()-<span class="hljs-number">1</span>);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="hljs-title function_">subsetsWithDup</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>        ansList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        cur_list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        Arrays.sort(nums);<br><br>        ansList.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;());<span class="hljs-comment">//先把空集加入</span><br><br>        backTrack(nums, <span class="hljs-number">0</span>);<br><br>        <span class="hljs-keyword">return</span> ansList;<br>    &#125;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
 
