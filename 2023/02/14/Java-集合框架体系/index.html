@@ -26,7 +26,7 @@
 <meta property="og:description" content="集合框架体系Collection  (单列集合)Collection接口实现类的特点 1.可以存放多个Object类型的元素； 2.有些可以存放重复元素，有些不行； 3.有些是有序的（List），有些不是有序的（Set）； 4.没有直接的实现子类，是通过实现它的子接口Set和List实现的；  List List接口是Collection接口的子接口，特点： 1.List集合类中的元素有序，即添加">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-02-14T08:43:49.529Z">
-<meta property="article:modified_time" content="2023-02-14T08:52:28.517Z">
+<meta property="article:modified_time" content="2023-02-14T08:53:33.393Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="集合">
@@ -402,7 +402,7 @@
 <li><p>5.<strong>低层扩容机制</strong>，HashMap &#x3D;&gt; <strong>数组+链表+红黑树</strong></p>
 <ul>
 <li><p>1）添加一个元素时，先通过hash算法得到hash值，通过<strong>某个</strong>算法转成索引值；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//hash()方法，获得hash值</span><br><span class="hljs-keyword">return</span> (key == <span class="hljs-literal">null</span>) ? <span class="hljs-number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="hljs-number">16</span>);<br><br><span class="hljs-comment">//“某个算法”即i = (n - 1) &amp; hash  实现：hash值 ==&gt; table的索引值；</span><br>tab[i = (n - <span class="hljs-number">1</span>) &amp; hash]<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//hash()方法，获得hash值</span><br><span class="hljs-keyword">return</span> (key == <span class="hljs-literal">null</span>) ? <span class="hljs-number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="hljs-number">16</span>);<br><br><span class="hljs-comment">//“某个算法”即i = (n - 1) &amp; hash  实现：hash值 ==&gt; table的索引值</span><br>tab[i = (n - <span class="hljs-number">1</span>) &amp; hash]<br></code></pre></td></tr></table></figure>
 </li>
 <li><p>2）找到存储数据表table，检查该索引位置是否已经存放有元素：</p>
 <ul>
