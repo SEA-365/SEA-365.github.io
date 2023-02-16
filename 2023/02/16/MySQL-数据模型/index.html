@@ -18,15 +18,15 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="MySQL学习-MySQL介绍数据库相关概念数据库 Database，简称DB；  存储数据的仓库，数据是有组织的进行存储；   数据库管理系统 Database Management System，简称DBMS；  操纵和管理数据库的大型软件；   SQL Structured Query Language，简称SQL； 操作关系型数据库的编程语言，定义了一套操作关系型数据库的统一标准；  三者">
+    <meta name="description" content="MySQL学习–数据模型关系型数据库 英文简称：RDBMS；  概念：建立在关系模型基础上，由多张相互连接的二维表组成的数据库。  特点：  使用表结构存储数据，格式统一，便于维护； 使用SQL语言操作数据，标准统一，使用方便；    数据模型 角色： 客户端 DBMS 数据库 数据表 记录 MySQL数据库服务器   关系 计算机安装了MySQL后，就成为了MySQL数据库服务器； 客户端通过连">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL学习-MySQL介绍">
-<meta property="og:url" content="http://sea-365.site/2023/02/14/MySQL-%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:title" content="MySQL学习-数据模型">
+<meta property="og:url" content="http://sea-365.site/2023/02/16/MySQL-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="MySQL学习-MySQL介绍数据库相关概念数据库 Database，简称DB；  存储数据的仓库，数据是有组织的进行存储；   数据库管理系统 Database Management System，简称DBMS；  操纵和管理数据库的大型软件；   SQL Structured Query Language，简称SQL； 操作关系型数据库的编程语言，定义了一套操作关系型数据库的统一标准；  三者">
+<meta property="og:description" content="MySQL学习–数据模型关系型数据库 英文简称：RDBMS；  概念：建立在关系模型基础上，由多张相互连接的二维表组成的数据库。  特点：  使用表结构存储数据，格式统一，便于维护； 使用SQL语言操作数据，标准统一，使用方便；    数据模型 角色： 客户端 DBMS 数据库 数据表 记录 MySQL数据库服务器   关系 计算机安装了MySQL后，就成为了MySQL数据库服务器； 客户端通过连">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-02-14T12:56:01.830Z">
-<meta property="article:modified_time" content="2023-02-16T12:56:47.781Z">
+<meta property="article:published_time" content="2023-02-16T12:57:17.637Z">
+<meta property="article:modified_time" content="2023-02-16T12:56:53.939Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="SQL">
@@ -36,7 +36,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>MySQL学习-MySQL介绍 - SEA-365的读研日记</title>
+  <title>MySQL学习-数据模型 - SEA-365的读研日记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="MySQL学习-MySQL介绍"></span>
+            <span id="subtitle" data-typed-text="MySQL学习-数据模型"></span>
           
         </div>
 
@@ -212,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-14 20:56" pubdate>
-          2023年2月14日 晚上
+        <time datetime="2023-02-16 20:57" pubdate>
+          2023年2月16日 晚上
         </time>
       </span>
     
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          228 字
+          240 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          2 分钟
+          3 分钟
         
       </span>
     
@@ -273,31 +273,44 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">MySQL学习-MySQL介绍</h1>
+            <h1 style="display: none">MySQL学习-数据模型</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="MySQL学习-MySQL介绍"><a href="#MySQL学习-MySQL介绍" class="headerlink" title="MySQL学习-MySQL介绍"></a>MySQL学习-MySQL介绍</h1><h2 id="数据库相关概念"><a href="#数据库相关概念" class="headerlink" title="数据库相关概念"></a>数据库相关概念</h2><h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><ul>
-<li><p>Database，简称DB；</p>
+                <h1 id="MySQL学习–数据模型"><a href="#MySQL学习–数据模型" class="headerlink" title="MySQL学习–数据模型"></a>MySQL学习–数据模型</h1><h2 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h2><ul>
+<li><p>英文简称：RDBMS；</p>
 </li>
-<li><p>存储数据的仓库，数据是有组织的进行存储；</p>
+<li><p>概念：建立在关系模型基础上，由<strong>多张相互连接的二维表</strong>组成的数据库。</p>
+</li>
+<li><p>特点：</p>
+<ul>
+<li>使用表结构存储数据，格式统一，便于维护；</li>
+<li>使用SQL语言操作数据，标准统一，使用方便；</li>
+</ul>
 </li>
 </ul>
-<h3 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h3><ul>
-<li><p>Database Management System，简称DBMS；</p>
+<h2 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h2><ul>
+<li>角色：<ul>
+<li>客户端</li>
+<li>DBMS</li>
+<li>数据库</li>
+<li>数据表</li>
+<li>记录</li>
+<li>MySQL数据库服务器</li>
+</ul>
 </li>
-<li><p>操纵和管理数据库的大型软件；</p>
+<li>关系<ul>
+<li>计算机安装了MySQL后，就成为了<strong>MySQL数据库服务器</strong>；</li>
+<li><strong>客户端</strong>通过连接<strong>DBMS</strong>来管理<strong>数据库</strong>；</li>
+<li>客户端使用<strong>SQL语句</strong>通过DBMS来：<ul>
+<li>创建多个数据库；</li>
+<li>在数据库中创建多张<strong>数据表</strong>；</li>
+<li>在表中增加多条<strong>记录</strong>；</li>
+<li>等等；</li>
+</ul>
 </li>
 </ul>
-<h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><ul>
-<li>Structured Query Language，简称SQL；</li>
-<li>操作关系型数据库的编程语言，定义了一套操作关系型数据库的统一标准；</li>
-</ul>
-<h3 id="三者之间的关系"><a href="#三者之间的关系" class="headerlink" title="三者之间的关系"></a>三者之间的关系</h3><ul>
-<li><p><strong>程序员</strong> 通过 <strong>SQL</strong> 操作 <strong>数据库管理系统</strong>；</p>
-</li>
-<li><p>通过 <strong>数据库管理系统</strong> 来操作 <strong>数据库以及数据库中的数据</strong>；</p>
 </li>
 </ul>
 
@@ -354,8 +367,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>MySQL学习-MySQL介绍</div>
-      <div>http://sea-365.site/2023/02/14/MySQL-介绍/</div>
+      <div>MySQL学习-数据模型</div>
+      <div>http://sea-365.site/2023/02/16/MySQL-数据模型/</div>
     </div>
     <div class="license-meta">
       
@@ -367,7 +380,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年2月14日</div>
+          <div>2023年2月16日</div>
         </div>
       
       
@@ -399,9 +412,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/15/MySQL-ChatGPT%E7%BB%99%E5%87%BA%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" title="MySQL学习-ChatGPT给出的学习计划">
+                      <a href="/2023/02/16/MySQL-SQL%E8%AF%AD%E8%A8%80/" title="MySQL学习-SQL语言">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MySQL学习-ChatGPT给出的学习计划</span>
+                        <span class="hidden-mobile">MySQL学习-SQL语言</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -409,8 +422,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/14/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95-%E7%BB%8F%E5%85%B8%E5%90%8C%E5%B1%82%E5%8E%BB%E9%87%8D%EF%BC%88flag%E6%A0%87%E8%AE%B0%E6%95%B0%E7%BB%84%EF%BC%89/" title="回溯算法-经典同层去重（flag标记数组）">
-                        <span class="hidden-mobile">回溯算法-经典同层去重（flag标记数组）</span>
+                      <a href="/2023/02/16/Java%E5%AD%A6%E4%B9%A0-%E5%B0%86%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%B0%81%E8%A3%85%E6%88%90%E5%8C%85%E8%A3%85%E7%B1%BB%E7%9A%84%E5%A5%BD%E5%A4%84/" title="Java学习-将基本数据类型封装成包装类的好处">
+                        <span class="hidden-mobile">Java学习-将基本数据类型封装成包装类的好处</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
