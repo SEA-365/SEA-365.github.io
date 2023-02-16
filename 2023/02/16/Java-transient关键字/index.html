@@ -18,24 +18,24 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="Git 全局设置12git config --global user.name &quot;用户名&quot;git config --global user.email &quot;用户邮箱&quot;  创建新的仓库并提交代码1234567git clone 仓库地址cd 仓库目录git switch -c 新的分支名touch README.md git add README.mdgit c">
+    <meta name="description" content="Java-transient关键字 1.在 Java 中，transient 是一个关键字，用于修饰类的成员变量，表示该变量不参与序列化过程。  2.在 Java 中，当需要将一个对象序列化为字节流并在网络或者文件中传输时，会使用 ObjectOutputStream 进行序列化操作。而 transient 关键字可以用来控制序列化过程中哪些成员变量需要被序列化，哪些成员变量不需要被序列化。  3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git常用命令整理">
-<meta property="og:url" content="http://sea-365.site/2023/02/10/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/index.html">
+<meta property="og:title" content="Java-transient关键字">
+<meta property="og:url" content="http://sea-365.site/2023/02/16/Java-transient%E5%85%B3%E9%94%AE%E5%AD%97/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="Git 全局设置12git config --global user.name &quot;用户名&quot;git config --global user.email &quot;用户邮箱&quot;  创建新的仓库并提交代码1234567git clone 仓库地址cd 仓库目录git switch -c 新的分支名touch README.md git add README.mdgit c">
+<meta property="og:description" content="Java-transient关键字 1.在 Java 中，transient 是一个关键字，用于修饰类的成员变量，表示该变量不参与序列化过程。  2.在 Java 中，当需要将一个对象序列化为字节流并在网络或者文件中传输时，会使用 ObjectOutputStream 进行序列化操作。而 transient 关键字可以用来控制序列化过程中哪些成员变量需要被序列化，哪些成员变量不需要被序列化。  3">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-02-10T04:54:35.445Z">
-<meta property="article:modified_time" content="2023-02-10T04:48:05.258Z">
+<meta property="article:published_time" content="2023-02-16T06:59:58.172Z">
+<meta property="article:modified_time" content="2023-02-15T08:24:33.953Z">
 <meta property="article:author" content="SEA">
-<meta property="article:tag" content="Git">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Git常用命令整理 - SEA-365的读研日记</title>
+  <title>Java-transient关键字 - SEA-365的读研日记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Git常用命令整理"></span>
+            <span id="subtitle" data-typed-text="Java-transient关键字"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-10 12:54" pubdate>
-          2023年2月10日 下午
+        <time datetime="2023-02-16 14:59" pubdate>
+          2023年2月16日 下午
         </time>
       </span>
     
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          460 字
+          349 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          4 分钟
+          3 分钟
         
       </span>
     
@@ -272,21 +272,21 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Git常用命令整理</h1>
+            <h1 style="display: none">Java-transient关键字</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="Git-全局设置"><a href="#Git-全局设置" class="headerlink" title="Git 全局设置"></a>Git 全局设置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs git">git config --global user.name &quot;用户名&quot;<br>git config --global user.email &quot;用户邮箱&quot;<br></code></pre></td></tr></table></figure>
-
-<h3 id="创建新的仓库并提交代码"><a href="#创建新的仓库并提交代码" class="headerlink" title="创建新的仓库并提交代码"></a>创建新的仓库并提交代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs git">git clone 仓库地址<br>cd 仓库目录<br>git switch -c 新的分支名<br>touch README.md <br>git add README.md<br>git commit -m &quot;本次提交的描述信息&quot;<br>git push -u origin 新的分支名<br></code></pre></td></tr></table></figure>
-
-<h3 id="推送本地现有文件夹"><a href="#推送本地现有文件夹" class="headerlink" title="推送本地现有文件夹"></a>推送本地现有文件夹</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs git">cd 文件夹目录<br>git init <br>git remote add origin 远程仓库地址<br>git add .<br>git commit -m &quot;描述信息&quot;<br>git push -u origin 分支名<br></code></pre></td></tr></table></figure>
-
-<h3 id="origin-的含义"><a href="#origin-的含义" class="headerlink" title="origin 的含义"></a>origin 的含义</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs git">“git remote add origin 远程仓库地址”<br><br>origin 是 该远程仓库的别名<br></code></pre></td></tr></table></figure>
-
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs git">#克隆远程仓库的指定分支到本地<br>git clone -b 远程分支名 远程分支地址<br><br>#pull远程仓库的指定分支<br>git pull origin 远程指定分支<br></code></pre></td></tr></table></figure>
-
+                <h1 id="Java-transient关键字"><a href="#Java-transient关键字" class="headerlink" title="Java-transient关键字"></a>Java-transient关键字</h1><ul>
+<li><p>1.在 Java 中，<code>transient</code> 是一个关键字，用于修饰类的成员变量，表示该变量不参与序列化过程。</p>
+</li>
+<li><p>2.在 Java 中，当需要将一个对象序列化为字节流并在网络或者文件中传输时，会使用 <code>ObjectOutputStream</code> 进行序列化操作。而 <code>transient</code> 关键字可以用来控制序列化过程中哪些成员变量需要被序列化，哪些成员变量不需要被序列化。</p>
+</li>
+<li><p>3.具体来说，被 <code>transient</code> 修饰的变量，当对象被序列化时，这个变量的值不会被写入到序列化输出流中；而当对象被反序列化时，这个变量的值会被默认初始化，也就是赋予该变量类型的默认值。</p>
+</li>
+<li><p>4.使用 <code>transient</code> 的场景通常是当某个成员变量不应该被序列化时，例如一些敏感信息、临时计算结果等，这些信息不需要被存储在序列化的字节流中。</p>
+</li>
+</ul>
 
                 
               </div>
@@ -305,7 +305,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Git%E6%93%8D%E4%BD%9C/" class="category-chain-item">Git操作</a>
+  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/" class="category-chain-item">Java学习</a>
   
   
 
@@ -320,7 +320,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Git/">#Git</a>
+        <a href="/tags/Java/">#Java</a>
       
     </div>
   
@@ -332,8 +332,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Git常用命令整理</div>
-      <div>http://sea-365.site/2023/02/10/常用命令整理/</div>
+      <div>Java-transient关键字</div>
+      <div>http://sea-365.site/2023/02/16/Java-transient关键字/</div>
     </div>
     <div class="license-meta">
       
@@ -345,7 +345,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年2月10日</div>
+          <div>2023年2月16日</div>
         </div>
       
       
@@ -377,18 +377,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/10/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E4%B8%80%E8%88%AC%E8%A7%A3%E9%A2%98%E6%AD%A5%E9%AA%A4/" title="回溯算法一般解题步骤">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">回溯算法一般解题步骤</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/10/%E5%B0%86%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%B0%81%E8%A3%85%E6%88%90%E5%8C%85%E8%A3%85%E7%B1%BB%E7%9A%84%E5%A5%BD%E5%A4%84/" title="Java学习-将基本数据类型封装成包装类的好处">
-                        <span class="hidden-mobile">Java学习-将基本数据类型封装成包装类的好处</span>
+                      <a href="/2023/02/15/MySQL-ChatGPT%E7%BB%99%E5%87%BA%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" title="MySQL学习-ChatGPT给出的学习计划">
+                        <span class="hidden-mobile">MySQL学习-ChatGPT给出的学习计划</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
