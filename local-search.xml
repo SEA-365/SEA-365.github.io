@@ -438,35 +438,6 @@
   
   
   <entry>
-    <title>Java学习-将基本数据类型封装成包装类的好处</title>
-    <link href="/2023/02/10/Java-%E5%B0%86%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%B0%81%E8%A3%85%E6%88%90%E5%8C%85%E8%A3%85%E7%B1%BB%E7%9A%84%E5%A5%BD%E5%A4%84/"/>
-    <url>/2023/02/10/Java-%E5%B0%86%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%B0%81%E8%A3%85%E6%88%90%E5%8C%85%E8%A3%85%E7%B1%BB%E7%9A%84%E5%A5%BD%E5%A4%84/</url>
-    
-    <content type="html"><![CDATA[<h2 id="Java学习-将基本数据类型封装成包装类的好处"><a href="#Java学习-将基本数据类型封装成包装类的好处" class="headerlink" title="Java学习-将基本数据类型封装成包装类的好处"></a>Java学习-将基本数据类型封装成包装类的好处</h2><ul><li>1.可以赋null值，有些地方需要赋null，但是基本数据类型不能赋null；</li></ul><ul><li><pre><code class="hljs"> 2.有缓存机制。例如Integer缓存了-128~127区间的数值；</code></pre></li><li><pre><code class="hljs"> 3.集合中只能存放Object及其子类 类型的数据，不能存放基本数据类型；</code></pre></li><li><pre><code class="hljs"> 可能还有其它的；</code></pre></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>Java学习</category>
-      
-      <category>Wrapper类</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Java</tag>
-      
-      <tag>Wrapper类</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>回溯算法-LeetCode_T40</title>
     <link href="/2023/02/08/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95_LeetCode_T40/"/>
     <url>/2023/02/08/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95_LeetCode_T40/</url>
