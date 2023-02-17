@@ -18,15 +18,15 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="回溯算法">
+    <meta name="description" content="回溯算法-LeetCode_T332（回溯算法章节暂时告一段落） 题目描述  123456789101112131415161718给你一份航线列表 tickets ，其中 tickets[i] &#x3D; [fromi, toi] 表示飞机出发和降落的机场地点。请你对该行程进行重新规划排序。所有这些机票都属于一个从 JFK（肯尼迪国际机场）出发的先生，所以该行程必须从 JFK 开始。如果存在多种有效的行">
 <meta property="og:type" content="article">
-<meta property="og:title" content="回溯算法">
-<meta property="og:url" content="http://sea-365.site/2023/02/07/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:title" content="回溯算法-LeetCode_T332（回溯算法章节暂时告一段落）">
+<meta property="og:url" content="http://sea-365.site/2023/02/17/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95-LeetCode_T332%EF%BC%88%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E7%AB%A0%E8%8A%82%E6%9A%82%E6%97%B6%E5%91%8A%E4%B8%80%E6%AE%B5%E8%90%BD%EF%BC%89/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="回溯算法">
+<meta property="og:description" content="回溯算法-LeetCode_T332（回溯算法章节暂时告一段落） 题目描述  123456789101112131415161718给你一份航线列表 tickets ，其中 tickets[i] &#x3D; [fromi, toi] 表示飞机出发和降落的机场地点。请你对该行程进行重新规划排序。所有这些机票都属于一个从 JFK（肯尼迪国际机场）出发的先生，所以该行程必须从 JFK 开始。如果存在多种有效的行">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-02-07T09:59:12.180Z">
-<meta property="article:modified_time" content="2023-02-07T10:55:40.589Z">
+<meta property="article:published_time" content="2023-02-17T01:51:23.704Z">
+<meta property="article:modified_time" content="2023-02-17T01:50:45.232Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="回溯算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +35,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>回溯算法 - SEA-365的读研日记</title>
+  <title>回溯算法-LeetCode_T332（回溯算法章节暂时告一段落） - SEA-365的读研日记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="回溯算法"></span>
+            <span id="subtitle" data-typed-text="回溯算法-LeetCode_T332（回溯算法章节暂时告一段落）"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-07 17:59" pubdate>
-          2023年2月7日 下午
+        <time datetime="2023-02-17 09:51" pubdate>
+          2023年2月17日 上午
         </time>
       </span>
     
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4 字
+          1.1k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          1 分钟
+          10 分钟
         
       </span>
     
@@ -272,12 +272,23 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">回溯算法</h1>
+            <h1 style="display: none">回溯算法-LeetCode_T332（回溯算法章节暂时告一段落）</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h3>
+                <h3 id="回溯算法-LeetCode-T332（回溯算法章节暂时告一段落）"><a href="#回溯算法-LeetCode-T332（回溯算法章节暂时告一段落）" class="headerlink" title="回溯算法-LeetCode_T332（回溯算法章节暂时告一段落）"></a>回溯算法-LeetCode_T332（回溯算法章节暂时告一段落）</h3><ul>
+<li>题目描述</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs html">给你一份航线列表 tickets ，其中 tickets[i] = [fromi, toi] 表示飞机出发和降落的机场地点。请你对该行程进行重新规划排序。<br><br>所有这些机票都属于一个从 JFK（肯尼迪国际机场）出发的先生，所以该行程必须从 JFK 开始。如果存在多种有效的行程，请你按字典排序返回最小的行程组合。<br><br>例如，行程 [&quot;JFK&quot;, &quot;LGA&quot;] 与 [&quot;JFK&quot;, &quot;LGB&quot;] 相比就更小，排序更靠前。<br>假定所有机票至少存在一种合理的行程。且所有的机票 必须都用一次 且 只能用一次。<br><br>示例 1：<br>输入：tickets = [[&quot;MUC&quot;,&quot;LHR&quot;],[&quot;JFK&quot;,&quot;MUC&quot;],[&quot;SFO&quot;,&quot;SJC&quot;],[&quot;LHR&quot;,&quot;SFO&quot;]]<br>输出：[&quot;JFK&quot;,&quot;MUC&quot;,&quot;LHR&quot;,&quot;SFO&quot;,&quot;SJC&quot;]<br><br>示例 2：<br>输入：tickets = [[&quot;JFK&quot;,&quot;SFO&quot;],[&quot;JFK&quot;,&quot;ATL&quot;],[&quot;SFO&quot;,&quot;ATL&quot;],[&quot;ATL&quot;,&quot;JFK&quot;],[&quot;ATL&quot;,&quot;SFO&quot;]]<br>输出：[&quot;JFK&quot;,&quot;ATL&quot;,&quot;JFK&quot;,&quot;SFO&quot;,&quot;ATL&quot;,&quot;SFO&quot;]<br>解释：另一种有效的行程是 [&quot;JFK&quot;,&quot;SFO&quot;,&quot;ATL&quot;,&quot;JFK&quot;,&quot;ATL&quot;,&quot;SFO&quot;] ，但是它字典排序更大更靠后。<br><br>来源：力扣（LeetCode）<br>链接：https://leetcode.cn/problems/reconstruct-itinerary<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>今天是2023年02月16日</strong></p>
+<p><strong>LeetCode上刷到的第一道Hard题，mark一下</strong></p>
+<p><strong>代码随想录中回溯算法章节还剩下3到Hard题，希望能够通过多刷题，终有一天我能够独立写出来的！</strong></p>
+<p><strong>先开始下一章节的学习，冲！</strong></p>
+
                 
               </div>
             
@@ -329,8 +340,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>回溯算法</div>
-      <div>http://sea-365.site/2023/02/07/回溯算法/</div>
+      <div>回溯算法-LeetCode_T332（回溯算法章节暂时告一段落）</div>
+      <div>http://sea-365.site/2023/02/17/回溯算法-LeetCode_T332（回溯算法章节暂时告一段落）/</div>
     </div>
     <div class="license-meta">
       
@@ -342,7 +353,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年2月7日</div>
+          <div>2023年2月17日</div>
         </div>
       
       
@@ -374,18 +385,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/08/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95_LeetCode_T40/" title="回溯算法-LeetCode_T40">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">回溯算法-LeetCode_T40</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B8%80%E8%88%AC%E8%A7%A3%E9%A2%98%E6%AD%A5%E9%AA%A4/" title="动态规划一般解题步骤">
-                        <span class="hidden-mobile">动态规划一般解题步骤</span>
+                      <a href="/2023/02/16/MySQL-SQL%E8%AF%AD%E8%A8%80/" title="MySQL学习-SQL语言">
+                        <span class="hidden-mobile">MySQL学习-SQL语言</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

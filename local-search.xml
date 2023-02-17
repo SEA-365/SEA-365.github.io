@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>回溯算法-LeetCode_T332（回溯算法章节暂时告一段落）</title>
+    <link href="/2023/02/17/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95-LeetCode_T332%EF%BC%88%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E7%AB%A0%E8%8A%82%E6%9A%82%E6%97%B6%E5%91%8A%E4%B8%80%E6%AE%B5%E8%90%BD%EF%BC%89/"/>
+    <url>/2023/02/17/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95-LeetCode_T332%EF%BC%88%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E7%AB%A0%E8%8A%82%E6%9A%82%E6%97%B6%E5%91%8A%E4%B8%80%E6%AE%B5%E8%90%BD%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<h3 id="回溯算法-LeetCode-T332（回溯算法章节暂时告一段落）"><a href="#回溯算法-LeetCode-T332（回溯算法章节暂时告一段落）" class="headerlink" title="回溯算法-LeetCode_T332（回溯算法章节暂时告一段落）"></a>回溯算法-LeetCode_T332（回溯算法章节暂时告一段落）</h3><ul><li>题目描述</li></ul><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs html">给你一份航线列表 tickets ，其中 tickets[i] = [fromi, toi] 表示飞机出发和降落的机场地点。请你对该行程进行重新规划排序。<br><br>所有这些机票都属于一个从 JFK（肯尼迪国际机场）出发的先生，所以该行程必须从 JFK 开始。如果存在多种有效的行程，请你按字典排序返回最小的行程组合。<br><br>例如，行程 [&quot;JFK&quot;, &quot;LGA&quot;] 与 [&quot;JFK&quot;, &quot;LGB&quot;] 相比就更小，排序更靠前。<br>假定所有机票至少存在一种合理的行程。且所有的机票 必须都用一次 且 只能用一次。<br><br>示例 1：<br>输入：tickets = [[&quot;MUC&quot;,&quot;LHR&quot;],[&quot;JFK&quot;,&quot;MUC&quot;],[&quot;SFO&quot;,&quot;SJC&quot;],[&quot;LHR&quot;,&quot;SFO&quot;]]<br>输出：[&quot;JFK&quot;,&quot;MUC&quot;,&quot;LHR&quot;,&quot;SFO&quot;,&quot;SJC&quot;]<br><br>示例 2：<br>输入：tickets = [[&quot;JFK&quot;,&quot;SFO&quot;],[&quot;JFK&quot;,&quot;ATL&quot;],[&quot;SFO&quot;,&quot;ATL&quot;],[&quot;ATL&quot;,&quot;JFK&quot;],[&quot;ATL&quot;,&quot;SFO&quot;]]<br>输出：[&quot;JFK&quot;,&quot;ATL&quot;,&quot;JFK&quot;,&quot;SFO&quot;,&quot;ATL&quot;,&quot;SFO&quot;]<br>解释：另一种有效的行程是 [&quot;JFK&quot;,&quot;SFO&quot;,&quot;ATL&quot;,&quot;JFK&quot;,&quot;ATL&quot;,&quot;SFO&quot;] ，但是它字典排序更大更靠后。<br><br>来源：力扣（LeetCode）<br>链接：https://leetcode.cn/problems/reconstruct-itinerary<br></code></pre></td></tr></table></figure><p><strong>今天是2023年02月16日</strong></p><p><strong>LeetCode上刷到的第一道Hard题，mark一下</strong></p><p><strong>代码随想录中回溯算法章节还剩下3到Hard题，希望能够通过多刷题，终有一天我能够独立写出来的！</strong></p><p><strong>先开始下一章节的学习，冲！</strong></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>代码随想录</category>
+      
+      <category>回溯算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>回溯算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>MySQL学习-SQL语言</title>
     <link href="/2023/02/16/MySQL-SQL%E8%AF%AD%E8%A8%80/"/>
     <url>/2023/02/16/MySQL-SQL%E8%AF%AD%E8%A8%80/</url>
@@ -366,33 +393,6 @@
     <url>/2023/02/08/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95_LeetCode_T40/</url>
     
     <content type="html"><![CDATA[<h3 id="回溯算法-LeetCode-T40"><a href="#回溯算法-LeetCode-T40" class="headerlink" title="回溯算法_LeetCode_T40"></a>回溯算法_LeetCode_T40</h3><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul><li><p>给定一个候选人编号的集合 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。</p><p>candidates 中的每个数字在每个组合中只能使用 一次 。</p><p>注意：解集不能包含重复的组合。</p><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode.cn/problems/combination-sum-ii">https://leetcode.cn/problems/combination-sum-ii</a></p></li></ul><h3 id="超时写法"><a href="#超时写法" class="headerlink" title="超时写法"></a>超时写法</h3><ul><li>回溯遍历所有组合；</li><li>最后对所有满足条件的组合进行去重；</li><li>ps：我一开始就是这么写的，然后直接提交，“超出时间限制”。</li></ul><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><ul><li>代码随想录给出的题解；</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>  List&lt;List&lt;Integer&gt;&gt; res = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>  LinkedList&lt;Integer&gt; path = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<br>  <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>  <br>  <span class="hljs-keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="hljs-title function_">combinationSum2</span><span class="hljs-params">( <span class="hljs-type">int</span>[] candidates, <span class="hljs-type">int</span> target )</span> &#123;<br>    <span class="hljs-comment">//为了将重复的数字都放到一起，所以先进行排序</span><br>    Arrays.sort( candidates );<br>    backTracking( candidates, target, <span class="hljs-number">0</span> );<br>    <span class="hljs-keyword">return</span> res;<br>  &#125;<br>  <br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">backTracking</span><span class="hljs-params">( <span class="hljs-type">int</span>[] candidates, <span class="hljs-type">int</span> target, <span class="hljs-type">int</span> start )</span> &#123;<br>    <span class="hljs-keyword">if</span> ( sum == target ) &#123;<br>      res.add( <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;( path ) );<br>      <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-keyword">for</span> ( <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> start; i &lt; candidates.length &amp;&amp; sum + candidates[i] &lt;= target; i++ ) &#123;<br>      <span class="hljs-comment">//正确剔除重复解的办法</span><br>      <span class="hljs-comment">//跳过同一树层使用过的元素</span><br>      <span class="hljs-keyword">if</span> ( i &gt; start &amp;&amp; candidates[i] == candidates[i - <span class="hljs-number">1</span>] ) &#123;<br>        <span class="hljs-keyword">continue</span>;<br>      &#125;<br><br>      sum += candidates[i];<br>      path.add( candidates[i] );<br>      <span class="hljs-comment">// i+1 代表当前组内元素只选取一次</span><br>      backTracking( candidates, target, i + <span class="hljs-number">1</span> );<br><br>      <span class="hljs-type">int</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> path.getLast();<br>      sum -= temp;<br>      path.removeLast();<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-    <categories>
-      
-      <category>代码随想录</category>
-      
-      <category>回溯算法</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>回溯算法</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>回溯算法</title>
-    <link href="/2023/02/07/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/"/>
-    <url>/2023/02/07/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</url>
-    
-    <content type="html"><![CDATA[<h3 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h3>]]></content>
     
     
     <categories>
