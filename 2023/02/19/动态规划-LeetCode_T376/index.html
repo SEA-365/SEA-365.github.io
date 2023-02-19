@@ -18,24 +18,28 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="回溯算法-经典同分支去重（flag标记数组）LeetCode参考题目： LeetCode_46  给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。 来源：力扣（LeetCode）链接：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;permutations flag标记数组可以用于同层去重也可以用于同分支去重！！！ 下面是去重的写法 题解">
+    <meta name="description" content="动态规划_LeetCode_T376题目描述如果连续数字之间的差严格地在正数和负数之间交替，则数字序列称为 摆动序列 。第一个差（如果存在的话）可能是正数或负数。仅有一个元素或者含两个不等元素的序列也视作摆动序列。 例如， [1, 7, 4, 9, 2, 5] 是一个 摆动序列 ，因为差值 (6, -3, 5, -7, 3) 是正负交替出现的。 相反，[1, 4, 7, 2, 5] 和 [1, 7">
 <meta property="og:type" content="article">
-<meta property="og:title" content="回溯算法-经典同分支去重（flag标记数组）">
-<meta property="og:url" content="http://sea-365.site/2023/02/17/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95-%E7%BB%8F%E5%85%B8%E5%90%8C%E5%88%86%E6%94%AF%E5%8E%BB%E9%87%8D%EF%BC%88flag%E6%A0%87%E8%AE%B0%E6%95%B0%E7%BB%84%EF%BC%89/index.html">
+<meta property="og:title" content="动态规划-LeetCode_T376（里面还有贪心思路的题解！！）">
+<meta property="og:url" content="http://sea-365.site/2023/02/19/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-LeetCode_T376/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="回溯算法-经典同分支去重（flag标记数组）LeetCode参考题目： LeetCode_46  给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。 来源：力扣（LeetCode）链接：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;permutations flag标记数组可以用于同层去重也可以用于同分支去重！！！ 下面是去重的写法 题解">
+<meta property="og:description" content="动态规划_LeetCode_T376题目描述如果连续数字之间的差严格地在正数和负数之间交替，则数字序列称为 摆动序列 。第一个差（如果存在的话）可能是正数或负数。仅有一个元素或者含两个不等元素的序列也视作摆动序列。 例如， [1, 7, 4, 9, 2, 5] 是一个 摆动序列 ，因为差值 (6, -3, 5, -7, 3) 是正负交替出现的。 相反，[1, 4, 7, 2, 5] 和 [1, 7">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-02-17T14:09:08.002Z">
-<meta property="article:modified_time" content="2023-02-16T08:54:20.392Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201124174327597.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1633692974-LMTDNI-%E8%87%AA%E5%AE%9A%E4%B9%89%20(5).png">
+<meta property="article:published_time" content="2023-02-19T09:33:39.875Z">
+<meta property="article:modified_time" content="2023-02-19T09:33:18.033Z">
 <meta property="article:author" content="SEA">
-<meta property="article:tag" content="回溯算法">
+<meta property="article:tag" content="动态规划">
+<meta property="article:tag" content="贪心算法">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201124174327597.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>回溯算法-经典同分支去重（flag标记数组） - SEA-365的读研日记</title>
+  <title>动态规划-LeetCode_T376（里面还有贪心思路的题解！！） - SEA-365的读研日记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="回溯算法-经典同分支去重（flag标记数组）"></span>
+            <span id="subtitle" data-typed-text="动态规划-LeetCode_T376（里面还有贪心思路的题解！！）"></span>
           
         </div>
 
@@ -211,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-17 22:09" pubdate>
-          2023年2月17日 晚上
+        <time datetime="2023-02-19 17:33" pubdate>
+          2023年2月19日 下午
         </time>
       </span>
     
@@ -223,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          1.9k 字
         
       </span>
     
@@ -234,7 +238,7 @@
         
         
         
-          9 分钟
+          16 分钟
         
       </span>
     
@@ -272,25 +276,29 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">回溯算法-经典同分支去重（flag标记数组）</h1>
+            <h1 style="display: none">动态规划-LeetCode_T376（里面还有贪心思路的题解！！）</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="回溯算法-经典同分支去重（flag标记数组）"><a href="#回溯算法-经典同分支去重（flag标记数组）" class="headerlink" title="回溯算法-经典同分支去重（flag标记数组）"></a>回溯算法-经典同分支去重（flag标记数组）</h3><h4 id="LeetCode参考题目："><a href="#LeetCode参考题目：" class="headerlink" title="LeetCode参考题目："></a>LeetCode参考题目：</h4><ul>
-<li>LeetCode_46</li>
+                <h2 id="动态规划-LeetCode-T376"><a href="#动态规划-LeetCode-T376" class="headerlink" title="动态规划_LeetCode_T376"></a>动态规划_LeetCode_T376</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>如果连续数字之间的差严格地在正数和负数之间交替，则数字序列称为 摆动序列 。第一个差（如果存在的话）可能是正数或负数。仅有一个元素或者含两个不等元素的序列也视作摆动序列。</p>
+<p>例如， [1, 7, 4, 9, 2, 5] 是一个 摆动序列 ，因为差值 (6, -3, 5, -7, 3) 是正负交替出现的。</p>
+<p>相反，[1, 4, 7, 2, 5] 和 [1, 7, 4, 5, 5] 不是摆动序列，第一个序列是因为它的前两个差值都是正数，第二个序列是因为它的最后一个差值为零。</p>
+<p>子序列 可以通过从原始序列中删除一些（也可以不删除）元素来获得，剩下的元素保持其原始顺序。</p>
+<p>给你一个整数数组 nums ，返回 nums 中作为 摆动序列 的 最长子序列的长度 。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/wiggle-subsequence">https://leetcode.cn/problems/wiggle-subsequence</a></p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
+<li>这道题，说实话，我没有写出来（动态规划太难了啊T-T），然后看那个代码随想录的题解，一开始看到下图时，顿时有了思路，并写了出来，这个思路还是可以的，赞。</li>
 </ul>
-<p>给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。</p>
-<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/permutations">https://leetcode.cn/problems/permutations</a></p>
-<p><strong>flag标记数组可以用于同层去重也可以用于同分支去重！！！</strong></p>
-<p><strong>下面是去重的写法</strong></p>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">static</span> List&lt;List&lt;Integer&gt;&gt; ansList;<br>    <span class="hljs-keyword">static</span> List&lt;Integer&gt; cur_list;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">backTrack</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums, <span class="hljs-type">int</span> index,<span class="hljs-type">int</span>[] flag)</span>&#123;<br>        <span class="hljs-comment">//关键点：</span><br>        <span class="hljs-comment">//1.回溯算法中，for循环是同层遍历，回溯递归是遍历所有分支；</span><br>        <span class="hljs-keyword">if</span>(index == nums.length)&#123;<br>            ansList.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(cur_list));<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>            <span class="hljs-keyword">if</span>(flag[nums[i] + <span class="hljs-number">10</span>] == <span class="hljs-number">1</span>)<br>                <span class="hljs-keyword">continue</span>;<br>            cur_list.add(nums[i]);<br>            flag[nums[i] + <span class="hljs-number">10</span>] = <span class="hljs-number">1</span>;<span class="hljs-comment">//题目给出nums[i]的范围是[-10, 10],因此加上10，避免下标越界；</span><br>	        <span class="hljs-comment">//2.本题需要同分支去重，因此需要将标记数组传给回溯递归函数；</span><br>            backTrack(nums, index+<span class="hljs-number">1</span>, flag);<br>            <span class="hljs-comment">//3.每次回溯返回是，flag数组也需要&quot;撤销&quot;操作;</span><br>            flag[nums[i] + <span class="hljs-number">10</span>] = <span class="hljs-number">0</span>;<br>            cur_list.remove(cur_list.size()-<span class="hljs-number">1</span>);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="hljs-title function_">permute</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>        ansList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        cur_list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br><br>        <span class="hljs-type">int</span>[] flag = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">25</span>];<br><br>        backTrack(nums, <span class="hljs-number">0</span>, flag);<br><br>        <span class="hljs-keyword">return</span> ansList;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201124174327597.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>然后听说这叫贪心思想；</li>
+<li>最后看了LeetCode题解区的几个大佬，看到了一个写得比较清晰的动态规划，记录一下；</li>
+</ul>
+<p><img src="https://pic.leetcode-cn.com/1633692974-LMTDNI-%E8%87%AA%E5%AE%9A%E4%B9%89%20(5).png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><h4 id="贪心解法"><a href="#贪心解法" class="headerlink" title="贪心解法"></a>贪心解法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">wiggleMaxLength</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;<span class="hljs-comment">//记录最长子序列长度</span><br><br>        <span class="hljs-type">int</span> <span class="hljs-variable">flag</span> <span class="hljs-operator">=</span> -<span class="hljs-number">1</span>;<span class="hljs-comment">//记录状态：升序 =&gt; 1, 降序 =&gt; 0, 持平 =&gt; -1</span><br><br>        <span class="hljs-comment">//这一波操作是：</span><br>        <span class="hljs-comment">//1.判断第一次是升序还是降序;</span><br>        <span class="hljs-comment">//2.防止一开始都是相同的值,例如0 0 0 0 1；</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> nums[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt; nums.length; i++) &#123;<br>            <span class="hljs-keyword">if</span>(nums[i] != num) &#123;<br>                <span class="hljs-keyword">if</span>(nums[i] - num &gt; <span class="hljs-number">0</span>)<br>                    flag = <span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">else</span><br>                    flag = <span class="hljs-number">0</span>;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(flag == -<span class="hljs-number">1</span>)<span class="hljs-comment">//如果整个序列都是同一个值</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br><br>		<span class="hljs-comment">//根据图1的思想，连续多个单调升/降的值仅计算最后一个升/降</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>; i &lt; nums.length; i++) &#123;<br>            <span class="hljs-keyword">if</span>(flag == <span class="hljs-number">1</span>)&#123;<br>                <span class="hljs-keyword">if</span>(nums[i] - nums[i-<span class="hljs-number">1</span>] &gt;= <span class="hljs-number">0</span>)<br>                    <span class="hljs-keyword">continue</span>;<br>                count++;<br>                flag = <span class="hljs-number">0</span>;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            <span class="hljs-keyword">if</span>(flag == <span class="hljs-number">0</span>)&#123;<br>                <span class="hljs-keyword">if</span>(nums[i] - nums[i-<span class="hljs-number">1</span>] &lt;= <span class="hljs-number">0</span>)<br>                    <span class="hljs-keyword">continue</span>;<br>                count++;<br>                flag = <span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> count;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-
-
-
-
-
+<h4 id="动态递归解法"><a href="#动态递归解法" class="headerlink" title="动态递归解法"></a>动态递归解法</h4> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">wiggleMaxLength</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>        <span class="hljs-comment">//1.确定dp数组以及下标的含义</span><br>        <span class="hljs-type">int</span>[][] dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[nums.length][<span class="hljs-number">2</span>];<br>        <span class="hljs-comment">//dp[i][0]: 表示到当前位置nums[i], 以 降序 结尾的摆动数组的最长子序列的长度；</span><br>        <span class="hljs-comment">//dp[i][1]: 表示到当前位置nums[i], 以 升序 结尾的摆动数组的最长子序列的长度；</span><br>        dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>        dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt; nums.length; i++) &#123;<br>            <span class="hljs-keyword">if</span>(nums[i] - nums[i-<span class="hljs-number">1</span>] &gt; <span class="hljs-number">0</span>)&#123;<span class="hljs-comment">//当前元素与上一个值是升序的</span><br>                dp[i][<span class="hljs-number">0</span>] = dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>];<br>                dp[i][<span class="hljs-number">1</span>] = dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] + <span class="hljs-number">1</span>;<span class="hljs-comment">//前一次降 + 1</span><br>            &#125;<br>            <span class="hljs-keyword">if</span>(nums[i] - nums[i-<span class="hljs-number">1</span>] &lt; <span class="hljs-number">0</span>)&#123;<span class="hljs-comment">//当前元素与上一个值是降序的</span><br>                dp[i][<span class="hljs-number">0</span>] = dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;<span class="hljs-comment">//前一次升 + 1</span><br>                dp[i][<span class="hljs-number">1</span>] = dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>];<br>            &#125;<br>            <span class="hljs-keyword">if</span>(nums[i] - nums[i-<span class="hljs-number">1</span>] == <span class="hljs-number">0</span>)&#123;<span class="hljs-comment">//当前元素与上一个值是持平的</span><br>                dp[i][<span class="hljs-number">0</span>] = dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>];<span class="hljs-comment">//与上一次保持一致</span><br>                dp[i][<span class="hljs-number">1</span>] = dp[i-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>];<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> Math.max(dp[nums.length-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>], dp[nums.length-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -317,7 +325,7 @@
   
     <span>></span>
     
-  <a href="/categories/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" class="category-chain-item">回溯算法</a>
+  <a href="/categories/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="category-chain-item">动态规划</a>
   
   
 
@@ -334,7 +342,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/">#回溯算法</a>
+        <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">#动态规划</a>
+      
+        <a href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">#贪心算法</a>
       
     </div>
   
@@ -346,8 +356,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>回溯算法-经典同分支去重（flag标记数组）</div>
-      <div>http://sea-365.site/2023/02/17/回溯算法-经典同分支去重（flag标记数组）/</div>
+      <div>动态规划-LeetCode_T376（里面还有贪心思路的题解！！）</div>
+      <div>http://sea-365.site/2023/02/19/动态规划-LeetCode_T376/</div>
     </div>
     <div class="license-meta">
       
@@ -359,7 +369,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年2月17日</div>
+          <div>2023年2月19日</div>
         </div>
       
       
@@ -391,18 +401,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/19/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-LeetCode_T376/" title="动态规划-LeetCode_T376（里面还有贪心思路的题解！！）">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">动态规划-LeetCode_T376（里面还有贪心思路的题解！！）</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/17/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/" title="贪心算法-解题思路">
-                        <span class="hidden-mobile">贪心算法-解题思路</span>
+                      <a href="/2023/02/17/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95-%E7%BB%8F%E5%85%B8%E5%90%8C%E5%88%86%E6%94%AF%E5%8E%BB%E9%87%8D%EF%BC%88flag%E6%A0%87%E8%AE%B0%E6%95%B0%E7%BB%84%EF%BC%89/" title="回溯算法-经典同分支去重（flag标记数组）">
+                        <span class="hidden-mobile">回溯算法-经典同分支去重（flag标记数组）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
