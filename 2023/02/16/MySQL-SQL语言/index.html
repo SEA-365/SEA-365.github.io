@@ -26,7 +26,7 @@
 <meta property="og:description" content="MySQL学习–SQL语言SQL通用语法 1.SQL语句可以单行或多行书写，以分号结尾； 2.SQL语句可以使用空格&#x2F;缩进来增强语句的可读性； 3.MySQL数据库的SQL语句不区分大小写，关键字建议使用大写； 4.注释： 单行注释：– 注释内容 或 # 注释内容（MySQL特有） 多行注释：&#x2F;* 注释内容 *&#x2F;    数据定义语言（DDL） 主要用来定义数据库对象（">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-02-16T12:57:25.099Z">
-<meta property="article:modified_time" content="2023-02-19T03:22:13.915Z">
+<meta property="article:modified_time" content="2023-02-21T09:57:26.989Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="SQL">
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.9k 字
+          5.7k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          41 分钟
+          48 分钟
         
       </span>
     
@@ -525,7 +525,99 @@
 <h2 id="数据查询语言（DQL）"><a href="#数据查询语言（DQL）" class="headerlink" title="数据查询语言（DQL）"></a>数据查询语言（DQL）</h2><ul>
 <li>主要用来查询数据库中表的记录；</li>
 </ul>
-<h2 id="数据控制语言（DCL）"><a href="#数据控制语言（DCL）" class="headerlink" title="数据控制语言（DCL）"></a>数据控制语言（DCL）</h2><ul>
+<h3 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h3><ul>
+<li>DQL语法</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> 字段列表<br><span class="hljs-keyword">FROM</span> 表名列表<br><span class="hljs-keyword">WHERE</span> 条件列表<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> 分组字段列表<br><span class="hljs-keyword">HAVING</span> 分组后条件列表<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> 排序字段列表<br>LIMIT 分页参数<br></code></pre></td></tr></table></figure>
+
+<h4 id="基本查询"><a href="#基本查询" class="headerlink" title="基本查询"></a>基本查询</h4><ul>
+<li>语法</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 1.查询多个字段</span><br><span class="hljs-keyword">SELECT</span> 字段<span class="hljs-number">1</span>, 字段<span class="hljs-number">2</span>, 字段<span class="hljs-number">3</span>, ... <span class="hljs-keyword">FROM</span> 表名;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> 表名;<br><br><span class="hljs-comment">-- 2.设置别名</span><br><span class="hljs-keyword">SELECT</span> 字段<span class="hljs-number">1</span> [<span class="hljs-keyword">AS</span> 别名<span class="hljs-number">1</span>], 字段<span class="hljs-number">2</span> [<span class="hljs-keyword">AS</span> 别名<span class="hljs-number">2</span>], ... <span class="hljs-keyword">FROM</span> 表名;<br><br><span class="hljs-comment">-- 3.去除重复记录</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> 字段列表 <span class="hljs-keyword">FROM</span> 表名;<br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>案例</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 基本查询</span><br><span class="hljs-keyword">SELECT</span> emp_name, workno, age <span class="hljs-keyword">FROM</span> emp;<br><br><span class="hljs-keyword">SELECT</span> id, workno, emp_name, gender, age, idcard, workaddress, entrydate <span class="hljs-keyword">FROM</span> emp;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> emp; # 尽量不要写<span class="hljs-operator">*</span>，效率比较低<br><br><span class="hljs-comment">-- 设置别名</span><br><span class="hljs-keyword">SELECT</span> workaddress <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;工作地址&#x27;</span> <span class="hljs-keyword">FROM</span> emp;<br><br><span class="hljs-comment">-- 去除重复元素</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> workaddress <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;工作地址&#x27;</span> <span class="hljs-keyword">FROM</span> emp;<br></code></pre></td></tr></table></figure>
+
+<h4 id="条件查询（WHERE）"><a href="#条件查询（WHERE）" class="headerlink" title="条件查询（WHERE）"></a>条件查询（WHERE）</h4><ul>
+<li>语法</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 条件查询</span><br><span class="hljs-keyword">SELECT</span> 字段列表 <span class="hljs-keyword">FROM</span> 表名 <span class="hljs-keyword">WHERE</span> 条件列表；<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>条件</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>比较运算符</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>&gt;&#x3D;</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>&lt;&#x3D;</td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td>&#x3D;</td>
+<td>等于</td>
+</tr>
+<tr>
+<td>&lt;&gt; 或 !&#x3D;</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>BETWEEN…AND…</td>
+<td>在某个闭区间内</td>
+</tr>
+<tr>
+<td>IN(…)</td>
+<td>在IN之后的列表中的值，多选一</td>
+</tr>
+<tr>
+<td>LIKE 占位符</td>
+<td>模糊匹配（ _ 匹配单个字符，% 匹配任意个字符）</td>
+</tr>
+<tr>
+<td>IS NULL</td>
+<td>是NULL</td>
+</tr>
+<tr>
+<td><strong>逻辑运算符</strong></td>
+<td><strong>功能</strong></td>
+</tr>
+<tr>
+<td>AND 或 &amp;&amp;</td>
+<td>且</td>
+</tr>
+<tr>
+<td>OR 或 ||</td>
+<td>或</td>
+</tr>
+<tr>
+<td>NOT 或 !</td>
+<td>非</td>
+</tr>
+</tbody></table>
+<ul>
+<li>案例</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- WHERE </span><br><br><br><br></code></pre></td></tr></table></figure>
+
+<h4 id="聚合查询"><a href="#聚合查询" class="headerlink" title="聚合查询"></a>聚合查询</h4><h4 id="分组查询（GROUP-BY）"><a href="#分组查询（GROUP-BY）" class="headerlink" title="分组查询（GROUP BY）"></a>分组查询（GROUP BY）</h4><h4 id="排序查询（ORDER-BY）"><a href="#排序查询（ORDER-BY）" class="headerlink" title="排序查询（ORDER BY）"></a>排序查询（ORDER BY）</h4><h4 id="分页查询（LIMIT）"><a href="#分页查询（LIMIT）" class="headerlink" title="分页查询（LIMIT）"></a>分页查询（LIMIT）</h4><h2 id="数据控制语言（DCL）"><a href="#数据控制语言（DCL）" class="headerlink" title="数据控制语言（DCL）"></a>数据控制语言（DCL）</h2><ul>
 <li>主要用来创建数据库用户和控制数据库的访问权限；</li>
 </ul>
 
