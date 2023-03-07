@@ -4,6 +4,64 @@
   
   
   <entry>
+    <title>MySQL学习-约束概述</title>
+    <link href="/2023/03/07/MySQL%E5%AD%A6%E4%B9%A0--%E7%BA%A6%E6%9D%9F%E6%A6%82%E8%BF%B0/"/>
+    <url>/2023/03/07/MySQL%E5%AD%A6%E4%B9%A0--%E7%BA%A6%E6%9D%9F%E6%A6%82%E8%BF%B0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="MySQL学习–约束概述"><a href="#MySQL学习–约束概述" class="headerlink" title="MySQL学习–约束概述"></a>MySQL学习–约束概述</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul><li>约束是作用于表中字段上的规则，用于限制存储在表中的数据。</li></ul><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ul><li>保证数据库中数据的正确性、有效性和完整性。</li></ul><h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><table><thead><tr><th>约束</th><th>描述</th><th>关键字</th></tr></thead><tbody><tr><td>非空约束</td><td>限制该字段的数据不能为null</td><td>NOT NULL</td></tr><tr><td>唯一约束</td><td>保证该宇段的所有数据都是唯一、不重复的</td><td>UNIQUE</td></tr><tr><td>主键约束</td><td>主键是一行数据的唯一标识，要求非空且唯一</td><td>PRIMARY KEY</td></tr><tr><td>默认约束</td><td>保存数据时，如果未指定该字段的值，则采用默认值</td><td>DEFAULT</td></tr><tr><td>检查约束**(8.0.16版本之后)**</td><td>保证字段值满足某一个条件</td><td>CHECK</td></tr><tr><td>外键约束</td><td>用来让两张表的数据之间建立连接，保证数据的一致性和完整性</td><td>FOREIGN KEY</td></tr></tbody></table><ul><li>约束是作用于表中字段上的，在创建&#x2F;修改表时可以为表中的字段添加约束。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>MySQL</category>
+      
+      <category>约束</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MySQL</tag>
+      
+      <tag>约束</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>MySQL学习--约束的使用</title>
+    <link href="/2023/03/07/MySQL%E5%AD%A6%E4%B9%A0--%E7%BA%A6%E6%9D%9F%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <url>/2023/03/07/MySQL%E5%AD%A6%E4%B9%A0--%E7%BA%A6%E6%9D%9F%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="MySQL学习–约束的使用"><a href="#MySQL学习–约束的使用" class="headerlink" title="MySQL学习–约束的使用"></a>MySQL学习–约束的使用</h1><h2 id="常见约束的使用"><a href="#常见约束的使用" class="headerlink" title="常见约束的使用"></a>常见约束的使用</h2><ul><li>案例</li></ul><p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/img/MySQL_constraint01.jpg?raw=true"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br>CREATE TABLE STU_INFO(<br>ID INT PRIMARY KEY AUTO_INCREMENT  COMMENT &#x27;id，主键，自动增长&#x27;, <br>STU_NAME VARCHAR(10) NOT NULL UNIQUE COMMENT &#x27;不为空，并且唯一&#x27;,<br>AGE INT CHECK(AGE &gt; 0 &amp;&amp; AGE &lt;= 120) COMMENT &#x27;大于0，小于等于120&#x27;,<br>STU_STATUS CHAR(1) DEFAULT &#x27;1&#x27; COMMENT &#x27;没有指定则默认为1&#x27;,<br>GENDER CHAR(1) COMMENT &#x27;性别&#x27;<br>) COMMENT &#x27;学生信息表&#x27;;<br><br><br>INSERT INTO STU_INFO(STU_NAME, AGE, GENDER) VALUES <br>(&#x27;张三&#x27;, 12, &#x27;男&#x27;),<br>(&#x27;李四&#x27;, 17, &#x27;女&#x27;),<br>(&#x27;张三1&#x27;, 13, &#x27;女&#x27;);<br>-- ID 字段会自动填充和增长<br>-- NAME 字段不能为空，且不能重复<br>-- STU_STATUS 字段会自动填充为‘1’<br><br>INSERT INTO STU_INFO(STU_NAME, AGE, GENDER) VALUES <br>(&#x27;张三2&#x27;, 130, &#x27;女&#x27;);<br>-- 年龄不能小于0， 大于120<br></code></pre></td></tr></table></figure><h2 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p><strong>添加外键</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建表时添加外键<br>create table 表名(<br>字段名 数据类型,<br>    ...<br>    <br>    [constraint] 外键名称 foreign key(外键字段名) references 主表名（主表列名）;<br>)<br><br>-- 已创建表，增加外键<br>alter table 表名 add constraint 外键名称 foreign key(外键字段名) references 主表（主表列名）;<br></code></pre></td></tr></table></figure><p><strong>删除外键</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">alter table 表名 drop foreign key 外键名称;<br></code></pre></td></tr></table></figure><h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs mysql">create table dept(<br>    id   int auto_increment comment &#x27;ID&#x27; primary key,<br>    name varchar(50) not null comment &#x27;部门名称&#x27;<br>)comment &#x27;部门表&#x27;;<br><br>INSERT INTO dept (id, name) VALUES <br>(1, &#x27;研发部&#x27;), <br>(2, &#x27;市场部&#x27;),<br>(3, &#x27;财务部&#x27;), <br>(4, &#x27;销售部&#x27;), <br>(5, &#x27;总经办&#x27;);<br><br><br>create table emp(<br>    id  int auto_increment comment &#x27;ID&#x27; primary key,<br>    name varchar(50) not null comment &#x27;姓名&#x27;,<br>    age  int comment &#x27;年龄&#x27;,<br>job varchar(20) comment &#x27;职位&#x27;,<br>salary int comment &#x27;薪资&#x27;,<br>entrydate date comment &#x27;入职时间&#x27;,<br>managerid int comment &#x27;直属领导id&#x27;,<br>    dept_id int comment &#x27;部门ID&#x27;<br>)comment &#x27;员工表&#x27;;<br><br>INSERT INTO emp (id, name, age, job, salary, entrydate, managerid, dept_id) VALUES <br>(1, &#x27;张无忌&#x27;, 20, &#x27;总裁&#x27;, 20000, &#x27;2000-01-01&#x27;, null, 5),<br>(2, &#x27;杨逍&#x27;, 33, &#x27;总裁&#x27;, 12500, &#x27;2005-12-05&#x27;, null, 1),<br>(3, &#x27;赵敏&#x27;, 18, &#x27;总裁&#x27;, 8400, &#x27;2000-11-03&#x27;, null, 2),<br>(4, &#x27;常遇春&#x27;, 43, &#x27;总裁&#x27;, 11000, &#x27;2002-02-05&#x27;, null, 2),<br>(5, &#x27;小昭&#x27;, 19, &#x27;总裁&#x27;, 10500, &#x27;2004-09-07&#x27;, null, 3),<br>(6, &#x27;韦一笑&#x27;, 48, &#x27;总裁&#x27;, 6600, &#x27;2004-10-12&#x27;, null, 3);<br><br><br><br>-- 已创建表，增加外键<br>alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references dept(id);<br><br>-- 删除外键<br>alter table emp drop foreign key fk_emp_dept_id;<br><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>MySQL</category>
+      
+      <category>约束</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MySQL</tag>
+      
+      <tag>约束</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>蓝桥杯2020-数字三角形（动态规划+找规律）</title>
     <link href="/2023/03/07/%E8%93%9D%E6%A1%A5%E6%9D%AF2020-%E6%95%B0%E5%AD%97%E4%B8%89%E8%A7%92%E5%BD%A2%EF%BC%88%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92+%E6%89%BE%E8%A7%84%E5%BE%8B%EF%BC%89/"/>
     <url>/2023/03/07/%E8%93%9D%E6%A1%A5%E6%9D%AF2020-%E6%95%B0%E5%AD%97%E4%B8%89%E8%A7%92%E5%BD%A2%EF%BC%88%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92+%E6%89%BE%E8%A7%84%E5%BE%8B%EF%BC%89/</url>
