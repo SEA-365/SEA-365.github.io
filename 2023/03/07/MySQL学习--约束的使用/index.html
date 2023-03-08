@@ -25,14 +25,14 @@
 <meta property="og:site_name" content="SEA-365的读研日记">
 <meta property="og:description" content="MySQL学习–约束的使用常见约束的使用 案例   123456789101112131415161718192021CREATE TABLE STU_INFO(	ID INT PRIMARY KEY AUTO_INCREMENT  COMMENT &amp;#x27;id，主键，自动增长&amp;#x27;, 	STU_NAME VARCHAR(10) NOT NULL UNIQUE COMMENT &amp;#x27">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/img/MySQL_constraint01.jpg?raw=true">
+<meta property="og:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_constraint01.jpg?raw=true">
 <meta property="article:published_time" content="2023-03-07T13:05:20.733Z">
-<meta property="article:modified_time" content="2023-03-07T13:04:55.618Z">
+<meta property="article:modified_time" content="2023-03-08T06:54:49.439Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="约束">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/img/MySQL_constraint01.jpg?raw=true">
+<meta name="twitter:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_constraint01.jpg?raw=true">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -283,7 +283,7 @@
                 <h1 id="MySQL学习–约束的使用"><a href="#MySQL学习–约束的使用" class="headerlink" title="MySQL学习–约束的使用"></a>MySQL学习–约束的使用</h1><h2 id="常见约束的使用"><a href="#常见约束的使用" class="headerlink" title="常见约束的使用"></a>常见约束的使用</h2><ul>
 <li>案例</li>
 </ul>
-<p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/img/MySQL_constraint01.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_constraint01.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br>CREATE TABLE STU_INFO(<br>	ID INT PRIMARY KEY AUTO_INCREMENT  COMMENT &#x27;id，主键，自动增长&#x27;, <br>	STU_NAME VARCHAR(10) NOT NULL UNIQUE COMMENT &#x27;不为空，并且唯一&#x27;,<br>	AGE INT CHECK(AGE &gt; 0 &amp;&amp; AGE &lt;= 120) COMMENT &#x27;大于0，小于等于120&#x27;,<br>	STU_STATUS CHAR(1) DEFAULT &#x27;1&#x27; COMMENT &#x27;没有指定则默认为1&#x27;,<br>	GENDER CHAR(1) COMMENT &#x27;性别&#x27;<br>) COMMENT &#x27;学生信息表&#x27;;<br><br><br>INSERT INTO STU_INFO(STU_NAME, AGE, GENDER) VALUES <br>(&#x27;张三&#x27;, 12, &#x27;男&#x27;),<br>(&#x27;李四&#x27;, 17, &#x27;女&#x27;),<br>(&#x27;张三1&#x27;, 13, &#x27;女&#x27;);<br>-- ID 字段会自动填充和增长<br>-- NAME 字段不能为空，且不能重复<br>-- STU_STATUS 字段会自动填充为‘1’<br><br>INSERT INTO STU_INFO(STU_NAME, AGE, GENDER) VALUES <br>(&#x27;张三2&#x27;, 130, &#x27;女&#x27;);<br>-- 年龄不能小于0， 大于120<br></code></pre></td></tr></table></figure>
 
 <h2 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p><strong>添加外键</strong></p>
