@@ -18,28 +18,25 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="Java-线程的生命周期 JDK中用Thread.State枚举表示了线程的几种状态；    其中，Runnable状态可分为：Ready和Running两种状态，因此Runnable状态不代表线程已经开始运行； Ready状态：可以理解为就绪态，当线程未分配cpu资源时被挂起，或者执行了yield()方法进行“礼让”时的状态； Running状态：运行态，被调度器选中，该线程获得了cpu资源开始">
+    <meta name="description" content="贪心算法-LeetCode_134题目描述12345在一条环路上有 n 个加油站，其中第 i 个加油站有汽油 gas[i] 升。你有一辆油箱容量无限的的汽车，从第 i 个加油站开往第 i+1 个加油站需要消耗汽油 cost[i] 升。你从其中的一个加油站出发，开始时油箱为空。给定两个整数数组 gas 和 cost ，如果你可以绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1 。如果存在解，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java-线程的生命周期">
-<meta property="og:url" content="http://sea-365.site/2023/03/17/Java-%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/index.html">
+<meta property="og:title" content="贪心算法-LeetCode_134">
+<meta property="og:url" content="http://sea-365.site/2023/03/17/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95-LeetCode_134/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="Java-线程的生命周期 JDK中用Thread.State枚举表示了线程的几种状态；    其中，Runnable状态可分为：Ready和Running两种状态，因此Runnable状态不代表线程已经开始运行； Ready状态：可以理解为就绪态，当线程未分配cpu资源时被挂起，或者执行了yield()方法进行“礼让”时的状态； Running状态：运行态，被调度器选中，该线程获得了cpu资源开始">
+<meta property="og:description" content="贪心算法-LeetCode_134题目描述12345在一条环路上有 n 个加油站，其中第 i 个加油站有汽油 gas[i] 升。你有一辆油箱容量无限的的汽车，从第 i 个加油站开往第 i+1 个加油站需要消耗汽油 cost[i] 升。你从其中的一个加油站出发，开始时油箱为空。给定两个整数数组 gas 和 cost ，如果你可以绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1 。如果存在解，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/Thread.State.png?raw=true">
-<meta property="og:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/Thread_State02.jpg?raw=true">
-<meta property="article:published_time" content="2023-03-17T05:32:24.542Z">
-<meta property="article:modified_time" content="2023-03-13T08:44:40.845Z">
+<meta property="article:published_time" content="2023-03-17T08:10:34.436Z">
+<meta property="article:modified_time" content="2023-03-17T08:10:05.875Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="多线程">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/Thread.State.png?raw=true">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Java-线程的生命周期 - SEA-365的读研日记</title>
+  <title>贪心算法-LeetCode_134 - SEA-365的读研日记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java-线程的生命周期"></span>
+            <span id="subtitle" data-typed-text="贪心算法-LeetCode_134"></span>
           
         </div>
 
@@ -215,7 +212,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-17 13:32" pubdate>
+        <time datetime="2023-03-17 16:10" pubdate>
           2023年3月17日 下午
         </time>
       </span>
@@ -227,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          210 字
+          1.6k 字
         
       </span>
     
@@ -238,7 +235,7 @@
         
         
         
-          2 分钟
+          14 分钟
         
       </span>
     
@@ -276,23 +273,48 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Java-线程的生命周期</h1>
+            <h1 style="display: none">贪心算法-LeetCode_134</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Java-线程的生命周期"><a href="#Java-线程的生命周期" class="headerlink" title="Java-线程的生命周期"></a>Java-线程的生命周期</h1><ul>
-<li>JDK中用Thread.State枚举表示了线程的几种状态；</li>
-</ul>
-<p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/Thread.State.png?raw=true" srcset="/img/loading.gif" lazyload></p>
+                <h1 id="贪心算法-LeetCode-134"><a href="#贪心算法-LeetCode-134" class="headerlink" title="贪心算法-LeetCode_134"></a>贪心算法-LeetCode_134</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css">在一条环路上有 n 个加油站，其中第 <span class="hljs-selector-tag">i</span> 个加油站有汽油 gas<span class="hljs-selector-attr">[i]</span> 升。<br><br>你有一辆油箱容量无限的的汽车，从第 <span class="hljs-selector-tag">i</span> 个加油站开往第 <span class="hljs-selector-tag">i</span>+<span class="hljs-number">1</span> 个加油站需要消耗汽油 cost<span class="hljs-selector-attr">[i]</span> 升。你从其中的一个加油站出发，开始时油箱为空。<br><br>给定两个整数数组 gas 和 cost ，如果你可以绕环路行驶一周，则返回出发时加油站的编号，否则返回 -<span class="hljs-number">1</span> 。如果存在解，则 保证 它是 唯一 的。<br></code></pre></td></tr></table></figure>
+
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h3><figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入: gas = [1,2,3,4,5], cost = [3,4,5,1,2]<br>输出: 3<br>解释:<br>从<span class="hljs-number"> 3 </span>号加油站(索引为<span class="hljs-number"> 3 </span>处)出发，可获得<span class="hljs-number"> 4 </span>升汽油。此时油箱有 =<span class="hljs-number"> 0 </span>+<span class="hljs-number"> 4 </span>=<span class="hljs-number"> 4 </span>升汽油<br>开往<span class="hljs-number"> 4 </span>号加油站，此时油箱有<span class="hljs-number"> 4 </span>-<span class="hljs-number"> 1 </span>+<span class="hljs-number"> 5 </span>=<span class="hljs-number"> 8 </span>升汽油<br>开往<span class="hljs-number"> 0 </span>号加油站，此时油箱有<span class="hljs-number"> 8 </span>-<span class="hljs-number"> 2 </span>+<span class="hljs-number"> 1 </span>=<span class="hljs-number"> 7 </span>升汽油<br>开往<span class="hljs-number"> 1 </span>号加油站，此时油箱有<span class="hljs-number"> 7 </span>-<span class="hljs-number"> 3 </span>+<span class="hljs-number"> 2 </span>=<span class="hljs-number"> 6 </span>升汽油<br>开往<span class="hljs-number"> 2 </span>号加油站，此时油箱有<span class="hljs-number"> 6 </span>-<span class="hljs-number"> 4 </span>+<span class="hljs-number"> 3 </span>=<span class="hljs-number"> 5 </span>升汽油<br>开往<span class="hljs-number"> 3 </span>号加油站，你需要消耗<span class="hljs-number"> 5 </span>升汽油，正好足够你返回到<span class="hljs-number"> 3 </span>号加油站。<br>因此，3 可为起始索引。<br></code></pre></td></tr></table></figure>
+
+<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h3><figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入: gas = [2,3,4], cost = [3,4,3]<br>输出: -1<br>解释:<br>你不能从<span class="hljs-number"> 0 </span>号或<span class="hljs-number"> 1 </span>号加油站出发，因为没有足够的汽油可以让你行驶到下一个加油站。<br>我们从<span class="hljs-number"> 2 </span>号加油站出发，可以获得<span class="hljs-number"> 4 </span>升汽油。 此时油箱有 =<span class="hljs-number"> 0 </span>+<span class="hljs-number"> 4 </span>=<span class="hljs-number"> 4 </span>升汽油<br>开往<span class="hljs-number"> 0 </span>号加油站，此时油箱有<span class="hljs-number"> 4 </span>-<span class="hljs-number"> 3 </span>+<span class="hljs-number"> 2 </span>=<span class="hljs-number"> 3 </span>升汽油<br>开往<span class="hljs-number"> 1 </span>号加油站，此时油箱有<span class="hljs-number"> 3 </span>-<span class="hljs-number"> 3 </span>+<span class="hljs-number"> 3 </span>=<span class="hljs-number"> 3 </span>升汽油<br>你无法返回<span class="hljs-number"> 2 </span>号加油站，因为返程需要消耗<span class="hljs-number"> 4 </span>升汽油，但是你的油箱只有<span class="hljs-number"> 3 </span>升汽油。<br>因此，无论怎样，你都不可能绕环路行驶一周。<br></code></pre></td></tr></table></figure>
+
+<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/gas-station">https://leetcode.cn/problems/gas-station</a></p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="暴力解法"><a href="#暴力解法" class="headerlink" title="暴力解法"></a>暴力解法</h3><ul>
+<li><p>一般情况下，看到题目都是先想暴力解法，对于本题，我想的暴力解法如下：</p>
 <ul>
-<li>其中，Runnable状态可分为：Ready和Running两种状态，因此Runnable状态不代表线程已经开始运行；<ul>
-<li>Ready状态：可以理解为就绪态，当线程未分配cpu资源时被挂起，或者执行了yield()方法进行“礼让”时的状态；</li>
-<li>Running状态：运行态，被调度器选中，该线程获得了cpu资源开始运行；</li>
+<li>1.计算每个加油站能够剩余的gas。即经过当前加油站能够加的汽油减去下一加油站耗费的汽油；</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; profits.length; i++) &#123;<span class="hljs-comment">//o(n)</span><br>            profits[i] =<span class="hljs-keyword">new</span> <span class="hljs-title class_">Profit</span>(gas[i] - cost[i], <span class="hljs-number">0</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>2.遍历从每一个加油站出发，是否能够到达终点；</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; profits.length; i++) &#123;<span class="hljs-comment">//o(n)</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> getMaxIndex(profits);<span class="hljs-comment">//o(n)</span><br>    <span class="hljs-keyword">if</span>(profits[index].profit &lt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    &#125;<br>    profits[index].isUsed = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span>(isloop(profits, index)) &#123;<span class="hljs-comment">//o(n)</span><br>        <span class="hljs-keyword">return</span> index;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>不出意外地，超时了。。。</p>
+</li>
+</ul>
+<h3 id="贪心解法"><a href="#贪心解法" class="headerlink" title="贪心解法"></a>贪心解法</h3><ul>
+<li>害，这个贪心算法，我其实到现在也不太能上道。</li>
+<li>回归正题，贪心思路是在题解区看到的，挺简洁的：<ul>
+<li>1.累加经过所有加油站能够剩余的汽油total_gas；</li>
+<li>2.在1的同时，累加从index出发的剩余汽油量cur_gas：<ul>
+<li>直到经过当前加油站去往下一汽油站时，剩余汽油量cur_gas小于0时，将出发起点index重置为当前汽油站的下一站i+1；</li>
+<li>重置剩余汽油量cur_gas &#x3D; 0;</li>
+</ul>
+</li>
+<li>3.遍历完后，如果total_gas &lt; 0，说明走完一周耗费的汽油大于能够加到的汽油量，因此返回-1；否则返回index，表示出发点；</li>
 </ul>
 </li>
 </ul>
-<h2 id="线程生命周期-状态转换示意图"><a href="#线程生命周期-状态转换示意图" class="headerlink" title="线程生命周期-状态转换示意图"></a>线程生命周期-状态转换示意图</h2><p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/Thread_State02.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">total_gas</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">cur_gas</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; gas.length; i++) &#123;<br>    total_gas += gas[i] - cost[i];<br>    cur_gas += gas[i] - cost[i];<br><br>    <span class="hljs-keyword">if</span>(cur_gas &lt; <span class="hljs-number">0</span>)&#123;<br>        index = i + <span class="hljs-number">1</span>;<br>        cur_gas = <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">if</span> (total_gas &gt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> index;<br><span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -347,8 +369,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java-线程的生命周期</div>
-      <div>http://sea-365.site/2023/03/17/Java-线程的生命周期/</div>
+      <div>贪心算法-LeetCode_134</div>
+      <div>http://sea-365.site/2023/03/17/贪心算法-LeetCode_134/</div>
     </div>
     <div class="license-meta">
       
@@ -392,18 +414,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/17/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95-LeetCode_134/" title="贪心算法-LeetCode_134">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">贪心算法-LeetCode_134</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/13/Java-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6%EF%BC%88synchronized%E5%85%B3%E9%94%AE%E5%AD%97%EF%BC%89/" title="Java-线程同步机制（synchronized关键字）">
-                        <span class="hidden-mobile">Java-线程同步机制（synchronized关键字）</span>
+                      <a href="/2023/03/17/Java-%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="Java-线程的生命周期">
+                        <span class="hidden-mobile">Java-线程的生命周期</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
