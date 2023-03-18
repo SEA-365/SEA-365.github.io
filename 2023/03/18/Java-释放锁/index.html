@@ -18,15 +18,15 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="Java-线程概述概念介绍程序（Program） 完成特定任务，用某种语言编写的一组指令的集合；  进程（Process） 运行中的程序； 比如使用QQ程序，就是启动了一个进程： 操作系统会为进程分配内存空间；   进程是程序的一次运行过程，或一个正在运行的程序。 进程是一个动态过程，有它自身的产生、存在以及消亡的过程。  线程（Thread） 线程：是由进程（也可以由线程创建线程）创建的，是进程">
+    <meta name="description" content="Java-释放锁释放锁的几种情况 1.当前线程的同步方法&#x2F;同步代码块执行结束； 2.当前线程在同步方法&#x2F;同步代码块中遇到break，return； 3.当前线程在同步方法&#x2F;同步代码块中出现了未处理的error&#x2F;Exception，导致异常结束； 4.当前线程在同步方法&#x2F;同步代码块中执行了wait()方法，当前线程暂停，并释放锁。  不会释放锁的情况">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java-线程概述">
-<meta property="og:url" content="http://sea-365.site/2023/03/08/Java-%E7%BA%BF%E7%A8%8B%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:title" content="Java-释放锁">
+<meta property="og:url" content="http://sea-365.site/2023/03/18/Java-%E9%87%8A%E6%94%BE%E9%94%81/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="Java-线程概述概念介绍程序（Program） 完成特定任务，用某种语言编写的一组指令的集合；  进程（Process） 运行中的程序； 比如使用QQ程序，就是启动了一个进程： 操作系统会为进程分配内存空间；   进程是程序的一次运行过程，或一个正在运行的程序。 进程是一个动态过程，有它自身的产生、存在以及消亡的过程。  线程（Thread） 线程：是由进程（也可以由线程创建线程）创建的，是进程">
+<meta property="og:description" content="Java-释放锁释放锁的几种情况 1.当前线程的同步方法&#x2F;同步代码块执行结束； 2.当前线程在同步方法&#x2F;同步代码块中遇到break，return； 3.当前线程在同步方法&#x2F;同步代码块中出现了未处理的error&#x2F;Exception，导致异常结束； 4.当前线程在同步方法&#x2F;同步代码块中执行了wait()方法，当前线程暂停，并释放锁。  不会释放锁的情况">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-03-08T11:30:59.209Z">
-<meta property="article:modified_time" content="2023-03-08T07:36:21.192Z">
+<meta property="article:published_time" content="2023-03-18T12:55:12.109Z">
+<meta property="article:modified_time" content="2023-03-18T07:20:46.371Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="多线程">
@@ -36,7 +36,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Java-线程概述 - SEA-365的读研日记</title>
+  <title>Java-释放锁 - SEA-365的读研日记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java-线程概述"></span>
+            <span id="subtitle" data-typed-text="Java-释放锁"></span>
           
         </div>
 
@@ -212,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-08 19:30" pubdate>
-          2023年3月8日 晚上
+        <time datetime="2023-03-18 20:55" pubdate>
+          2023年3月18日 晚上
         </time>
       </span>
     
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          361 字
+          362 字
         
       </span>
     
@@ -273,45 +273,21 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Java-线程概述</h1>
+            <h1 style="display: none">Java-释放锁</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Java-线程概述"><a href="#Java-线程概述" class="headerlink" title="Java-线程概述"></a>Java-线程概述</h1><h2 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h2><h3 id="程序（Program）"><a href="#程序（Program）" class="headerlink" title="程序（Program）"></a>程序（Program）</h3><ul>
-<li>完成特定任务，用某种语言编写的一组指令的集合；</li>
+                <h1 id="Java-释放锁"><a href="#Java-释放锁" class="headerlink" title="Java-释放锁"></a>Java-释放锁</h1><h2 id="释放锁的几种情况"><a href="#释放锁的几种情况" class="headerlink" title="释放锁的几种情况"></a>释放锁的几种情况</h2><ul>
+<li>1.当前线程的同步方法&#x2F;同步代码块<strong>执行结束</strong>；</li>
+<li>2.当前线程在同步方法&#x2F;同步代码块中<strong>遇到break，return</strong>；</li>
+<li>3.当前线程在同步方法&#x2F;同步代码块中<strong>出现了未处理的error&#x2F;Exception</strong>，导致异常结束；</li>
+<li>4.当前线程在同步方法&#x2F;同步代码块中<strong>执行了wait()方法</strong>，当前线程暂停，并释放锁。</li>
 </ul>
-<h3 id="进程（Process）"><a href="#进程（Process）" class="headerlink" title="进程（Process）"></a>进程（Process）</h3><ul>
-<li><strong>运行中的程序</strong>；</li>
-<li>比如使用QQ程序，就是启动了一个进程：<ul>
-<li>操作系统会为进程分配内存空间；</li>
-</ul>
-</li>
-<li>进程是程序的一次运行过程，或一个正在运行的程序。</li>
-<li>进程是一个动态过程，有它自身的产生、存在以及消亡的过程。</li>
-</ul>
-<h3 id="线程（Thread）"><a href="#线程（Thread）" class="headerlink" title="线程（Thread）"></a>线程（Thread）</h3><ul>
-<li><p><strong>线程</strong>：是由进程（也可以由线程创建线程）创建的，是进程的一个实体；</p>
-<ul>
-<li>一个进程可以有多个线程；</li>
-</ul>
-</li>
-<li><p><strong>单线程</strong>：同一时刻，只允许执行一个线程；</p>
-</li>
-<li><p><strong>多线程</strong>：同一时刻，可以执行多个线程；</p>
-<ul>
-<li>比如，一个QQ进程，可以打开多个聊天窗口；</li>
-<li>一个迅雷进程，可以同时（并发&#x2F;并行）下载多个文件；</li>
-</ul>
-</li>
-<li><p><strong>并发</strong>：同一个时刻，多个任务交替执行；</p>
-<ul>
-<li>单核cpu实现的多任务，是并发；</li>
-</ul>
-</li>
-<li><p><strong>并行</strong>：同一个时刻，多个任务同时执行；</p>
-<ul>
-<li>多核cpu实现多任务，可以并行；</li>
+<h2 id="不会释放锁的情况"><a href="#不会释放锁的情况" class="headerlink" title="不会释放锁的情况"></a>不会释放锁的情况</h2><ul>
+<li>1.线程在执行同步方法&#x2F;同步代码块，<strong>执行了Thread.sleep()、Thread.yield()方法</strong>会暂停当前线程的执行，<strong>不会释放持有的锁资源</strong>；</li>
+<li>2.线程执行同步代码块时，<strong>其他线程调用了该线程的suspend()方法</strong>将该线程挂起，但是该线程<strong>不会释放持有的锁资源</strong>；<ul>
+<li>注意：suspend()方法和resume()方法不推荐使用；</li>
 </ul>
 </li>
 </ul>
@@ -369,8 +345,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java-线程概述</div>
-      <div>http://sea-365.site/2023/03/08/Java-线程概述/</div>
+      <div>Java-释放锁</div>
+      <div>http://sea-365.site/2023/03/18/Java-释放锁/</div>
     </div>
     <div class="license-meta">
       
@@ -382,7 +358,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年3月8日</div>
+          <div>2023年3月18日</div>
         </div>
       
       
@@ -414,9 +390,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/08/Java-%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Java-线程的使用">
+                      <a href="/2023/03/18/Java-%E7%BA%BF%E7%A8%8B%E6%AD%BB%E9%94%81/" title="Java-线程死锁">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java-线程的使用</span>
+                        <span class="hidden-mobile">Java-线程死锁</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -424,8 +400,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/08/%E8%93%9D%E6%A1%A5%E6%9D%AF2020-%E5%85%AB%E6%AC%A1%E6%B1%82%E5%92%8C%EF%BC%88%E5%A4%A7%E6%95%B0%E5%8A%A0%E6%B3%95+%E5%A4%A7%E6%95%B0%E5%8F%96%E4%BD%99%EF%BC%89/" title="蓝桥杯2020-八次求和（大数加法+大数取余）">
-                        <span class="hidden-mobile">蓝桥杯2020-八次求和（大数加法+大数取余）</span>
+                      <a href="/2023/03/17/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95-LeetCode_134/" title="贪心算法-LeetCode_134">
+                        <span class="hidden-mobile">贪心算法-LeetCode_134</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
