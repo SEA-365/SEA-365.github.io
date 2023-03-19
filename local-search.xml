@@ -4,6 +4,147 @@
   
   
   <entry>
+    <title>Git-常用命令整理</title>
+    <link href="/2023/03/19/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/"/>
+    <url>/2023/03/19/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Git-常用命令整理"><a href="#Git-常用命令整理" class="headerlink" title="Git-常用命令整理"></a>Git-常用命令整理</h2><h3 id="Git-全局设置"><a href="#Git-全局设置" class="headerlink" title="Git 全局设置"></a>Git 全局设置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs git">git config --global user.name &quot;用户名&quot;<br>git config --global user.email &quot;用户邮箱&quot;<br></code></pre></td></tr></table></figure><h3 id="创建新的仓库并提交代码"><a href="#创建新的仓库并提交代码" class="headerlink" title="创建新的仓库并提交代码"></a>创建新的仓库并提交代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs git">git clone 仓库地址<br>cd 仓库目录<br>git switch -c 新的分支名<br>touch README.md <br>git add README.md<br>git commit -m &quot;本次提交的描述信息&quot;<br>git push -u origin 新的分支名<br></code></pre></td></tr></table></figure><h3 id="推送本地现有文件夹"><a href="#推送本地现有文件夹" class="headerlink" title="推送本地现有文件夹"></a>推送本地现有文件夹</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs git">cd 文件夹目录<br>git init <br>git remote add origin 远程仓库地址<br>git add .<br>git commit -m &quot;描述信息&quot;<br>git push -u origin 分支名<br></code></pre></td></tr></table></figure><h3 id="origin-的含义"><a href="#origin-的含义" class="headerlink" title="origin 的含义"></a>origin 的含义</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs git">“git remote add origin 远程仓库地址”<br><br>origin 是 该远程仓库的别名<br></code></pre></td></tr></table></figure><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs git">#克隆远程仓库的指定分支到本地<br>git clone -b 远程分支名 远程分支地址<br><br>#pull远程仓库的指定分支<br>git pull origin 远程指定分支<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Git操作</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>MySQL学习-约束概述</title>
+    <link href="/2023/03/19/MySQL--%E7%BA%A6%E6%9D%9F%E6%A6%82%E8%BF%B0/"/>
+    <url>/2023/03/19/MySQL--%E7%BA%A6%E6%9D%9F%E6%A6%82%E8%BF%B0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="MySQL学习–约束概述"><a href="#MySQL学习–约束概述" class="headerlink" title="MySQL学习–约束概述"></a>MySQL学习–约束概述</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul><li>约束是作用于表中字段上的规则，用于限制存储在表中的数据。</li></ul><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ul><li>保证数据库中数据的正确性、有效性和完整性。</li></ul><h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><table><thead><tr><th>约束</th><th>描述</th><th>关键字</th></tr></thead><tbody><tr><td>非空约束</td><td>限制该字段的数据不能为null</td><td>NOT NULL</td></tr><tr><td>唯一约束</td><td>保证该宇段的所有数据都是唯一、不重复的</td><td>UNIQUE</td></tr><tr><td>主键约束</td><td>主键是一行数据的唯一标识，要求非空且唯一</td><td>PRIMARY KEY</td></tr><tr><td>默认约束</td><td>保存数据时，如果未指定该字段的值，则采用默认值</td><td>DEFAULT</td></tr><tr><td>检查约束**(8.0.16版本之后)**</td><td>保证字段值满足某一个条件</td><td>CHECK</td></tr><tr><td>外键约束</td><td>用来让两张表的数据之间建立连接，保证数据的一致性和完整性</td><td>FOREIGN KEY</td></tr></tbody></table><ul><li>约束是作用于表中字段上的，在创建&#x2F;修改表时可以为表中的字段添加约束。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>MySQL</category>
+      
+      <category>约束</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MySQL</tag>
+      
+      <tag>约束</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>MySQL学习--约束的使用</title>
+    <link href="/2023/03/19/MySQL--%E7%BA%A6%E6%9D%9F%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <url>/2023/03/19/MySQL--%E7%BA%A6%E6%9D%9F%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="MySQL学习–约束的使用"><a href="#MySQL学习–约束的使用" class="headerlink" title="MySQL学习–约束的使用"></a>MySQL学习–约束的使用</h1><h2 id="常见约束的使用"><a href="#常见约束的使用" class="headerlink" title="常见约束的使用"></a>常见约束的使用</h2><ul><li>案例</li></ul><p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_constraint01.jpg?raw=true"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br>CREATE TABLE STU_INFO(<br>ID INT PRIMARY KEY AUTO_INCREMENT  COMMENT &#x27;id，主键，自动增长&#x27;, <br>STU_NAME VARCHAR(10) NOT NULL UNIQUE COMMENT &#x27;不为空，并且唯一&#x27;,<br>AGE INT CHECK(AGE &gt; 0 &amp;&amp; AGE &lt;= 120) COMMENT &#x27;大于0，小于等于120&#x27;,<br>STU_STATUS CHAR(1) DEFAULT &#x27;1&#x27; COMMENT &#x27;没有指定则默认为1&#x27;,<br>GENDER CHAR(1) COMMENT &#x27;性别&#x27;<br>) COMMENT &#x27;学生信息表&#x27;;<br><br><br>INSERT INTO STU_INFO(STU_NAME, AGE, GENDER) VALUES <br>(&#x27;张三&#x27;, 12, &#x27;男&#x27;),<br>(&#x27;李四&#x27;, 17, &#x27;女&#x27;),<br>(&#x27;张三1&#x27;, 13, &#x27;女&#x27;);<br>-- ID 字段会自动填充和增长<br>-- NAME 字段不能为空，且不能重复<br>-- STU_STATUS 字段会自动填充为‘1’<br><br>INSERT INTO STU_INFO(STU_NAME, AGE, GENDER) VALUES <br>(&#x27;张三2&#x27;, 130, &#x27;女&#x27;);<br>-- 年龄不能小于0， 大于120<br></code></pre></td></tr></table></figure><h2 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h2><h3 id="添加外键"><a href="#添加外键" class="headerlink" title="添加外键"></a>添加外键</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建表时添加外键<br>create table 表名(<br>字段名 数据类型,<br>    ...<br>    <br>    [constraint] 外键名称 foreign key(外键字段名) references 主表名（主表列名）;<br>)<br><br>-- 已创建表，增加外键<br>alter table 表名 add constraint 外键名称 foreign key(外键字段名) references 主表（主表列名）;<br></code></pre></td></tr></table></figure><h3 id="删除外键"><a href="#删除外键" class="headerlink" title="删除外键"></a>删除外键</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">alter table 表名 drop foreign key 外键名称;<br></code></pre></td></tr></table></figure><p><strong>案例</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs mysql">create table dept(<br>    id   int auto_increment comment &#x27;ID&#x27; primary key,<br>    name varchar(50) not null comment &#x27;部门名称&#x27;<br>)comment &#x27;部门表&#x27;;<br><br>INSERT INTO dept (id, name) VALUES <br>(1, &#x27;研发部&#x27;), <br>(2, &#x27;市场部&#x27;),<br>(3, &#x27;财务部&#x27;), <br>(4, &#x27;销售部&#x27;), <br>(5, &#x27;总经办&#x27;);<br><br><br>create table emp(<br>    id  int auto_increment comment &#x27;ID&#x27; primary key,<br>    name varchar(50) not null comment &#x27;姓名&#x27;,<br>    age  int comment &#x27;年龄&#x27;,<br>job varchar(20) comment &#x27;职位&#x27;,<br>salary int comment &#x27;薪资&#x27;,<br>entrydate date comment &#x27;入职时间&#x27;,<br>managerid int comment &#x27;直属领导id&#x27;,<br>    dept_id int comment &#x27;部门ID&#x27;<br>)comment &#x27;员工表&#x27;;<br><br>INSERT INTO emp (id, name, age, job, salary, entrydate, managerid, dept_id) VALUES <br>(1, &#x27;张无忌&#x27;, 20, &#x27;总裁&#x27;, 20000, &#x27;2000-01-01&#x27;, null, 5),<br>(2, &#x27;杨逍&#x27;, 33, &#x27;总裁&#x27;, 12500, &#x27;2005-12-05&#x27;, null, 1),<br>(3, &#x27;赵敏&#x27;, 18, &#x27;总裁&#x27;, 8400, &#x27;2000-11-03&#x27;, null, 2),<br>(4, &#x27;常遇春&#x27;, 43, &#x27;总裁&#x27;, 11000, &#x27;2002-02-05&#x27;, null, 2),<br>(5, &#x27;小昭&#x27;, 19, &#x27;总裁&#x27;, 10500, &#x27;2004-09-07&#x27;, null, 3),<br>(6, &#x27;韦一笑&#x27;, 48, &#x27;总裁&#x27;, 6600, &#x27;2004-10-12&#x27;, null, 3);<br><br><br><br>-- 已创建表，增加外键<br>alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references dept(id);<br><br>-- 删除外键<br>alter table emp drop foreign key fk_emp_dept_id;<br><br></code></pre></td></tr></table></figure><h3 id="删除-x2F-更新记录时的行为"><a href="#删除-x2F-更新记录时的行为" class="headerlink" title="删除&#x2F;更新记录时的行为"></a>删除&#x2F;更新记录时的行为</h3><table><thead><tr><th>行为</th><th>说明</th></tr></thead><tbody><tr><td>NO ACTION</td><td>在当父表中更新&#x2F;删除对应记录时，首先检查该记录是否有对应外键，如果有则<strong>不允许</strong>删除&#x2F;更新(与RESTRICT一致)。</td></tr><tr><td>RESTRICT</td><td>在当父表中更新&#x2F;删除对应记录时，首先检查该记录是否有对应外键，如果有则<strong>不允许</strong>删除&#x2F;更新(与NO ACTION一致)。</td></tr><tr><td>CASCADE</td><td>在当父表中更新&#x2F;删除对应记录时，首先检查该记录是否有对应外键，如果有则<strong>也删除&#x2F;更新</strong>外键所在子表中的记录。（<strong>也叫级联更新</strong>）</td></tr><tr><td>SET NULL</td><td>在当父表中更新&#x2F;删除对应记录时，首先检查该记录是否有对应外键，如果有则<strong>设置子表中该外键的值为NULL</strong>(要求外键允许为NULL)。</td></tr><tr><td>SET DEFAULT</td><td>在当父表中更新&#x2F;删除对应记录时，首先检查该记录是否有对应外键，如果有则<strong>设置子表中该外键的值为一个默认的值</strong>(Innodb不支持)。</td></tr></tbody></table><p><strong>语法</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 设置级联删除/更新<br>alter table 表名 add constraint 外键名称 foreign key(外键字段名) references 主表（主表列名） on update cascade on delete cascade;<br></code></pre></td></tr></table></figure><p><strong>案例</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 设置级联更新/删除<br>alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references dept(id) on update cascade on delete cascade;<br><br>-- 注意：此处为设置emp表的外键为dept表的id字段，父表指的是dept，子表指的是emp；<br>-- 修改dept表中的id字段，会级联修改emp中的数据。<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>MySQL</category>
+      
+      <category>约束</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MySQL</tag>
+      
+      <tag>约束</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>MySQL学习--多表查询总结</title>
+    <link href="/2023/03/19/MySQL-%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E6%A6%82%E8%BF%B0/"/>
+    <url>/2023/03/19/MySQL-%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E6%A6%82%E8%BF%B0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="MySQL学习–多表查询总结"><a href="#MySQL学习–多表查询总结" class="headerlink" title="MySQL学习–多表查询总结"></a>MySQL学习–多表查询总结</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul><li>从多张表中查询出指定的数据；</li><li>“笛卡尔积”：笛卡尔乘积是指在数学中，两个集合：A集合 和 B集合 的所有组合情况。<ul><li>注意：<strong>在多表查询时，需要消除无效的笛卡尔积</strong>；</li></ul></li></ul><p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_multi-table04.jpg?raw=true"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 单表查询<br>select * from emp;<br><br>-- 多表查询 <br>select * from emp, dept where dept_id = dept.id;# 笛卡尔积，使用where消除无效的数据<br></code></pre></td></tr></table></figure><h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><h4 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h4><ul><li>相当于查询A,B<strong>两集合交集</strong>部分的数据；</li></ul><h5 id="隐式内连接"><a href="#隐式内连接" class="headerlink" title="隐式内连接"></a>隐式内连接</h5><p><strong>语法</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 字段列表 from 表1, 表2 where 条件...;<br></code></pre></td></tr></table></figure><p><strong>案例</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 查询每一个员工的姓名、关联的部门名称 （隐式内连接实现）<br>select emp.name 员工姓名, dept.name 部门 from emp, dept where dept_id = dept.id;<br>-- 给表起别名<br>select e.name 员工姓名, d.name 部门 from emp e, dept d where e.dept_id = d.id;<br></code></pre></td></tr></table></figure><h5 id="显式内连接"><a href="#显式内连接" class="headerlink" title="显式内连接"></a>显式内连接</h5><p><strong>语法</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 字段列表 from 表1 [inner] join 表2 on 连接条件...;<br></code></pre></td></tr></table></figure><p><strong>案例</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 查询每一个员工的姓名、关联的部门名称 （显式内连接实现）<br>select emp.name 员工姓名, dept.name 部门 from emp inner join dept on emp.dept_id = dept.id;<br>select e.name 员工姓名, d.name 部门 from emp e join dept d on e.dept_id = d.id;<br></code></pre></td></tr></table></figure><h5 id="显式和隐式内连接的区别"><a href="#显式和隐式内连接的区别" class="headerlink" title="显式和隐式内连接的区别"></a>显式和隐式内连接的区别</h5><h4 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h4><ul><li>左表是指outer join 左边的表；</li><li>右表是指outer join 右边的表；</li></ul><h5 id="左外连接"><a href="#左外连接" class="headerlink" title="左外连接"></a>左外连接</h5><ul><li>查询<strong>左表所有</strong>的数据，以及<strong>两张表交集</strong>部分的数据；</li></ul><p><strong>语法</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 字段列表 from 表1 left [outer] join 表2 on 连接条件...;<br></code></pre></td></tr></table></figure><p><strong>案例</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 查询emp中的所有数据，和对应的部门信息（左外连接实现）<br>select * from emp left outer join dept on emp.dept_id = dept.id;<br></code></pre></td></tr></table></figure><p>注意：如果emp表中，有一条记录的dept_id字段值为null，则：若使用内连接查询，则不显示该记录；而使用左外连接可以显式；</p><h5 id="右外连接"><a href="#右外连接" class="headerlink" title="右外连接"></a>右外连接</h5><ul><li>查询<strong>右表所有</strong>的数据，以及<strong>两张表交集</strong>部分的数据；</li></ul><p><strong>语法</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 字段列表 from 表1 right [outer] join 表2 on 连接条件...;<br></code></pre></td></tr></table></figure><p><strong>案例</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br>-- 查询dept中的所有数据，和对应的员工信息（右外连接实现）<br>select d.*, e.* from emp e right outer join dept d on e.dept_id = d.id;<br><br>-- 改成左外连接实现<br>select d.*, e.* from dept d left outer join emp e on e.dept_id = d.id;<br></code></pre></td></tr></table></figure><h5 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h5><ul><li>查询当前表与自身的连接查询，<strong>自连接必须使用表的别名</strong>；</li></ul><p><strong>语法</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 字段列表 from 表1 别名1 join 表2 别名2 on 连接条件...;<br></code></pre></td></tr></table></figure><p><strong>案例</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 查询员工 及其 所属领导的名字（自连接-内连接查询）<br>select e1.*, e2.name 所属领导 from emp e1 join emp e2 on e1.managerid = e2.id;<br><br><br>-- 插叙所有员工 及其 领导的名字，如果没有领导，也要查询出来；（自连接-外连接查询）<br>select e1.*, e2.name 所属领导 from emp e1 left join emp e2 on e1.managerid = e2.id;<br><br>-- 其实就是，自己和自己连接，再查询；<br></code></pre></td></tr></table></figure><h3 id="联合查询（union-x2F-union-all）"><a href="#联合查询（union-x2F-union-all）" class="headerlink" title="联合查询（union&#x2F;union all）"></a>联合查询（union&#x2F;union all）</h3><ul><li>把多次查询的结果合并起来，形成一个新的查询结果集；</li><li>多次查询的字段数量和类型需要相同；</li><li>union和union all：去掉all，可以去除查询出来的重复记录；</li></ul><p><strong>语法</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 字段列表 from 表1 ...<br>union [all]<br>select 字段列表 from 表2 ...;<br></code></pre></td></tr></table></figure><p><strong>案例</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 把薪资低于8000 的员工， 和 年龄小于 25 的员工都查询出来<br>select * from emp where salary &lt; 80000<br>union all<br>select * from emp where age &lt; 25;<br><br>-- 去掉all，可以去除重复记录<br>select * from emp where salary &lt; 80000<br>union<br>select * from emp where age &lt; 25;<br></code></pre></td></tr></table></figure><h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul><li>SQL语句中嵌套select语句，又称<strong>嵌套查询</strong>。</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select * from 表1 where 字段名1 = (select 字段名1 from 表2);<br><br>-- 子查询外部的语句可以insert/update/delete/select的任意一个；<br></code></pre></td></tr></table></figure><h4 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h4><ul><li><p>根据子查询结果的不同，分为：</p><ul><li><p>标量子查询（子查询结果为单个值）</p></li><li><p>列子查询（子查询结果为一列）</p></li><li><p>行子查询（子查询结果为一行）</p></li><li><p>表子查询（子查询结果为多行多列）</p></li></ul></li><li><p>根据子查询出现的位置，分为：</p><ul><li>where之后</li><li>from之后</li><li>select之后</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>MySQL</category>
+      
+      <category>多表查询</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MySQL</tag>
+      
+      <tag>多表查询</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>MySQL学习--多表关系介绍</title>
+    <link href="/2023/03/19/MySQL-%E5%A4%9A%E8%A1%A8%E5%85%B3%E7%B3%BB%E4%BB%8B%E7%BB%8D/"/>
+    <url>/2023/03/19/MySQL-%E5%A4%9A%E8%A1%A8%E5%85%B3%E7%B3%BB%E4%BB%8B%E7%BB%8D/</url>
+    
+    <content type="html"><![CDATA[<h1 id="MySQL学习–多表关系介绍"><a href="#MySQL学习–多表关系介绍" class="headerlink" title="MySQL学习–多表关系介绍"></a>MySQL学习–多表关系介绍</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul><li>进行数据库表结构设计时，根据业务需求以及业务模块之间的关系，分析各个表结构之间的联系，基本分为以下三种：<ul><li>一对一</li><li>一对多</li><li>多对多</li></ul></li></ul><h2 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h2><p>案例：用户 与 用户详情的关系</p><p>关系：一对一关系，多用于单表拆分，将一张表的基础字段放在一张表中，其他详情字段放在另一张表中，提升效率；</p><p>实现：在任意一方加入外键，关联另外一方的主键，并且<strong>设置外键字段值为唯一的</strong>（即不允许重复，设置UNIQUE约束）</p><p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_multi-table03.jpg?raw=true"></p><h2 id="一对多"><a href="#一对多" class="headerlink" title="一对多"></a>一对多</h2><ul><li><p>案例：部门 与 员工 的关系；</p></li><li><p>关系：一个部门对应多个员工，一个员工仅对应一个部门；</p></li><li><p>实现：在 “多” 的一方（员工）建立外键，指向 “一” 的一方的主键；</p></li></ul><p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_multi-table01.jpg?raw=true"></p><h2 id="多对多"><a href="#多对多" class="headerlink" title="多对多"></a>多对多</h2><ul><li>案例：学生 和 课程 的关系；</li><li>关系：一个学生可以选择多门课程，一门课程可以被多名学生选择；</li><li>实现：<strong>建立第三张中间表，中间表至少包含两个外键，分别关联两方的主键；</strong></li></ul><p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_multi-table02.jpg?raw=true"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>MySQL</category>
+      
+      <category>多表查询</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MySQL</tag>
+      
+      <tag>多表查询</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>背包问题-背包问题总结</title>
     <link href="/2023/03/19/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98-%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"/>
     <url>/2023/03/19/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98-%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/</url>
@@ -340,64 +481,6 @@
     <tags>
       
       <tag>蓝桥杯</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>MySQL学习-约束概述</title>
-    <link href="/2023/03/07/MySQL%E5%AD%A6%E4%B9%A0--%E7%BA%A6%E6%9D%9F%E6%A6%82%E8%BF%B0/"/>
-    <url>/2023/03/07/MySQL%E5%AD%A6%E4%B9%A0--%E7%BA%A6%E6%9D%9F%E6%A6%82%E8%BF%B0/</url>
-    
-    <content type="html"><![CDATA[<h1 id="MySQL学习–约束概述"><a href="#MySQL学习–约束概述" class="headerlink" title="MySQL学习–约束概述"></a>MySQL学习–约束概述</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul><li>约束是作用于表中字段上的规则，用于限制存储在表中的数据。</li></ul><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ul><li>保证数据库中数据的正确性、有效性和完整性。</li></ul><h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><table><thead><tr><th>约束</th><th>描述</th><th>关键字</th></tr></thead><tbody><tr><td>非空约束</td><td>限制该字段的数据不能为null</td><td>NOT NULL</td></tr><tr><td>唯一约束</td><td>保证该宇段的所有数据都是唯一、不重复的</td><td>UNIQUE</td></tr><tr><td>主键约束</td><td>主键是一行数据的唯一标识，要求非空且唯一</td><td>PRIMARY KEY</td></tr><tr><td>默认约束</td><td>保存数据时，如果未指定该字段的值，则采用默认值</td><td>DEFAULT</td></tr><tr><td>检查约束**(8.0.16版本之后)**</td><td>保证字段值满足某一个条件</td><td>CHECK</td></tr><tr><td>外键约束</td><td>用来让两张表的数据之间建立连接，保证数据的一致性和完整性</td><td>FOREIGN KEY</td></tr></tbody></table><ul><li>约束是作用于表中字段上的，在创建&#x2F;修改表时可以为表中的字段添加约束。</li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>MySQL</category>
-      
-      <category>约束</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>MySQL</tag>
-      
-      <tag>约束</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>MySQL学习--约束的使用</title>
-    <link href="/2023/03/07/MySQL%E5%AD%A6%E4%B9%A0--%E7%BA%A6%E6%9D%9F%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <url>/2023/03/07/MySQL%E5%AD%A6%E4%B9%A0--%E7%BA%A6%E6%9D%9F%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    
-    <content type="html"><![CDATA[<h1 id="MySQL学习–约束的使用"><a href="#MySQL学习–约束的使用" class="headerlink" title="MySQL学习–约束的使用"></a>MySQL学习–约束的使用</h1><h2 id="常见约束的使用"><a href="#常见约束的使用" class="headerlink" title="常见约束的使用"></a>常见约束的使用</h2><ul><li>案例</li></ul><p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_constraint01.jpg?raw=true"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br>CREATE TABLE STU_INFO(<br>ID INT PRIMARY KEY AUTO_INCREMENT  COMMENT &#x27;id，主键，自动增长&#x27;, <br>STU_NAME VARCHAR(10) NOT NULL UNIQUE COMMENT &#x27;不为空，并且唯一&#x27;,<br>AGE INT CHECK(AGE &gt; 0 &amp;&amp; AGE &lt;= 120) COMMENT &#x27;大于0，小于等于120&#x27;,<br>STU_STATUS CHAR(1) DEFAULT &#x27;1&#x27; COMMENT &#x27;没有指定则默认为1&#x27;,<br>GENDER CHAR(1) COMMENT &#x27;性别&#x27;<br>) COMMENT &#x27;学生信息表&#x27;;<br><br><br>INSERT INTO STU_INFO(STU_NAME, AGE, GENDER) VALUES <br>(&#x27;张三&#x27;, 12, &#x27;男&#x27;),<br>(&#x27;李四&#x27;, 17, &#x27;女&#x27;),<br>(&#x27;张三1&#x27;, 13, &#x27;女&#x27;);<br>-- ID 字段会自动填充和增长<br>-- NAME 字段不能为空，且不能重复<br>-- STU_STATUS 字段会自动填充为‘1’<br><br>INSERT INTO STU_INFO(STU_NAME, AGE, GENDER) VALUES <br>(&#x27;张三2&#x27;, 130, &#x27;女&#x27;);<br>-- 年龄不能小于0， 大于120<br></code></pre></td></tr></table></figure><h2 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p><strong>添加外键</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建表时添加外键<br>create table 表名(<br>字段名 数据类型,<br>    ...<br>    <br>    [constraint] 外键名称 foreign key(外键字段名) references 主表名（主表列名）;<br>)<br><br>-- 已创建表，增加外键<br>alter table 表名 add constraint 外键名称 foreign key(外键字段名) references 主表（主表列名）;<br></code></pre></td></tr></table></figure><p><strong>删除外键</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">alter table 表名 drop foreign key 外键名称;<br></code></pre></td></tr></table></figure><h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs mysql">create table dept(<br>    id   int auto_increment comment &#x27;ID&#x27; primary key,<br>    name varchar(50) not null comment &#x27;部门名称&#x27;<br>)comment &#x27;部门表&#x27;;<br><br>INSERT INTO dept (id, name) VALUES <br>(1, &#x27;研发部&#x27;), <br>(2, &#x27;市场部&#x27;),<br>(3, &#x27;财务部&#x27;), <br>(4, &#x27;销售部&#x27;), <br>(5, &#x27;总经办&#x27;);<br><br><br>create table emp(<br>    id  int auto_increment comment &#x27;ID&#x27; primary key,<br>    name varchar(50) not null comment &#x27;姓名&#x27;,<br>    age  int comment &#x27;年龄&#x27;,<br>job varchar(20) comment &#x27;职位&#x27;,<br>salary int comment &#x27;薪资&#x27;,<br>entrydate date comment &#x27;入职时间&#x27;,<br>managerid int comment &#x27;直属领导id&#x27;,<br>    dept_id int comment &#x27;部门ID&#x27;<br>)comment &#x27;员工表&#x27;;<br><br>INSERT INTO emp (id, name, age, job, salary, entrydate, managerid, dept_id) VALUES <br>(1, &#x27;张无忌&#x27;, 20, &#x27;总裁&#x27;, 20000, &#x27;2000-01-01&#x27;, null, 5),<br>(2, &#x27;杨逍&#x27;, 33, &#x27;总裁&#x27;, 12500, &#x27;2005-12-05&#x27;, null, 1),<br>(3, &#x27;赵敏&#x27;, 18, &#x27;总裁&#x27;, 8400, &#x27;2000-11-03&#x27;, null, 2),<br>(4, &#x27;常遇春&#x27;, 43, &#x27;总裁&#x27;, 11000, &#x27;2002-02-05&#x27;, null, 2),<br>(5, &#x27;小昭&#x27;, 19, &#x27;总裁&#x27;, 10500, &#x27;2004-09-07&#x27;, null, 3),<br>(6, &#x27;韦一笑&#x27;, 48, &#x27;总裁&#x27;, 6600, &#x27;2004-10-12&#x27;, null, 3);<br><br><br><br>-- 已创建表，增加外键<br>alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references dept(id);<br><br>-- 删除外键<br>alter table emp drop foreign key fk_emp_dept_id;<br><br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-    <categories>
-      
-      <category>MySQL</category>
-      
-      <category>约束</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>MySQL</tag>
-      
-      <tag>约束</tag>
       
     </tags>
     
@@ -1255,31 +1338,6 @@
     <tags>
       
       <tag>回溯算法</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Git常用命令整理</title>
-    <link href="/2023/02/10/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/"/>
-    <url>/2023/02/10/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/</url>
-    
-    <content type="html"><![CDATA[<h2 id="Git常用命令整理"><a href="#Git常用命令整理" class="headerlink" title="Git常用命令整理"></a>Git常用命令整理</h2><h3 id="Git-全局设置"><a href="#Git-全局设置" class="headerlink" title="Git 全局设置"></a>Git 全局设置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs git">git config --global user.name &quot;用户名&quot;<br>git config --global user.email &quot;用户邮箱&quot;<br></code></pre></td></tr></table></figure><h3 id="创建新的仓库并提交代码"><a href="#创建新的仓库并提交代码" class="headerlink" title="创建新的仓库并提交代码"></a>创建新的仓库并提交代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs git">git clone 仓库地址<br>cd 仓库目录<br>git switch -c 新的分支名<br>touch README.md <br>git add README.md<br>git commit -m &quot;本次提交的描述信息&quot;<br>git push -u origin 新的分支名<br></code></pre></td></tr></table></figure><h3 id="推送本地现有文件夹"><a href="#推送本地现有文件夹" class="headerlink" title="推送本地现有文件夹"></a>推送本地现有文件夹</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs git">cd 文件夹目录<br>git init <br>git remote add origin 远程仓库地址<br>git add .<br>git commit -m &quot;描述信息&quot;<br>git push -u origin 分支名<br></code></pre></td></tr></table></figure><h3 id="origin-的含义"><a href="#origin-的含义" class="headerlink" title="origin 的含义"></a>origin 的含义</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs git">“git remote add origin 远程仓库地址”<br><br>origin 是 该远程仓库的别名<br></code></pre></td></tr></table></figure><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs git">#克隆远程仓库的指定分支到本地<br>git clone -b 远程分支名 远程分支地址<br><br>#pull远程仓库的指定分支<br>git pull origin 远程指定分支<br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-    <categories>
-      
-      <category>Git操作</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Git</tag>
       
     </tags>
     

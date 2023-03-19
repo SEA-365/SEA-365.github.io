@@ -18,25 +18,27 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="MySQL学习–约束概述概述 约束是作用于表中字段上的规则，用于限制存储在表中的数据。  目的 保证数据库中数据的正确性、有效性和完整性。  分类   约束 描述 关键字    非空约束 限制该字段的数据不能为null NOT NULL   唯一约束 保证该宇段的所有数据都是唯一、不重复的 UNIQUE   主键约束 主键是一行数据的唯一标识，要求非空且唯一 PRIMARY KEY   默认约束">
+    <meta name="description" content="MySQL学习–多表查询总结概述 从多张表中查询出指定的数据； “笛卡尔积”：笛卡尔乘积是指在数学中，两个集合：A集合 和 B集合 的所有组合情况。 注意：在多表查询时，需要消除无效的笛卡尔积；     12345-- 单表查询select * from emp;-- 多表查询 select * from emp, dept where dept_id &#x3D; dept.id;# 笛卡尔积，使用whe">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL学习-约束概述">
-<meta property="og:url" content="http://sea-365.site/2023/03/07/MySQL%E5%AD%A6%E4%B9%A0--%E7%BA%A6%E6%9D%9F%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:title" content="MySQL学习--多表查询总结">
+<meta property="og:url" content="http://sea-365.site/2023/03/19/MySQL-%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E6%A6%82%E8%BF%B0/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="MySQL学习–约束概述概述 约束是作用于表中字段上的规则，用于限制存储在表中的数据。  目的 保证数据库中数据的正确性、有效性和完整性。  分类   约束 描述 关键字    非空约束 限制该字段的数据不能为null NOT NULL   唯一约束 保证该宇段的所有数据都是唯一、不重复的 UNIQUE   主键约束 主键是一行数据的唯一标识，要求非空且唯一 PRIMARY KEY   默认约束">
+<meta property="og:description" content="MySQL学习–多表查询总结概述 从多张表中查询出指定的数据； “笛卡尔积”：笛卡尔乘积是指在数学中，两个集合：A集合 和 B集合 的所有组合情况。 注意：在多表查询时，需要消除无效的笛卡尔积；     12345-- 单表查询select * from emp;-- 多表查询 select * from emp, dept where dept_id &#x3D; dept.id;# 笛卡尔积，使用whe">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-03-07T13:05:20.738Z">
-<meta property="article:modified_time" content="2023-03-07T12:08:44.171Z">
+<meta property="og:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_multi-table04.jpg?raw=true">
+<meta property="article:published_time" content="2023-03-19T11:50:49.240Z">
+<meta property="article:modified_time" content="2023-03-19T11:50:10.153Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="MySQL">
-<meta property="article:tag" content="约束">
+<meta property="article:tag" content="多表查询">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_multi-table04.jpg?raw=true">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>MySQL学习-约束概述 - SEA-365的读研日记</title>
+  <title>MySQL学习--多表查询总结 - SEA-365的读研日记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="MySQL学习-约束概述"></span>
+            <span id="subtitle" data-typed-text="MySQL学习--多表查询总结"></span>
           
         </div>
 
@@ -212,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-07 21:05" pubdate>
-          2023年3月7日 晚上
+        <time datetime="2023-03-19 19:50" pubdate>
+          2023年3月19日 晚上
         </time>
       </span>
     
@@ -224,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          315 字
+          2k 字
         
       </span>
     
@@ -235,7 +237,7 @@
         
         
         
-          3 分钟
+          17 分钟
         
       </span>
     
@@ -273,58 +275,104 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">MySQL学习-约束概述</h1>
+            <h1 style="display: none">MySQL学习--多表查询总结</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="MySQL学习–约束概述"><a href="#MySQL学习–约束概述" class="headerlink" title="MySQL学习–约束概述"></a>MySQL学习–约束概述</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
-<li>约束是作用于表中字段上的规则，用于限制存储在表中的数据。</li>
+                <h1 id="MySQL学习–多表查询总结"><a href="#MySQL学习–多表查询总结" class="headerlink" title="MySQL学习–多表查询总结"></a>MySQL学习–多表查询总结</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li>从多张表中查询出指定的数据；</li>
+<li>“笛卡尔积”：笛卡尔乘积是指在数学中，两个集合：A集合 和 B集合 的所有组合情况。<ul>
+<li>注意：<strong>在多表查询时，需要消除无效的笛卡尔积</strong>；</li>
 </ul>
-<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ul>
-<li>保证数据库中数据的正确性、有效性和完整性。</li>
+</li>
 </ul>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><table>
-<thead>
-<tr>
-<th>约束</th>
-<th>描述</th>
-<th>关键字</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>非空约束</td>
-<td>限制该字段的数据不能为null</td>
-<td>NOT NULL</td>
-</tr>
-<tr>
-<td>唯一约束</td>
-<td>保证该宇段的所有数据都是唯一、不重复的</td>
-<td>UNIQUE</td>
-</tr>
-<tr>
-<td>主键约束</td>
-<td>主键是一行数据的唯一标识，要求非空且唯一</td>
-<td>PRIMARY KEY</td>
-</tr>
-<tr>
-<td>默认约束</td>
-<td>保存数据时，如果未指定该字段的值，则采用默认值</td>
-<td>DEFAULT</td>
-</tr>
-<tr>
-<td>检查约束**(8.0.16版本之后)**</td>
-<td>保证字段值满足某一个条件</td>
-<td>CHECK</td>
-</tr>
-<tr>
-<td>外键约束</td>
-<td>用来让两张表的数据之间建立连接，保证数据的一致性和完整性</td>
-<td>FOREIGN KEY</td>
-</tr>
-</tbody></table>
+<p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_multi-table04.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 单表查询<br>select * from emp;<br><br>-- 多表查询 <br>select * from emp, dept where dept_id = dept.id;# 笛卡尔积，使用where消除无效的数据<br></code></pre></td></tr></table></figure>
+
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><h4 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h4><ul>
+<li>相当于查询A,B<strong>两集合交集</strong>部分的数据；</li>
+</ul>
+<h5 id="隐式内连接"><a href="#隐式内连接" class="headerlink" title="隐式内连接"></a>隐式内连接</h5><p><strong>语法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 字段列表 from 表1, 表2 where 条件...;<br></code></pre></td></tr></table></figure>
+
+<p><strong>案例</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 查询每一个员工的姓名、关联的部门名称 （隐式内连接实现）<br>select emp.name 员工姓名, dept.name 部门 from emp, dept where dept_id = dept.id;<br>-- 给表起别名<br>select e.name 员工姓名, d.name 部门 from emp e, dept d where e.dept_id = d.id;<br></code></pre></td></tr></table></figure>
+
+<h5 id="显式内连接"><a href="#显式内连接" class="headerlink" title="显式内连接"></a>显式内连接</h5><p><strong>语法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 字段列表 from 表1 [inner] join 表2 on 连接条件...;<br></code></pre></td></tr></table></figure>
+
+<p><strong>案例</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 查询每一个员工的姓名、关联的部门名称 （显式内连接实现）<br>select emp.name 员工姓名, dept.name 部门 from emp inner join dept on emp.dept_id = dept.id;<br>select e.name 员工姓名, d.name 部门 from emp e join dept d on e.dept_id = d.id;<br></code></pre></td></tr></table></figure>
+
+<h5 id="显式和隐式内连接的区别"><a href="#显式和隐式内连接的区别" class="headerlink" title="显式和隐式内连接的区别"></a>显式和隐式内连接的区别</h5><h4 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h4><ul>
+<li>左表是指outer join 左边的表；</li>
+<li>右表是指outer join 右边的表；</li>
+</ul>
+<h5 id="左外连接"><a href="#左外连接" class="headerlink" title="左外连接"></a>左外连接</h5><ul>
+<li>查询<strong>左表所有</strong>的数据，以及<strong>两张表交集</strong>部分的数据；</li>
+</ul>
+<p><strong>语法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 字段列表 from 表1 left [outer] join 表2 on 连接条件...;<br></code></pre></td></tr></table></figure>
+
+<p><strong>案例</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 查询emp中的所有数据，和对应的部门信息（左外连接实现）<br>select * from emp left outer join dept on emp.dept_id = dept.id;<br></code></pre></td></tr></table></figure>
+
+<p>注意：如果emp表中，有一条记录的dept_id字段值为null，则：若使用内连接查询，则不显示该记录；而使用左外连接可以显式；</p>
+<h5 id="右外连接"><a href="#右外连接" class="headerlink" title="右外连接"></a>右外连接</h5><ul>
+<li>查询<strong>右表所有</strong>的数据，以及<strong>两张表交集</strong>部分的数据；</li>
+</ul>
+<p><strong>语法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 字段列表 from 表1 right [outer] join 表2 on 连接条件...;<br></code></pre></td></tr></table></figure>
+
+<p><strong>案例</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br>-- 查询dept中的所有数据，和对应的员工信息（右外连接实现）<br>select d.*, e.* from emp e right outer join dept d on e.dept_id = d.id;<br><br>-- 改成左外连接实现<br>select d.*, e.* from dept d left outer join emp e on e.dept_id = d.id;<br></code></pre></td></tr></table></figure>
+
+<h5 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h5><ul>
+<li>查询当前表与自身的连接查询，<strong>自连接必须使用表的别名</strong>；</li>
+</ul>
+<p><strong>语法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 字段列表 from 表1 别名1 join 表2 别名2 on 连接条件...;<br></code></pre></td></tr></table></figure>
+
+<p><strong>案例</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 查询员工 及其 所属领导的名字（自连接-内连接查询）<br>select e1.*, e2.name 所属领导 from emp e1 join emp e2 on e1.managerid = e2.id;<br><br><br>-- 插叙所有员工 及其 领导的名字，如果没有领导，也要查询出来；（自连接-外连接查询）<br>select e1.*, e2.name 所属领导 from emp e1 left join emp e2 on e1.managerid = e2.id;<br><br>-- 其实就是，自己和自己连接，再查询；<br></code></pre></td></tr></table></figure>
+
+<h3 id="联合查询（union-x2F-union-all）"><a href="#联合查询（union-x2F-union-all）" class="headerlink" title="联合查询（union&#x2F;union all）"></a>联合查询（union&#x2F;union all）</h3><ul>
+<li>把多次查询的结果合并起来，形成一个新的查询结果集；</li>
+<li>多次查询的字段数量和类型需要相同；</li>
+<li>union和union all：去掉all，可以去除查询出来的重复记录；</li>
+</ul>
+<p><strong>语法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 字段列表 from 表1 ...<br>union [all]<br>select 字段列表 from 表2 ...;<br></code></pre></td></tr></table></figure>
+
+<p><strong>案例</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 把薪资低于8000 的员工， 和 年龄小于 25 的员工都查询出来<br>select * from emp where salary &lt; 80000<br>union all<br>select * from emp where age &lt; 25;<br><br>-- 去掉all，可以去除重复记录<br>select * from emp where salary &lt; 80000<br>union<br>select * from emp where age &lt; 25;<br></code></pre></td></tr></table></figure>
+
+<h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
+<li>SQL语句中嵌套select语句，又称<strong>嵌套查询</strong>。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select * from 表1 where 字段名1 = (select 字段名1 from 表2);<br><br>-- 子查询外部的语句可以insert/update/delete/select的任意一个；<br></code></pre></td></tr></table></figure>
+
+<h4 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h4><ul>
+<li><p>根据子查询结果的不同，分为：</p>
 <ul>
-<li>约束是作用于表中字段上的，在创建&#x2F;修改表时可以为表中的字段添加约束。</li>
+<li><p>标量子查询（子查询结果为单个值）</p>
+</li>
+<li><p>列子查询（子查询结果为一列）</p>
+</li>
+<li><p>行子查询（子查询结果为一行）</p>
+</li>
+<li><p>表子查询（子查询结果为多行多列）</p>
+</li>
+</ul>
+</li>
+<li><p>根据子查询出现的位置，分为：</p>
+<ul>
+<li>where之后</li>
+<li>from之后</li>
+<li>select之后</li>
+</ul>
+</li>
 </ul>
 
                 
@@ -349,7 +397,7 @@
   
     <span>></span>
     
-  <a href="/categories/MySQL/%E7%BA%A6%E6%9D%9F/" class="category-chain-item">约束</a>
+  <a href="/categories/MySQL/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/" class="category-chain-item">多表查询</a>
   
   
 
@@ -368,7 +416,7 @@
       
         <a href="/tags/MySQL/">#MySQL</a>
       
-        <a href="/tags/%E7%BA%A6%E6%9D%9F/">#约束</a>
+        <a href="/tags/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/">#多表查询</a>
       
     </div>
   
@@ -380,8 +428,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>MySQL学习-约束概述</div>
-      <div>http://sea-365.site/2023/03/07/MySQL学习--约束概述/</div>
+      <div>MySQL学习--多表查询总结</div>
+      <div>http://sea-365.site/2023/03/19/MySQL-多表查询概述/</div>
     </div>
     <div class="license-meta">
       
@@ -393,7 +441,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年3月7日</div>
+          <div>2023年3月19日</div>
         </div>
       
       
@@ -425,9 +473,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/08/%E8%93%9D%E6%A1%A5%E6%9D%AF2020-%E5%85%AB%E6%AC%A1%E6%B1%82%E5%92%8C%EF%BC%88%E5%A4%A7%E6%95%B0%E5%8A%A0%E6%B3%95+%E5%A4%A7%E6%95%B0%E5%8F%96%E4%BD%99%EF%BC%89/" title="蓝桥杯2020-八次求和（大数加法+大数取余）">
+                      <a href="/2023/03/19/MySQL--%E7%BA%A6%E6%9D%9F%E7%9A%84%E4%BD%BF%E7%94%A8/" title="MySQL学习--约束的使用">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">蓝桥杯2020-八次求和（大数加法+大数取余）</span>
+                        <span class="hidden-mobile">MySQL学习--约束的使用</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -435,8 +483,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/07/MySQL%E5%AD%A6%E4%B9%A0--%E7%BA%A6%E6%9D%9F%E7%9A%84%E4%BD%BF%E7%94%A8/" title="MySQL学习--约束的使用">
-                        <span class="hidden-mobile">MySQL学习--约束的使用</span>
+                      <a href="/2023/03/19/MySQL-%E5%A4%9A%E8%A1%A8%E5%85%B3%E7%B3%BB%E4%BB%8B%E7%BB%8D/" title="MySQL学习--多表关系介绍">
+                        <span class="hidden-mobile">MySQL学习--多表关系介绍</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -18,24 +18,29 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="Git常用命令整理Git 全局设置12git config --global user.name &quot;用户名&quot;git config --global user.email &quot;用户邮箱&quot;  创建新的仓库并提交代码1234567git clone 仓库地址cd 仓库目录git switch -c 新的分支名touch README.md git add READM">
+    <meta name="description" content="MySQL学习–多表关系介绍概述 进行数据库表结构设计时，根据业务需求以及业务模块之间的关系，分析各个表结构之间的联系，基本分为以下三种： 一对一 一对多 多对多    一对一案例：用户 与 用户详情的关系 关系：一对一关系，多用于单表拆分，将一张表的基础字段放在一张表中，其他详情字段放在另一张表中，提升效率； 实现：在任意一方加入外键，关联另外一方的主键，并且设置外键字段值为唯一的（即不允许重复">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git常用命令整理">
-<meta property="og:url" content="http://sea-365.site/2023/02/10/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/index.html">
+<meta property="og:title" content="MySQL学习--多表关系介绍">
+<meta property="og:url" content="http://sea-365.site/2023/03/19/MySQL-%E5%A4%9A%E8%A1%A8%E5%85%B3%E7%B3%BB%E4%BB%8B%E7%BB%8D/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="Git常用命令整理Git 全局设置12git config --global user.name &quot;用户名&quot;git config --global user.email &quot;用户邮箱&quot;  创建新的仓库并提交代码1234567git clone 仓库地址cd 仓库目录git switch -c 新的分支名touch README.md git add READM">
+<meta property="og:description" content="MySQL学习–多表关系介绍概述 进行数据库表结构设计时，根据业务需求以及业务模块之间的关系，分析各个表结构之间的联系，基本分为以下三种： 一对一 一对多 多对多    一对一案例：用户 与 用户详情的关系 关系：一对一关系，多用于单表拆分，将一张表的基础字段放在一张表中，其他详情字段放在另一张表中，提升效率； 实现：在任意一方加入外键，关联另外一方的主键，并且设置外键字段值为唯一的（即不允许重复">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-02-10T04:54:35.445Z">
-<meta property="article:modified_time" content="2023-02-16T06:58:53.174Z">
+<meta property="og:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_multi-table03.jpg?raw=true">
+<meta property="og:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_multi-table01.jpg?raw=true">
+<meta property="og:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_multi-table02.jpg?raw=true">
+<meta property="article:published_time" content="2023-03-19T11:50:49.236Z">
+<meta property="article:modified_time" content="2023-03-19T08:07:31.233Z">
 <meta property="article:author" content="SEA">
-<meta property="article:tag" content="Git">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="多表查询">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_multi-table03.jpg?raw=true">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Git常用命令整理 - SEA-365的读研日记</title>
+  <title>MySQL学习--多表关系介绍 - SEA-365的读研日记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Git常用命令整理"></span>
+            <span id="subtitle" data-typed-text="MySQL学习--多表关系介绍"></span>
           
         </div>
 
@@ -211,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-10 12:54" pubdate>
-          2023年2月10日 下午
+        <time datetime="2023-03-19 19:50" pubdate>
+          2023年3月19日 晚上
         </time>
       </span>
     
@@ -223,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          469 字
+          351 字
         
       </span>
     
@@ -234,7 +239,7 @@
         
         
         
-          4 分钟
+          3 分钟
         
       </span>
     
@@ -272,21 +277,38 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Git常用命令整理</h1>
+            <h1 style="display: none">MySQL学习--多表关系介绍</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="Git常用命令整理"><a href="#Git常用命令整理" class="headerlink" title="Git常用命令整理"></a>Git常用命令整理</h2><h3 id="Git-全局设置"><a href="#Git-全局设置" class="headerlink" title="Git 全局设置"></a>Git 全局设置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs git">git config --global user.name &quot;用户名&quot;<br>git config --global user.email &quot;用户邮箱&quot;<br></code></pre></td></tr></table></figure>
-
-<h3 id="创建新的仓库并提交代码"><a href="#创建新的仓库并提交代码" class="headerlink" title="创建新的仓库并提交代码"></a>创建新的仓库并提交代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs git">git clone 仓库地址<br>cd 仓库目录<br>git switch -c 新的分支名<br>touch README.md <br>git add README.md<br>git commit -m &quot;本次提交的描述信息&quot;<br>git push -u origin 新的分支名<br></code></pre></td></tr></table></figure>
-
-<h3 id="推送本地现有文件夹"><a href="#推送本地现有文件夹" class="headerlink" title="推送本地现有文件夹"></a>推送本地现有文件夹</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs git">cd 文件夹目录<br>git init <br>git remote add origin 远程仓库地址<br>git add .<br>git commit -m &quot;描述信息&quot;<br>git push -u origin 分支名<br></code></pre></td></tr></table></figure>
-
-<h3 id="origin-的含义"><a href="#origin-的含义" class="headerlink" title="origin 的含义"></a>origin 的含义</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs git">“git remote add origin 远程仓库地址”<br><br>origin 是 该远程仓库的别名<br></code></pre></td></tr></table></figure>
-
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs git">#克隆远程仓库的指定分支到本地<br>git clone -b 远程分支名 远程分支地址<br><br>#pull远程仓库的指定分支<br>git pull origin 远程指定分支<br></code></pre></td></tr></table></figure>
-
+                <h1 id="MySQL学习–多表关系介绍"><a href="#MySQL学习–多表关系介绍" class="headerlink" title="MySQL学习–多表关系介绍"></a>MySQL学习–多表关系介绍</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li>进行数据库表结构设计时，根据业务需求以及业务模块之间的关系，分析各个表结构之间的联系，基本分为以下三种：<ul>
+<li>一对一</li>
+<li>一对多</li>
+<li>多对多</li>
+</ul>
+</li>
+</ul>
+<h2 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h2><p>案例：用户 与 用户详情的关系</p>
+<p>关系：一对一关系，多用于单表拆分，将一张表的基础字段放在一张表中，其他详情字段放在另一张表中，提升效率；</p>
+<p>实现：在任意一方加入外键，关联另外一方的主键，并且<strong>设置外键字段值为唯一的</strong>（即不允许重复，设置UNIQUE约束）</p>
+<p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_multi-table03.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
+<h2 id="一对多"><a href="#一对多" class="headerlink" title="一对多"></a>一对多</h2><ul>
+<li><p>案例：部门 与 员工 的关系；</p>
+</li>
+<li><p>关系：一个部门对应多个员工，一个员工仅对应一个部门；</p>
+</li>
+<li><p>实现：在 “多” 的一方（员工）建立外键，指向 “一” 的一方的主键；</p>
+</li>
+</ul>
+<p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_multi-table01.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
+<h2 id="多对多"><a href="#多对多" class="headerlink" title="多对多"></a>多对多</h2><ul>
+<li>案例：学生 和 课程 的关系；</li>
+<li>关系：一个学生可以选择多门课程，一门课程可以被多名学生选择；</li>
+<li>实现：<strong>建立第三张中间表，中间表至少包含两个外键，分别关联两方的主键；</strong></li>
+</ul>
+<p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_multi-table02.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -305,8 +327,15 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Git%E6%93%8D%E4%BD%9C/" class="category-chain-item">Git操作</a>
+  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/MySQL/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/" class="category-chain-item">多表查询</a>
+  
+  
+
   
 
       </span>
@@ -320,7 +349,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Git/">#Git</a>
+        <a href="/tags/MySQL/">#MySQL</a>
+      
+        <a href="/tags/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/">#多表查询</a>
       
     </div>
   
@@ -332,8 +363,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Git常用命令整理</div>
-      <div>http://sea-365.site/2023/02/10/Git常用命令整理/</div>
+      <div>MySQL学习--多表关系介绍</div>
+      <div>http://sea-365.site/2023/03/19/MySQL-多表关系介绍/</div>
     </div>
     <div class="license-meta">
       
@@ -345,7 +376,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年2月10日</div>
+          <div>2023年3月19日</div>
         </div>
       
       
@@ -377,9 +408,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/10/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E4%B8%80%E8%88%AC%E8%A7%A3%E9%A2%98%E6%AD%A5%E9%AA%A4/" title="回溯算法一般解题步骤">
+                      <a href="/2023/03/19/MySQL-%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E6%A6%82%E8%BF%B0/" title="MySQL学习--多表查询总结">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">回溯算法一般解题步骤</span>
+                        <span class="hidden-mobile">MySQL学习--多表查询总结</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -387,8 +418,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/08/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95_LeetCode_T40/" title="回溯算法-LeetCode_T40">
-                        <span class="hidden-mobile">回溯算法-LeetCode_T40</span>
+                      <a href="/2023/03/19/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98-%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" title="背包问题-背包问题总结">
+                        <span class="hidden-mobile">背包问题-背包问题总结</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
