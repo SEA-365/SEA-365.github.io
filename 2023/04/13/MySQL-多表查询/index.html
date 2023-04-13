@@ -21,13 +21,14 @@
     <meta name="description" content="MySQL学习–多表查询总结概述 从多张表中查询出指定的数据； “笛卡尔积”：笛卡尔乘积是指在数学中，两个集合：A集合 和 B集合 的所有组合情况。 注意：在多表查询时，需要消除无效的笛卡尔积；     12345-- 单表查询select * from emp;-- 多表查询 select * from emp, dept where dept_id &#x3D; dept.id;# 笛卡尔积，使用whe">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL学习--多表查询总结">
-<meta property="og:url" content="http://sea-365.site/2023/03/19/MySQL-%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:url" content="http://sea-365.site/2023/04/13/MySQL-%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
 <meta property="og:description" content="MySQL学习–多表查询总结概述 从多张表中查询出指定的数据； “笛卡尔积”：笛卡尔乘积是指在数学中，两个集合：A集合 和 B集合 的所有组合情况。 注意：在多表查询时，需要消除无效的笛卡尔积；     12345-- 单表查询select * from emp;-- 多表查询 select * from emp, dept where dept_id &#x3D; dept.id;# 笛卡尔积，使用whe">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_multi-table04.jpg?raw=true">
-<meta property="article:published_time" content="2023-03-19T11:50:49.240Z">
-<meta property="article:modified_time" content="2023-03-19T11:50:10.153Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/MySQL_multi-table05.jpg">
+<meta property="article:published_time" content="2023-04-13T08:20:35.166Z">
+<meta property="article:modified_time" content="2023-04-13T07:29:11.882Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="多表查询">
@@ -214,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-19 19:50" pubdate>
-          2023年3月19日 晚上
+        <time datetime="2023-04-13 16:20" pubdate>
+          2023年4月13日 下午
         </time>
       </span>
     
@@ -226,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          4k 字
         
       </span>
     
@@ -237,7 +238,7 @@
         
         
         
-          17 分钟
+          34 分钟
         
       </span>
     
@@ -305,7 +306,11 @@
 <p><strong>案例</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 查询每一个员工的姓名、关联的部门名称 （显式内连接实现）<br>select emp.name 员工姓名, dept.name 部门 from emp inner join dept on emp.dept_id = dept.id;<br>select e.name 员工姓名, d.name 部门 from emp e join dept d on e.dept_id = d.id;<br></code></pre></td></tr></table></figure>
 
-<h5 id="显式和隐式内连接的区别"><a href="#显式和隐式内连接的区别" class="headerlink" title="显式和隐式内连接的区别"></a>显式和隐式内连接的区别</h5><h4 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h4><ul>
+<h5 id="显式和隐式内连接的区别"><a href="#显式和隐式内连接的区别" class="headerlink" title="显式和隐式内连接的区别"></a>显式和隐式内连接的区别</h5><ul>
+<li>两种内连接的作用相同；</li>
+<li>但是，<strong>通常建议使用显式内连接语法</strong>，因为它更易于阅读和理解，尤其是在复杂查询中；</li>
+</ul>
+<h4 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h4><ul>
 <li>左表是指outer join 左边的表；</li>
 <li>右表是指outer join 右边的表；</li>
 </ul>
@@ -335,12 +340,12 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 字段列表 from 表1 别名1 join 表2 别名2 on 连接条件...;<br></code></pre></td></tr></table></figure>
 
 <p><strong>案例</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 查询员工 及其 所属领导的名字（自连接-内连接查询）<br>select e1.*, e2.name 所属领导 from emp e1 join emp e2 on e1.managerid = e2.id;<br><br><br>-- 插叙所有员工 及其 领导的名字，如果没有领导，也要查询出来；（自连接-外连接查询）<br>select e1.*, e2.name 所属领导 from emp e1 left join emp e2 on e1.managerid = e2.id;<br><br>-- 其实就是，自己和自己连接，再查询；<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 查询员工 及其 所属领导的名字（自连接-内连接查询）<br>select e1.*, e2.name 所属领导 from emp e1 join emp e2 on e1.managerid = e2.id;<br><br><br>-- 查询所有员工 及其 领导的名字，如果没有领导，也要查询出来；（自连接-外连接查询）<br>select e1.*, e2.name 所属领导 from emp e1 left join emp e2 on e1.managerid = e2.id;<br><br>-- 其实就是，自己和自己连接，再查询；<br></code></pre></td></tr></table></figure>
 
 <h3 id="联合查询（union-x2F-union-all）"><a href="#联合查询（union-x2F-union-all）" class="headerlink" title="联合查询（union&#x2F;union all）"></a>联合查询（union&#x2F;union all）</h3><ul>
 <li>把多次查询的结果合并起来，形成一个新的查询结果集；</li>
-<li>多次查询的字段数量和类型需要相同；</li>
-<li>union和union all：去掉all，可以去除查询出来的重复记录；</li>
+<li>多次查询的<strong>字段数量</strong>和<strong>类型</strong>需要相同；</li>
+<li><strong>union和union all区别</strong>：去掉all，可以去除查询出来的重复记录；</li>
 </ul>
 <p><strong>语法</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 字段列表 from 表1 ...<br>union [all]<br>select 字段列表 from 表2 ...;<br></code></pre></td></tr></table></figure>
@@ -374,6 +379,101 @@
 </ul>
 </li>
 </ul>
+<h4 id="标量子查询"><a href="#标量子查询" class="headerlink" title="标量子查询"></a>标量子查询</h4><ul>
+<li><p>子查询结果为单个值</p>
+</li>
+<li><p>案例</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs mysql"> -- 标量子查询(子查询结果为单个值)<br> <br> select * from emp;<br> <br> -- 1.查询“销售部”的所有员工信息<br>SELECT * FROM emp e WHERE e.dept_id = (<br>	SELECT d.id FROM dept d WHERE d.name = &quot;销售部&quot;<br>)<br> <br> -- 2.查询在“赵敏” 之后入职的员工<br> SELECT * FROM emp WHERE entrydate &gt; (<br>	SELECT entrydate from emp where name =&quot;赵敏&quot;<br>)<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="列子查询"><a href="#列子查询" class="headerlink" title="列子查询"></a>列子查询</h4><ul>
+<li>子查询结果为一列(或多列)</li>
+<li>常用的操作符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IN</td>
+<td>在指定的集合范围之内，多选一</td>
+</tr>
+<tr>
+<td>NOT IN</td>
+<td>不在指定的集合范围之内</td>
+</tr>
+<tr>
+<td>ANY</td>
+<td>子查询返回列表中，有任意一个满足即可</td>
+</tr>
+<tr>
+<td>SOME</td>
+<td>与ANY等同，使用SOME的地方都可以使用ANY</td>
+</tr>
+<tr>
+<td>ALL</td>
+<td>子查询返回列表的所有值都必须满足</td>
+</tr>
+</tbody></table>
+<ul>
+<li>案例</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 列子查询（子查询结果为一列或多列）<br><br>-- 1.查询“销售部”和“市场部”的所有员工信息   =&gt; IN<br>SELECT * FROM emp WHERE dept_id in (<br>	SELECT id FROM dept WHERE name in (&quot;销售部&quot;,&quot;市场部&quot;)<br>)<br><br>-- 2.查询比财务部所有人工资都高的员工信息   =&gt; ALL <br>SELECT * FROM emp WHERE salary &gt; ALL(<br>	SELECT salary FROM emp WHERE dept_id = (<br>		SELECT id FROM dept WHERE name = &quot;财务部&quot;<br>	) <br>)<br><br>SELECT * FROM emp WHERE salary &gt; ( # max()<br>	SELECT max(salary) FROM emp WHERE dept_id = (<br>		SELECT id FROM dept WHERE name = &quot;财务部&quot;<br>	) <br>)<br><br>-- 3.查询比研发部其中任意一人工资高的员工信息   =&gt; ANY/SOME<br>SELECT * FROM emp WHERE salary &gt; ANY(<br>	SELECT salary FROM emp WHERE dept_id = (<br>		SELECT id FROM dept WHERE name = &quot;研发部&quot;<br>	)<br>)<br><br>SELECT * FROM emp WHERE salary &gt; SOME(<br>	SELECT salary FROM emp WHERE dept_id = (<br>		SELECT id FROM dept WHERE name = &quot;研发部&quot;<br>	)<br>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="行子查询"><a href="#行子查询" class="headerlink" title="行子查询"></a>行子查询</h4><ul>
+<li>子查询结果为一行(或多行)</li>
+<li>常用的操作符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;</td>
+<td>等于</td>
+</tr>
+<tr>
+<td>&lt;&gt;</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>IN</td>
+<td>在指定集合范围内，多选一</td>
+</tr>
+<tr>
+<td>NOT IN</td>
+<td>不在指定集合范围内</td>
+</tr>
+</tbody></table>
+<ul>
+<li>案例</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 行子查询（返回结果为一行或多行）<br><br>-- 1. 查询与“张无忌”的薪资及直属领导相同的员工信息；<br>SELECT * FROM emp WHERE salary = (<br>	SELECT salary FROM emp WHERE name = &quot;张无忌&quot;<br>)<br>AND <br>managerid = (<br>	SELECT managerid FROM emp WHERE name = &quot;张无忌&quot;<br>)<br><br><br>SELECT * FROM emp WHERE (salary, managerid) = (<br>	SELECT salary, managerid FROM emp WHERE name = &quot;张无忌&quot;<br>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="表子查询"><a href="#表子查询" class="headerlink" title="表子查询"></a>表子查询</h4><ul>
+<li><p>子查询结果为多行多列</p>
+</li>
+<li><p>常用操作符：IN</p>
+</li>
+<li><p>案例</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 表子查询<br><br>-- 1.查询与“小张”，“小陈”的薪资和岗位相同的员工信息<br>SELECT * FROM emp WHERE (salary, job) IN (<br>	SELECT salary, job FROM emp WHERE name IN (&quot;小张&quot;, &quot;小陈&quot;)<br>);<br><br><br>-- 2.查询入职日期是“2002-01-01”之后的员工及其部门信息<br><br>-- 隐式内连接 + 列子查询<br>SELECT e.*, d.name 部门 FROM emp e, dept d WHERE e.dept_id = d.id AND entrydate IN (<br>	SELECT entrydate FROM emp WHERE entrydate &gt; &quot;2002-01-01&quot;<br>)<br><br>-- 左外连接 + 表子查询<br>SELECT e.*, d.name 部门 FROM (SELECT * FROM emp WHERE entrydate &gt; &quot;2002-01-01&quot;) e LEFT JOIN dept d ON e.dept_id = d.id<br></code></pre></td></tr></table></figure>
+
+<h2 id="多表查询案例"><a href="#多表查询案例" class="headerlink" title="多表查询案例"></a>多表查询案例</h2><ul>
+<li>案例描述</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/MySQL_multi-table05.jpg" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -429,7 +529,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>MySQL学习--多表查询总结</div>
-      <div>http://sea-365.site/2023/03/19/MySQL-多表查询概述/</div>
+      <div>http://sea-365.site/2023/04/13/MySQL-多表查询/</div>
     </div>
     <div class="license-meta">
       
@@ -441,7 +541,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年3月19日</div>
+          <div>2023年4月13日</div>
         </div>
       
       
@@ -473,18 +573,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/19/MySQL--%E7%BA%A6%E6%9D%9F%E7%9A%84%E4%BD%BF%E7%94%A8/" title="MySQL学习--约束的使用">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MySQL学习--约束的使用</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/19/MySQL-%E5%A4%9A%E8%A1%A8%E5%85%B3%E7%B3%BB%E4%BB%8B%E7%BB%8D/" title="MySQL学习--多表关系介绍">
-                        <span class="hidden-mobile">MySQL学习--多表关系介绍</span>
+                      <a href="/2023/04/10/Java-IO%E6%B5%81%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/" title="Java-IO流知识整理（整理中）">
+                        <span class="hidden-mobile">Java-IO流知识整理（整理中）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
