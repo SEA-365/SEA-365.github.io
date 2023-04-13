@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/MySQL_multi-table04.jpg?raw=true">
 <meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/MySQL_multi-table05.jpg">
 <meta property="article:published_time" content="2023-04-13T08:20:35.166Z">
-<meta property="article:modified_time" content="2023-04-13T07:29:11.882Z">
+<meta property="article:modified_time" content="2023-04-13T08:22:32.429Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="多表查询">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4k 字
+          6.1k 字
         
       </span>
     
@@ -238,7 +238,7 @@
         
         
         
-          34 分钟
+          51 分钟
         
       </span>
     
@@ -473,7 +473,7 @@
 <li>案例描述</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/MySQL_multi-table05.jpg" srcset="/img/loading.gif" lazyload></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 多表查询总结<br><br>-- 1.查询员工的姓名、年龄、职位、部门信息。<br>SELECT emp.name, age, job, dept_id, d.name 部门 FROM emp, dept d WHERE emp.dept_id = d.id<br><br>-- 2.查询年龄小于30岁的员工姓名、年龄、职位、部门信息。<br>SELECT emp.name, age, job, dept_id, d.name 部门 FROM emp, dept d WHERE emp.dept_id = d.id AND age &lt; 30<br><br>-- 3.查询拥有员工的部门ID、部门名称。<br>SELECT id, name FROM dept WHERE (<br>	SELECT COUNT(id) FROM emp<br>) &gt; 0<br><br>-- 4.查询所有年龄大于40岁的员工,及其归属的部门名称;如果员工没有分配部门,也需要展示出来。<br>SELECT e.*,d.name 部门 FROM emp e LEFT JOIN dept d ON e.dept_id = d.id WHERE e.age &gt; 40<br><br>-- 5.查询所有员工的工资等级。<br>create table salgrade(<br>    grade int,<br>    losal int,<br>    hisal int<br>) comment &#x27;薪资等级表&#x27;;<br><br>insert into salgrade values (1,0,3000);<br>insert into salgrade values (2,3001,5000);<br>insert into salgrade values (3,5001,8000);<br>insert into salgrade values (4,8001,10000);<br>insert into salgrade values (5,10001,15000);<br>insert into salgrade values (6,15001,20000);<br>insert into salgrade values (7,20001,25000);<br>insert into salgrade values (8,25001,300000);<br><br>SELECT e.name, e.salary, s.grade 薪资等级 FROM emp e LEFT JOIN salgrade s ON e.salary &gt;= s.losal AND e.salary &lt; s.hisal<br><br>-- 6.查询“研发部”所有员工的信息及工资等级。<br>SELECT e.*, s.grade 薪资等级 FROM emp e LEFT JOIN salgrade s ON e.salary &gt;= s.losal AND e.salary &lt; s.hisal WHERE e.dept_id = (<br>	SELECT id FROM dept WHERE name = &quot;研发部&quot;<br>)<br><br>-- 7.查询“研发部”员工的平均工资。<br>SELECT AVG(e.salary) 平均薪资 FROM emp e JOIN dept d on e.dept_id = d.id WHERE d.name = &quot;研发部&quot; <br><br>-- 8.查询工资比“赵敏&quot;高的员工信息。<br>SELECT * FROM emp WHERE salary &gt; (<br>	SELECT salary FROM emp WHERE name = &quot;赵敏&quot;<br>)<br><br>-- 9.查询比平均薪资高的员工信息。<br>SELECT * FROM emp WHERE salary &gt; (<br>	SELECT AVG(e.salary) FROM emp e<br>)<br><br>-- 10.查询低于本部门平均工资的员工信息。<br>SELECT e.* FROM emp e<br>	LEFT JOIN ( SELECT dept_id, AVG( salary ) avg_salary FROM emp GROUP BY dept_id ) avg_s ON e.salary &gt; avg_s.avg_salary <br>WHERE<br>	e.dept_id = avg_s.dept_id<br><br>-- 11.查询所有的部门信息，并统计部门的员工人数。<br>SELECT d.name, COUNT(e.id) 部门人数 FROM emp e JOIN dept d ON e.dept_id = d.id GROUP BY e.dept_id<br><br>-- 12.查询所有学生的选课情况,展示出学生名称,学号，课程名称。<br>-- (1)3张表连接<br>SELECT s.name, s.no, c.name 课程名称 FROM student s, course c, student_course s_c WHERE s.id = s_c.stu_id AND s_c.course_id = c.id <br><br>-- (2) 表子查询 + 显示内连接<br>SELECT s.name, s.no, s_c_c.name 课程名称 FROM student s JOIN (SELECT s_c.stu_id, s_c.course_id, c.name FROM student_course s_c, course c WHERE s_c.course_id = c.id) s_c_c ON s.id = s_c_c.stu_id<br></code></pre></td></tr></table></figure>
 
                 
               </div>
