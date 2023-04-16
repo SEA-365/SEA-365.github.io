@@ -21,13 +21,13 @@
     <meta name="description" content="IO流知识整理一、文件1.1 概念 保存数据的地方；  1.2 文件流 文件在程序中是以流的形式来操作的；  流：数据在 数据源(文件) 和 程序（内存） 之间经历的路径；  输入流： 数据源(文件) &#x3D;&#x3D;&gt; 程序（内存） 输出流： 数据源(文件) &lt;&#x3D;&#x3D; 程序（内存）     1.3 常用的文件操作 （1）文件创建  三种方式  1234567">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java-IO流知识整理（整理中）">
-<meta property="og:url" content="http://sea-365.site/2023/04/10/Java-IO%E6%B5%81%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/index.html">
+<meta property="og:url" content="http://sea-365.site/2023/04/14/Java-IO%E6%B5%81%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
 <meta property="og:description" content="IO流知识整理一、文件1.1 概念 保存数据的地方；  1.2 文件流 文件在程序中是以流的形式来操作的；  流：数据在 数据源(文件) 和 程序（内存） 之间经历的路径；  输入流： 数据源(文件) &#x3D;&#x3D;&gt; 程序（内存） 输出流： 数据源(文件) &lt;&#x3D;&#x3D; 程序（内存）     1.3 常用的文件操作 （1）文件创建  三种方式  1234567">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/IOStream_1.jpg?raw=true">
-<meta property="article:published_time" content="2023-04-10T09:10:08.619Z">
-<meta property="article:modified_time" content="2023-04-10T09:09:41.198Z">
+<meta property="article:published_time" content="2023-04-14T05:18:42.353Z">
+<meta property="article:modified_time" content="2023-04-16T08:54:59.387Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="IO流">
@@ -214,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-10 17:10" pubdate>
-          2023年4月10日 下午
+        <time datetime="2023-04-14 13:18" pubdate>
+          2023年4月14日 下午
         </time>
       </span>
     
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.9k 字
+          9.1k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          74 分钟
+          76 分钟
         
       </span>
     
@@ -299,7 +299,7 @@
 <ul>
 <li>三种方式</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">createFile_1</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">String</span>  <span class="hljs-variable">filePath</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;D:\\JavaCode\\projects\\JavaDemo\\hsp_ch19\\testfile\\news01.txt&quot;</span>;<br>        <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(filePath);<span class="hljs-comment">//在内存中，创建了File文件对象；</span><br><br>        <span class="hljs-keyword">try</span> &#123;<br>            file.createNewFile();<span class="hljs-comment">//此时才会在磁盘对应位置创建文件并写入；</span><br>            System.out.println(<span class="hljs-string">&quot;文件&quot;</span> + file.getName() + <span class="hljs-string">&quot;已创建&quot;</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">createFile_2</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">File</span> <span class="hljs-variable">parent</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;D:\\JavaCode\\projects\\JavaDemo\\hsp_ch19\\testfile&quot;</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">fileName</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;news02.txt&quot;</span>;<br><br>        <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(parent, fileName);<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            file.createNewFile();<br>            System.out.println(<span class="hljs-string">&quot;文件&quot;</span> + file.getName() + <span class="hljs-string">&quot;已创建&quot;</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">createFile_3</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">parentPath</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;D:\\JavaCode\\projects\\JavaDemo\\hsp_ch19\\testfile&quot;</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">fileName</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;news03.txt&quot;</span>;<br><br>        <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(parentPath, fileName);<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            file.createNewFile();<br>            System.out.println(<span class="hljs-string">&quot;文件&quot;</span> + file.getName() + <span class="hljs-string">&quot;已创建&quot;</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">createFile_1</span><span class="hljs-params">()</span>&#123;<span class="hljs-comment">//1.根据文件路径创建</span><br>        <span class="hljs-type">String</span>  <span class="hljs-variable">filePath</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;D:\\JavaCode\\projects\\JavaDemo\\hsp_ch19\\testfile\\news01.txt&quot;</span>;<br>        <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(filePath);<span class="hljs-comment">//在内存中，创建了File文件对象；</span><br><br>        <span class="hljs-keyword">try</span> &#123;<br>            file.createNewFile();<span class="hljs-comment">//此时才会在磁盘对应位置创建文件并写入；</span><br>            System.out.println(<span class="hljs-string">&quot;文件&quot;</span> + file.getName() + <span class="hljs-string">&quot;已创建&quot;</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">createFile_2</span><span class="hljs-params">()</span>&#123;<span class="hljs-comment">//2.根据父目录文件 + 文件名创建</span><br>        <span class="hljs-type">File</span> <span class="hljs-variable">parent</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;D:\\JavaCode\\projects\\JavaDemo\\hsp_ch19\\testfile&quot;</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">fileName</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;news02.txt&quot;</span>;<br><br>        <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(parent, fileName);<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            file.createNewFile();<br>            System.out.println(<span class="hljs-string">&quot;文件&quot;</span> + file.getName() + <span class="hljs-string">&quot;已创建&quot;</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">createFile_3</span><span class="hljs-params">()</span>&#123;<span class="hljs-comment">//3.根据父目录文件路径 + 文件名创建</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">parentPath</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;D:\\JavaCode\\projects\\JavaDemo\\hsp_ch19\\testfile&quot;</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">fileName</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;news03.txt&quot;</span>;<br><br>        <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(parentPath, fileName);<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            file.createNewFile();<br>            System.out.println(<span class="hljs-string">&quot;文件&quot;</span> + file.getName() + <span class="hljs-string">&quot;已创建&quot;</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
 </li>
 <li><p>（2）获取文件信息</p>
 <ul>
@@ -449,6 +449,12 @@
 <li><p>文件输出流（字符流）</p>
 </li>
 <li><p><strong>FileWriter在使用结束后，必须使用close()关闭方法或flush()刷新方法，否则写入不到指定文件（还在内存中！！！）</strong></p>
+<ul>
+<li><p>顺序：<strong>先flush()，后close()！</strong></p>
+</li>
+<li><p>两个方法的实现中都会将流里面的内容写入文件；</p>
+</li>
+</ul>
 </li>
 <li><p>new FileWriter(File&#x2F;String, true);&#x2F;&#x2F;true表示追加内容，默认是false，覆盖模式；</p>
 <ul>
@@ -466,7 +472,21 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">writer_FileWriter_String</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">filePath</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;D:\\JavaCode\\projects\\JavaDemo\\hsp_ch19\\testfile\\news05.txt&quot;</span>;<br>    <span class="hljs-type">FileWriter</span> <span class="hljs-variable">fw</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">//fw = new FileWriter(filePath);//覆盖模式</span><br>        fw = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(filePath, <span class="hljs-literal">true</span>);<span class="hljs-comment">//追加模式</span><br>        fw.write(<span class="hljs-string">&quot;abcdefg\n&quot;</span>);<br>        fw.write(<span class="hljs-string">&quot;abcdefgh\n&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">3</span>);<br>    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>    &#125;<br>    <span class="hljs-keyword">finally</span> &#123;<span class="hljs-comment">//记得关闭或刷新流！！</span><br>        <span class="hljs-keyword">if</span>(fw != <span class="hljs-literal">null</span>)<br>            fw.close();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
-<h5 id="BufferedWriter"><a href="#BufferedWriter" class="headerlink" title="BufferedWriter"></a>BufferedWriter</h5><h5 id="InputStreamWriter"><a href="#InputStreamWriter" class="headerlink" title="InputStreamWriter"></a>InputStreamWriter</h5><h3 id="2-5-节点流和处理流"><a href="#2-5-节点流和处理流" class="headerlink" title="2.5 节点流和处理流"></a>2.5 节点流和处理流</h3><h3 id="2-6-Properties"><a href="#2-6-Properties" class="headerlink" title="2.6 Properties"></a>2.6 Properties</h3>
+<h5 id="BufferedWriter"><a href="#BufferedWriter" class="headerlink" title="BufferedWriter"></a>BufferedWriter</h5><h5 id="InputStreamWriter"><a href="#InputStreamWriter" class="headerlink" title="InputStreamWriter"></a>InputStreamWriter</h5><h3 id="2-5-节点流和处理流"><a href="#2-5-节点流和处理流" class="headerlink" title="2.5 节点流和处理流"></a>2.5 节点流和处理流</h3><h4 id="2-5-1-节点流"><a href="#2-5-1-节点流" class="headerlink" title="2.5.1 节点流"></a>2.5.1 节点流</h4><ul>
+<li>节点流可以从一个特定的数据源读写数据；<ul>
+<li>如FileReader、FileWriter是从某个文件中读写数据；</li>
+</ul>
+</li>
+<li></li>
+</ul>
+<h4 id="2-5-2-处理流"><a href="#2-5-2-处理流" class="headerlink" title="2.5.2 处理流"></a>2.5.2 处理流</h4><ul>
+<li>处理流也叫包装流，是“连接”在已存在的流（节点流或处理流）之上，为程序提供更为强大的读写功能；<ul>
+<li>如BufferedReader、BufferedWriter；</li>
+</ul>
+</li>
+<li></li>
+</ul>
+<h3 id="2-6-Properties"><a href="#2-6-Properties" class="headerlink" title="2.6 Properties"></a>2.6 Properties</h3>
                 
               </div>
             
@@ -521,7 +541,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Java-IO流知识整理（整理中）</div>
-      <div>http://sea-365.site/2023/04/10/Java-IO流知识整理/</div>
+      <div>http://sea-365.site/2023/04/14/Java-IO流知识整理/</div>
     </div>
     <div class="license-meta">
       
@@ -533,7 +553,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月10日</div>
+          <div>2023年4月14日</div>
         </div>
       
       
@@ -565,18 +585,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/13/MySQL-%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/" title="MySQL学习--多表查询总结">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MySQL学习--多表查询总结</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/10/Java-InputStream%E5%92%8COutputStream%E7%BB%84%E5%90%88%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D%EF%BC%88%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%EF%BC%89/" title="Java-InputStream和OutputStream组合实现文件拷贝（二进制文件）">
-                        <span class="hidden-mobile">Java-InputStream和OutputStream组合实现文件拷贝（二进制文件）</span>
+                      <a href="/2023/04/13/MySQL-%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/" title="MySQL学习--多表查询总结">
+                        <span class="hidden-mobile">MySQL学习--多表查询总结</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
