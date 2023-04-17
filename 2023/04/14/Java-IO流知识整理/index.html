@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/IOStream_1.jpg?raw=true">
 <meta property="article:published_time" content="2023-04-14T05:18:42.353Z">
-<meta property="article:modified_time" content="2023-04-16T08:54:59.387Z">
+<meta property="article:modified_time" content="2023-04-17T10:14:04.492Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="IO流">
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.1k 字
+          9.7k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          76 分钟
+          82 分钟
         
       </span>
     
@@ -472,19 +472,135 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">writer_FileWriter_String</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">filePath</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;D:\\JavaCode\\projects\\JavaDemo\\hsp_ch19\\testfile\\news05.txt&quot;</span>;<br>    <span class="hljs-type">FileWriter</span> <span class="hljs-variable">fw</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">//fw = new FileWriter(filePath);//覆盖模式</span><br>        fw = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(filePath, <span class="hljs-literal">true</span>);<span class="hljs-comment">//追加模式</span><br>        fw.write(<span class="hljs-string">&quot;abcdefg\n&quot;</span>);<br>        fw.write(<span class="hljs-string">&quot;abcdefgh\n&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">3</span>);<br>    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>    &#125;<br>    <span class="hljs-keyword">finally</span> &#123;<span class="hljs-comment">//记得关闭或刷新流！！</span><br>        <span class="hljs-keyword">if</span>(fw != <span class="hljs-literal">null</span>)<br>            fw.close();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
-<h5 id="BufferedWriter"><a href="#BufferedWriter" class="headerlink" title="BufferedWriter"></a>BufferedWriter</h5><h5 id="InputStreamWriter"><a href="#InputStreamWriter" class="headerlink" title="InputStreamWriter"></a>InputStreamWriter</h5><h3 id="2-5-节点流和处理流"><a href="#2-5-节点流和处理流" class="headerlink" title="2.5 节点流和处理流"></a>2.5 节点流和处理流</h3><h4 id="2-5-1-节点流"><a href="#2-5-1-节点流" class="headerlink" title="2.5.1 节点流"></a>2.5.1 节点流</h4><ul>
-<li>节点流可以从一个特定的数据源读写数据；<ul>
-<li>如FileReader、FileWriter是从某个文件中读写数据；</li>
+<h5 id="BufferedWriter"><a href="#BufferedWriter" class="headerlink" title="BufferedWriter"></a>BufferedWriter</h5><h5 id="InputStreamWriter"><a href="#InputStreamWriter" class="headerlink" title="InputStreamWriter"></a>InputStreamWriter</h5><h3 id="2-5-节点流和处理流"><a href="#2-5-节点流和处理流" class="headerlink" title="2.5 节点流和处理流"></a>2.5 节点流和处理流</h3><table>
+<thead>
+<tr>
+<th>分类</th>
+<th>字节输入流</th>
+<th>字节输出流</th>
+<th>字符输入流</th>
+<th>字符输出流</th>
+<th>分类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>抽象基类</strong></td>
+<td><strong>InputStream</strong></td>
+<td><strong>OutputStream</strong></td>
+<td><strong>Reader</strong></td>
+<td><strong>Writer</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>访问文件</td>
+<td><strong>File</strong>InputStream</td>
+<td><strong>File</strong>OutputStream</td>
+<td><strong>File</strong>Reader</td>
+<td><strong>File</strong>Writer</td>
+<td>节点流</td>
+</tr>
+<tr>
+<td>访问数组</td>
+<td><strong>ByteArray</strong>InputStream</td>
+<td></td>
+<td></td>
+<td></td>
+<td>节点流</td>
+</tr>
+<tr>
+<td>访问管道</td>
+<td><strong>Piped</strong>InputStream</td>
+<td></td>
+<td></td>
+<td></td>
+<td>节点流</td>
+</tr>
+<tr>
+<td>访问字符串</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>节点流</td>
+</tr>
+<tr>
+<td>缓冲流</td>
+<td><strong>Buffered</strong>InputStream</td>
+<td></td>
+<td></td>
+<td></td>
+<td>处理(包装)流</td>
+</tr>
+<tr>
+<td>转换流</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>处理(包装)流</td>
+</tr>
+<tr>
+<td>对象流</td>
+<td><strong>Object</strong>InputStream</td>
+<td></td>
+<td></td>
+<td></td>
+<td>处理(包装)流</td>
+</tr>
+<tr>
+<td><strong>抽象基类<br>(继承自第二行的基类)</strong></td>
+<td><strong>Filter</strong>InputStream</td>
+<td><strong>Filter</strong>OutputStream</td>
+<td><strong>Filter</strong>Reader</td>
+<td><strong>Filter</strong>Writer</td>
+<td></td>
+</tr>
+<tr>
+<td>打印流</td>
+<td></td>
+<td><strong>Print</strong>Stream</td>
+<td></td>
+<td><strong>Print</strong>Writer</td>
+<td>处理(包装)流</td>
+</tr>
+<tr>
+<td>推回输入流</td>
+<td><strong>Pushback</strong>InputStream</td>
+<td></td>
+<td><strong>Pushback</strong>Reader</td>
+<td></td>
+<td>处理(包装)流</td>
+</tr>
+<tr>
+<td>特殊流</td>
+<td><strong>Data</strong>InputStream</td>
+<td><strong>Data</strong>OutputStream</td>
+<td></td>
+<td></td>
+<td>处理(包装)流</td>
+</tr>
+</tbody></table>
+<h4 id="2-5-1-节点流"><a href="#2-5-1-节点流" class="headerlink" title="2.5.1 节点流"></a>2.5.1 节点流</h4><ul>
+<li>节点流可以从一个<strong>特定的数据源（存放数据的地方）</strong>读写数据；<ul>
+<li>如FileReader、FileWriter是从<strong>某个文件</strong>中读写数据；</li>
 </ul>
 </li>
-<li></li>
 </ul>
 <h4 id="2-5-2-处理流"><a href="#2-5-2-处理流" class="headerlink" title="2.5.2 处理流"></a>2.5.2 处理流</h4><ul>
-<li>处理流也叫包装流，是“连接”在已存在的流（节点流或处理流）之上，为程序提供更为强大的读写功能；<ul>
+<li>处理流也叫<strong>包装流</strong>，是“连接”在已存在的流（节点流或处理流）之上，为程序提供更为强大的读写功能；<ul>
 <li>如BufferedReader、BufferedWriter；</li>
 </ul>
 </li>
-<li></li>
+<li>优点：<ul>
+<li>1.<strong>性能</strong>的提升：主要以<strong>增加缓冲</strong>的方式来提高输入输出的效率；</li>
+<li>2.操作的便捷：处理流 可能提供一系列便捷的方法来一次性输入输出大批量数据，使用更加灵活；</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-5-3-区别和联系"><a href="#2-5-3-区别和联系" class="headerlink" title="2.5.3 区别和联系"></a>2.5.3 区别和联系</h4><ul>
+<li>1.<strong>节点流</strong>是底层（低级）流，<strong>直接跟数据源相接</strong>；</li>
+<li>2.处理流（包装流）包装节点流，既可以消除不同节点流的实现差异，也可以提供更加方便的输入输出方法；</li>
+<li>3.<strong>处理流</strong>对节点流进行包装，<strong>使用了修饰器设计模式</strong>，<strong>不与数据源直接相连</strong>；</li>
 </ul>
 <h3 id="2-6-Properties"><a href="#2-6-Properties" class="headerlink" title="2.6 Properties"></a>2.6 Properties</h3>
                 
