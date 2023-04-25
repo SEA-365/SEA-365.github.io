@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/IOStream_1.jpg?raw=true">
 <meta property="article:published_time" content="2023-04-14T05:18:42.353Z">
-<meta property="article:modified_time" content="2023-04-21T10:02:01.227Z">
+<meta property="article:modified_time" content="2023-04-25T12:48:30.713Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="IO流">
@@ -405,8 +405,8 @@
 <li></li>
 </ul>
 <h5 id="ObjectInputStream"><a href="#ObjectInputStream" class="headerlink" title="ObjectInputStream"></a>ObjectInputStream</h5><ul>
-<li>对象字节输入流</li>
-<li></li>
+<li>对象字节输入流（节点-处理-输入流）</li>
+<li>new ObjectInputStream(InpuSteam)</li>
 </ul>
 <h4 id="2-3-2-Reader"><a href="#2-3-2-Reader" class="headerlink" title="2.3.2 Reader"></a>2.3.2 Reader</h4><ul>
 <li>抽象类 &#x3D;&#x3D;&gt; 输入流 &#x3D;&#x3D;&gt; 字符流</li>
@@ -449,13 +449,14 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">write_FileOutputStream</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">filePath</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;D:\\JavaCode\\projects\\JavaDemo\\hsp_ch19\\testfile\\hello2.txt&quot;</span>;<br>    <span class="hljs-type">FileOutputStream</span> <span class="hljs-variable">fo</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><br>    <span class="hljs-keyword">try</span> &#123;<br>        fo = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(filePath, <span class="hljs-literal">true</span>);<span class="hljs-comment">//true表示追加模式，默认为false覆盖模式；</span><br><br>        fo.write(<span class="hljs-string">&#x27;a&#x27;</span>);<span class="hljs-comment">//写入单个字节；</span><br><br>        fo.write(<span class="hljs-string">&quot;\nhello，北京\n&quot;</span>.getBytes());<span class="hljs-comment">//通过字节数组写入</span><br><br>        fo.write(<span class="hljs-string">&quot;\n1234567890\n&quot;</span>.getBytes(), <span class="hljs-number">3</span>, <span class="hljs-number">9</span>);<span class="hljs-comment">//写入字节数组指定范围内的数据</span><br><br>    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>    &#125;<br>    <span class="hljs-keyword">finally</span> &#123;<br>        <span class="hljs-keyword">if</span>(fo != <span class="hljs-literal">null</span>)<br>            fo.close();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
 <h5 id="BufferedOutputStream"><a href="#BufferedOutputStream" class="headerlink" title="BufferedOutputStream"></a>BufferedOutputStream</h5><ul>
-<li><p>继承关系：BufferedOutputStream 继承 FliterOutputStream 继承 OutputStream</p>
-</li>
-<li><p>带缓冲字节输出流（包装流，可以包装任意OutputStream字节输入流及其实现子类）</p>
-</li>
-<li></li>
+<li>继承关系：BufferedOutputStream 继承 FliterOutputStream 继承 OutputStream</li>
+<li>带缓冲字节输出流（包装流，可以包装任意OutputStream字节输入流及其实现子类）</li>
 </ul>
-<h5 id="ObjectOutputStream"><a href="#ObjectOutputStream" class="headerlink" title="ObjectOutputStream"></a>ObjectOutputStream</h5><h4 id="2-4-2-Writer"><a href="#2-4-2-Writer" class="headerlink" title="2.4.2 Writer"></a>2.4.2 Writer</h4><ul>
+<h5 id="ObjectOutputStream"><a href="#ObjectOutputStream" class="headerlink" title="ObjectOutputStream"></a>ObjectOutputStream</h5><ul>
+<li>对象字节输出流（节点-处理-输出流）</li>
+<li>new ObjectOutputStream(OutputStream)</li>
+</ul>
+<h4 id="2-4-2-Writer"><a href="#2-4-2-Writer" class="headerlink" title="2.4.2 Writer"></a>2.4.2 Writer</h4><ul>
 <li><p>抽象类 &#x3D;&#x3D;&gt; 输入流 &#x3D;&#x3D;&gt; 字符流</p>
 </li>
 <li><p>以字符为单位进行I&#x2F;O操作</p>
@@ -499,7 +500,8 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.BufferedWriter;<br><span class="hljs-keyword">import</span> java.io.File;<br><span class="hljs-keyword">import</span> java.io.FileWriter;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea-365</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/4/21 16:52</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FileIO_BufferedWriter01</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">filePath</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;./hsp_ch19/testfile/bufferedwriter01.txt&quot;</span>;<br>        <span class="hljs-type">BufferedWriter</span> <span class="hljs-variable">bufferedWriter</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(filePath)));<br><br>        bufferedWriter.write(<span class="hljs-string">&quot;我现在在学Java IO流，感觉不是很有意思啊。。。。&quot;</span>);<br>        bufferedWriter.newLine();<span class="hljs-comment">//插入一个和系统相关的换行符</span><br>        bufferedWriter.write(<span class="hljs-string">&quot;还是得学习！！！&quot;</span>);<br><br>        bufferedWriter.close();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
-<h5 id="OutputStreamWriter"><a href="#OutputStreamWriter" class="headerlink" title="OutputStreamWriter"></a>OutputStreamWriter</h5><h3 id="2-5-节点流和处理流"><a href="#2-5-节点流和处理流" class="headerlink" title="2.5 节点流和处理流"></a>2.5 节点流和处理流</h3><table>
+<h5 id="OutputStreamWriter"><a href="#OutputStreamWriter" class="headerlink" title="OutputStreamWriter"></a>OutputStreamWriter</h5><p>- </p>
+<h3 id="2-5-节点流和处理流"><a href="#2-5-节点流和处理流" class="headerlink" title="2.5 节点流和处理流"></a>2.5 节点流和处理流</h3><table>
 <thead>
 <tr>
 <th>分类</th>
