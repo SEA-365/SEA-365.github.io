@@ -18,25 +18,25 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="Java-BufferedReader和BufferedWriter组合实现文件拷贝（文本文件）文件拷贝 使用包装流（包装的是FileReader&#x2F;FileWriter字符流）实现文件的拷贝，因此，文件应为文本文件，避免文件损失；  123456789101112131415161718192021222324&#x2F;** * @author: sea-365 * @date: 2023&#x2F;4&#x2F;">
+    <meta name="description" content="MySQL学习–多表查询总结简介 一组操作的集合，它是一个不可分割的工作单位，事务会把所有的操作作为一个整体一起向系统提交或撤销操作请求，这些操作要么同时成功，要么同时失败； 默认MySQL的事务是自动提交的，每个SQL语句都被视为一个单独的事务，并且在执行完该语句后就会立即提交到数据库中  事务操作 如果没有事务，看一个案例：银行转账  123456789-- 1.查询张三账户的余额SELECT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java-BufferedReader和BufferedWriter组合实现文件拷贝（文本文件）">
-<meta property="og:url" content="http://sea-365.site/2023/04/21/Java-BufferedReader%E5%92%8CBufferedWriter%E7%BB%84%E5%90%88%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D%EF%BC%88%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%EF%BC%89/index.html">
+<meta property="og:title" content="MySQL学习--事务总结">
+<meta property="og:url" content="http://sea-365.site/2023/04/22/MySQL-%E4%BA%8B%E5%8A%A1%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="Java-BufferedReader和BufferedWriter组合实现文件拷贝（文本文件）文件拷贝 使用包装流（包装的是FileReader&#x2F;FileWriter字符流）实现文件的拷贝，因此，文件应为文本文件，避免文件损失；  123456789101112131415161718192021222324&#x2F;** * @author: sea-365 * @date: 2023&#x2F;4&#x2F;">
+<meta property="og:description" content="MySQL学习–多表查询总结简介 一组操作的集合，它是一个不可分割的工作单位，事务会把所有的操作作为一个整体一起向系统提交或撤销操作请求，这些操作要么同时成功，要么同时失败； 默认MySQL的事务是自动提交的，每个SQL语句都被视为一个单独的事务，并且在执行完该语句后就会立即提交到数据库中  事务操作 如果没有事务，看一个案例：银行转账  123456789-- 1.查询张三账户的余额SELECT">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-21T09:09:33.151Z">
-<meta property="article:modified_time" content="2023-04-21T09:12:33.617Z">
+<meta property="article:published_time" content="2023-04-22T01:29:35.024Z">
+<meta property="article:modified_time" content="2023-04-22T04:08:15.931Z">
 <meta property="article:author" content="SEA">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="IO流">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="事务">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Java-BufferedReader和BufferedWriter组合实现文件拷贝（文本文件） - SEA-365的读研日记</title>
+  <title>MySQL学习--事务总结 - SEA-365的读研日记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java-BufferedReader和BufferedWriter组合实现文件拷贝（文本文件）"></span>
+            <span id="subtitle" data-typed-text="MySQL学习--事务总结"></span>
           
         </div>
 
@@ -212,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-21 17:09" pubdate>
-          2023年4月21日 下午
+        <time datetime="2023-04-22 09:29" pubdate>
+          2023年4月22日 上午
         </time>
       </span>
     
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          702 字
+          1.8k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          6 分钟
+          15 分钟
         
       </span>
     
@@ -273,17 +273,86 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Java-BufferedReader和BufferedWriter组合实现文件拷贝（文本文件）</h1>
+            <h1 style="display: none">MySQL学习--事务总结</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Java-BufferedReader和BufferedWriter组合实现文件拷贝（文本文件）"><a href="#Java-BufferedReader和BufferedWriter组合实现文件拷贝（文本文件）" class="headerlink" title="Java-BufferedReader和BufferedWriter组合实现文件拷贝（文本文件）"></a>Java-BufferedReader和BufferedWriter组合实现文件拷贝（文本文件）</h1><h2 id="文件拷贝"><a href="#文件拷贝" class="headerlink" title="文件拷贝"></a>文件拷贝</h2><ul>
-<li>使用包装流（包装的是FileReader&#x2F;FileWriter字符流）实现文件的拷贝，因此，文件应为文本文件，避免文件损失；</li>
+                <h1 id="MySQL学习–多表查询总结"><a href="#MySQL学习–多表查询总结" class="headerlink" title="MySQL学习–多表查询总结"></a>MySQL学习–多表查询总结</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>一组操作的集合，它是一个不可分割的工作单位，事务会把所有的操作作为一个整体一起向系统提交或撤销操作请求，这些操作要么同时成功，要么同时失败；</li>
+<li>默认MySQL的事务是<strong>自动提交</strong>的，<strong>每个SQL语句</strong>都被视为<strong>一个单独的事务</strong>，并且在执行完该语句后就会立即提交到数据库中</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea-365</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/4/21 17:03</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FileIO_fileCopy02</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">filePath_r</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;./hsp_ch19/testfile/bufferedwriter01.txt&quot;</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">filePath_w</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;./hsp_ch19/testfile/bufferedwriter02.txt&quot;</span>;<br><br>        <span class="hljs-comment">//通过包装流拷贝文件</span><br>        <span class="hljs-type">BufferedReader</span> <span class="hljs-variable">br</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(filePath_r)));<br>        <span class="hljs-type">BufferedWriter</span> <span class="hljs-variable">bw</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(filePath_w)));<br><br>        String line;<br>        <span class="hljs-keyword">while</span>((line = br.readLine()) != <span class="hljs-literal">null</span>)&#123;<br>            bw.write(line);<br>            bw.newLine();<br>        &#125;<br><br>        br.close();<br>        bw.close();<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h2 id="事务操作"><a href="#事务操作" class="headerlink" title="事务操作"></a>事务操作</h2><ul>
+<li>如果没有事务，看一个案例：银行转账</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 1.查询张三账户的余额<br>SELECT money FROM account WHERE name = &#x27;张三&#x27;;<br>-- 2.张三账户余额减100<br>UPDATE account set money = money - 100 WHERE name = &#x27;张三&#x27;;<br><br>异常。。。 #此时，出现异常，张三的钱扣了100，但是李四的余额并没有加100；<br><br>-- 3.李四账户余额加100<br>UPDATE account set money = money + 100 WHERE name = &#x27;李四&#x27;;<br></code></pre></td></tr></table></figure>
 
+<ul>
+<li>可能会出现上述情况，转账过程中出现异常，导致张三的钱扣了100，但是李四的余额并没有加100；</li>
+</ul>
+<h3 id="事务操作的两种控制方式"><a href="#事务操作的两种控制方式" class="headerlink" title="事务操作的两种控制方式"></a>事务操作的两种控制方式</h3><p><strong>1.修改默认的事务提交方式</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 1.修改默认提交方式<br>-- 查看当前会话事务的提交方式, 默认是1，表示自动提交模式；<br>SELECT @@autocommit;<br>-- 修改事务提交方式，0表示手动提交<br>-- 设置为手动提交时，当业务完成时，需要执行COMMIT操作提交，当业务出现异常时执行ROLLBACK操作回滚；<br>SET @@autocommit = 0;<br><br>-- 模拟银行转账<br><br>-- 1.查询张三账户的余额<br>SELECT money FROM account WHERE name = &#x27;张三&#x27;;<br>-- 2.张三账户余额减100<br>UPDATE account set money = money - 100 WHERE name = &#x27;张三&#x27;;<br><br>-- 3.李四账户余额加100<br>UPDATE account set money = money + 100 WHERE name = &#x27;李四&#x27;;<br><br>COMMIT;<br><br>ROLLBACK;<br></code></pre></td></tr></table></figure>
 
+<p><strong>2.使用MySQL语句控制</strong></p>
+<ul>
+<li>开启事务</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">START TRANSACTION;<br>或<br>BEGIN;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>提交事务</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">COMMIT;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>回滚事务</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">ROLLBACK;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>案例</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 2.MySQL语句控制<br><br>-- 开启事务<br>START TRANSACTION; # 使用BEGIN开启事务也可以；<br><br>-- 1.查询张三账户的余额<br>SELECT money FROM account WHERE name = &#x27;张三&#x27;;<br>-- 2.张三账户余额减100<br>UPDATE account set money = money - 100 WHERE name = &#x27;张三&#x27;;<br><br>sadasdad<br><br>-- 3.李四账户余额加100<br>UPDATE account set money = money + 100 WHERE name = &#x27;李四&#x27;;<br><br>-- 提交事务<br>COMMIT;<br><br>-- 回滚事务<br>ROLLBACK;<br></code></pre></td></tr></table></figure>
+
+<h2 id="事务四大特性ACID"><a href="#事务四大特性ACID" class="headerlink" title="事务四大特性ACID"></a>事务四大特性ACID</h2><ul>
+<li>原子性(Atomicity)：事务是不可分割的最小单元，要么全部成功，要么全部失败；</li>
+<li>一致性(Consistency)：事务完成时，必须使所有的数据都保持一致状态；<ul>
+<li>例如，银行转账，张三扣了100，李四没有加100，就破坏了一致性；</li>
+</ul>
+</li>
+<li>隔离性(Isolation)：数据库系统提供的隔离机制，保证事务在不受外部并发操作影响的独立环境下运行；<ul>
+<li>例如：给数据加锁，保证当前执行的事务不受其他事务的影响；</li>
+</ul>
+</li>
+<li>持久性(Durability)：事务一旦提交或回滚，它对数据库中的数据的改变就是永久的；<ul>
+<li>例如：事务的业务完成后，所做的修改必须永久保存到数据库中，即使出现系统故障或崩溃，也不能丢失（这一点一般通过日志技术实现，如redo日志，undo日志）；</li>
+</ul>
+</li>
+</ul>
+<h2 id="事务并发问题"><a href="#事务并发问题" class="headerlink" title="事务并发问题"></a>事务并发问题</h2><ul>
+<li>主要会产生以下三个问题：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>问题描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>脏读</td>
+<td>一个事务读取了另外一个事务还没有提交的数据，该数据可能会被回滚；</td>
+</tr>
+<tr>
+<td>不可重复读</td>
+<td>一个事务先后读取同一条记录，但两次读取的数据不同（可能在两次读数据期间，该记录被其他事务修改了）</td>
+</tr>
+<tr>
+<td>幻读</td>
+<td>一个事务按照条件查询数据时，没有对应的数据行，但是在插入数据后，再次查询发现数据已经存在，类似“幻影”</td>
+</tr>
+</tbody></table>
+<h2 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h2>
                 
               </div>
             
@@ -301,12 +370,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/" class="category-chain-item">Java学习</a>
+  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
   
   
     <span>></span>
     
-  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/IO%E6%B5%81/" class="category-chain-item">IO流</a>
+  <a href="/categories/MySQL/%E4%BA%8B%E5%8A%A1/" class="category-chain-item">事务</a>
   
   
 
@@ -323,9 +392,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java/">#Java</a>
+        <a href="/tags/MySQL/">#MySQL</a>
       
-        <a href="/tags/IO%E6%B5%81/">#IO流</a>
+        <a href="/tags/%E4%BA%8B%E5%8A%A1/">#事务</a>
       
     </div>
   
@@ -337,8 +406,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java-BufferedReader和BufferedWriter组合实现文件拷贝（文本文件）</div>
-      <div>http://sea-365.site/2023/04/21/Java-BufferedReader和BufferedWriter组合实现文件拷贝（文本文件）/</div>
+      <div>MySQL学习--事务总结</div>
+      <div>http://sea-365.site/2023/04/22/MySQL-事务总结/</div>
     </div>
     <div class="license-meta">
       
@@ -350,7 +419,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月21日</div>
+          <div>2023年4月22日</div>
         </div>
       
       
@@ -382,9 +451,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/22/MySQL-%E4%BA%8B%E5%8A%A1%E6%80%BB%E7%BB%93/" title="MySQL学习--事务总结">
+                      <a href="/2023/04/25/Java-%E5%AF%B9%E8%B1%A1%E5%A4%84%E7%90%86%E6%B5%81ObjectOutputStream%E5%92%8CObjectInputStream(%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96)/" title="Java-对象处理流ObjectOutputStream和ObjectInputStream(序列化和反序列化)">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MySQL学习--事务总结</span>
+                        <span class="hidden-mobile">Java-对象处理流ObjectOutputStream和ObjectInputStream(序列化和反序列化)</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -392,8 +461,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/21/Java-%E5%A4%84%E7%90%86%EF%BC%88%E5%8C%85%E8%A3%85%EF%BC%89%E6%B5%81%E4%B8%AD%E7%9A%84%E2%80%9C%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F%E2%80%9D/" title="Java-处理（包装）流中的“装饰器模式”">
-                        <span class="hidden-mobile">Java-处理（包装）流中的“装饰器模式”</span>
+                      <a href="/2023/04/21/Java-BufferedReader%E5%92%8CBufferedWriter%E7%BB%84%E5%90%88%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D%EF%BC%88%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%EF%BC%89/" title="Java-BufferedReader和BufferedWriter组合实现文件拷贝（文本文件）">
+                        <span class="hidden-mobile">Java-BufferedReader和BufferedWriter组合实现文件拷贝（文本文件）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
