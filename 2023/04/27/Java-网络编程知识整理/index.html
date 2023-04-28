@@ -18,15 +18,15 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="Java-网络编程知识整理 韩老师介绍的网络相关概念在408里面都学过了，且韩老师的课讲的内容比较基础。 因此，仅记录新的知识点；  1 介绍1.1 InetAddress类 InetAddress类用于表示Internet协议（IP）地址。 使用时需要引入java.net包，InetAddress类提供了一组静态方法来获取本地主机的IP地址和主机名，以及解析指定主机名的IP地址。 getLoca">
+    <meta name="description" content="Java-网络编程知识整理 韩老师介绍的网络相关概念在408里面都学过了，且韩老师的课讲的内容比较基础。 因此，仅记录新的知识点；  一、 API介绍1.1 InetAddress类 InetAddress类用于表示Internet协议（IP）地址。 使用时需要引入java.net包，InetAddress类提供了一组静态方法来获取本地主机的IP地址和主机名，以及解析指定主机名的IP地址。 get">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java-网络编程知识整理（整理中）">
 <meta property="og:url" content="http://sea-365.site/2023/04/27/Java-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="Java-网络编程知识整理 韩老师介绍的网络相关概念在408里面都学过了，且韩老师的课讲的内容比较基础。 因此，仅记录新的知识点；  1 介绍1.1 InetAddress类 InetAddress类用于表示Internet协议（IP）地址。 使用时需要引入java.net包，InetAddress类提供了一组静态方法来获取本地主机的IP地址和主机名，以及解析指定主机名的IP地址。 getLoca">
+<meta property="og:description" content="Java-网络编程知识整理 韩老师介绍的网络相关概念在408里面都学过了，且韩老师的课讲的内容比较基础。 因此，仅记录新的知识点；  一、 API介绍1.1 InetAddress类 InetAddress类用于表示Internet协议（IP）地址。 使用时需要引入java.net包，InetAddress类提供了一组静态方法来获取本地主机的IP地址和主机名，以及解析指定主机名的IP地址。 get">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-04-27T13:01:35.718Z">
-<meta property="article:modified_time" content="2023-04-27T13:47:13.690Z">
+<meta property="article:modified_time" content="2023-04-28T10:28:07.962Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="网络编程">
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          3.9k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          14 分钟
+          33 分钟
         
       </span>
     
@@ -282,7 +282,7 @@
 <li>韩老师介绍的网络相关概念在408里面都学过了，且韩老师的课讲的内容比较基础。</li>
 <li>因此，仅记录新的知识点；</li>
 </ul>
-<h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1 介绍"></a>1 介绍</h2><h3 id="1-1-InetAddress类"><a href="#1-1-InetAddress类" class="headerlink" title="1.1 InetAddress类"></a>1.1 InetAddress类</h3><ul>
+<h2 id="一、-API介绍"><a href="#一、-API介绍" class="headerlink" title="一、 API介绍"></a>一、 API介绍</h2><h3 id="1-1-InetAddress类"><a href="#1-1-InetAddress类" class="headerlink" title="1.1 InetAddress类"></a>1.1 InetAddress类</h3><ul>
 <li>InetAddress类用于表示Internet协议（IP）地址。</li>
 <li>使用时需要引入java.net包，InetAddress类提供了一组静态方法来获取本地主机的IP地址和主机名，以及解析指定主机名的IP地址。<ul>
 <li><code>getLocalHost()</code>：返回此计算机的本地主机。</li>
@@ -299,11 +299,57 @@
 <li><h2 id="允许客户端和服务器之间通过网络发送和接收数据；-Socket是两台机器间通信的端点，因此两端都要有Socket；-本质上是两台机器间的数据传输，因此涉及大量输入流输出流的概念；"><a href="#允许客户端和服务器之间通过网络发送和接收数据；-Socket是两台机器间通信的端点，因此两端都要有Socket；-本质上是两台机器间的数据传输，因此涉及大量输入流输出流的概念；" class="headerlink" title="允许客户端和服务器之间通过网络发送和接收数据；- Socket是两台机器间通信的端点，因此两端都要有Socket；- 本质上是两台机器间的数据传输，因此涉及大量输入流输出流的概念；"></a>允许客户端和服务器之间通过网络发送和接收数据；<br>- Socket是两台机器间通信的端点，因此两端都要有Socket；<br>- 本质上是两台机器间的数据传输，因此涉及大量<strong>输入流输出流</strong>的概念；</h2></li>
 <li>使用时需要引入java.net包；</li>
 </ul>
-<h2 id="2-TCP网络通信编程"><a href="#2-TCP网络通信编程" class="headerlink" title="2 TCP网络通信编程"></a>2 TCP网络通信编程</h2><h3 id="2-1-案例"><a href="#2-1-案例" class="headerlink" title="2.1 案例"></a>2.1 案例</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs">使用字节流实现：<br>1.编写一个服务器端和一个客户端；<br>2.服务器端监听9999端口；<br>3.客户端连接到服务器端；<br>4.服务器端接收到客户端发送的信息后，输出并退出；<br></code></pre></td></tr></table></figure>
+<h2 id="二、TCP网络通信编程"><a href="#二、TCP网络通信编程" class="headerlink" title="二、TCP网络通信编程"></a>二、TCP网络通信编程</h2><h3 id="2-1-案例介绍"><a href="#2-1-案例介绍" class="headerlink" title="2.1 案例介绍"></a>2.1 案例介绍</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs">使用字节流实现：<br>1.编写一个服务器端和一个客户端；<br>2.服务器端监听9999端口；<br>3.客户端连接到服务器端；<br>4.服务器端接收到客户端发送的信息后，输出并给服务器端一个反馈消息；<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>由于服务器端和客户端在同一台电脑上，Socket中的ip是一样的，均为本机；</li>
+</ul>
+<h3 id="2-2-服务器端实现"><a href="#2-2-服务器端实现" class="headerlink" title="2.2 服务器端实现"></a>2.2 服务器端实现</h3><ul>
+<li>分成两个部分：<ul>
+<li>1.监听客户端数据：<ul>
+<li>监听9999端口，此处<strong>要求9999端口没有被占用</strong>，否则会报错；</li>
+<li>接收到客户端连接，继续执行，否则阻塞，连接成功后，通过Socket获取数据通道的输入流；</li>
+<li>在控制台输出接受到的数据；</li>
+<li>插入输入流结束标志；</li>
+</ul>
+</li>
+<li>2.向客户端发送数据：<ul>
+<li>连接客户端Socket(客户端ip, 客户端正在监听的端口号)；</li>
+<li>连接成功后，通过Socket获取输出流；</li>
+<li>发送数据给客户端；</li>
+<li>关闭 流 和 Socket；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea-365</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/4/28 14:39</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">NetworkProgram_Socket_TCP01Server</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-comment">//1.监听客户端数据</span><br><br>        <span class="hljs-comment">//监听9999端口，此处要求9999端口没有被占用，否则会报错</span><br>        <span class="hljs-type">ServerSocket</span> <span class="hljs-variable">serverSocket</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerSocket</span>(<span class="hljs-number">9999</span>);<br><br>        <span class="hljs-comment">//如果有客户端连接，则会返回Socket对象，程序继续</span><br>        <span class="hljs-comment">//如果没有客户端连接，则程序会阻塞，等待连接</span><br>        <span class="hljs-type">Socket</span> <span class="hljs-variable">socket</span> <span class="hljs-operator">=</span> serverSocket.accept();<br><br>        <span class="hljs-comment">//接收到客户端连接，继续执行，通过Socket获取输入流</span><br>        <span class="hljs-type">InputStream</span> <span class="hljs-variable">is</span> <span class="hljs-operator">=</span> socket.getInputStream();<br><br>        <span class="hljs-comment">//在控制台输出接受到的数据</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">readLen</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-type">byte</span>[] buf = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];<br>        System.out.println(System.currentTimeMillis());<br>        System.out.print(<span class="hljs-string">&quot;服务端接收到的：&quot;</span>);<br>        <span class="hljs-keyword">while</span>((readLen = is.read(buf)) != -<span class="hljs-number">1</span>)&#123;<br>            System.out.println(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(buf, <span class="hljs-number">0</span>, readLen));<br>        &#125;<br>      <br>        <span class="hljs-comment">//插入输入流结束标志</span><br>        socket.shutdownInput();<br><br>        <span class="hljs-comment">//2.向客户端发送数据</span><br>        <span class="hljs-comment">//收到客户端数据后，告诉客户端已经收到</span><br><br>        <span class="hljs-comment">//通过Socket获取输出流</span><br>        <span class="hljs-type">OutputStream</span> <span class="hljs-variable">outputStream</span> <span class="hljs-operator">=</span> socket.getOutputStream();<br><br>        <span class="hljs-comment">//发送数据给客户端</span><br>        outputStream.write(<span class="hljs-string">&quot;我是来自服务器的消息，我收到了你发送的数据&quot;</span>.getBytes());<br><br>        <span class="hljs-comment">//关闭 流 和 Socket</span><br>        is.close();<br>        outputStream.close();<br>        socket.close();<br>        serverSocket.close();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="3-UDP网络通信编程"><a href="#3-UDP网络通信编程" class="headerlink" title="3 UDP网络通信编程"></a>3 UDP网络通信编程</h2>
+<h3 id="2-3-客户端实现"><a href="#2-3-客户端实现" class="headerlink" title="2.3 客户端实现"></a>2.3 客户端实现</h3><ul>
+<li>分成两个部分：<ul>
+<li>1.向服务器端发送数据：<ul>
+<li>连接客户端Socket(服务器端ip, 服务器端正在监听的端口号)；</li>
+<li>连接成功后，通过Socket获取数据通道的输出流；</li>
+<li>发送数据给服务器端；</li>
+<li>插入输出流结束标志；</li>
+</ul>
+</li>
+<li>2.监听服务器端数据：<ul>
+<li>通过Socket获取数据通道的输入流；</li>
+<li>在控制台输出接受到的数据；</li>
+<li>关闭 流 和 Socket；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea-365</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/4/28 14:45</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">NetworkProgram_Socket_TCP01Client_1</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-comment">//1.给服务端发送数据</span><br><br>        <span class="hljs-comment">//连接服务器，通过Socket(ip, 端口)</span><br>        <span class="hljs-type">Socket</span> <span class="hljs-variable">socket</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Socket</span>(InetAddress.getLocalHost(), <span class="hljs-number">9999</span>);<br><br>        <span class="hljs-comment">//连接上后，生成Socket，就可以获取向数据通道放数据的字节输出流；</span><br>        <span class="hljs-type">OutputStream</span> <span class="hljs-variable">outputStream</span> <span class="hljs-operator">=</span> socket.getOutputStream();<br><br>        <span class="hljs-comment">//写入数据（发送数据给服务器端）</span><br>        outputStream.write(<span class="hljs-string">&quot;我是客户端发出的数据&quot;</span>.getBytes());<br>      <br>				<span class="hljs-comment">//插入输出流结束标志</span><br>        socket.shutdownOutput();<br><br>        <span class="hljs-comment">//通过Socket获取输入流</span><br>        <span class="hljs-type">InputStream</span> <span class="hljs-variable">is</span> <span class="hljs-operator">=</span> socket.getInputStream();<br><br>        <span class="hljs-comment">//输出来自服务器端返回的数据</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">readLen</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-type">byte</span>[] buf = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];<br>        System.out.println(System.currentTimeMillis());<br>        System.out.print(<span class="hljs-string">&quot;客户端接受到的：&quot;</span>);<br>        <span class="hljs-keyword">while</span>((readLen = is.read(buf)) != -<span class="hljs-number">1</span>)&#123;<br>            System.out.println(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(buf, <span class="hljs-number">0</span>, readLen));<br>        &#125;<br><br>        <span class="hljs-comment">//关闭 流 和 Socket</span><br>        outputStream.close();<br>        is.close();<br>        socket.close();<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="三、UDP网络通信编程"><a href="#三、UDP网络通信编程" class="headerlink" title="三、UDP网络通信编程"></a>三、UDP网络通信编程</h2>
                 
               </div>
             
