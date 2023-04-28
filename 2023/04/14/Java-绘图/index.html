@@ -18,28 +18,27 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="Java-事件处理机制 案例：小球移动  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576&#x2F;&#x2F;面板类class MyPanel extends JPanel im">
+    <meta name="description" content="Java-绘图绘图坐标体系 1.坐标原点为左上角，以像素为单位； 2.水平方向为X轴，垂直方向为Y轴；  绘图机制 绘制一个各种图形&#x2F;字符，演示如下：  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253class MyPanel02 exten">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java-事件处理机制">
-<meta property="og:url" content="http://sea-365.site/2023/03/05/Java-%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:title" content="Java-绘图">
+<meta property="og:url" content="http://sea-365.site/2023/04/14/Java-%E7%BB%98%E5%9B%BE/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="Java-事件处理机制 案例：小球移动  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576&#x2F;&#x2F;面板类class MyPanel extends JPanel im">
+<meta property="og:description" content="Java-绘图绘图坐标体系 1.坐标原点为左上角，以像素为单位； 2.水平方向为X轴，垂直方向为Y轴；  绘图机制 绘制一个各种图形&#x2F;字符，演示如下：  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253class MyPanel02 exten">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/Event_1.jpg?raw=true">
-<meta property="og:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/Event_2.jpg?raw=true">
-<meta property="article:published_time" content="2023-03-05T02:30:01.003Z">
-<meta property="article:modified_time" content="2023-03-08T06:52:42.873Z">
+<meta property="og:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/JavaDraw_demo.png?raw=true">
+<meta property="article:published_time" content="2023-04-14T05:18:42.354Z">
+<meta property="article:modified_time" content="2023-04-28T06:22:06.797Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="TankGame V0.1">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/Event_1.jpg?raw=true">
+<meta name="twitter:image" content="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/JavaDraw_demo.png?raw=true">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Java-事件处理机制 - SEA-365的读研日记</title>
+  <title>Java-绘图 - SEA-365的读研日记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java-事件处理机制"></span>
+            <span id="subtitle" data-typed-text="Java-绘图"></span>
           
         </div>
 
@@ -215,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-05 10:30" pubdate>
-          2023年3月5日 上午
+        <time datetime="2023-04-14 13:18" pubdate>
+          2023年4月14日 下午
         </time>
       </span>
     
@@ -227,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          1.2k 字
         
       </span>
     
@@ -238,7 +237,7 @@
         
         
         
-          17 分钟
+          10 分钟
         
       </span>
     
@@ -276,32 +275,24 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Java-事件处理机制</h1>
+            <h1 style="display: none">Java-绘图</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Java-事件处理机制"><a href="#Java-事件处理机制" class="headerlink" title="Java-事件处理机制"></a>Java-事件处理机制</h1><ul>
-<li>案例：小球移动</li>
+                <h1 id="Java-绘图"><a href="#Java-绘图" class="headerlink" title="Java-绘图"></a>Java-绘图</h1><h2 id="绘图坐标体系"><a href="#绘图坐标体系" class="headerlink" title="绘图坐标体系"></a>绘图坐标体系</h2><ul>
+<li>1.坐标原点为左上角，以像素为单位；</li>
+<li>2.水平方向为X轴，垂直方向为Y轴；</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//面板类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyPanel</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">JPanel</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">KeyListener</span> &#123;<span class="hljs-comment">//实现键盘监听事件接口</span><br>    <span class="hljs-comment">//为了让小球可以移动，需要将小球的坐标定义成参数；</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">ball_x</span> <span class="hljs-operator">=</span> <span class="hljs-number">300</span>;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">ball_y</span> <span class="hljs-operator">=</span> <span class="hljs-number">300</span>;<br><br>    <br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">paint</span><span class="hljs-params">(Graphics g)</span> &#123;<br>        <span class="hljs-built_in">super</span>.paint(g);<br><br>        g.setColor(Color.BLACK);<br>        g.fillOval(ball_x, ball_y, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>);<span class="hljs-comment">//绘制小球</span><br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">keyTyped</span><span class="hljs-params">(KeyEvent e)</span> &#123;<br>        <span class="hljs-comment">//当有字符输出时触发</span><br><br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">keyPressed</span><span class="hljs-params">(KeyEvent e)</span> &#123;<br>        <span class="hljs-comment">//当某个键被按下时触发</span><br><span class="hljs-comment">//        System.out.println((char)e.getKeyCode() + &quot;被按下。&quot;);</span><br><br>        <span class="hljs-comment">//根据用户按下的不同键，控制小球的移动（如：上下左右方向键）</span><br>        <span class="hljs-keyword">if</span>(e.getKeyCode() == KeyEvent.VK_DOWN || (<span class="hljs-type">char</span>)e.getKeyCode() == <span class="hljs-string">&#x27;S&#x27;</span> || (<span class="hljs-type">char</span>)e.getKeyCode() == <span class="hljs-string">&#x27;s&#x27;</span>)&#123;<span class="hljs-comment">//KeyEvent.VK_DOWN 常量表示： 向下方向键的Code值</span><br>            ball_y += <span class="hljs-number">10</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(e.getKeyCode() == KeyEvent.VK_UP || (<span class="hljs-type">char</span>)e.getKeyCode() == <span class="hljs-string">&#x27;W&#x27;</span> || (<span class="hljs-type">char</span>)e.getKeyCode() == <span class="hljs-string">&#x27;w&#x27;</span>)&#123;<br>            ball_y -= <span class="hljs-number">10</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(e.getKeyCode() == KeyEvent.VK_RIGHT || (<span class="hljs-type">char</span>)e.getKeyCode() == <span class="hljs-string">&#x27;D&#x27;</span> || (<span class="hljs-type">char</span>)e.getKeyCode() == <span class="hljs-string">&#x27;d&#x27;</span>)&#123;<br>            ball_x += <span class="hljs-number">10</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(e.getKeyCode() == KeyEvent.VK_LEFT || (<span class="hljs-type">char</span>)e.getKeyCode() == <span class="hljs-string">&#x27;A&#x27;</span> || (<span class="hljs-type">char</span>)e.getKeyCode() == <span class="hljs-string">&#x27;a&#x27;</span>)&#123;<br>            ball_x -= <span class="hljs-number">10</span>;<br>        &#125;<br>        <span class="hljs-built_in">this</span>.repaint();<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">keyReleased</span><span class="hljs-params">(KeyEvent e)</span> &#123;<br>        <span class="hljs-comment">//当某个键释放时触发</span><br><span class="hljs-comment">//        System.out.println((char)e.getKeyCode() + &quot;已释放。&quot;);</span><br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//窗口类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Draw</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">JFrame</span> &#123;<br>    MyPanel myPanel;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">()</span>&#123;<br>        myPanel = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyPanel</span>();<br>        <span class="hljs-built_in">this</span>.add(myPanel);<br>        <span class="hljs-built_in">this</span>.setSize(<span class="hljs-number">1000</span>, <span class="hljs-number">1000</span>);<br><br>        <span class="hljs-comment">//窗口JFrame对象可以监听键盘事件，即可以监听到JPanel中发生的键盘事件</span><br>        <span class="hljs-built_in">this</span>.addKeyListener(myPanel);<br><br>        <span class="hljs-built_in">this</span>.setVisible(<span class="hljs-literal">true</span>);<br>        <span class="hljs-built_in">this</span>.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br><br>    &#125;<br><br>&#125;<br><br><span class="hljs-comment">//主类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Event01</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Draw</span>().draw();<br>    &#125;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+<h2 id="绘图机制"><a href="#绘图机制" class="headerlink" title="绘图机制"></a>绘图机制</h2><ul>
+<li>绘制一个各种图形&#x2F;字符，演示如下：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyPanel02</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">JPanel</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">paint</span><span class="hljs-params">(Graphics g)</span> &#123;<br>        <span class="hljs-built_in">super</span>.paint(g);<br>        <br>        <span class="hljs-comment">//直线</span><br>        g.drawLine(<span class="hljs-number">30</span>, <span class="hljs-number">30</span>, <span class="hljs-number">600</span>, <span class="hljs-number">60</span>);<br>        <br>        <span class="hljs-comment">//矩形</span><br>        g.drawRect(<span class="hljs-number">30</span>, <span class="hljs-number">70</span>, <span class="hljs-number">200</span>, <span class="hljs-number">100</span>);<br>        <br>        <span class="hljs-comment">//椭圆</span><br>        g.drawOval(<span class="hljs-number">30</span>, <span class="hljs-number">180</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>);<br>        <br>        <span class="hljs-comment">//填充矩形</span><br>        <span class="hljs-comment">//设置画笔颜色</span><br>        g.setColor(Color.BLUE);<br>        g.fillRect(<span class="hljs-number">30</span>, <span class="hljs-number">240</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>);<br>        <br>        <span class="hljs-comment">//填充椭圆</span><br>        g.setColor(Color.RED);<br>        g.fillOval(<span class="hljs-number">30</span>, <span class="hljs-number">300</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>);<br>        <br>        <span class="hljs-comment">//图片</span><br>        <span class="hljs-comment">//获取图片资源(图片资源文件应与当前java文件在out目录下的同一个包中)</span><br>        <span class="hljs-type">Image</span> <span class="hljs-variable">img</span> <span class="hljs-operator">=</span> Toolkit.getDefaultToolkit().getImage(MyPanel02.class.getResource(<span class="hljs-string">&quot;20220913_LabelView.jpg&quot;</span>));<br>        <span class="hljs-comment">//绘制图片</span><br>        g.drawImage(img, <span class="hljs-number">30</span>, <span class="hljs-number">350</span>, <span class="hljs-number">350</span>, <span class="hljs-number">721</span>, <span class="hljs-built_in">this</span>);<br><br>        <span class="hljs-comment">//设置画笔的颜色和字体</span><br>        g.setColor(Color.GREEN);<br>        g.setFont(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Font</span>(<span class="hljs-string">&quot;楷体&quot;</span>, Font.BOLD, <span class="hljs-number">50</span>));<br>        g.drawString(<span class="hljs-string">&quot;小温--软件工程&quot;</span>, <span class="hljs-number">200</span>, <span class="hljs-number">300</span>);<br>    &#125;<br>&#125;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Draw02</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">JFrame</span>&#123;<br>    <span class="hljs-type">MyPanel02</span> <span class="hljs-variable">myPanel02</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">()</span>&#123;<br>        myPanel02 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyPanel02</span>();<br>        <span class="hljs-built_in">this</span>.add(myPanel02);<br>        <span class="hljs-built_in">this</span>.setSize(<span class="hljs-number">800</span>, <span class="hljs-number">800</span>);<br>        <span class="hljs-built_in">this</span>.setVisible(<span class="hljs-literal">true</span>);<br>        <span class="hljs-built_in">this</span>.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JavaDraw02</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Draw02</span> <span class="hljs-variable">draw02</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Draw02</span>();<br>        draw02.draw();<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
-<h3 id="Java事件处理机制"><a href="#Java事件处理机制" class="headerlink" title="Java事件处理机制"></a>Java事件处理机制</h3><ul>
-<li><p>采取 “委派事件模型” ；</p>
 <ul>
-<li>即：事件发生时，产生事件的对象会将 ”信息“ 传递给 ”事件的监听者“ 进行处理；</li>
-<li>如下图所示：</li>
+<li>绘制效果如下图：</li>
 </ul>
-<p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/Event_1.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>事件源：事件源是一个产生事件的对象，如按钮，窗口；</p>
-</li>
-<li><p>事件：事件是承载事件源状态改变时的对象，对象中保存了当前事件的很多信息，如键盘事件(KeyEvent对象)、鼠标事件(MouseEvent)、窗口事件(WindowEvent)、文本事件(TextEvent)等；</p>
-</li>
-<li><p>事件监听接口：当事件源产生一个事件，可以传递给事件监听者进行处理。如KeyListener、MouseListener等；</p>
-<p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/Event_2.jpg?raw=true" srcset="/img/loading.gif" lazyload></p>
-</li>
-</ul>
+<p><img src="https://github.com/SEA-365/SEA-365.github.io/blob/master/myImgList/JavaDraw_demo.png?raw=true" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -325,8 +316,15 @@
   
     <span>></span>
     
-  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/TankGame-V0-1/" class="category-chain-item">TankGame V0.1</a>
+  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/TankGame/" class="category-chain-item">TankGame</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/TankGame/TankGame-V0-1/" class="category-chain-item">TankGame V0.1</a>
+  
+  
+
   
 
   
@@ -356,8 +354,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java-事件处理机制</div>
-      <div>http://sea-365.site/2023/03/05/Java-事件处理机制/</div>
+      <div>Java-绘图</div>
+      <div>http://sea-365.site/2023/04/14/Java-绘图/</div>
     </div>
     <div class="license-meta">
       
@@ -369,7 +367,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年3月5日</div>
+          <div>2023年4月14日</div>
         </div>
       
       
@@ -401,9 +399,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/05/Java-%E5%9D%A6%E5%85%8B%E7%A7%BB%E5%8A%A8%EF%BC%88%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1+%E9%9B%86%E5%90%88%E9%80%89%E5%9E%8B%EF%BC%89/" title="Java-坦克移动（面向对象+集合选型）">
+                      <a href="/2023/04/14/Java-%E5%9D%A6%E5%85%8B%E7%BB%98%E5%88%B6%EF%BC%88%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E6%83%B3%EF%BC%89/" title="Java-坦克绘制（面向对象思想）">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java-坦克移动（面向对象+集合选型）</span>
+                        <span class="hidden-mobile">Java-坦克绘制（面向对象思想）</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -411,8 +409,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/04/MySQL-%E5%87%BD%E6%95%B0/" title="MySQL学习-SQL函数">
-                        <span class="hidden-mobile">MySQL学习-SQL函数</span>
+                      <a href="/2023/04/14/Java-%E5%9D%A6%E5%85%8B%E6%94%BB%E5%87%BB%EF%BC%88%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AE%9E%E7%8E%B0%E5%AD%90%E5%BC%B9%EF%BC%89/" title="Java-坦克攻击（多线程实现子弹）">
+                        <span class="hidden-mobile">Java-坦克攻击（多线程实现子弹）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
