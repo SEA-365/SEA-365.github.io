@@ -428,6 +428,31 @@
   
   
   <entry>
+    <title>Java学习路线（ChatGPT版）</title>
+    <link href="/2023/04/14/Java%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%EF%BC%88ChatGPT%E7%89%88%EF%BC%89/"/>
+    <url>/2023/04/14/Java%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%EF%BC%88ChatGPT%E7%89%88%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Java学习路线（ChatGPT版）"><a href="#Java学习路线（ChatGPT版）" class="headerlink" title="Java学习路线（ChatGPT版）"></a>Java学习路线（ChatGPT版）</h1><h3 id="第一阶段：复习Java基础（2个月左右）"><a href="#第一阶段：复习Java基础（2个月左右）" class="headerlink" title="第一阶段：复习Java基础（2个月左右）"></a>第一阶段：复习Java基础（2个月左右）</h3><ul><li>复习Java语法基础，包括数据类型、运算符、表达式、控制语句等；<em><strong>（已完成）</strong></em></li><li>复习面向对象编程的相关知识，包括类和对象、继承、多态、接口等；<em><strong>（已完成）</strong></em></li><li>复习异常处理、集合框架、IO流等常用的Java API；<em><strong>（已完成）</strong></em></li><li>复习常用的设计模式。</li></ul><h3 id="第二阶段：深入Java进阶知识（4个月左右）"><a href="#第二阶段：深入Java进阶知识（4个月左右）" class="headerlink" title="第二阶段：深入Java进阶知识（4个月左右）"></a>第二阶段：深入Java进阶知识（4个月左右）</h3><ul><li>深入学习Java多线程编程，包括线程的创建与管理、线程同步与互斥、线程间通信等；<strong>（进行中）</strong></li><li>深入学习Java网络编程，包括Socket编程、HTTP协议、Web应用等；<strong>（进行中）</strong></li><li>深入学习Java虚拟机（JVM）的原理与应用；</li><li>深入学习Java内存模型、垃圾回收算法等。</li></ul><h3 id="第三阶段：Java框架学习（4个月左右）"><a href="#第三阶段：Java框架学习（4个月左右）" class="headerlink" title="第三阶段：Java框架学习（4个月左右）"></a>第三阶段：Java框架学习（4个月左右）</h3><ul><li>学习Spring框架的基础知识和原理；</li><li>学习Spring MVC和Spring Boot框架的应用；</li><li>学习MyBatis框架的应用和原理。</li></ul><h3 id="第四阶段：Java项目实战（4个月左右）"><a href="#第四阶段：Java项目实战（4个月左右）" class="headerlink" title="第四阶段：Java项目实战（4个月左右）"></a>第四阶段：Java项目实战（4个月左右）</h3><ul><li>实践一个完整的Java Web项目，例如电商平台、博客系统等；</li><li>学习项目管理、版本控制等工具的使用；<em><strong>（进行中）</strong></em></li><li>学习常用的性能优化手段。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Java-坦克2D建模图</title>
     <link href="/2023/04/14/Java-%E5%9D%A6%E5%85%8B2D%E5%BB%BA%E6%A8%A1%E5%9B%BE/"/>
     <url>/2023/04/14/Java-%E5%9D%A6%E5%85%8B2D%E5%BB%BA%E6%A8%A1%E5%9B%BE/</url>
@@ -1501,31 +1526,6 @@
     <tags>
       
       <tag>贪心算法</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Java学习路线（ChatGPT版）</title>
-    <link href="/2023/02/17/Java%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%EF%BC%88ChatGPT%E7%89%88%EF%BC%89/"/>
-    <url>/2023/02/17/Java%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%EF%BC%88ChatGPT%E7%89%88%EF%BC%89/</url>
-    
-    <content type="html"><![CDATA[<h1 id="Java学习路线（ChatGPT版）"><a href="#Java学习路线（ChatGPT版）" class="headerlink" title="Java学习路线（ChatGPT版）"></a>Java学习路线（ChatGPT版）</h1><h3 id="第一阶段：复习Java基础（2个月左右）"><a href="#第一阶段：复习Java基础（2个月左右）" class="headerlink" title="第一阶段：复习Java基础（2个月左右）"></a>第一阶段：复习Java基础（2个月左右）</h3><ul><li>复习Java语法基础，包括数据类型、运算符、表达式、控制语句等；<em><strong>（已完成）</strong></em></li><li>复习面向对象编程的相关知识，包括类和对象、继承、多态、接口等；<em><strong>（已完成）</strong></em></li><li>复习异常处理、集合框架、IO流等常用的Java API；<em><strong>（进行中）</strong></em></li><li>复习常用的设计模式。</li></ul><h3 id="第二阶段：深入Java进阶知识（4个月左右）"><a href="#第二阶段：深入Java进阶知识（4个月左右）" class="headerlink" title="第二阶段：深入Java进阶知识（4个月左右）"></a>第二阶段：深入Java进阶知识（4个月左右）</h3><ul><li>深入学习Java多线程编程，包括线程的创建与管理、线程同步与互斥、线程间通信等；<strong>（进行中）</strong></li><li>深入学习Java网络编程，包括Socket编程、HTTP协议、Web应用等；</li><li>深入学习Java虚拟机（JVM）的原理与应用；</li><li>深入学习Java内存模型、垃圾回收算法等。</li></ul><h3 id="第三阶段：Java框架学习（4个月左右）"><a href="#第三阶段：Java框架学习（4个月左右）" class="headerlink" title="第三阶段：Java框架学习（4个月左右）"></a>第三阶段：Java框架学习（4个月左右）</h3><ul><li>学习Spring框架的基础知识和原理；</li><li>学习Spring MVC和Spring Boot框架的应用；</li><li>学习MyBatis框架的应用和原理。</li></ul><h3 id="第四阶段：Java项目实战（4个月左右）"><a href="#第四阶段：Java项目实战（4个月左右）" class="headerlink" title="第四阶段：Java项目实战（4个月左右）"></a>第四阶段：Java项目实战（4个月左右）</h3><ul><li>实践一个完整的Java Web项目，例如电商平台、博客系统等；</li><li>学习项目管理、版本控制等工具的使用；<em><strong>（进行中）</strong></em></li><li>学习常用的性能优化手段。</li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>Java学习</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Java</tag>
       
     </tags>
     
