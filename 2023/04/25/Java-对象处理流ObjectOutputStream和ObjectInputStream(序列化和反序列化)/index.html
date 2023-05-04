@@ -26,7 +26,7 @@
 <meta property="og:description" content="Java-对象处理流ObjectOutputStream和ObjectInputStream(序列化和反序列化) 指对基本数据类型  或 对象 进行序列化和反序列化操作；  序列化 保存数据时，保存数据的值和数据类型； 序列化成字节流；  反序列化 恢复数据时，恢复数据的值和数据类型； 字节流反序列化为各种数据类型的数据；  可序列化 需要让某个对象支持序列化机制，则必须让其类是可序列化的，该类必">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-04-25T11:59:00.953Z">
-<meta property="article:modified_time" content="2023-04-25T13:49:29.808Z">
+<meta property="article:modified_time" content="2023-05-04T12:39:57.316Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="IO流">
@@ -314,10 +314,22 @@
 </li>
 <li><p>读取数据前应该关闭输出流！！</p>
 </li>
-<li><p>建议添加SerialVersionUID：</p>
+<li><p>建议添加<strong>SerialVersionUID</strong>：</p>
 <ul>
-<li>SerialVersionUID：Java会根据该对象的类名、成员变量、方法等信息生成一个唯一的ID，这个ID就是SerialVersionUID。</li>
-<li>作用：是保证序列化与反序列化的兼容性。在序列化时，Java会将对象的数据转换为一个字节流，并带上SerialVersionUID一起保存。在反序列化时，Java会使用相同的算法重新计算对象的ID，然后和保存的ID进行比对。如果两个ID相同，则说明序列化与反序列化兼容，可以正常进行数据转换；如果不同，则会抛出InvalidClassException异常。</li>
+<li>SerialVersionUID：Java会根据该对象的类名、成员变量、方法等信息生成一个唯一的ID，这个ID就是SerialVersionUID。<ul>
+<li>不指定的话，会自动生成一个ID，会因为编译器、JDK版本不同等因素而不同；</li>
+<li>一般不推荐自动生成的ID，而是建议显示的制定一个固定值，</li>
+</ul>
+</li>
+<li>作用：<strong>是保证序列化与反序列化的兼容性。</strong><ul>
+<li>在序列化时，Java会将对象的数据转换为一个字节流，并带上SerialVersionUID一起保存。</li>
+<li>在反序列化时，Java会使用相同的算法重新计算对象的ID，然后和保存的ID进行比对。<ul>
+<li>如果两个ID相同，则说明序列化与反序列化兼容，可以正常进行数据转换；</li>
+<li>如果不同，则会抛出InvalidClassException异常。</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>序列化时，默认序列化对象的所有属性，除了static或transient修饰的成员；</p>
