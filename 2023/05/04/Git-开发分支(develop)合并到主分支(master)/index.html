@@ -26,7 +26,7 @@
 <meta property="og:description" content="Git-开发分支(develop)合并到主分支(master)一、场景12一个代码仓库，包含两个分支，一个是master，另一个是develop；开发者一般在develop上进行开发，开发完成一个功能并测试稳定后，应将代码合并到master分支；  二、操作步骤 确保您正在 master 分支中，可以使用以下命令切换到 master 分支： 1git checkout master  使用以下命令">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-05-04T10:04:39.000Z">
-<meta property="article:modified_time" content="2023-05-04T07:19:44.000Z">
+<meta property="article:modified_time" content="2023-05-05T12:10:48.056Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          619 字
+          668 字
         
       </span>
     
@@ -288,7 +288,7 @@
 
 <p>这将把 develop 分支中的更改合并到当前的 master 分支中。</p>
 </li>
-<li><p>如果合并过程中出现冲突，需要手动解决这些冲突。Git 会在合并冲突时给出相应的提示，您可以使用以下命令查看有冲突的文件：</p>
+<li><p>如果合并过程中出现冲突，需要手动解决这些冲突。<strong>反之，如果没有冲突则直接到步骤5即可。</strong>Git 会在合并冲突时给出相应的提示，您可以使用以下命令查看有冲突的文件：</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git status</span><br></code></pre></td></tr></table></figure>
 
 <p>然后使用您喜欢的编辑器打开这些文件，手动解决冲突。</p>
@@ -298,7 +298,7 @@
 
 <p>这将把所有更改添加到提交中，并将其记录到 master 分支中。</p>
 </li>
-<li><p>最后，您可以将更改推送到远程仓库中，以确保其他开发人员可以访问它们：</p>
+<li><p>最后，<strong>此时仅仅本地master分支合并了本地的develop分支</strong>，还需要将更改推送到远程仓库中，以确保其他开发人员可以访问它们：</p>
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima">git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> master<br></code></pre></td></tr></table></figure></li>
 </ol>
 <p>这样就完成了将 develop 分支中的更改合并到 master 分支的过程。</p>
