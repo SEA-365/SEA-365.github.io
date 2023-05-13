@@ -1,0 +1,762 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="SEA">
+  <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
+  
+    <meta name="description" content="CentOS7环境下安装MySQL8背景介绍 学校开了一门《高级数据库技术》，实验课作业就是在CentOS环境下搭建MySQL数据库服务器，然后在本地Windows下进行模拟远程连接MySQL数据库服务器，并模拟搭建主从复制，集群，高并发等一系列操作； 这一篇讲解最基础的CentOS环境下安装MySQL服务器；  CentOS7安装 Windows环境：  1.下载CentOS7的镜像文件，如果上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS7环境下安装MySQL8">
+<meta property="og:url" content="http://sea-365.site/2023/05/11/CentOS7%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85MySQL8/index.html">
+<meta property="og:site_name" content="SEA-365的读研日记">
+<meta property="og:description" content="CentOS7环境下安装MySQL8背景介绍 学校开了一门《高级数据库技术》，实验课作业就是在CentOS环境下搭建MySQL数据库服务器，然后在本地Windows下进行模拟远程连接MySQL数据库服务器，并模拟搭建主从复制，集群，高并发等一系列操作； 这一篇讲解最基础的CentOS环境下安装MySQL服务器；  CentOS7安装 Windows环境：  1.下载CentOS7的镜像文件，如果上">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E5%AE%89%E8%A3%85CentOS%207_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/RPM%E5%AE%89%E8%A3%85MySQL_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/RPM%E5%AE%89%E8%A3%85MySQL_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/RPM%E5%AE%89%E8%A3%85MySQL_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/MySQL%E5%90%AF%E5%8A%A8_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/MySQL%E5%90%AF%E5%8A%A8_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/MySQL%E5%88%9B%E5%BB%BA%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E7%94%A8%E6%88%B7whm_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/MySQL%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E5%B9%B6%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/MySQL%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E5%B9%B6%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95_1.png">
+<meta property="article:published_time" content="2023-05-11T02:18:33.000Z">
+<meta property="article:modified_time" content="2023-05-11T01:52:04.000Z">
+<meta property="article:author" content="SEA">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="高级数据库技术">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E5%AE%89%E8%A3%85CentOS%207_3.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>CentOS7环境下安装MySQL8 - SEA-365的读研日记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sea-365.site","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>SEA-365</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CentOS7环境下安装MySQL8"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-11 10:18" pubdate>
+          2023年5月11日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">CentOS7环境下安装MySQL8</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="CentOS7环境下安装MySQL8"><a href="#CentOS7环境下安装MySQL8" class="headerlink" title="CentOS7环境下安装MySQL8"></a>CentOS7环境下安装MySQL8</h1><h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><ul>
+<li>学校开了一门《高级数据库技术》，实验课作业就是在CentOS环境下搭建MySQL数据库服务器，然后在本地Windows下进行模拟远程连接MySQL数据库服务器，并模拟搭建主从复制，集群，高并发等一系列操作；</li>
+<li>这一篇讲解最基础的CentOS环境下安装MySQL服务器；</li>
+</ul>
+<h2 id="CentOS7安装"><a href="#CentOS7安装" class="headerlink" title="CentOS7安装"></a>CentOS7安装</h2><ul>
+<li><p>Windows环境：</p>
+<ul>
+<li>1.下载CentOS7的镜像文件，如果上官网下载会比较缓慢，建议上中科大镜像站或者类似的国内镜像站进行下载（<a target="_blank" rel="noopener" href="https://mirrors.ustc.edu.cn/">USTC Open Source Software Mirror</a>）；</li>
+<li>2.下载并安装VMware软件，这个软件也比较容易下载，不过多赘述；</li>
+<li>3.安装CentOS7，条件允许则硬件资源给高一些，新手安装会出现各种问题，这个时候，一定记得多去网上寻求解决方案；</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E5%AE%89%E8%A3%85CentOS%207_3.png" srcset="/img/loading.gif" lazyload alt="安装CentOS 7_3"></p>
+<ul>
+<li>注意：检查一下网络配置，桌面右键进入终端，输入<code>ping www.baidu.com</code>，回车，查看是否可以通；</li>
+</ul>
+</li>
+<li><p>MacOS环境：</p>
+<ul>
+<li>MacOS的M系列芯片比较麻烦;</li>
+<li>首先是安装虚拟机的软件，一个是VMware（个人使用，去官网注册一下即可），另一个是Parallels Desktop(收费，肯定这个比较好啦)；</li>
+<li>其次，镜像的下载，我下载了官方、中科大镜像站、南京大学镜像站的CentOS7镜像，都无法正常使用，卡在了安装界面一直循环，选择安装，然后一闪，又让你选择。。。</li>
+<li>唯一有一个大佬的定制镜像能用的，但是也有很多缺点，于是乎放弃在MacOS上安装了；</li>
+</ul>
+</li>
+</ul>
+<h2 id="安装MySQL数据库"><a href="#安装MySQL数据库" class="headerlink" title="安装MySQL数据库"></a>安装MySQL数据库</h2><h3 id="yum在线rpm-安装"><a href="#yum在线rpm-安装" class="headerlink" title="yum在线rpm 安装"></a>yum在线rpm 安装</h3><ul>
+<li>命令如下</li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>新建文件夹<br>mkdir /Software<br><span class="hljs-regexp">//</span>进入该文件夹<br>cd /Software<br><span class="hljs-regexp">//</span>切换从中科大的镜像站下载<br>wget http:<span class="hljs-regexp">//mi</span>rrors.ustc.edu.cn<span class="hljs-regexp">/mysql-repo/my</span>sql80-community-release-el7-<span class="hljs-number">3</span>.noarch.rpm<br><span class="hljs-regexp">//</span>安装rpm<br>yum localinstall mysql80-community-release-el7-<span class="hljs-number">3</span>.noarch.rpm<br><span class="hljs-regexp">//</span>查看并确认需要安装的mysql组件<br>yum repolist enabled | grep <span class="hljs-string">&quot;mysql.*-community.*&quot;</span><br>yum repolist all | grep mysql<br><br>/*<br>使用如下命令改变要安装的软件：<br><span class="hljs-comment">#yum-config-manager --disable mysql57-community</span><br><span class="hljs-comment">#yum-config-manager --enable mysql80-community</span><br>确保 mysql80-community/x86_64 是 enabled，其它都 disabled 即可<br>*/<br><br><span class="hljs-regexp">//</span>安装mysql服务器<br>yum install mysql-community-server<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/RPM%E5%AE%89%E8%A3%85MySQL_1.png" srcset="/img/loading.gif" lazyload alt="RPM安装MySQL_1"></p>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/RPM%E5%AE%89%E8%A3%85MySQL_2.png" srcset="/img/loading.gif" lazyload alt="RPM安装MySQL_2"></p>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/RPM%E5%AE%89%E8%A3%85MySQL_3.png" srcset="/img/loading.gif" lazyload alt="RPM安装MySQL_3"></p>
+<h3 id="修改防火墙设置"><a href="#修改防火墙设置" class="headerlink" title="修改防火墙设置"></a>修改防火墙设置</h3><ul>
+<li>因为需要从Windows模拟远程连接，因此需要修改防火墙，命令如下：</li>
+</ul>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-string">//</span>修改防火墙设置<br>firewall-cmd <span class="hljs-params">--zone=public</span> <span class="hljs-params">--permanent</span> <span class="hljs-params">--add-port=3306/tcp</span><br>firewall-cmd –<span class="hljs-keyword">reload</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="启动-MySQL-服务器"><a href="#启动-MySQL-服务器" class="headerlink" title="启动 MySQL 服务器"></a>启动 MySQL 服务器</h3><ul>
+<li><p>启动前需要在<code>/etc/my.cnf  </code>文件配置好远程连接的端口，默认为3306；并且设置时区<code>default-time-zone=&#39;+8:00&#39;  </code>；</p>
+</li>
+<li><p>启动MySQL服务：</p>
+</li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>启动MySQL服务<br>systemctl start mysqld<br><span class="hljs-regexp">//</span>查看MySQL的状态<br>systemctl status mysqld<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/MySQL%E5%90%AF%E5%8A%A8_2.png" srcset="/img/loading.gif" lazyload alt="MySQL启动_2"></p>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/MySQL%E5%90%AF%E5%8A%A8_1.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="远程连接MySQL服务器"><a href="#远程连接MySQL服务器" class="headerlink" title="远程连接MySQL服务器"></a>远程连接MySQL服务器</h2><h3 id="修改root用户的密码"><a href="#修改root用户的密码" class="headerlink" title="修改root用户的密码"></a>修改root用户的密码</h3><ul>
+<li>命令如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 生成一个临时密码<br>grep &#x27;temporary password&#x27; /var/log/mysqld.log<br>-- 使用临时密码登录<br>mysql -uroot -p<br>-- 修改密码<br>ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27; abc123!Test&#x27;;<br></code></pre></td></tr></table></figure>
+
+<h3 id="创建远程连接用户"><a href="#创建远程连接用户" class="headerlink" title="创建远程连接用户"></a>创建远程连接用户</h3><ul>
+<li>命令如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建了一个名为 &#x27;whm&#x27;，允许从任何以 &quot;%&quot; 结尾的主机连接到 MySQL 的用户，并将密码设置为 &quot;Sea@123456&quot;<br>create user whm@&quot;%&quot; identified by &#x27;Sea@123456&#x27;;<br>-- 授予该用户所需的权限。<br>GRANT ALL privileges ON *.* TO &quot;ngq&quot;@&quot;%&quot;;<br>-- 运行以下命令使更改生效<br>FLUSH PRIVILEGES;<br>-- 可以在mysql系统内置数据库中查询到刚刚创建的用户<br>use mysql<br>select host, user from user;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/MySQL%E5%88%9B%E5%BB%BA%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E7%94%A8%E6%88%B7whm_1.png" srcset="/img/loading.gif" lazyload alt="MySQL创建远程连接用户whm_1"></p>
+<h3 id="从远程连接到mysql服务器"><a href="#从远程连接到mysql服务器" class="headerlink" title="从远程连接到mysql服务器"></a>从远程连接到mysql服务器</h3><ul>
+<li>在Navicat Premium中新建连接</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/MySQL%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E5%B9%B6%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95_2.png" srcset="/img/loading.gif" lazyload alt="MySQL远程连接并创建数据库表进行测试_2"></p>
+<ul>
+<li>创建一个数据库，建表进行查询测试</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/MySQL%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E5%B9%B6%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95_1.png" srcset="/img/loading.gif" lazyload alt="MySQL远程连接并创建数据库表进行测试_1"></p>
+<ul>
+<li>至此，结束。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/MySQL/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8A%80%E6%9C%AF/" class="category-chain-item">高级数据库技术</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/MySQL/">#MySQL</a>
+      
+        <a href="/tags/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8A%80%E6%9C%AF/">#高级数据库技术</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CentOS7环境下安装MySQL8</div>
+      <div>http://sea-365.site/2023/05/11/CentOS7环境下安装MySQL8/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>SEA</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/05/11/Jenkins%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-0511/" title="Jenkins学习笔记-0511">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Jenkins学习笔记-0511</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/07/Java-%E5%A4%9A%E7%94%A8%E6%88%B7%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95(%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF)/" title="Java-多用户即时通信系统-用户登录(服务器端)">
+                        <span class="hidden-mobile">Java-多用户即时通信系统-用户登录(服务器端)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        本站 总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

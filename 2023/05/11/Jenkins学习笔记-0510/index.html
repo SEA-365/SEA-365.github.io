@@ -1,0 +1,766 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="SEA">
+  <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
+  
+    <meta name="description" content="Jenkins学习-流水线Jenkins流水线 官方文档：Jenkins 流水线是一套插件，它支持实现和集成持续交付流水线到 Jenkins。  不是很明白   gpt:一种基于Jenkins构建的持续集成和交付（CI&#x2F;CD）解决方案。它 允许 开发者 通过 定义一系列的步骤 来 自动化构建、测试、部署和监控应用程序 的流程。  流水线是由一系列步骤组成的工作流程，这些步骤可以在Jenk">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jenkins学习笔记-0510">
+<meta property="og:url" content="http://sea-365.site/2023/05/11/Jenkins%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-0510/index.html">
+<meta property="og:site_name" content="SEA-365的读研日记">
+<meta property="og:description" content="Jenkins学习-流水线Jenkins流水线 官方文档：Jenkins 流水线是一套插件，它支持实现和集成持续交付流水线到 Jenkins。  不是很明白   gpt:一种基于Jenkins构建的持续集成和交付（CI&#x2F;CD）解决方案。它 允许 开发者 通过 定义一系列的步骤 来 自动化构建、测试、部署和监控应用程序 的流程。  流水线是由一系列步骤组成的工作流程，这些步骤可以在Jenk">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-11T10:54:33.000Z">
+<meta property="article:modified_time" content="2023-05-11T06:55:20.000Z">
+<meta property="article:author" content="SEA">
+<meta property="article:tag" content="Jekins">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Jenkins学习笔记-0510 - SEA-365的读研日记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sea-365.site","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>SEA-365</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Jenkins学习笔记-0510"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-11 18:54" pubdate>
+          2023年5月11日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          30 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Jenkins学习笔记-0510</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Jenkins学习-流水线"><a href="#Jenkins学习-流水线" class="headerlink" title="Jenkins学习-流水线"></a>Jenkins学习-流水线</h1><h2 id="Jenkins流水线"><a href="#Jenkins流水线" class="headerlink" title="Jenkins流水线"></a>Jenkins流水线</h2><ul>
+<li><p>官方文档：Jenkins 流水线是一套插件，它<strong>支持实现和集成持续交付流水线到 Jenkins</strong>。</p>
+<ul>
+<li>不是很明白</li>
+</ul>
+</li>
+<li><p>gpt:一种基于Jenkins构建的持续集成和交付（CI&#x2F;CD）解决方案。它 允许 <strong>开发者</strong> 通过 <strong>定义一系列的步骤</strong> 来 <strong>自动化构建、测试、部署和监控应用程序</strong> 的流程。</p>
+<ul>
+<li>流水线是由一系列步骤组成的工作流程，这些步骤可以在Jenkins中以<strong>代码的形式</strong>进行定义和管理。</li>
+<li>通过在Jenkins中创建流水线，开发者可以将构建、测试、部署和监控等任务自动化，从而提高应用程序的质量和可靠性，并缩短发布周期。</li>
+</ul>
+</li>
+</ul>
+<h2 id="创建和定义流水线"><a href="#创建和定义流水线" class="headerlink" title="创建和定义流水线"></a>创建和定义流水线</h2><p><strong>使用Jenkinsfile文件来定义流水线是Jenkins的最佳实践之一。</strong></p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">Jenkinsfile文件是定义Jenkins流水线的本质。Jenkinsfile是一个Groovy脚本，它使用Jenkins </span>Pipeline DSL语言来定义和描述构建和交付流水线的各个阶段和步骤。<span class="hljs-keyword">Jenkins </span>Pipeline DSL提供了丰富的语法和指令，使得用户可以创建复杂的流水线，包括并行执行、条件分支、环境变量设置、测试和部署等功能。<br>同时，将<span class="hljs-keyword">Jenkinsfile文件存储在代码仓库中，可以将流水线代码与应用程序代码一起版本控制和管理，方便追踪历史记录、协作开发和实现CI/CD的自动化流程。因此，使用Jenkinsfile文件来定义流水线是Jenkins的最佳实践之一。</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>声明式</strong>和<strong>脚本式</strong>流水线都是 DSL(Domain-specific language 领域特定语言) 语言，用来描述软件交付流水线的一部分。</p>
+<ul>
+<li>二者都是Jenkins Pipeline的DSL语言，用于编写Jenkins流水线中的步骤和操作。</li>
+<li>声明式：声明式流水线是一种更为简单和易于使用的语言，旨在为用户提供一种简单的方式来编写Jenkins流水线。声明式流水线提供了一组预定义的指令，可以让用户轻松地定义流水线的结构和逻辑。声明式流水线更加可读性强，易于理解，并支持自动代码生成和可视化编辑器等功能。</li>
+<li>脚本式：脚本式流水线是更为灵活和强大的语言，旨在为有经验的用户提供更大的自由度和控制力。脚本式流水线允许用户使用Groovy语言来编写完全自定义的脚本，从而实现复杂的逻辑和自定义操作。脚本式流水线的优点是可扩展性强，用户可以通过编写自定义的Groovy脚本来实现特定的需求和功能。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">Groovy是一种面向对象的动态编程语言，基于Java平台，具有Java语言的特性和优势，同时还支持动态类型、函数式编程、闭包和元编程等特性。Groovy的语法与Java类似，可以与Java代码无缝集成，可以直接在Java虚拟机（JVM）上运行。<br></code></pre></td></tr></table></figure>
+
+<h3 id="创建流水线的方式"><a href="#创建流水线的方式" class="headerlink" title="创建流水线的方式"></a>创建流水线的方式</h3><ul>
+<li>通过 Blue Ocean创建<ul>
+<li>在 Blue Ocean 中设置一个流水线项目后，Blue Ocean UI 会帮你编写流水线的 <code>Jenkinsfile</code> 文件并提交到源代码管理系统。</li>
+</ul>
+</li>
+<li>通过经典UI创建<ul>
+<li>通过经典 UI 在 Jenkins 中直接输入基本的流水线。</li>
+</ul>
+</li>
+<li>在源码管理系统中定义</li>
+</ul>
+</li>
+</ul>
+<h2 id="Jenkinsfile文件"><a href="#Jenkinsfile文件" class="headerlink" title="Jenkinsfile文件"></a>Jenkinsfile文件</h2><ul>
+<li>包含了 Jenkins 流水线的定义；</li>
+<li>该文件被检入源代码控制仓库；</li>
+<li>基本的三阶段持续交付流水线示例：</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs groovy">Jenkinsfile (Declarative Pipeline)<br>pipeline &#123;<br>    agent any<br><br>    stages &#123;<br>        stage(<span class="hljs-string">&#x27;Build&#x27;</span>) &#123;<br>            steps &#123;<br>                echo <span class="hljs-string">&#x27;Building..&#x27;</span><br>            &#125;<br>        &#125;<br>        stage(<span class="hljs-string">&#x27;Test&#x27;</span>) &#123;<br>            steps &#123;<br>                echo <span class="hljs-string">&#x27;Testing..&#x27;</span><br>            &#125;<br>        &#125;<br>        stage(<span class="hljs-string">&#x27;Deploy&#x27;</span>) &#123;<br>            steps &#123;<br>                echo <span class="hljs-string">&#x27;Deploying....&#x27;</span><br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="分析Jenkinsfile文件"><a href="#分析Jenkinsfile文件" class="headerlink" title="分析Jenkinsfile文件"></a>分析Jenkinsfile文件</h3><ul>
+<li><p><code>agent指令</code>：这是必需的一个部分，指示 Jenkins 为流水线分配一个执行器和工作区；</p>
+<ul>
+<li>如果没有agent指令，<strong>声明式流水线</strong>不仅无效，它也不可能完成任何工作！</li>
+<li>默认情况下，<code>agent</code> 指令确保源代码仓库被检出并在后续阶段的步骤中可被使用。</li>
+</ul>
+</li>
+<li><p>一个合法的声明式流水线还需要<code>stages 指令</code>和<code>steps</code>指令，因为它们指示 <strong>Jenkins 要执行什么</strong>，<strong>在哪个阶段执行</strong>。</p>
+</li>
+</ul>
+<h3 id="构建阶段"><a href="#构建阶段" class="headerlink" title="构建阶段"></a>构建阶段</h3><ul>
+<li><p>对于许多项目来说，流水线“工作”的开始就是“构建”阶段。</p>
+</li>
+<li><p><code>Jenkinsfile</code> 文件<strong>不能</strong>替代现有的构建工具，如 GNU&#x2F;Make、Maven、Gradle 等，而应视其为一个将项目的开发生命周期的多个阶段（构建、测试、部署等）绑定在一起的粘合层。</p>
+<ul>
+<li>Jenkins 有许多插件<strong>可以用于调用几乎所有常用的构建工具</strong>；</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs groovy"><span class="hljs-comment">//这个例子只是从 shell 步骤（sh）调用 make。</span><br><span class="hljs-comment">//sh 步骤假设系统是基于 Unix/Linux 的，对于基于 Windows 的系统可以使用 bat 替代。</span><br>Jenkinsfile (Declarative Pipeline)<br>pipeline &#123;<br>    agent any<br><br>    stages &#123;<br>        stage(<span class="hljs-string">&#x27;Build&#x27;</span>) &#123;<br>            steps &#123;<br>                sh <span class="hljs-string">&#x27;make&#x27;</span> <br>                archiveArtifacts <span class="hljs-attr">artifacts:</span> <span class="hljs-string">&#x27;**/target/*.jar&#x27;</span>, <span class="hljs-attr">fingerprint:</span> <span class="hljs-literal">true</span> <br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>sh</code> 步骤调用 <code>make</code> 命令，只有命令<strong>返回的状态码为零时才会继续</strong>。任何非零的返回码都将使流水线失败。</p>
+</li>
+<li><p><code>archiveArtifacts</code> 捕获符合模式（<code>**/target/*.jar</code>）匹配的交付件并将其保存到 Jenkins master 节点以供后续获取。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="测试阶段"><a href="#测试阶段" class="headerlink" title="测试阶段"></a>测试阶段</h3><ul>
+<li>运行自动化测试是任何成功的持续交付过程的重要组成部分；</li>
+<li>Jenkins通过插件通提供了许多测试记录，报告和可视化工具；</li>
+<li>最基本的，当测试失败时，让 Jenkins 记录这些失败以供汇报以及在 web UI 中可视化是很有用的。</li>
+<li>在下面的例子中，使用JUnit插件提供的junit步骤：</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs groovy">Jenkinsfile (Declarative Pipeline)<br>pipeline &#123;<br>    agent any<br><br>    stages &#123;<br>        stage(<span class="hljs-string">&#x27;Test&#x27;</span>) &#123;<br>            steps &#123;<br>                <span class="hljs-comment">/* `make check` 在测试失败后返回非零的退出码；</span><br><span class="hljs-comment">                * 使用 `true` 允许流水线继续进行</span><br><span class="hljs-comment">                */</span><br>                sh <span class="hljs-string">&#x27;make check || true&#x27;</span> <br>                junit <span class="hljs-string">&#x27;**/target/*.xml&#x27;</span> <br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>使用内联的 shell 条件（<code>sh &#39;make || true&#39;</code>）确保 <code>sh</code> 步骤总是看到退出码是零，使 <code>junit</code> 步骤有机会捕获和处理测试报告。</li>
+<li><code>junit</code> 捕获并关联与包含模式（<code>\**/target/*.xml</code>）匹配的 JUnit XML 文件。</li>
+</ul>
+<h3 id="部署阶段"><a href="#部署阶段" class="headerlink" title="部署阶段"></a>部署阶段</h3><ul>
+<li>部署可以隐含许多步骤，这取决于项目或组织的要求，并且可能是从发布构建的交付件到 Artifactory 服务器，到将代码推送到生产系统的任何东西。</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs groovy">Jenkinsfile (Declarative Pipeline)<br>pipeline &#123;<br>    agent any<br><br>    stages &#123;<br>        stage(<span class="hljs-string">&#x27;Deploy&#x27;</span>) &#123;<br>            when &#123;<br>              expression &#123;<br>                currentBuild.result == <span class="hljs-literal">null</span> || currentBuild.result == <span class="hljs-string">&#x27;SUCCESS&#x27;</span> <br>              &#125;<br>            &#125;<br>            steps &#123;<br>                sh <span class="hljs-string">&#x27;make publish&#x27;</span><br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>流水线访问 <code>currentBuild.result</code> 变量确定是否有任何测试的失败。在这种情况下，值为<code>UNSTABLE</code>。</li>
+<li>从本质上讲，“Deploy（部署）” 阶段只有在之前的阶段都成功完成后才会进行，否则流水线会提前退出。</li>
+<li>假设在基本三阶段持续交付的示例中，Jenkins 流水线中所有的操作都执行成功，那么每次流水线的成功运行都会在 Jenkins 中存档相关的交付件、上面报告的测试结果以及所有控制台输出。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Jenkins/" class="category-chain-item">Jenkins</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Jekins/">#Jekins</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Jenkins学习笔记-0510</div>
+      <div>http://sea-365.site/2023/05/11/Jenkins学习笔记-0510/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>SEA</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/05/11/Jenkins%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-0509/" title="Jenkins学习笔记-0509">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Jenkins学习笔记-0509</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/11/Jenkins%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-0511/" title="Jenkins学习笔记-0511">
+                        <span class="hidden-mobile">Jenkins学习笔记-0511</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        本站 总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

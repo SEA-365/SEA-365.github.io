@@ -230,6 +230,286 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2023/03/18/Java-%E7%BA%BF%E7%A8%8B%E6%AD%BB%E9%94%81/" target="_blank">
+          Java-线程死锁
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/18/Java-%E7%BA%BF%E7%A8%8B%E6%AD%BB%E9%94%81/" target="_blank">
+        <div>
+          Java-线程死锁基本介绍 多个线程都占用了对方的锁资源，且互不相让 &#x3D;&#x3D;&gt; 导致死锁；  案例1234567891011121314151617181920212223242526272829303132333435363738394041class DeadLockDemo extends Thread&#123;    static final Object obj
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-03-18 20:55" pubdate>
+              2023-03-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/" class="category-chain-item">Java学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="category-chain-item">多线程</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">#Java</a>
+            
+              <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">#多线程</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/03/18/Java-%E9%87%8A%E6%94%BE%E9%94%81/" target="_blank">
+          Java-释放锁
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/18/Java-%E9%87%8A%E6%94%BE%E9%94%81/" target="_blank">
+        <div>
+          Java-释放锁释放锁的几种情况 1.当前线程的同步方法&#x2F;同步代码块执行结束； 2.当前线程在同步方法&#x2F;同步代码块中遇到break，return； 3.当前线程在同步方法&#x2F;同步代码块中出现了未处理的error&#x2F;Exception，导致异常结束； 4.当前线程在同步方法&#x2F;同步代码块中执行了wait()方法，当前线程暂停，并释放锁。  不会释放锁的情况
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-03-18 20:55" pubdate>
+              2023-03-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/" class="category-chain-item">Java学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="category-chain-item">多线程</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">#Java</a>
+            
+              <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">#多线程</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/03/17/Java-%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" target="_blank">
+          Java-线程的生命周期
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/17/Java-%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" target="_blank">
+        <div>
+          Java-线程的生命周期 JDK中用Thread.State枚举表示了线程的几种状态；    其中，Runnable状态可分为：Ready和Running两种状态，因此Runnable状态不代表线程已经开始运行； Ready状态：可以理解为就绪态，当线程未分配cpu资源时被挂起，或者执行了yield()方法进行“礼让”时的状态； Running状态：运行态，被调度器选中，该线程获得了cpu资源开始
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-03-17 13:32" pubdate>
+              2023-03-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/" class="category-chain-item">Java学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="category-chain-item">多线程</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">#Java</a>
+            
+              <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">#多线程</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/03/13/Java-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6%EF%BC%88synchronized%E5%85%B3%E9%94%AE%E5%AD%97%EF%BC%89/" target="_blank">
+          Java-线程同步机制（synchronized关键字）
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/13/Java-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6%EF%BC%88synchronized%E5%85%B3%E9%94%AE%E5%AD%97%EF%BC%89/" target="_blank">
+        <div>
+          Java-线程同步机制（synchronized关键字） 线程同步：在多线程编程中，一些敏感数据不允许被多个线程同时访问，此时就使用同步访问技术，保证：数据在任何时刻，最多有一个线程访问，以保证数据的完整性。 理解：即当有一个线程在对某个内存地址进行操作时，其他线程都不可以对这个内存地址进行操作，直到该线程完成操作，其他线程才能对该内存地址进行操作。  线程同步的实现方法（synchronized
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-03-13 19:51" pubdate>
+              2023-03-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/" class="category-chain-item">Java学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="category-chain-item">多线程</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">#Java</a>
+            
+              <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">#多线程</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2023/03/11/%E8%93%9D%E6%A1%A5%E6%9D%AF2020-%E5%A4%A9%E5%B9%B2%E5%9C%B0%E6%94%AF%EF%BC%88%E7%BA%AA%E5%B9%B4%E6%B3%95%E5%B8%B8%E8%AF%86%EF%BC%89/" target="_blank">
           蓝桥杯2020-天干地支（纪年法常识）
         </a>
@@ -615,273 +895,6 @@
   
   
 
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/">#蓝桥杯</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/03/06/%E8%93%9D%E6%A1%A5%E6%9D%AF2020-%E5%AD%90%E4%B8%B2%E5%88%86%E5%80%BC%E5%92%8C/" target="_blank">
-          蓝桥杯2020-子串分值和（不会写）
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/06/%E8%93%9D%E6%A1%A5%E6%9D%AF2020-%E5%AD%90%E4%B8%B2%E5%88%86%E5%80%BC%E5%92%8C/" target="_blank">
-        <div>
-          蓝桥杯2020-子串分值和（不会写）题目描述对于一个字符串S，我们定义S 的分值 f(S) 为S中恰好出现一次的字符个数。例如f (”aba”) &#x3D; 2，f (”abc”) &#x3D; 3, f (”aaa”) &#x3D; 1。现在给定一个字符串S[0…n-1]（长度为n），请你计算对于所有S的非空子串S[i…j](0 ≤ i ≤ j &lt; n)， f (S[i… j]) 的和是
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-03-06 21:44" pubdate>
-              2023-03-06
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/" class="category-chain-item">蓝桥杯</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/2020%E5%B9%B4/" class="category-chain-item">2020年</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/">#蓝桥杯</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/03/06/%E8%93%9D%E6%A1%A5%E6%9D%AF2020-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%EF%BC%88%E5%85%B3%E4%BA%8EJava%E5%92%8CC++%E4%B8%A4%E7%A7%8D%E8%AF%AD%E8%A8%80%E6%8F%90%E4%BA%A4%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%89/" target="_blank">
-          蓝桥杯2020-字符编码（关于Java和C++两种语言提交的区别）
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/06/%E8%93%9D%E6%A1%A5%E6%9D%AF2020-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%EF%BC%88%E5%85%B3%E4%BA%8EJava%E5%92%8CC++%E4%B8%A4%E7%A7%8D%E8%AF%AD%E8%A8%80%E6%8F%90%E4%BA%A4%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%89/" target="_blank">
-        <div>
-          蓝桥杯2020-字符编码（关于Java和C++两种语言提交的区别）问题描述小明发明了一种给由全大写字母组成的字符串编码的方法。对于每一个大写字母，小明将它转换成它在 26 个英文字母中序号，即 A → 1, B → 2, … Z →26。 这样一个字符串就能被转化成一个数字序列：比如 ABCXYZ → 123242526。 现在给定一个转换后的数字序列，小明想还原出原本的字符串。当然这样的还原有可
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-03-06 21:43" pubdate>
-              2023-03-06
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/" class="category-chain-item">蓝桥杯</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/2020%E5%B9%B4/" class="category-chain-item">2020年</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/">#蓝桥杯</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/03/04/MySQL-%E5%87%BD%E6%95%B0/" target="_blank">
-          MySQL学习-SQL函数
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/04/MySQL-%E5%87%BD%E6%95%B0/" target="_blank">
-        <div>
-          MySQL学习–SQL函数概念 指一段可以直接被另一段程序直接调用的程序或代码；  常用函数字符串函数   函数 功能    CONCAT(S1,S2,..Sn) 字符串拼接，将S1，S2，… ,Sn拼接成一个字符串   LOWER(str) 将字符串str全部转为小写   UPPER(str) 将字符串str全部转为大写   LPAD(str,n,pad) 左填充，用字符串pad对str的左边进
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-03-04 23:03" pubdate>
-              2023-03-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/MySQL/%E5%87%BD%E6%95%B0/" class="category-chain-item">函数</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/MySQL/">#MySQL</a>
-            
-              <a href="/tags/%E5%87%BD%E6%95%B0/">#函数</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/03/02/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%AF%94%E8%B5%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" target="_blank">
-          蓝桥杯-比赛注意事项
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/02/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%AF%94%E8%B5%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" target="_blank">
-        <div>
-          蓝桥杯-比赛考察范围和注意事项考察范围 Java软件开发基础：包含使用Java编写程序的能力。该部分不考查选手对某一语法的理解程度，选手可以使用自己喜欢的语句编写程序。选手可在程序中使用JDK中自带的类，但不能使用其它的第三方类。 计算机算法：枚举、排序、搜索、计数、贪心、动态规划、图论、数论、博弈论、概率论、计算几何、字符串算法等。 数据结构：数组、对象&#x2F;结构、字符串、队列、栈、树、图
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-03-02 14:09" pubdate>
-              2023-03-02
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/" class="category-chain-item">蓝桥杯</a>
-  
   
 
       </span>
