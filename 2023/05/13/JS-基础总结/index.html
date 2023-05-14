@@ -20,15 +20,18 @@
   
     <meta name="description" content="JS-基础总结一、概念1.1 与Html、CSS的关系 HTML：构建web页面 CSS：设计web页面 JavaScript：用户端动态脚本  123JavaScript 是一种脚本，一门编程语言，它可以在网页上实现复杂的功能，网页展现给你的不再是简单的静态信息，而是实时的内容更新，交互式的地图，2D&#x2F;3D 动画，滚动播放的视频等等。JavaScript 最普遍的用处是通过 DOM API 动态">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS-变量">
-<meta property="og:url" content="http://sea-365.site/2023/05/13/JS-%E5%8F%98%E9%87%8F/index.html">
+<meta property="og:title" content="JS-基础总结">
+<meta property="og:url" content="http://sea-365.site/2023/05/13/JS-%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
 <meta property="og:description" content="JS-基础总结一、概念1.1 与Html、CSS的关系 HTML：构建web页面 CSS：设计web页面 JavaScript：用户端动态脚本  123JavaScript 是一种脚本，一门编程语言，它可以在网页上实现复杂的功能，网页展现给你的不再是简单的静态信息，而是实时的内容更新，交互式的地图，2D&#x2F;3D 动画，滚动播放的视频等等。JavaScript 最普遍的用处是通过 DOM API 动态">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/JS_02.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/JS_03.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/JS_scope_01.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/JS_split_join_01.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/JS_unshift_shift_01.png">
 <meta property="article:published_time" content="2023-05-13T08:55:49.463Z">
-<meta property="article:modified_time" content="2023-05-13T13:40:55.880Z">
+<meta property="article:modified_time" content="2023-05-14T12:09:38.695Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -38,7 +41,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>JS-变量 - SEA-365的读研日记</title>
+  <title>JS-基础总结 - SEA-365的读研日记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +206,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="JS-变量"></span>
+            <span id="subtitle" data-typed-text="JS-基础总结"></span>
           
         </div>
 
@@ -226,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.5k 字
+          7.5k 字
         
       </span>
     
@@ -237,7 +240,7 @@
         
         
         
-          38 分钟
+          63 分钟
         
       </span>
     
@@ -275,7 +278,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">JS-变量</h1>
+            <h1 style="display: none">JS-基础总结</h1>
             
             
               <div class="markdown-body">
@@ -437,6 +440,12 @@
 <td><code>!</code></td>
 <td>原式为真，但经取非后值为 <code>false</code>： <code>let myVariable = 3;!(myVariable === 3); // false</code></td>
 </tr>
+<tr>
+<td>幂</td>
+<td>取底数的指数次方，即指数所指定的底数相乘。它在 EcmaScript 2016 中首次引入。</td>
+<td><code>**</code></td>
+<td><code>5 ** 5</code> (返回 3125，相当于 <code>5 * 5 * 5 * 5 * 5</code> 。)</td>
+</tr>
 </tbody></table>
 <ul>
 <li>注意：<ul>
@@ -450,18 +459,103 @@
 </li>
 <li><p>函数分为浏览器内置函数和自定义函数；</p>
 <ul>
+<li>注意：函数内部定义的变量只能在该函数内部有效，即该变量的作用域仅限于该函数；</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-1-浏览器内置函数"><a href="#5-1-浏览器内置函数" class="headerlink" title="5.1 浏览器内置函数"></a>5.1 浏览器内置函数</h4><ul>
 <li>浏览器内置函数，例如：</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> myVariable = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;h1&#x27;</span>);<br><br><span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;hello&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> myVariable = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;h1&#x27;</span>);<span class="hljs-comment">//获取页面中的第一个一级标题；</span><br><br><span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;hello&#x27;</span>);<span class="hljs-comment">//页面弹出警告窗；</span><br></code></pre></td></tr></table></figure>
 
 <ul>
-<li>自定义函数，例如：</li>
+<li>JavaScript函数的底层实现是由C&#x2F;C++编写的；</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//返回两数之积</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">multiply</span>(<span class="hljs-params">num1, num2</span>) &#123;<br>  <span class="hljs-keyword">let</span> result = num1 * num2;<br>  <span class="hljs-keyword">return</span> result;<br>&#125;<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>注意：函数内部定义的变量只能在该函数内部有效，即该变量的作用域仅限于该函数；</p>
+<h4 id="5-2-自定义函数"><a href="#5-2-自定义函数" class="headerlink" title="5.2 自定义函数"></a>5.2 自定义函数</h4><ul>
+<li><p>自定义函数，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//返回两数之积</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">multiply</span>(<span class="hljs-params">num1, num2</span>) &#123;<br>  <span class="hljs-keyword">let</span> result = num1 * num2;<br>  <span class="hljs-keyword">return</span> result;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="5-3-调用函数"><a href="#5-3-调用函数" class="headerlink" title="5.3 调用函数"></a>5.3 调用函数</h4><ul>
+<li>通过将函数名包含在代码的某个地方，后跟圆括号来完成的</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">myFunction</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;hello&#x27;</span>);<br>&#125;<br><br><span class="hljs-title function_">myFunction</span>()<br><span class="hljs-comment">// 调用一次该函数</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="5-4-匿名函数"><a href="#5-4-匿名函数" class="headerlink" title="5.4 匿名函数"></a>5.4 匿名函数</h4><ul>
+<li>非匿名函数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">myFunction</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;hello&#x27;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>匿名函数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;hello&#x27;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>匿名函数的用法</p>
+<ul>
+<li>1.用于绑定给按钮的点击事件：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> myButton = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;button&#x27;</span>);<br><br>myButton.<span class="hljs-property">onclick</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;hello&#x27;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>2.将函数赋值给变量：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> myGreeting = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;hello&#x27;</span>);<br>&#125;<br><br><span class="hljs-comment">//使用以下方式调用此函数</span><br><span class="hljs-title function_">myGreeting</span>();<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="5-5-函数的作用域和冲突"><a href="#5-5-函数的作用域和冲突" class="headerlink" title="5.5 函数的作用域和冲突"></a>5.5 函数的作用域和冲突</h4><ul>
+<li>所有函数的最外层被称为全局作用域。在全局作用域内定义的值可以在任意地方访问。</li>
+<li>示例：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- Excerpt from my HTML --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;first.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;second.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><br>  greeting();<br><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// first.js</span><br><span class="hljs-keyword">let</span> name = <span class="hljs-string">&#x27;Chris&#x27;</span>;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">greeting</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;Hello &#x27;</span> + name + <span class="hljs-string">&#x27;: welcome to our company.&#x27;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// second.js</span><br><span class="hljs-keyword">let</span> name = <span class="hljs-string">&#x27;Zaptec&#x27;</span>;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">greeting</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;Our company is called &#x27;</span> + name + <span class="hljs-string">&#x27;.&#x27;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>上述示例中：</p>
+<ul>
+<li>html引入了两个js脚本first和second，二者内部定义了相同名称的变量和函数；<ul>
+<li>（1）只能访问到 first.js 文件的<code>greeting()</code>函数（第二个文件被忽视了）；</li>
+<li>（2）第二次尝试使用 <code>let</code> 关键字定义 <code>name</code> 变量导致了一个错误。</li>
+</ul>
 </li>
 </ul>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/JS_scope_01.png" srcset="/img/loading.gif" lazyload alt="JS_scope函数作用域"></p>
+</li>
+</ul>
+<h5 id="5-5-1-let、var和const"><a href="#5-5-1-let、var和const" class="headerlink" title="5.5.1 let、var和const"></a>5.5.1 let、var和const</h5><table>
+<thead>
+<tr>
+<th></th>
+<th>作用域</th>
+<th>变量提升</th>
+<th>重复定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>let</td>
+<td>块级，仅在定义的函数内可被访问</td>
+<td>使用 let 声明的变量不会被提升，只有在变量声明后才能使用它</td>
+<td>如果在同一个作用域内使用 let 定义相同的变量名，则会导致错误。</td>
+</tr>
+<tr>
+<td>var</td>
+<td>全局，在全局均可访问</td>
+<td>var 声明的变量会在代码执行前被预处理，并在整个作用域可见</td>
+<td>使用 var 声明的变量可以被多次定义，这将覆盖先前的定义。</td>
+</tr>
+<tr>
+<td>const</td>
+<td>也是块级，与let的区别在于：const修饰的变量是一个常量，不可更改；</td>
+<td>与let一致</td>
+<td>与let一致</td>
+</tr>
+</tbody></table>
 <h3 id="六、事件"><a href="#六、事件" class="headerlink" title="六、事件"></a>六、事件</h3><ul>
 <li><p>事件能为网页添加真实的交互能力。它可以捕捉浏览器操作并运行一些代码做为响应。</p>
 </li>
@@ -482,6 +576,118 @@
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//JS_01.js</span><br><br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;html&#x27;</span>).<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;别点了！！！&#x27;</span>)<br>&#125;)<br></code></pre></td></tr></table></figure></li>
 </ul>
+<h3 id="七、字符串函数"><a href="#七、字符串函数" class="headerlink" title="七、字符串函数"></a>七、字符串函数</h3><ul>
+<li>常用的字符串函数如下：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+<th>示例（<code>let browserType = &#39;mozilla&#39;; </code>  ）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>length</td>
+<td>获取字符串的长度</td>
+<td><code>browserType.length;</code></td>
+</tr>
+<tr>
+<td>indexOf(‘子串’)</td>
+<td>在字符串中查找子字符串并提取它,找不到该子字符串则返回-1；</td>
+<td><code>browserType.indexOf(&#39;zilla&#39;);</code></td>
+</tr>
+<tr>
+<td>slice(start, end)</td>
+<td>已知字符串中的子字符串开始的位置，以及想要结束的字符时，<code>slice()</code>可以用来提取它。注意：范围是[start, end)区间；若只指定start，则返回的子字符串是下标从start开始的所有剩余字符。</td>
+<td><code>browserType.slice(0,3);</code></td>
+</tr>
+<tr>
+<td>toLowerCase()&#x2F;toUpperCase()</td>
+<td>大小写转换</td>
+<td><code>let radData = &#39;My NaMe Is MuD&#39;; </code> <code>radData.toLowerCase(); </code> <code>radData.toUpperCase();</code></td>
+</tr>
+<tr>
+<td>Replace()</td>
+<td>字符串替换</td>
+<td><code>browserType.replace(&#39;moz&#39;,&#39;van&#39;);</code></td>
+</tr>
+</tbody></table>
+<h3 id="八、数组"><a href="#八、数组" class="headerlink" title="八、数组"></a>八、数组</h3><ul>
+<li>像列表一样的对象；</li>
+</ul>
+<h4 id="8-1-创建数组"><a href="#8-1-创建数组" class="headerlink" title="8.1 创建数组"></a>8.1 创建数组</h4><ul>
+<li>数组由方括号构成，其中包含用逗号分隔的元素列表；</li>
+<li>与Java等语言不同的是，数组中可以保存不同类型的元素；</li>
+<li>通过下标对数组元素进行访问；</li>
+<li>示例如下：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> sequence = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">13</span>];<span class="hljs-comment">//保存的都是number</span><br><span class="hljs-keyword">let</span> random = [<span class="hljs-string">&#x27;tree&#x27;</span>, <span class="hljs-number">795</span>, [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]];<span class="hljs-comment">//保存的有string，number，数组类型等；</span><br>random[<span class="hljs-number">2</span>][<span class="hljs-number">2</span>];<span class="hljs-comment">//多维数组</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="8-2-常用函数"><a href="#8-2-常用函数" class="headerlink" title="8.2 常用函数"></a>8.2 常用函数</h4><ul>
+<li>如下：<ul>
+<li><code>let sequence = [1, 1, 2, 3, 5, 8, 13];</code></li>
+<li><code>let myData = &#39;Manchester,London,Liverpool,Birmingham,Leeds,Carlisle&#39;;</code></li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>length</td>
+<td>获取数组长度</td>
+<td>sequence.length; &#x2F;&#x2F; should return 7</td>
+</tr>
+<tr>
+<td>split(‘分隔符’)</td>
+<td>以指定分隔符分隔字符串返回分割后的数组</td>
+<td>let myArray &#x3D; myData.split(‘,’); &#x2F;&#x2F;得到的myArray是一个长度为6的数组;</td>
+</tr>
+<tr>
+<td>join(‘待插入分隔符’)</td>
+<td>以指定待插入分隔符连接数组中的元素形成字符串</td>
+<td>let myString &#x3D; myArray.join(‘,’);&#x2F;&#x2F;得到以待插入分隔符分隔的字符串；</td>
+</tr>
+<tr>
+<td>toString()</td>
+<td>连接数组中的元素形成字符串</td>
+<td>let myString &#x3D; myArray.toString()&#x2F;&#x2F;直接连接起来，没有分隔符</td>
+</tr>
+<tr>
+<td>push()</td>
+<td>添加一个或多个要添加到<strong>数组末尾</strong>的元素。</td>
+<td><code>myArray.push(&#39;Cardiff&#39;);</code> <code>myArray.push(&#39;Bradford&#39;, &#39;Brighton&#39;);</code></td>
+</tr>
+<tr>
+<td>pop()</td>
+<td>从数组中删除<strong>最后</strong>一个元素</td>
+<td><code>let removedItem = myArray.pop();</code></td>
+</tr>
+<tr>
+<td>unshift()</td>
+<td>添加一个或多个要添加到<strong>数组开头</strong>的元素。</td>
+<td><code>myArray.unshift(&#39;Edinburgh&#39;);</code></td>
+</tr>
+<tr>
+<td>shift()</td>
+<td>从数组中删除<strong>开头的第一个元素</strong></td>
+<td><code>let removedItem = myArray.shift();</code></td>
+</tr>
+</tbody></table>
+<ul>
+<li>split() 和 join()函数运行效果</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/JS_split_join_01.png" srcset="/img/loading.gif" lazyload alt="split() 和 join()函数运行效果"></p>
+<ul>
+<li>unshift() 和 shift() 运行效果</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/JS_unshift_shift_01.png" srcset="/img/loading.gif" lazyload alt="unshift() 和 shift() 运行效果"></p>
 
                 
               </div>
@@ -527,8 +733,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>JS-变量</div>
-      <div>http://sea-365.site/2023/05/13/JS-变量/</div>
+      <div>JS-基础总结</div>
+      <div>http://sea-365.site/2023/05/13/JS-基础总结/</div>
     </div>
     <div class="license-meta">
       
