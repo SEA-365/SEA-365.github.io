@@ -1,0 +1,847 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="SEA">
+  <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
+  
+    <meta name="description" content="Java-多用户即时通信系统-用户注册、退出系统以及拉取在线用户列表一、思路分析1.1 用户注册功能 客户端： 1.用户选择”用户注册“选项，输入账户名和密码； 2.将输入的信息封装成一个User对象； 3.通过新建的另一个Socket将该User对象发送给服务器端； 4.并不断监听服务器端返回的结果。   服务器端： 1.通过监听对应的端口获取socket； 2.读取客户端发送的User对象；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-多用户即时通信系统-用户注册、退出系统以及拉取在线用户列表">
+<meta property="og:url" content="http://sea-365.site/2023/05/20/Java-%E5%A4%9A%E7%94%A8%E6%88%B7%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F-%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E3%80%81%E9%80%80%E5%87%BA%E7%B3%BB%E7%BB%9F%E4%BB%A5%E5%8F%8A%E6%8B%89%E5%8F%96%E5%9C%A8%E7%BA%BF%E7%94%A8%E6%88%B7%E5%88%97%E8%A1%A8/index.html">
+<meta property="og:site_name" content="SEA-365的读研日记">
+<meta property="og:description" content="Java-多用户即时通信系统-用户注册、退出系统以及拉取在线用户列表一、思路分析1.1 用户注册功能 客户端： 1.用户选择”用户注册“选项，输入账户名和密码； 2.将输入的信息封装成一个User对象； 3.通过新建的另一个Socket将该User对象发送给服务器端； 4.并不断监听服务器端返回的结果。   服务器端： 1.通过监听对应的端口获取socket； 2.读取客户端发送的User对象；">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-20T05:53:25.167Z">
+<meta property="article:modified_time" content="2023-05-20T07:16:19.247Z">
+<meta property="article:author" content="SEA">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="多用户即时通信系统">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Java-多用户即时通信系统-用户注册、退出系统以及拉取在线用户列表 - SEA-365的读研日记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sea-365.site","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>SEA-365</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Java-多用户即时通信系统-用户注册、退出系统以及拉取在线用户列表"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-20 13:53" pubdate>
+          2023年5月20日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          28k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          233 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Java-多用户即时通信系统-用户注册、退出系统以及拉取在线用户列表</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Java-多用户即时通信系统-用户注册、退出系统以及拉取在线用户列表"><a href="#Java-多用户即时通信系统-用户注册、退出系统以及拉取在线用户列表" class="headerlink" title="Java-多用户即时通信系统-用户注册、退出系统以及拉取在线用户列表"></a>Java-多用户即时通信系统-用户注册、退出系统以及拉取在线用户列表</h1><h2 id="一、思路分析"><a href="#一、思路分析" class="headerlink" title="一、思路分析"></a>一、思路分析</h2><h3 id="1-1-用户注册功能"><a href="#1-1-用户注册功能" class="headerlink" title="1.1 用户注册功能"></a>1.1 用户注册功能</h3><ul>
+<li>客户端：<ul>
+<li>1.用户选择”用户注册“选项，输入账户名和密码；</li>
+<li>2.将输入的信息封装成一个User对象；</li>
+<li>3.通过新建的另一个Socket将该User对象发送给服务器端；</li>
+<li>4.并不断监听服务器端返回的结果。</li>
+</ul>
+</li>
+<li>服务器端：<ul>
+<li>1.通过监听对应的端口获取socket；</li>
+<li>2.读取客户端发送的User对象；</li>
+<li>3.验证该用户是否存在，存在则返回注册失败，否则在用户集合中添加该用户并返回注册结果。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2-用户退出功能"><a href="#1-2-用户退出功能" class="headerlink" title="1.2 用户退出功能"></a>1.2 用户退出功能</h3><ul>
+<li><p>客户端：</p>
+<ul>
+<li>1.用户选择”退出系统”选项；</li>
+<li>2.封装一个请求退出系统的Message消息对象，包括消息类型，请求退出用户的userID等</li>
+<li>3.将该Message对象通过对应的Socket发送给服务器端；</li>
+<li>4.退出打印菜单界面的while循环；</li>
+<li>5.调用System.exit(0)无异常退出系统。</li>
+</ul>
+</li>
+<li><p>服务器端：</p>
+<ul>
+<li>1.读取对应socket通道的Message对象；</li>
+<li>2.判断该Message对象是否为用户退出类型；</li>
+<li>3.如果是，根据该Message对象携带的userID获取到对应的socket，并从客户端连接服务器端的线程集合类中移除该userID对应的线程以及关闭该socket；</li>
+<li>4.停止当前客户端连接服务器端通信的线程。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3-拉取在线用户列表"><a href="#1-3-拉取在线用户列表" class="headerlink" title="1.3 拉取在线用户列表"></a>1.3 拉取在线用户列表</h3><ul>
+<li>客户端：<ul>
+<li>1.封装一个请求用户列表类型的Message对象，并通过socket数据通道发送给服务器端；</li>
+<li>2.在对应的客户端连接服务器端的线程中，监听服务器端返回的 <strong>特定格式</strong> 的用户列表，解析并打印该列表；</li>
+</ul>
+</li>
+<li>服务器端：<ul>
+<li>1.读取socket数据通道中的Message对象;</li>
+<li>2.若为请求在线用户列表类型的Message对象，则通过<strong>客户端连接服务器线程管理类</strong>获取<strong>所有正在与服务器端通信的客户端的userID</strong>；</li>
+<li>3.将所有获取到的在线用户的userID<strong>封装成特定格式</strong>返回给Message对象的发送方；</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、具体实现"><a href="#二、具体实现" class="headerlink" title="二、具体实现"></a>二、具体实现</h2><h4 id="2-1-客户端"><a href="#2-1-客户端" class="headerlink" title="2.1 客户端"></a>2.1 客户端</h4><h5 id="1-实体类（放在common包下）"><a href="#1-实体类（放在common包下）" class="headerlink" title="1 实体类（放在common包下）"></a>1 实体类（放在common包下）</h5><ul>
+<li>包括用户类（User）、消息类（Message）、消息类型接口（MessageType）</li>
+</ul>
+<h6 id="User"><a href="#User" class="headerlink" title="User"></a>User</h6><ul>
+<li>用户类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: SEA</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/5/4</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;<span class="hljs-comment">//序列化ID，用来保证序列化和反序列化过程中，User类的一致性</span><br>    <span class="hljs-keyword">private</span> String userID;<span class="hljs-comment">//用户名</span><br>    <span class="hljs-keyword">private</span> String password;<span class="hljs-comment">//密码</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">User</span><span class="hljs-params">()</span> &#123;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">User</span><span class="hljs-params">(String userID, String password)</span> &#123;<br>        <span class="hljs-built_in">this</span>.userID = userID;<br>        <span class="hljs-built_in">this</span>.password = password;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getuserID</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> userID;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setuserID</span><span class="hljs-params">(String userID)</span> &#123;<br>        <span class="hljs-built_in">this</span>.userID = userID;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getPassword</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> password;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setPassword</span><span class="hljs-params">(String password)</span> &#123;<br>        <span class="hljs-built_in">this</span>.password = password;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;User&#123;&quot;</span> +<br>                <span class="hljs-string">&quot;userID=&#x27;&quot;</span> + userID + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&quot;, password=&#x27;&quot;</span> + password + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&#x27;&#125;&#x27;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h6><ul>
+<li>消息类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: SEA</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/5/4</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Message</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;<span class="hljs-comment">//序列化ID，用来保证序列化和反序列化过程中，User类的一致性</span><br>    <span class="hljs-keyword">private</span> String sender_ip;<span class="hljs-comment">//发送方ip</span><br>    <span class="hljs-keyword">private</span> String receiver_ip;<span class="hljs-comment">//接收方ip</span><br>    <span class="hljs-keyword">private</span> String send_data;<span class="hljs-comment">//发送内容</span><br>    <span class="hljs-keyword">private</span> String send_time;<span class="hljs-comment">//发送时间</span><br>    <span class="hljs-keyword">private</span> String message_type;<span class="hljs-comment">//消息类型（如：文本，图片，音频，视频等）</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Message</span><span class="hljs-params">()</span> &#123;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Message</span><span class="hljs-params">(String sender_ip, String receiver_ip, String send_data, String send_time, String message_type)</span> &#123;<br>        <span class="hljs-built_in">this</span>.sender_ip = sender_ip;<br>        <span class="hljs-built_in">this</span>.receiver_ip = receiver_ip;<br>        <span class="hljs-built_in">this</span>.send_data = send_data;<br>        <span class="hljs-built_in">this</span>.send_time = send_time;<br>        <span class="hljs-built_in">this</span>.message_type = message_type;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getSender_ip</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> sender_ip;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSender_ip</span><span class="hljs-params">(String sender_ip)</span> &#123;<br>        <span class="hljs-built_in">this</span>.sender_ip = sender_ip;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getReceiver_ip</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> receiver_ip;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setReceiver_ip</span><span class="hljs-params">(String receiver_ip)</span> &#123;<br>        <span class="hljs-built_in">this</span>.receiver_ip = receiver_ip;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getSend_data</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> send_data;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSend_data</span><span class="hljs-params">(String send_data)</span> &#123;<br>        <span class="hljs-built_in">this</span>.send_data = send_data;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getSend_time</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> send_time;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSend_time</span><span class="hljs-params">(String send_time)</span> &#123;<br>        <span class="hljs-built_in">this</span>.send_time = send_time;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getMessage_type</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> message_type;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setMessage_type</span><span class="hljs-params">(String message_type)</span> &#123;<br>        <span class="hljs-built_in">this</span>.message_type = message_type;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="MessageType"><a href="#MessageType" class="headerlink" title="MessageType"></a>MessageType</h6><ul>
+<li>消息类型接口</li>
+<li>增加：<ul>
+<li>注册消息类型；</li>
+<li>聊天消息类型；</li>
+<li>请求在线用户列表消息类型；</li>
+<li>客户端请求退出消息类型；</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea-365</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/5/4 20:54</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">MessageType</span> &#123;<br>    <span class="hljs-comment">//表示消息状态的常量</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_LOGIN_FAILED</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;0&quot;</span>;<span class="hljs-comment">//表示登录失败</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_LOGIN_SUCCEED</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;1&quot;</span>;<span class="hljs-comment">//表示登录成功</span><br><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_REGISTER_FAILED</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;2&quot;</span>;<span class="hljs-comment">//表示注册失败</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_REGISTER_SUCCEED</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;3&quot;</span>;<span class="hljs-comment">//表示注册成功</span><br><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_COMMON_MSG</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;4&quot;</span>;<span class="hljs-comment">//普通信息包，即聊天文本消息</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_REQUEST_ONLINE_USER</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;5&quot;</span>;<span class="hljs-comment">//请求 在线用户列表 的消息</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_RESPONSE_ONLINE_USER</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;6&quot;</span>;<span class="hljs-comment">//返回 持有在线用户列表 的消息</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_CLIENT_EXIT</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;7&quot;</span>;<span class="hljs-comment">//客户端请求退出</span><br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="2-功能类（放在service包下）"><a href="#2-功能类（放在service包下）" class="headerlink" title="2 功能类（放在service包下）"></a>2 功能类（放在service包下）</h5><h6 id="UserClientService"><a href="#UserClientService" class="headerlink" title="UserClientService"></a>UserClientService</h6><ul>
+<li>实现用户登录、注册等功能的类；</li>
+<li>增加：<ul>
+<li>用户注册功能；</li>
+<li>向服务器端请求在线用户列表；</li>
+<li>客户端请求退出功能；</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 该类完成用户登录验证，用户注册等功能</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: SEA</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/5/5</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserClientService</span> &#123;<br>    <span class="hljs-type">User</span> <span class="hljs-variable">loginUser</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();<span class="hljs-comment">//User对象</span><br>    <span class="hljs-type">User</span> <span class="hljs-variable">regUser</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();<span class="hljs-comment">//User对象</span><br>    <span class="hljs-type">Socket</span> <span class="hljs-variable">loginSocket</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<span class="hljs-comment">//Socket对象</span><br>    <span class="hljs-type">Socket</span> <span class="hljs-variable">regSocket</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<span class="hljs-comment">//Socket对象</span><br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 用户登录验证</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> userID 用户名</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> password 密码</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 返回登录验证结果</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">checkUser</span><span class="hljs-params">(String userID, String password)</span> <span class="hljs-keyword">throws</span> IOException, ClassNotFoundException &#123;<br><br>        loginUser.setuserID(userID);<br>        loginUser.setPassword(password);<br><br>        <span class="hljs-comment">//向服务器发送User对象，根据服务器返回的结果进行验证</span><br>        loginSocket = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Socket</span>(InetAddress.getByName(<span class="hljs-string">&quot;127.0.0.1&quot;</span>), <span class="hljs-number">9999</span>);<br>        <span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">objectOutputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(loginSocket.getOutputStream());<br>        <span class="hljs-comment">//发送user对象</span><br>        objectOutputStream.writeObject(loginUser);<br><br>        <span class="hljs-comment">//socket.shutdownOutput();</span><br><br>        <span class="hljs-comment">//读取服务器端返回的验证结果</span><br>        <span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">objectInputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(loginSocket.getInputStream());<br>        <span class="hljs-comment">//读取返回的Message对象</span><br>        <span class="hljs-type">Message</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> (Message) objectInputStream.readObject();<br><br>        <span class="hljs-keyword">if</span>(message.getMessage_type().equals(MessageType.MESSAGE_LOGIN_SUCCEED)) &#123;<span class="hljs-comment">//登录成功</span><br>            <span class="hljs-comment">//登录成功，创建一个与服务器端保持通信的线程 -&gt; 创建一个线程类ClientConnectServerThread</span><br>            <span class="hljs-type">ClientConnectServerThread</span> <span class="hljs-variable">clientConnectServerThread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClientConnectServerThread</span>(loginSocket);<br>            <span class="hljs-comment">//启动客户端与服务器端通信的线程</span><br>            clientConnectServerThread.start();<br>            <span class="hljs-comment">//为了方便拓展，将该线程放在一个集合中进行管理</span><br>            <span class="hljs-comment">//【关于“拓展”】：比如，客户端在私聊另一个客户端的同时，还在与其他客户端发送文件，此时需要同时进行两个任务，使用多线程并发实现</span><br>            ClientConnectServerThreadManage.addClientConnectServerThread(userID, clientConnectServerThread);<br><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">//登录失败</span><br><br>            System.out.println(message.getSend_data());<br><br>            <span class="hljs-comment">//应该关闭打开的流 和 Socket对象</span><br>            objectInputStream.close();<br>            loginSocket.close();<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 用户注册功能</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> regUserID 注册用户ID</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> regPassword 注册用户密码</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 注册是否成功</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">registerUser</span><span class="hljs-params">(String regUserID, String regPassword)</span> <span class="hljs-keyword">throws</span> IOException, ClassNotFoundException &#123;<br>        regUser.setuserID(regUserID);<br>        regUser.setPassword(regPassword);<br><br>        <span class="hljs-comment">//向服务器发送User对象，根据服务器返回的结果进行验证</span><br>        regSocket = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Socket</span>(InetAddress.getByName(<span class="hljs-string">&quot;127.0.0.1&quot;</span>), <span class="hljs-number">10000</span>);<br>        <span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">objectOutputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(regSocket.getOutputStream());<br>        <span class="hljs-comment">//发送user对象</span><br>        objectOutputStream.writeObject(regUser);<br><br>        <span class="hljs-comment">//socket.shutdownOutput();</span><br><br>        <span class="hljs-comment">//读取服务器端返回的验证结果</span><br>        <span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">objectInputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(regSocket.getInputStream());<br>        <span class="hljs-comment">//读取返回的Message对象</span><br>        <span class="hljs-type">Message</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> (Message) objectInputStream.readObject();<br><br>        <span class="hljs-keyword">if</span>(message.getMessage_type().equals(MessageType.MESSAGE_REGISTER_SUCCEED)) &#123;<span class="hljs-comment">//注册成功</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">//登录失败</span><br><br>            System.out.println(message.getSend_data());<br><br>            <span class="hljs-comment">//应该关闭打开的流 和 Socket对象</span><br>            objectInputStream.close();<br>            objectOutputStream.close();<br>            regSocket.close();<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 向服务器端请求在线用户列表</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> userID 用户ID</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">requestOnlineUserList</span><span class="hljs-params">(String userID)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-comment">//封装请求在线用户列表的Message对象</span><br>        <span class="hljs-type">Message</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Message</span>();<br>        message.setMessage_type(MessageType.MESSAGE_REQUEST_ONLINE_USER);<br>        message.setSender_ip(userID);<br>        <span class="hljs-comment">//发送该对象</span><br>        <span class="hljs-type">Socket</span> <span class="hljs-variable">cur_socket</span> <span class="hljs-operator">=</span> ClientConnectServerThreadManage.getClientConnectServerThread(userID).getSocket();<br>        <span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">objectOutputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(cur_socket.getOutputStream());<br>        objectOutputStream.writeObject(message);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 客户端请求退出</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> userID 请求退出的客户端userID</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">clientExit</span><span class="hljs-params">(String userID)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-comment">//封装请求退出的message对象</span><br>        <span class="hljs-type">Message</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Message</span>();<br>        message.setMessage_type(MessageType.MESSAGE_CLIENT_EXIT);<br>        message.setSender_ip(userID);<br><br>        <span class="hljs-comment">//获取对象输出流</span><br>        <span class="hljs-type">Socket</span> <span class="hljs-variable">socket</span> <span class="hljs-operator">=</span> ClientConnectServerThreadManage.getClientConnectServerThread(userID).getSocket();<br>        <span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">objectOutputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(socket.getOutputStream());<br><br>        <span class="hljs-comment">//发送Message对象</span><br>        objectOutputStream.writeObject(message);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="ClientConnectServerThread"><a href="#ClientConnectServerThread" class="headerlink" title="ClientConnectServerThread"></a>ClientConnectServerThread</h6><ul>
+<li>客户端保持与服务器端通信的线程类</li>
+<li>增加：<ul>
+<li>处理 请求用户列表 类型的消息；</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 客户端保持与服务器端通信的线程</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: SEA</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/5/5</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ClientConnectServerThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span>&#123;<br>    <span class="hljs-comment">//持有用于网络通信的Socket对象</span><br>    <span class="hljs-keyword">private</span> Socket socket;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ClientConnectServerThread</span><span class="hljs-params">()</span>&#123; &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ClientConnectServerThread</span><span class="hljs-params">(Socket socket)</span>&#123;<br>        <span class="hljs-built_in">this</span>.socket = socket;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> Socket <span class="hljs-title function_">getSocket</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> socket;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSocket</span><span class="hljs-params">(Socket socket)</span> &#123;<br>        <span class="hljs-built_in">this</span>.socket = socket;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">//客户端需要在后台一直保持与服务器端通信，因此使用while循环；</span><br>        <span class="hljs-comment">//【因此这种阻塞式IO的方式，导致效率比较低！】</span><br>        <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">objectInputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(<span class="hljs-built_in">this</span>.getSocket().getInputStream());<br>                <span class="hljs-comment">//读取服务器端发送的数据，如果没有发送数据，则线程阻塞！</span><br>                <span class="hljs-type">Message</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> (Message) objectInputStream.readObject();<br><br>                <span class="hljs-keyword">if</span>(message.getMessage_type().equals(MessageType.MESSAGE_RESPONSE_ONLINE_USER))&#123;<br>                    <span class="hljs-comment">//规定服务器端返回的在线用户列表以&quot;,&quot;分隔</span><br>                    String[] onlineUser = message.getSend_data().split(<span class="hljs-string">&quot;,&quot;</span>);<br>                    System.out.println(<span class="hljs-string">&quot;===================== 在线用户 =====================&quot;</span>);<br>                    <span class="hljs-keyword">for</span> (String s : onlineUser) &#123;<br>                        System.out.println(<span class="hljs-string">&quot;\t\t\t用户：&quot;</span> + s);<br>                    &#125;<br>                    System.out.println(<span class="hljs-string">&quot;==================================================\n&quot;</span>);<br>                &#125;<br>                <span class="hljs-keyword">else</span> &#123;<br>                    System.out.println(<span class="hljs-string">&quot;其他类型的消息暂时不处理！&quot;</span>);<br>                &#125;<br><br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="ClientConnectServerThreadManage"><a href="#ClientConnectServerThreadManage" class="headerlink" title="ClientConnectServerThreadManage"></a>ClientConnectServerThreadManage</h6><ul>
+<li>管理ClientConnectServerThread线程的类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: SEA</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/5/5</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ClientConnectServerThreadManage</span> &#123;<br>    <span class="hljs-comment">//管理ClientConnectServerThread线程类的集合, 以userID为key；</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> HashMap&lt;String, ClientConnectServerThread&gt; clientConnectServerThreads = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ClientConnectServerThreadManage</span><span class="hljs-params">()</span> &#123;<br>    &#125;<br><br>    <span class="hljs-comment">//向集合添加一个线程</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addClientConnectServerThread</span><span class="hljs-params">(String userID, ClientConnectServerThread clientConnectServerThread)</span>&#123;<br>        clientConnectServerThreads.put(userID, clientConnectServerThread);<br>    &#125;<br><br>    <span class="hljs-comment">//根据userID获取集合中的某个线程</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ClientConnectServerThread <span class="hljs-title function_">getClientConnectServerThread</span><span class="hljs-params">(String userID)</span>&#123;<br>        <span class="hljs-keyword">return</span> clientConnectServerThreads.get(userID);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="3-工具类（放在utils包下）"><a href="#3-工具类（放在utils包下）" class="headerlink" title="3 工具类（放在utils包下）"></a>3 工具类（放在utils包下）</h5><h6 id="Util-KeyBoardInput"><a href="#Util-KeyBoardInput" class="headerlink" title="Util_KeyBoardInput"></a>Util_KeyBoardInput</h6><ul>
+<li>用于处理用户键盘输入的工具类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: SEA</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/5/5</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Util_KeyBoardInput</span> &#123;<br>    <span class="hljs-comment">//静态属性scanner</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 读取键盘输入的指定长度的字符串(不能为空串，limit &gt;= 1)</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> limit 限定的长度</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 指定长度的字符串</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">readString</span><span class="hljs-params">(<span class="hljs-type">int</span> limit)</span>&#123;<br>        <span class="hljs-keyword">return</span> readKeyBoard(limit, <span class="hljs-literal">false</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能： 读取一个字符串</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> limit 读取的长度</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> blankReturn 如果为true ,表示 可以读空字符串。</span><br><span class="hljs-comment">     * 					  如果为false表示 不能读空字符串。</span><br><span class="hljs-comment">     *	如果输入为空，或者输入大于limit的长度，就会提示重新输入。</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">readKeyBoard</span><span class="hljs-params">(<span class="hljs-type">int</span> limit, <span class="hljs-type">boolean</span> blankReturn)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">line</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;<br>        <span class="hljs-keyword">while</span>(scanner.hasNextLine())&#123;<br>            line = scanner.nextLine();<br>            <span class="hljs-comment">//如果line.length=0, 即用户没有输入任何内容，直接回车</span><br>            <span class="hljs-keyword">if</span> (line.length() == <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">if</span> (blankReturn) <span class="hljs-keyword">return</span> line;<span class="hljs-comment">//如果blankReturn=true,可以返回空串</span><br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">continue</span>; <span class="hljs-comment">//如果blankReturn=false,不接受空串，必须输入内容</span><br>            &#125;<br><br>            <span class="hljs-comment">//如果用户输入的内容大于了 limit，就提示重写输入</span><br>            <span class="hljs-comment">//如果用户如的内容 &gt;0 &lt;= limit ,我就接受</span><br>            <span class="hljs-keyword">if</span> (line.length() &lt; <span class="hljs-number">1</span> || line.length() &gt; limit) &#123;<br>                System.out.print(<span class="hljs-string">&quot;输入长度（不能大于&quot;</span> + limit + <span class="hljs-string">&quot;）错误，请重新输入：&quot;</span>);<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> line;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="4-界面类（放在view包下）"><a href="#4-界面类（放在view包下）" class="headerlink" title="4 界面类（放在view包下）"></a>4 界面类（放在view包下）</h5><h6 id="QQClientView"><a href="#QQClientView" class="headerlink" title="QQClientView"></a>QQClientView</h6><ul>
+<li>客户端界面类（目前没有前端，使用命令行输出的方式展示前端）；</li>
+<li>增加用户注册、退出系统，拉取在线用户列表功能；</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: SEA</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/5/5</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">QQClientView</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">isLoop</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;<span class="hljs-comment">//是否退出系统</span><br>    <span class="hljs-keyword">private</span> String userID, password;<span class="hljs-comment">//用户输入的登录信息</span><br>    <span class="hljs-keyword">private</span> String regUserID, regPassword;<span class="hljs-comment">//用户输入的注册信息</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">UserClientService</span> <span class="hljs-variable">userClientService</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">UserClientService</span>();<span class="hljs-comment">//用于用户登录注册等功能的对象</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">mainView</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        String selectItem;<br>        <span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        <span class="hljs-keyword">while</span>(isLoop)&#123;<br>            System.out.println(<span class="hljs-string">&quot;=============== 欢迎登录网络通信系统 ===============&quot;</span>);<br>            System.out.println(<span class="hljs-string">&quot;\t\t\t\t 1 登录系统 \t\t&quot;</span>);<br>            System.out.println(<span class="hljs-string">&quot;\t\t\t\t 2 注册账号 \t\t&quot;</span>);<br>            System.out.println(<span class="hljs-string">&quot;\t\t\t\t 9 退出系统 \t\t&quot;</span>);<br>            System.out.print(<span class="hljs-string">&quot;请输入您的选择：&quot;</span>);<br>            selectItem = Util_KeyBoardInput.readString(<span class="hljs-number">1</span>);<br>            <span class="hljs-keyword">switch</span> (selectItem)&#123;<br>                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;1&quot;</span>:<br>                    System.out.print(<span class="hljs-string">&quot;请输入用户名: &quot;</span>);<br>                    userID = Util_KeyBoardInput.readString(<span class="hljs-number">50</span>);<br>                    System.out.print(<span class="hljs-string">&quot;请输入密  码：&quot;</span>);<br>                    password = Util_KeyBoardInput.readString(<span class="hljs-number">50</span>);<br>                    System.out.println(<span class="hljs-string">&quot;登录验证中......&quot;</span>);<br>                    <span class="hljs-keyword">if</span>(userClientService.checkUser(userID, password))&#123;<br>                        System.out.println(<span class="hljs-string">&quot;=============== 欢迎您（&quot;</span>+ userID +<span class="hljs-string">&quot;）登录网络通信系统 ===============&quot;</span>);<br>                        <span class="hljs-comment">//进入二级菜单</span><br>                        <span class="hljs-keyword">while</span>(isLoop)&#123;<br>                            System.out.println(<span class="hljs-string">&quot;=============== 欢迎您（&quot;</span>+ userID +<span class="hljs-string">&quot;），这里是网络通信系统二级菜单 ===============&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t\t\t 1 显示在线用户列表 \t\t&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t\t\t 2 群发消息 \t\t&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t\t\t 3 私聊消息 \t\t&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t\t\t 4 发送文件 \t\t&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t\t\t 9 退出系统 \t\t&quot;</span>);<br>                            System.out.print(<span class="hljs-string">&quot;请输入您的选择：&quot;</span>);<br>                            selectItem = Util_KeyBoardInput.readString(<span class="hljs-number">1</span>);<br>                            <span class="hljs-keyword">switch</span> (selectItem)&#123;<br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;1&quot;</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;正在显示在线用户列表......&quot;</span>);<br>                                    userClientService.requestOnlineUserList(userID);<br>                                    Thread.sleep(<span class="hljs-number">1000</span>);<br>                                    <span class="hljs-keyword">break</span>;<br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;2&quot;</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;群发消息中......&quot;</span>);<br>                                    <span class="hljs-keyword">break</span>;<br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;3&quot;</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;私聊消息中......&quot;</span>);<br>                                    <span class="hljs-keyword">break</span>;<br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;4&quot;</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;发送文件中......&quot;</span>);<br>                                    <span class="hljs-keyword">break</span>;<br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;9&quot;</span>:<br>                                    userClientService.clientExit(userID);<br>                                    isLoop = <span class="hljs-literal">false</span>;<br>                                    System.exit(<span class="hljs-number">0</span>);<br>                                    <span class="hljs-keyword">break</span>;<br>                                <span class="hljs-keyword">default</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;请输入正确的选项！&quot;</span>);<br>                                    <span class="hljs-keyword">break</span>;<br>                            &#125;<br>                        &#125;<br>                    &#125;<br>                    <span class="hljs-keyword">else</span>&#123;<br>                        System.out.println(<span class="hljs-string">&quot;登录失败！请检查用户名和密码是否正确。&quot;</span>);<br>                    &#125;<br>                    <span class="hljs-keyword">break</span>;<br>                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;2&quot;</span>:<br>                    System.out.println(<span class="hljs-string">&quot;=============== 欢迎您注册，请输入注册信息！ ===============&quot;</span>);<br>                    System.out.print(<span class="hljs-string">&quot;请输入用户名: &quot;</span>);<br>                    regUserID = Util_KeyBoardInput.readString(<span class="hljs-number">50</span>);<br>                    System.out.print(<span class="hljs-string">&quot;请输入密  码：&quot;</span>);<br>                    regPassword = Util_KeyBoardInput.readString(<span class="hljs-number">50</span>);<br>                    System.out.println(<span class="hljs-string">&quot;注册中......&quot;</span>);<br>                    <span class="hljs-keyword">if</span>(userClientService.registerUser(regUserID, regPassword))&#123;<br>                        System.out.println(<span class="hljs-string">&quot;注册成功，请登录您的账号！&quot;</span>);<br>                        System.out.print(<span class="hljs-string">&quot;请输入用户名: &quot;</span>);<br>                        userID = Util_KeyBoardInput.readString(<span class="hljs-number">50</span>);<br>                        System.out.print(<span class="hljs-string">&quot;请输入密  码：&quot;</span>);<br>                        password = Util_KeyBoardInput.readString(<span class="hljs-number">50</span>);<br>                        System.out.println(<span class="hljs-string">&quot;登录验证中......&quot;</span>);<br>                        <span class="hljs-keyword">if</span>(userClientService.checkUser(userID, password))&#123;<br>                            System.out.println(<span class="hljs-string">&quot;=============== 欢迎您（&quot;</span>+ userID +<span class="hljs-string">&quot;）登录网络通信系统 ===============&quot;</span>);<br>                            <span class="hljs-comment">//进入二级菜单</span><br>                            <span class="hljs-keyword">while</span>(isLoop)&#123;<br>                                System.out.println(<span class="hljs-string">&quot;=============== 欢迎您（&quot;</span>+ userID +<span class="hljs-string">&quot;），这里是网络通信系统二级菜单 ===============&quot;</span>);<br>                                System.out.println(<span class="hljs-string">&quot;\t\t\t\t 1 显示在线用户列表 \t\t&quot;</span>);<br>                                System.out.println(<span class="hljs-string">&quot;\t\t\t\t 2 群发消息 \t\t&quot;</span>);<br>                                System.out.println(<span class="hljs-string">&quot;\t\t\t\t 3 私聊消息 \t\t&quot;</span>);<br>                                System.out.println(<span class="hljs-string">&quot;\t\t\t\t 4 发送文件 \t\t&quot;</span>);<br>                                System.out.println(<span class="hljs-string">&quot;\t\t\t\t 9 退出系统 \t\t&quot;</span>);<br>                                System.out.print(<span class="hljs-string">&quot;请输入您的选择：&quot;</span>);<br>                                selectItem = Util_KeyBoardInput.readString(<span class="hljs-number">1</span>);<br>                                <span class="hljs-keyword">switch</span> (selectItem)&#123;<br>                                    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;1&quot;</span>:<br>                                        System.out.println(<span class="hljs-string">&quot;正在显示在线用户列表......&quot;</span>);<br>                                        <span class="hljs-keyword">break</span>;<br>                                    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;2&quot;</span>:<br>                                        System.out.println(<span class="hljs-string">&quot;群发消息中......&quot;</span>);<br>                                        <span class="hljs-keyword">break</span>;<br>                                    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;3&quot;</span>:<br>                                        System.out.println(<span class="hljs-string">&quot;私聊消息中......&quot;</span>);<br>                                        <span class="hljs-keyword">break</span>;<br>                                    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;4&quot;</span>:<br>                                        System.out.println(<span class="hljs-string">&quot;发送文件中......&quot;</span>);<br>                                        <span class="hljs-keyword">break</span>;<br>                                    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;9&quot;</span>:<br>                                        userClientService.clientExit(userID);<br>                                        isLoop = <span class="hljs-literal">false</span>;<br>                                        System.exit(<span class="hljs-number">0</span>);<br>                                        <span class="hljs-keyword">break</span>;<br>                                    <span class="hljs-keyword">default</span>:<br>                                        System.out.println(<span class="hljs-string">&quot;请输入正确的选项！&quot;</span>);<br>                                        <span class="hljs-keyword">break</span>;<br>                                &#125;<br>                            &#125;<br>                        &#125;<br>                        <span class="hljs-keyword">else</span>&#123;<br>                            System.out.println(<span class="hljs-string">&quot;登录失败！请检查用户名和密码是否正确。&quot;</span>);<br>                        &#125;<br>                    &#125;<br>                    <span class="hljs-keyword">else</span>&#123;<br>                        System.out.println(<span class="hljs-string">&quot;注册失败！该用户已存在。&quot;</span>);<br>                    &#125;<br>                    <span class="hljs-keyword">break</span>;<br>                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;9&quot;</span>:<br>                    isLoop = <span class="hljs-literal">false</span>;<br>                    <span class="hljs-keyword">break</span>;<br>                <span class="hljs-keyword">default</span>:<br>                    System.out.println(<span class="hljs-string">&quot;请输入正确的选项！&quot;</span>);<br>                    <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">QQClientView</span> <span class="hljs-variable">qqView</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">QQClientView</span>();<br>        <span class="hljs-keyword">try</span> &#123;<br>            qqView.mainView();<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-2-服务器端"><a href="#2-2-服务器端" class="headerlink" title="2.2 服务器端"></a>2.2 服务器端</h4><h5 id="1-实体类（放在common包下）-1"><a href="#1-实体类（放在common包下）-1" class="headerlink" title="1 实体类（放在common包下）"></a>1 实体类（放在common包下）</h5><ul>
+<li>也包括用户类（User）、消息类（Message）、消息类型接口（MessageType）</li>
+</ul>
+<h6 id="User-1"><a href="#User-1" class="headerlink" title="User"></a>User</h6><ul>
+<li>用户类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: SEA</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/5/4</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;<span class="hljs-comment">//序列化ID，用来保证序列化和反序列化过程中，User类的一致性</span><br>    <span class="hljs-keyword">private</span> String userID;<span class="hljs-comment">//用户名</span><br>    <span class="hljs-keyword">private</span> String password;<span class="hljs-comment">//密码</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">User</span><span class="hljs-params">()</span> &#123;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">User</span><span class="hljs-params">(String userID, String password)</span> &#123;<br>        <span class="hljs-built_in">this</span>.userID = userID;<br>        <span class="hljs-built_in">this</span>.password = password;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getuserID</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> userID;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setuserID</span><span class="hljs-params">(String userID)</span> &#123;<br>        <span class="hljs-built_in">this</span>.userID = userID;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getPassword</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> password;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setPassword</span><span class="hljs-params">(String password)</span> &#123;<br>        <span class="hljs-built_in">this</span>.password = password;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;User&#123;&quot;</span> +<br>                <span class="hljs-string">&quot;userID=&#x27;&quot;</span> + userID + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&quot;, password=&#x27;&quot;</span> + password + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&#x27;&#125;&#x27;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="Message-1"><a href="#Message-1" class="headerlink" title="Message"></a>Message</h6><ul>
+<li>消息类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: SEA</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/5/4</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Message</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;<span class="hljs-comment">//序列化ID，用来保证序列化和反序列化过程中，User类的一致性</span><br>    <span class="hljs-keyword">private</span> String sender_ip;<span class="hljs-comment">//发送方ip</span><br>    <span class="hljs-keyword">private</span> String receiver_ip;<span class="hljs-comment">//接收方ip</span><br>    <span class="hljs-keyword">private</span> String send_data;<span class="hljs-comment">//发送内容</span><br>    <span class="hljs-keyword">private</span> String send_time;<span class="hljs-comment">//发送时间</span><br>    <span class="hljs-keyword">private</span> String message_type;<span class="hljs-comment">//消息类型（如：文本，图片，音频，视频等）</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Message</span><span class="hljs-params">()</span> &#123;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Message</span><span class="hljs-params">(String sender_ip, String receiver_ip, String send_data, String send_time, String message_type)</span> &#123;<br>        <span class="hljs-built_in">this</span>.sender_ip = sender_ip;<br>        <span class="hljs-built_in">this</span>.receiver_ip = receiver_ip;<br>        <span class="hljs-built_in">this</span>.send_data = send_data;<br>        <span class="hljs-built_in">this</span>.send_time = send_time;<br>        <span class="hljs-built_in">this</span>.message_type = message_type;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getSender_ip</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> sender_ip;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSender_ip</span><span class="hljs-params">(String sender_ip)</span> &#123;<br>        <span class="hljs-built_in">this</span>.sender_ip = sender_ip;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getReceiver_ip</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> receiver_ip;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setReceiver_ip</span><span class="hljs-params">(String receiver_ip)</span> &#123;<br>        <span class="hljs-built_in">this</span>.receiver_ip = receiver_ip;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getSend_data</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> send_data;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSend_data</span><span class="hljs-params">(String send_data)</span> &#123;<br>        <span class="hljs-built_in">this</span>.send_data = send_data;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getSend_time</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> send_time;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSend_time</span><span class="hljs-params">(String send_time)</span> &#123;<br>        <span class="hljs-built_in">this</span>.send_time = send_time;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getMessage_type</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> message_type;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setMessage_type</span><span class="hljs-params">(String message_type)</span> &#123;<br>        <span class="hljs-built_in">this</span>.message_type = message_type;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Message&#123;&quot;</span> +<br>                <span class="hljs-string">&quot;sender_ip=&#x27;&quot;</span> + sender_ip + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&quot;, receiver_ip=&#x27;&quot;</span> + receiver_ip + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&quot;, send_data=&#x27;&quot;</span> + send_data + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&quot;, send_time=&#x27;&quot;</span> + send_time + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&quot;, message_type=&#x27;&quot;</span> + message_type + <span class="hljs-string">&#x27;\&#x27;&#x27;</span> +<br>                <span class="hljs-string">&#x27;&#125;&#x27;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="MessageType-1"><a href="#MessageType-1" class="headerlink" title="MessageType"></a>MessageType</h6><ul>
+<li>消息类型接口</li>
+<li>增加：<ul>
+<li>注册消息类型；</li>
+<li>聊天消息类型；</li>
+<li>请求在线用户列表消息类型；</li>
+<li>客户端请求退出消息类型；</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea-365</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/5/4 20:54</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">MessageType</span> &#123;<br>    <span class="hljs-comment">//表示消息状态的常量</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_LOGIN_FAILED</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;0&quot;</span>;<span class="hljs-comment">//表示登录失败</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_LOGIN_SUCCEED</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;1&quot;</span>;<span class="hljs-comment">//表示登录成功</span><br><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_REGISTER_FAILED</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;2&quot;</span>;<span class="hljs-comment">//表示注册失败</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_REGISTER_SUCCEED</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;3&quot;</span>;<span class="hljs-comment">//表示注册成功</span><br><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_COMMON_MSG</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;4&quot;</span>;<span class="hljs-comment">//普通信息包，即聊天文本消息</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_REQUEST_ONLINE_USER</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;5&quot;</span>;<span class="hljs-comment">//请求 在线用户列表 的消息</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_RESPONSE_ONLINE_USER</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;6&quot;</span>;<span class="hljs-comment">//返回 持有在线用户列表 的消息</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_CLIENT_EXIT</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;7&quot;</span>;<span class="hljs-comment">//客户端请求退出</span><br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="2-功能类（放在service包下）-1"><a href="#2-功能类（放在service包下）-1" class="headerlink" title="2 功能类（放在service包下）"></a>2 功能类（放在service包下）</h5><h6 id="QQServer"><a href="#QQServer" class="headerlink" title="QQServer"></a>QQServer</h6><ul>
+<li>QQ服务器端，监听9999端口；</li>
+<li>增加：<ul>
+<li>1.使用HashMap&#x2F;ConcurrentMap模拟数据库；</li>
+<li>2.使用静态代码块初始化用户数据库；</li>
+<li>3.将用户登录验证功能与用户注册功能分离，分别监听9999端口和10000端口进行实现；</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * QQ服务器端，监听9999端口，等待客户端连接，客户端连接成功后，保持该连接的通信</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea-365</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/5/5 20:23</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">QQServer</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">ServerSocket</span> <span class="hljs-variable">serverSocket</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><br>    <span class="hljs-comment">//考虑高并发，使用ConcurrentHashMap；</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> ConcurrentMap&lt;String, User&gt; UserDB = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConcurrentHashMap</span>&lt;&gt;();<span class="hljs-comment">//使用HashMap模拟数据库</span><br><br>    <span class="hljs-comment">//这里要想到使用静态代码块，静态代码块在类加载时会执行一次</span><br>    <span class="hljs-keyword">static</span> &#123;<br>        UserDB.put(<span class="hljs-string">&quot;100&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;100&quot;</span>, <span class="hljs-string">&quot;123456&quot;</span>));<br>        UserDB.put(<span class="hljs-string">&quot;200&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;200&quot;</span>, <span class="hljs-string">&quot;12345&quot;</span>));<br>        UserDB.put(<span class="hljs-string">&quot;300&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;300&quot;</span>, <span class="hljs-string">&quot;1234&quot;</span>));<br>        UserDB.put(<span class="hljs-string">&quot;400&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;400&quot;</span>, <span class="hljs-string">&quot;123&quot;</span>));<br>        UserDB.put(<span class="hljs-string">&quot;500&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;500&quot;</span>, <span class="hljs-string">&quot;12&quot;</span>));<br>        UserDB.put(<span class="hljs-string">&quot;600&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;600&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>));<br>        UserDB.put(<span class="hljs-string">&quot;700&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;700&quot;</span>, <span class="hljs-string">&quot;123&quot;</span>));<br>    &#125;<br><br>    <span class="hljs-comment">//验证用户是否有效</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">checkLoginUser</span><span class="hljs-params">(String userID, String password)</span>&#123;<br>        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> UserDB.get(userID);<br>        <span class="hljs-keyword">return</span> user != <span class="hljs-literal">null</span> &amp;&amp; user.getPassword().equals(password);<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">checkRegUser</span><span class="hljs-params">(String userID, String password)</span>&#123;<br>        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> UserDB.get(userID);<br>        <span class="hljs-keyword">if</span>(user == <span class="hljs-literal">null</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">else</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">QQServer</span><span class="hljs-params">()</span>&#123;<br>        loginUser();<br>        registerUser();<br><br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 登录线程</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">loginUser</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">loginThread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Runnable</span>() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>                <span class="hljs-type">ServerSocket</span> <span class="hljs-variable">serverLoginSocket</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>                <span class="hljs-keyword">try</span>&#123;<br>                    <span class="hljs-comment">//端口可以写在配置文件中，方便后续修改</span><br>                    serverLoginSocket = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerSocket</span>(<span class="hljs-number">9999</span>);<br>                    System.out.println(<span class="hljs-string">&quot;监听9999端口，等待登录...&quot;</span>);<br>                    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) &#123;<br>                        <span class="hljs-comment">//有客户端连接则获取到Socket对象，否则阻塞</span><br>                        <span class="hljs-type">Socket</span> <span class="hljs-variable">socket</span> <span class="hljs-operator">=</span> serverLoginSocket.accept();<br>                        System.out.println(<span class="hljs-string">&quot;连接成功，正在验证登录信息...&quot;</span>);<br>                        <span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">objectInputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(socket.getInputStream());<br>                        <span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">objectOutputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(socket.getOutputStream());<br>                        <span class="hljs-comment">//获取客户端发送的User对象</span><br>                        <span class="hljs-type">User</span> <span class="hljs-variable">loginUser</span> <span class="hljs-operator">=</span> (User) objectInputStream.readObject();<br>                        <span class="hljs-comment">//message用于回复该客户端，是否登录成功</span><br>                        <span class="hljs-type">Message</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Message</span>();<br>                        <span class="hljs-comment">//这里需要连接数据库进行验证，但是目前没有增加数据库这一块，暂时先假设只有一个用户（100，123456）可以登录成功</span><br>                        <span class="hljs-comment">//这里需要连接数据库进行验证，但是目前没有增加数据库这一块，暂时使用HashMap模拟数据库</span><br><span class="hljs-comment">//                if (user.getuserID().equals(&quot;100&quot;) &amp;&amp; user.getPassword().equals(&quot;123456&quot;)) &#123;//登录成功</span><br><br>                        <span class="hljs-keyword">if</span> (checkLoginUser(loginUser.getuserID(), loginUser.getPassword())) &#123;<span class="hljs-comment">//登录成功</span><br>                            System.out.println(<span class="hljs-string">&quot;用户(&quot;</span> + loginUser.getuserID() + <span class="hljs-string">&quot;)登录成功！&quot;</span>);<br>                            <span class="hljs-comment">//返回登录成功message</span><br>                            message.setMessage_type(MessageType.MESSAGE_LOGIN_SUCCEED);<br>                            objectOutputStream.writeObject(message);<br><br><span class="hljs-comment">//                    socket.shutdownOutput();</span><br><br>                            <span class="hljs-comment">//登录成功，创建一个线程，用于保持该连接的通信</span><br>                            <span class="hljs-type">ServerConnectClientThread</span> <span class="hljs-variable">serverConnectClientThread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerConnectClientThread</span>(socket, loginUser.getuserID());<br>                            serverConnectClientThread.start();<br>                            <span class="hljs-comment">//加入集合方便管理</span><br>                            ServerConnectClientThreadManage.addServerConnectClientThread(loginUser.getuserID(), serverConnectClientThread);<br>                        &#125; <span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">//登录失败</span><br>                            System.out.println(<span class="hljs-string">&quot;用户(&quot;</span> + loginUser.getuserID() + <span class="hljs-string">&quot;)登录失败，取消连接&quot;</span>);<br>                            message.setMessage_type(MessageType.MESSAGE_LOGIN_FAILED);<br>                            objectOutputStream.writeObject(message);<br>                            socket.shutdownOutput();<br><br>                            objectOutputStream.close();<br>                            objectInputStream.close();<br>                            socket.close();<br>                        &#125;<br>                    &#125;<br>                &#125;<br>                <span class="hljs-keyword">catch</span> (Exception e)&#123;<br>                    e.printStackTrace();<br>                &#125;<br>                <span class="hljs-keyword">finally</span> &#123;<br>                    <span class="hljs-keyword">try</span> &#123;<br>                        <span class="hljs-keyword">if</span>(serverLoginSocket != <span class="hljs-literal">null</span>)<br>                            serverLoginSocket.close();<br>                    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>                        e.printStackTrace();<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;);<br>        loginThread.start();<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 注册线程</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">registerUser</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">registerThread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Runnable</span>() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>                <span class="hljs-type">ServerSocket</span> <span class="hljs-variable">serverRegisterSocket</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>                <span class="hljs-keyword">try</span>&#123;<br>                    <span class="hljs-comment">//端口可以写在配置文件中，方便后续修改</span><br>                    serverRegisterSocket = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerSocket</span>(<span class="hljs-number">10000</span>);<br>                    System.out.println(<span class="hljs-string">&quot;监听10000端口，等待注册...&quot;</span>);<br>                    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) &#123;<br>                        <span class="hljs-comment">//有客户端连接则获取到Socket对象，否则阻塞</span><br>                        <span class="hljs-type">Socket</span> <span class="hljs-variable">socket</span> <span class="hljs-operator">=</span> serverRegisterSocket.accept();<br>                        System.out.println(<span class="hljs-string">&quot;连接成功，正在验证注册信息...&quot;</span>);<br>                        <span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">objectInputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(socket.getInputStream());<br>                        <span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">objectOutputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(socket.getOutputStream());<br>                        <span class="hljs-comment">//获取客户端发送的User对象</span><br>                        <span class="hljs-type">User</span> <span class="hljs-variable">regUser</span> <span class="hljs-operator">=</span> (User) objectInputStream.readObject();<br>                        <span class="hljs-comment">//回复该客户端，是否注册成功</span><br>                        <span class="hljs-type">Message</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Message</span>();<br><br>                        <span class="hljs-keyword">if</span> (checkRegUser(regUser.getuserID(), regUser.getPassword())) &#123;<span class="hljs-comment">//注册成功</span><br>                            System.out.println(<span class="hljs-string">&quot;用户(&quot;</span> + regUser.getuserID() + <span class="hljs-string">&quot;)注册成功！&quot;</span>);<br>                            UserDB.put(regUser.getuserID(), regUser);<br>                            <span class="hljs-comment">//返回注册成功message</span><br>                            message.setMessage_type(MessageType.MESSAGE_REGISTER_SUCCEED);<br>                            objectOutputStream.writeObject(message);<br>                        &#125; <span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">//注册失败</span><br>                            System.out.println(<span class="hljs-string">&quot;用户(&quot;</span> + regUser.getuserID() + <span class="hljs-string">&quot;)注册失败！&quot;</span>);<br>                            message.setMessage_type(MessageType.MESSAGE_REGISTER_FAILED);<br>                            objectOutputStream.writeObject(message);<br>                            socket.shutdownOutput();<br><br>                            objectOutputStream.close();<br>                            objectInputStream.close();<br>                            socket.close();<br>                        &#125;<br>                    &#125;<br>                &#125;<br>                <span class="hljs-keyword">catch</span> (Exception e)&#123;<br>                    e.printStackTrace();<br>                &#125;<br>                <span class="hljs-keyword">finally</span> &#123;<br>                    <span class="hljs-keyword">try</span> &#123;<br>                        <span class="hljs-keyword">if</span>(serverRegisterSocket != <span class="hljs-literal">null</span>)<br>                            serverRegisterSocket.close();<br>                    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>                        e.printStackTrace();<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;);<br>        registerThread.start();<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="ServerConnectClientThread"><a href="#ServerConnectClientThread" class="headerlink" title="ServerConnectClientThread"></a>ServerConnectClientThread</h6><ul>
+<li>用于保持服务器端与某一个客户端通信的线程类</li>
+<li>增加：<ul>
+<li>1.增加 拉取在线用户列表 类型的消息处理；</li>
+<li>2.增加 用于请求退出系统 类型的消息处理；</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea-365</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/5/5 20:48</span><br><span class="hljs-comment"> * 用于保持服务器端与某一个客户端通信的线程类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ServerConnectClientThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span>&#123;<br>    <span class="hljs-keyword">private</span> Socket socket;<br>    <span class="hljs-keyword">private</span> String userID;<span class="hljs-comment">//与某个用户（客户端）通信</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ServerConnectClientThread</span><span class="hljs-params">()</span> &#123;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ServerConnectClientThread</span><span class="hljs-params">(Socket socket, String userID)</span> &#123;<br>        <span class="hljs-built_in">this</span>.socket = socket;<br>        <span class="hljs-built_in">this</span>.userID = userID;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> Socket <span class="hljs-title function_">getSocket</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> socket;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSocket</span><span class="hljs-params">(Socket socket)</span> &#123;<br>        <span class="hljs-built_in">this</span>.socket = socket;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getUserID</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> userID;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setUserID</span><span class="hljs-params">(String userID)</span> &#123;<br>        <span class="hljs-built_in">this</span>.userID = userID;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">//与客户端一样，服务器端也需要不断接收客户端发送的数据，并且还可以向客户端发送数据</span><br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">isLoop</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">while</span>(isLoop)&#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                System.out.println(<span class="hljs-string">&quot;与用户&quot;</span> + userID + <span class="hljs-string">&quot;保持连接，正在读取数据...&quot;</span>);<br>                <span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">objectInputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(<span class="hljs-built_in">this</span>.socket.getInputStream());<br>                <span class="hljs-type">Message</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> (Message) objectInputStream.readObject();<br>                <span class="hljs-keyword">if</span>(message.getMessage_type().equals(MessageType.MESSAGE_REQUEST_ONLINE_USER))&#123;<br>                    <span class="hljs-comment">//规定返回的在线用户列表以&quot;,&quot;分隔</span><br>                    <span class="hljs-comment">//此处需要思考：从哪里可以拿到所有的在线用户呢？</span><br>                    <span class="hljs-comment">//我一开始想的是：给User实体类增加属性status，用于表示用户的登录状态</span><br>                    <span class="hljs-comment">//由于目前没有使用数据库，因此，此处只需要获取线程类集合中所有关联userID的线程即可得到所有在线用户</span><br>                    <span class="hljs-comment">//使用的是HashMap，获取所有的在线用户只需获取keySet；</span><br><br>                    System.out.println(<span class="hljs-string">&quot;当前用户（&quot;</span> + message.getSender_ip() + <span class="hljs-string">&quot;）正在请求在线用户列表&quot;</span>);<br>                    <span class="hljs-type">String</span> <span class="hljs-variable">onlineUserList</span> <span class="hljs-operator">=</span> ServerConnectClientThreadManage.getOnlineUserList();<br><br>                    <span class="hljs-comment">//构建一个Message对象返回在线用户列表</span><br>                    <span class="hljs-type">Message</span> <span class="hljs-variable">respond_msg</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Message</span>();<br>                    respond_msg.setMessage_type(MessageType.MESSAGE_RESPONSE_ONLINE_USER);<br>                    respond_msg.setSend_data(onlineUserList);<br>                    respond_msg.setReceiver_ip(message.getSender_ip());<span class="hljs-comment">//设置当前message的接收方</span><br><br>                    <span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">objectOutputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(<span class="hljs-built_in">this</span>.socket.getOutputStream());<br>                    objectOutputStream.writeObject(respond_msg);<br><br>                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (message.getMessage_type().equals(MessageType.MESSAGE_CLIENT_EXIT)) &#123;<br>                    <span class="hljs-comment">//客户端请求退出：</span><br>                    <span class="hljs-comment">//1.移除集合中的线程</span><br>                    <span class="hljs-comment">//1.关闭对应的socket；</span><br>                    <span class="hljs-comment">//2.停止线程</span><br>                    ServerConnectClientThreadManage.removeServerConnectClientThread(<span class="hljs-built_in">this</span>.userID);<br>                    System.out.println(<span class="hljs-string">&quot;用户（&quot;</span> + <span class="hljs-built_in">this</span>.userID + <span class="hljs-string">&quot;）退出系统！&quot;</span>) ;<br>                    <span class="hljs-built_in">this</span>.socket.close();<br>                    isLoop = <span class="hljs-literal">false</span>;<br>                &#125; <span class="hljs-keyword">else</span>&#123;<br>                    System.out.println(<span class="hljs-string">&quot;其他类型的消息暂时不处理！&quot;</span>);<br>                &#125;<br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="ServerConnectClientThreadManage"><a href="#ServerConnectClientThreadManage" class="headerlink" title="ServerConnectClientThreadManage"></a>ServerConnectClientThreadManage</h6><ul>
+<li>管理ServerConnectClientThread线程的类</li>
+<li>增加：<ul>
+<li>1.在增加服务器与客户端通信线程的方法中，由put()替换为使用putIfAbsent()方法实现，能够保证线程安全；</li>
+<li>2.增加removeServerConnectClientThread()方法；</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea-365</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/5/5 20:59</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ServerConnectClientThreadManage</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> HashMap&lt;String, ServerConnectClientThread&gt; serverConnectClientThreads = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ServerConnectClientThreadManage</span><span class="hljs-params">()</span> &#123;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addServerConnectClientThread</span><span class="hljs-params">(String userID, ServerConnectClientThread serverConnectClientThread)</span>&#123;<br>        <span class="hljs-comment">//putIfAbsent 方法是一个原子操作，是线程安全的，多线程环境下可以安全地使用它来更新 Map 集合。</span><br>        <span class="hljs-comment">// 仅当Map中不存在具有相同键的映射时才会添加。</span><br>        <span class="hljs-comment">//此处，用于当该userID已经存在时，不创建新的线程与其交互；</span><br>        serverConnectClientThreads.putIfAbsent(userID, serverConnectClientThread);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">removeServerConnectClientThread</span><span class="hljs-params">(String userID)</span>&#123;<br>        serverConnectClientThreads.remove(userID);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ServerConnectClientThread <span class="hljs-title function_">getserverConnectClientThread</span><span class="hljs-params">(String userID)</span>&#123;<br>        <span class="hljs-keyword">return</span> serverConnectClientThreads.get(userID);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getOnlineUserList</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">onlineUserlist</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br><br>        <span class="hljs-keyword">for</span> (String s : serverConnectClientThreads.keySet()) &#123;<br>            onlineUserlist.append(s).append(<span class="hljs-string">&quot;,&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> onlineUserlist.toString();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="3-框架类（放在frame包下）"><a href="#3-框架类（放在frame包下）" class="headerlink" title="3 框架类（放在frame包下）"></a>3 框架类（放在frame包下）</h5><h6 id="QQFrame"><a href="#QQFrame" class="headerlink" title="QQFrame"></a>QQFrame</h6><ul>
+<li>服务器端启动框架；</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea-365</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/5/5 21:22</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">QQFrame</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">QQServer</span> <span class="hljs-variable">qqServer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">QQServer</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/" class="category-chain-item">Java学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E7%94%A8%E6%88%B7%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F/" class="category-chain-item">多用户即时通信系统</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+        <a href="/tags/%E5%A4%9A%E7%94%A8%E6%88%B7%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F/">#多用户即时通信系统</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Java-多用户即时通信系统-用户注册、退出系统以及拉取在线用户列表</div>
+      <div>http://sea-365.site/2023/05/20/Java-多用户即时通信系统-用户注册、退出系统以及拉取在线用户列表/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>SEA</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/13/JS-%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/" title="JS-基础总结">
+                        <span class="hidden-mobile">JS-基础总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        本站 总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
