@@ -1,0 +1,1254 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="SEA">
+  <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
+  
+    <meta name="description" content="数据库应用系统的设计与实现（MySQL+CentOS7环境）一、需求分析 收集和分析业务需求，以确定数据库的目标、范围和功能。这包括识别实体、属性和关系，并确定数据的完整性约束。  需求如下：  某银行准备开发一个银行业务管理系统，通过调查，得到以下的主要需求：  这家银行在多个城市都有支行（即各个支行位于某个城市），每个支行有唯一的名字。银行要监控每个支行的资产。  支行(名字， 所在城市， 资">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库应用系统的设计与实现（MySQL+CentOS7环境）">
+<meta property="og:url" content="http://sea-365.site/2023/05/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BA%94%E7%94%A8%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%EF%BC%88MySQL+CentOS7%E7%8E%AF%E5%A2%83%EF%BC%89/index.html">
+<meta property="og:site_name" content="SEA-365的读研日记">
+<meta property="og:description" content="数据库应用系统的设计与实现（MySQL+CentOS7环境）一、需求分析 收集和分析业务需求，以确定数据库的目标、范围和功能。这包括识别实体、属性和关系，并确定数据的完整性约束。  需求如下：  某银行准备开发一个银行业务管理系统，通过调查，得到以下的主要需求：  这家银行在多个城市都有支行（即各个支行位于某个城市），每个支行有唯一的名字。银行要监控每个支行的资产。  支行(名字， 所在城市， 资">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-%E5%AE%9E%E4%BD%93%E8%81%94%E7%B3%BB%E5%9B%BE.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-%E6%95%B0%E6%8D%AE%E5%BA%93whmdb_bank%E6%95%88%E6%9E%9C%E5%9B%BE.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-BankBranch%E8%A1%A8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-dept%E8%A1%A8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Deposit%E8%A1%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Loan%E8%A1%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-PayRecord%E8%A1%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Employee%E8%A1%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Account%E8%A1%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Custom%E8%A1%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png">
+<meta property="article:published_time" content="2023-05-22T13:47:55.000Z">
+<meta property="article:modified_time" content="2023-05-22T13:47:16.000Z">
+<meta property="article:author" content="SEA">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="高级数据库技术">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-%E5%AE%9E%E4%BD%93%E8%81%94%E7%B3%BB%E5%9B%BE.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>数据库应用系统的设计与实现（MySQL+CentOS7环境） - SEA-365的读研日记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sea-365.site","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>SEA-365</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数据库应用系统的设计与实现（MySQL+CentOS7环境）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-22 21:47" pubdate>
+          2023年5月22日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          17k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          139 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据库应用系统的设计与实现（MySQL+CentOS7环境）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="数据库应用系统的设计与实现（MySQL-CentOS7环境）"><a href="#数据库应用系统的设计与实现（MySQL-CentOS7环境）" class="headerlink" title="数据库应用系统的设计与实现（MySQL+CentOS7环境）"></a>数据库应用系统的设计与实现（MySQL+CentOS7环境）</h1><h2 id="一、需求分析"><a href="#一、需求分析" class="headerlink" title="一、需求分析"></a>一、需求分析</h2><ul>
+<li><p>收集和分析业务需求，以确定数据库的目标、范围和功能。这包括识别实体、属性和关系，并确定数据的完整性约束。</p>
+</li>
+<li><p>需求如下：</p>
+</li>
+<li><p>某银行准备开发一个银行业务管理系统，通过调查，得到以下的主要需求：</p>
+<ul>
+<li><p>这家<strong>银行</strong>在多个<strong>城市</strong>都有支行（即各个支行位于某个城市），每个支行有<strong>唯一的</strong><br><strong>名字</strong>。银行要监控<strong>每个支行的资产</strong>。</p>
+<ul>
+<li>支行(<strong>名字</strong>， 所在城市， 资产)</li>
+</ul>
+</li>
+<li><p>银行的<strong>客户</strong>通过其<strong>身份证号</strong>来标识。银行存储每个客户的<strong>姓名</strong>及其<strong>居住的街</strong><br><strong>道和城市</strong>。客户都有<strong>帐户</strong>，并且可以<strong>存款和贷款</strong>。客户可能和某个银行员工发生<br>联系，该员工是此客户的<strong>贷款负责人</strong>或<strong>银行帐户负责人</strong>。</p>
+<ul>
+<li>客户(<strong>身份证号</strong>， 银行账户负责人&#x2F;贷款账户负责人-员工身份证号， 姓名， 居住的街道及城市)</li>
+<li>存款(<strong>存款号，账户号（外键）</strong>，存款金额， 存款时间， <strong>开户支行名字（外键）</strong>， 利率)</li>
+</ul>
+</li>
+<li><p>银行<strong>员工</strong>也通过<strong>身份证号</strong>来标识。员工分为<strong>部门经理和普通员工（职位）</strong>，每个部门<br>经理都负责领导其<strong>所在部门</strong>的员工，并且每个员工只允许在一个部门内工作。每<br>个支行的管理机构存储每个员工的<strong>姓名</strong>、 <strong>电话号码</strong>、 <strong>家庭地址</strong>及其<strong>经理的身份证号</strong>。</p>
+<p>银行还需知道每个员工<strong>开始工作的日期</strong>，由此日期可以推知员工的雇佣期。</p>
+<ul>
+<li>员工(<strong>身份证号</strong>，<strong>支行名字（外键）, 部门id（外键）</strong>， 所属经理的身份证号， 职位， 姓名， 电话号码， 家庭地址， 开始工作的日期)</li>
+<li>部门(<strong>部门id</strong>， 部门名称， 部门经理身份证号)</li>
+</ul>
+</li>
+<li><p>银行提供两类帐户——<strong>储蓄帐户和支票帐户(账户类别)<strong>。一个客户可有多个帐户， 每个帐户被赋以唯一的</strong>帐户号</strong>。银行记录每个帐户的<strong>余额</strong> 、<strong>开户的支行</strong>以及每个<br>帐户所有者<strong>访问该帐户的最近日期</strong>。另外，每个<strong>储蓄帐户有其利率</strong>，且每个<strong>支票帐户有其透支额</strong>。 </p>
+<ul>
+<li>账户(<strong>账户号</strong>，<strong>客户身份证号（外键）</strong>， 账户类别， 余额， <strong>开户支行名字（外键）</strong>， 最近访问日期， 利率， 透支额)</li>
+</ul>
+</li>
+<li><p>每笔<strong>贷款</strong>由<strong>某个分支机构发放</strong>。每笔贷款用唯一的<strong>贷款号</strong>标识。银行需要知道每笔贷款<strong>所贷金额</strong>以及<strong>逐次支付的情况</strong>（银行将贷款分几次付<br>给客户）。虽然贷款号不能唯一标识银行所有为贷款所付的款项，但可以唯一标识<strong>总贷款额</strong>。对每次的付款需要记录日期和金额；</p>
+<ul>
+<li>贷款(<strong>贷款号</strong>，<strong>支行名字（外键）</strong>，<strong>账户号（外键）</strong>，贷款申请时间， 贷款金额， 逐次支付的次数)</li>
+<li>付款记录(<strong>记录id</strong>， <strong>贷款号（外键）</strong>，付款金额， 付款日期)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、数据库概念设计"><a href="#二、数据库概念设计" class="headerlink" title="二、数据库概念设计"></a>二、数据库概念设计</h2><ul>
+<li>用实体-关系图（ERD）来表示数据模型，包括实体、属性和关系之间的联系。</li>
+<li>如下图所示：</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-%E5%AE%9E%E4%BD%93%E8%81%94%E7%B3%BB%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="银行业务管理系统-实体联系图"></p>
+<h2 id="三、数据库逻辑设计"><a href="#三、数据库逻辑设计" class="headerlink" title="三、数据库逻辑设计"></a>三、数据库逻辑设计</h2><ul>
+<li><p>逻辑设计：把概念设计转换为关系模式，也就是数据库表的结构。这包括确定表格、列、主键、外键等等。</p>
+</li>
+<li><p>如下：</p>
+<ul>
+<li><p>支行表（whm_BankBranch）</p>
+<ul>
+<li>bankBranch_name：支行名字，<strong>主键</strong>；</li>
+<li>city：支行所在城市；</li>
+<li>asset：资产；</li>
+</ul>
+</li>
+<li><p>客户表（whm_Custom）</p>
+<ul>
+<li>custom_id：客户身份证号，<strong>主键</strong>；</li>
+<li>employee_id：员工身份证号，<strong>外键</strong>；</li>
+<li>custom_name：客户姓名；</li>
+<li>custom_address：居住地址；</li>
+</ul>
+</li>
+<li><p>员工表（whm_Employee）</p>
+<ul>
+<li>employee_id：员工身份证号，<strong>主键</strong>；</li>
+<li>bankBranch_name：支行名字，<strong>外键</strong>；</li>
+<li>dept_id：部门id，<strong>外键</strong>；</li>
+<li>job：职位；</li>
+<li>employee_name：员工姓名；</li>
+<li>call_number：电话号码；</li>
+<li>employee_address：员工家庭住址；</li>
+<li>JoinDate：开始工作日期；</li>
+</ul>
+</li>
+<li><p>部门表（whm_Dept）</p>
+<ul>
+<li>dept_id：部门id，<strong>主键</strong>；</li>
+<li>dept_name：部门名称；</li>
+<li>dept_leaderID：部门经理身份证号；</li>
+</ul>
+</li>
+<li><p>账户表（whm_Account）</p>
+<ul>
+<li>account_no：账户号，<strong>主键</strong>；</li>
+<li>custom_id：客户身份证号，<strong>外键</strong>；</li>
+<li>account_type：账户类别；</li>
+<li>account_balance：账户余额；</li>
+<li>bankBranch_name：开户支行名字，<strong>外键</strong>；</li>
+<li>last_access：最近访问日期；</li>
+<li>rate：利率；</li>
+<li>overdraft：透支额；</li>
+</ul>
+</li>
+<li><p>存款表（whm_Deposit）</p>
+<ul>
+<li>deposit_no：存款号，<strong>主键</strong>；</li>
+<li>bankBranch_name：支行名字，<strong>外键</strong>；</li>
+<li>account_no：账户号，<strong>外键；</strong></li>
+<li>deposit_money：存款金额；</li>
+<li>deposit_date：存款时间；</li>
+<li>rate：存款利率；</li>
+</ul>
+</li>
+<li><p>贷款表（whm_Loan）</p>
+<ul>
+<li>loan_no：贷款号，<strong>主键</strong>；</li>
+<li>bankBranch_name：支行名字，<strong>外键</strong>；</li>
+<li>account_no：账户号，<strong>外键；</strong></li>
+<li>loan_money：贷款金额；</li>
+<li>loan_createTime：贷款申请时间；</li>
+<li>pay_times：逐次支付次数；</li>
+</ul>
+</li>
+<li><p>付款记录（whm_PayRecord）</p>
+<ul>
+<li>payRecord_id：记录id，<strong>主键</strong>；</li>
+<li>loan_no：贷款号，<strong>外键</strong>；</li>
+<li>pay_money：付款金额；</li>
+<li>pay_date：付款日期；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="四、数据库物理设计"><a href="#四、数据库物理设计" class="headerlink" title="四、数据库物理设计"></a>四、数据库物理设计</h2><ul>
+<li>物理设计：选择适当的数据类型、索引、分区等等；</li>
+</ul>
+<h3 id="4-1-表结构设计"><a href="#4-1-表结构设计" class="headerlink" title="4.1 表结构设计"></a>4.1 表结构设计</h3><ul>
+<li><p>具体设计如下：</p>
+<ul>
+<li><p>支行表（whm_BankBranch）</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>描述</th>
+<th>类型</th>
+<th>主&#x2F;外键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bankBranch_name</td>
+<td>支行名字</td>
+<td>varchar(100)</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>city</td>
+<td>支行所在城市</td>
+<td>varchar(100)</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>asset</td>
+<td>资产</td>
+<td>bigint</td>
+<td>&#x2F;</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>客户表（whm_Custom）</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>描述</th>
+<th>类型</th>
+<th>主&#x2F;外键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>custom_id</td>
+<td>客户身份证号</td>
+<td>char(30)</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>employee_id</td>
+<td>员工身份证号</td>
+<td>char(30)</td>
+<td>外键，参考员工表（whm_Employee）中的employee_id字段</td>
+</tr>
+<tr>
+<td>custom_name</td>
+<td>客户姓名</td>
+<td>char(50)</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>custom_address</td>
+<td>居住地址</td>
+<td>varchar(100)</td>
+<td>&#x2F;</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>员工表（whm_Employee）</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>描述</th>
+<th>类型</th>
+<th>主&#x2F;外键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>employee_id</td>
+<td>员工身份证号</td>
+<td>char(30)</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>bankBranch_name</td>
+<td>支行名字</td>
+<td>char(50)</td>
+<td>外键，参考支行表（whm_BankBranch）中的bankBranch_name字段</td>
+</tr>
+<tr>
+<td>dept_id</td>
+<td>部门id</td>
+<td>char(10)</td>
+<td>外键，参考部门表（whm_Dept）中的dept_id字段</td>
+</tr>
+<tr>
+<td>job</td>
+<td>职位</td>
+<td>char(50)</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>employee_name</td>
+<td>员工姓名</td>
+<td>char(50)</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>call_number</td>
+<td>电话号码</td>
+<td>char(50)</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>employee_address</td>
+<td>员工家庭住址</td>
+<td>varchar(100)</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>joinDate</td>
+<td>开始工作日期</td>
+<td>timestamp</td>
+<td>&#x2F;</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>部门表（whm_Dept）</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>描述</th>
+<th>类型</th>
+<th>主&#x2F;外键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dept_id</td>
+<td>部门id</td>
+<td>char(10)</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>dept_name</td>
+<td>部门名称</td>
+<td>char(50)</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>dept_leaderID</td>
+<td>部门经理身份证号</td>
+<td>char(30)</td>
+<td>&#x2F;</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>账户表（whm_Account）</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>描述</th>
+<th>类型</th>
+<th>主&#x2F;外键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>account_no</td>
+<td>账户号</td>
+<td>char(50)</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>custom_id</td>
+<td>客户身份证号</td>
+<td>char(30)</td>
+<td>外键，参考客户表（whm_Custom）中的custom_id字段</td>
+</tr>
+<tr>
+<td>account_type</td>
+<td>账户类别</td>
+<td>char(20)</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>account_balance</td>
+<td>账户余额</td>
+<td>bigint</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>bankBranch_name</td>
+<td>开户支行名字</td>
+<td>varchar(100)</td>
+<td>外键，参考支行表（whm_BankBranch）中的bankBranch_name字段</td>
+</tr>
+<tr>
+<td>last_access</td>
+<td>最近访问日期</td>
+<td>timestamp</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>rate</td>
+<td>利率，范围：0.00% ~ 100.00%</td>
+<td>decimal(5,2)</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>overdraft</td>
+<td>透支额</td>
+<td>bigint</td>
+<td>&#x2F;</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>存款表（whm_Deposit）</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>描述</th>
+<th>类型</th>
+<th>主&#x2F;外键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>deposit_no</td>
+<td>存款号</td>
+<td>char(50)</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>bankBranch_name</td>
+<td>支行名字</td>
+<td>varchar(100)</td>
+<td>外键，参考支行表（whm_BankBranch）中的bankBranch_name字段</td>
+</tr>
+<tr>
+<td>account_no</td>
+<td>账户号</td>
+<td>char(50)</td>
+<td>外键，参考账户表（whm_Account）中的account_no字段</td>
+</tr>
+<tr>
+<td>deposit_money</td>
+<td>存款金额</td>
+<td>bigint</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>deposit_date</td>
+<td>存款时间</td>
+<td>timestamp</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>rate</td>
+<td>存款利率,范围：0.00% ~ 100.00%</td>
+<td>decimal(5,2)</td>
+<td>&#x2F;</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>贷款表（whm_Loan）</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>描述</th>
+<th>类型</th>
+<th>主&#x2F;外键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>loan_no</td>
+<td>贷款号</td>
+<td>char(50)</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>bankBranch_name</td>
+<td>支行名字</td>
+<td>varchar(100)</td>
+<td>外键，参考支行表（whm_BankBranch）中的bankBranch_name字段</td>
+</tr>
+<tr>
+<td>account_no</td>
+<td>账户号</td>
+<td>char(50)</td>
+<td>外键，参考账户表（whm_Account）中的account_no字段</td>
+</tr>
+<tr>
+<td>loan_money</td>
+<td>贷款金额</td>
+<td>bigint</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>loan_createTime</td>
+<td>贷款申请时间</td>
+<td>timestamp</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>pay_times</td>
+<td>逐次支付次数</td>
+<td>int</td>
+<td>&#x2F;</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>付款记录（whm_PayRecord）</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>描述</th>
+<th>类型</th>
+<th>主&#x2F;外键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>payRecord_id</td>
+<td>记录id</td>
+<td>char(50)</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>loan_no</td>
+<td>贷款号</td>
+<td>char(50)</td>
+<td>外键，参考贷款表（whm_Loan）中的loan_no字段</td>
+</tr>
+<tr>
+<td>pay_money</td>
+<td>付款金额</td>
+<td>bigint</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>pay_date</td>
+<td>付款日期</td>
+<td>timestamp</td>
+<td>&#x2F;</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2-MySQL中建库建表"><a href="#4-2-MySQL中建库建表" class="headerlink" title="4.2 MySQL中建库建表"></a>4.2 MySQL中建库建表</h3><ul>
+<li><p>在Navicat中进行建库建表。</p>
+</li>
+<li><p>SQL代码如下：</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 新建数据库whmdb_bank<br>CREATE DATABASE IF NOT EXISTS whmdb_bank;<br>-- 使用数据库whmdb_bank<br>USE whmdb_bank;<br><br>-- 创建支行表（whm_BankBranch）<br>CREATE TABLE whm_BankBranch(<br>	bankBranch_name VARCHAR(100) NOT NULL PRIMARY KEY COMMENT &#x27;支行名字&#x27;, <br>	city VARCHAR(100) COMMENT &#x27;支行所在城市&#x27;,<br>	assert BIGINT COMMENT &#x27;资产&#x27;<br>) COMMENT &#x27;支行表（whm_BankBranch）&#x27;;<br><br><br>-- 创建部门表（whm_Dept）<br>CREATE TABLE whm_Dept(<br>	dept_id CHAR(10) NOT NULL PRIMARY KEY COMMENT &#x27;部门id&#x27;, <br>	dept_name CHAR(50) COMMENT &#x27;部门名称&#x27;,<br>	dept_leaderID CHAR(30) COMMENT &#x27;部门经理身份证号&#x27;<br>) COMMENT &#x27;部门表（whm_Dept）&#x27;;<br><br><br>-- 创建账户表（whm_Account）<br>CREATE TABLE whm_Account(<br>	account_no CHAR(50) NOT NULL PRIMARY KEY COMMENT &#x27;账户号&#x27;, <br>	account_type CHAR(20) COMMENT &#x27;账户类别&#x27;,<br>	account_balance BIGINT COMMENT &#x27;账户余额&#x27;,<br>	bankBranch_name CHAR(100) COMMENT &#x27;开户支行名字&#x27;,<br>	last_access TIMESTAMP COMMENT &#x27;最近访问日期&#x27;,<br>	rate DECIMAL(5, 2) COMMENT &#x27;利率，范围：0.00% ~ 100.00%&#x27;,<br>	overdraft BIGINT COMMENT &#x27;透支额&#x27;,<br>	CONSTRAINT fK_account_branch FOREIGN KEY (bankBranch_name) REFERENCES whm_BankBranch(bankBranch_name)<br>) COMMENT &#x27;账户表（whm_Account）&#x27;;<br><br><br>-- 创建存款表（whm_Deposit）<br>CREATE TABLE whm_Deposit(<br>	deposit_no CHAR(50) NOT NULL PRIMARY KEY COMMENT &#x27;存款号&#x27;, <br>	bankBranch_name CHAR(100) COMMENT &#x27;开户支行名字&#x27;,<br>	deposit_money BIGINT COMMENT &#x27;存款金额&#x27;,<br>	deposit_date TIMESTAMP COMMENT &#x27;存款时间&#x27;,<br>	rate DECIMAL(5, 2) COMMENT &#x27;利率，范围：0.00% ~ 100.00%&#x27;,<br>	account_no CHAR(50) COMMENT &#x27;账户号&#x27;, <br>	CONSTRAINT fK_deposit_branch FOREIGN KEY (bankBranch_name) REFERENCES whm_BankBranch(bankBranch_name),<br>	CONSTRAINT fK_deposit_account FOREIGN KEY (account_no) REFERENCES whm_Account(account_no)<br>) COMMENT &#x27;存款表（whm_Deposit）&#x27;;<br><br><br>-- 创建贷款表（whm_Loan）<br>CREATE TABLE whm_Loan(<br>	loan_no CHAR(50) NOT NULL PRIMARY KEY COMMENT &#x27;贷款号&#x27;, <br>	bankBranch_name CHAR(100) COMMENT &#x27;开户支行名字&#x27;,<br>	loan_money BIGINT COMMENT &#x27;贷款金额&#x27;,<br>	loan_createTime TIMESTAMP COMMENT &#x27;贷款申请时间&#x27;,<br>	pay_times DECIMAL(5, 2) COMMENT &#x27;逐次支付次数&#x27;,<br>	account_no CHAR(50) COMMENT &#x27;账户号&#x27;,<br>	CONSTRAINT fK_loan_branch FOREIGN KEY (bankBranch_name) REFERENCES whm_BankBranch(bankBranch_name),<br>	CONSTRAINT fK_loan_account FOREIGN KEY (account_no) REFERENCES whm_Account(account_no)<br>) COMMENT &#x27;贷款表（whm_Loan）&#x27;;<br><br>-- 创建付款记录表表（whm_PayRecord）<br>CREATE TABLE whm_PayRecord(<br>	payRecord_id CHAR(50) NOT NULL PRIMARY KEY COMMENT &#x27;记录id&#x27;, <br>	loan_no CHAR(50) COMMENT &#x27;贷款号&#x27;,<br>	pay_money BIGINT COMMENT &#x27;付款金额&#x27;,<br>	pay_date TIMESTAMP COMMENT &#x27;付款日期&#x27;,<br>	CONSTRAINT fK_payrecored_loan FOREIGN KEY (loan_no) REFERENCES whm_Loan(loan_no)<br>) COMMENT &#x27;付款记录表表（whm_PayRecord）&#x27;;<br><br>-- 创建员工表（whm_Employee）<br>CREATE TABLE whm_Employee(<br>	employee_id CHAR(30) NOT NULL PRIMARY KEY COMMENT &#x27;员工身份证号&#x27;, <br>	bankBranch_name CHAR(50) COMMENT &#x27;支行名字&#x27;,<br>	dept_id CHAR(10) COMMENT &#x27;部门id&#x27;,<br>	job CHAR(50) COMMENT &#x27;居住地址&#x27;,<br>	employee_name CHAR(50) COMMENT &#x27;员工姓名&#x27;,<br>	call_number CHAR(50) COMMENT &#x27;电话号码&#x27;,<br>	employee_address VARCHAR(100) COMMENT &#x27;员工家庭住址&#x27;,<br>	joinDate TIMESTAMP COMMENT &#x27;开始工作日期&#x27;,<br>	CONSTRAINT fK_employee_branch FOREIGN KEY (bankBranch_name) REFERENCES whm_BankBranch(bankBranch_name),<br>	CONSTRAINT fK_employee_dept FOREIGN KEY (dept_id) REFERENCES whm_Dept(dept_id)<br>) COMMENT &#x27;员工表（whm_Employee）&#x27;;<br><br><br><br>-- 创建客户表（whm_Custom）<br>CREATE TABLE whm_Custom(<br>	custom_id CHAR(30) NOT NULL PRIMARY KEY COMMENT &#x27;客户身份证号&#x27;, <br>	employee_id CHAR(30) COMMENT &#x27;员工身份证号&#x27;,<br>	custom_name CHAR(50) COMMENT &#x27;客户姓名&#x27;,<br>	custom_address CHAR(100) COMMENT &#x27;居住地址&#x27;,<br>	CONSTRAINT fK_custom_employee FOREIGN KEY (employee_id) REFERENCES whm_Employee(employee_id)<br>) COMMENT &#x27;客户表（whm_Custom）&#x27;;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-3-数据库whmdb-bank效果图"><a href="#4-3-数据库whmdb-bank效果图" class="headerlink" title="4.3 数据库whmdb_bank效果图"></a>4.3 数据库whmdb_bank效果图</h3><p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-%E6%95%B0%E6%8D%AE%E5%BA%93whmdb_bank%E6%95%88%E6%9E%9C%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="银行业务管理系统-数据库whmdb_bank效果图"></p>
+<h2 id="五、生成业务数据"><a href="#五、生成业务数据" class="headerlink" title="五、生成业务数据"></a>五、生成业务数据</h2><h3 id="5-1-业务数据量需求"><a href="#5-1-业务数据量需求" class="headerlink" title="5.1 业务数据量需求"></a>5.1 业务数据量需求</h3><ul>
+<li>业务数据量需求：<ul>
+<li>支行表：10条；（手动输入）</li>
+<li>部门表：10条；（手动输入）</li>
+<li>存款表：10000条；（存储过程生成）</li>
+<li>贷款表：10000条（存储过程生成）</li>
+<li>付款记录表：10000条（存储过程生成）</li>
+<li>员工表：10000条（存储过程生成）</li>
+<li>账户表：10000条；（存储过程生成）</li>
+<li>客户表：10000条；（存储过程生成）</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-2-编写脚本生成（或者手动输入）"><a href="#5-2-编写脚本生成（或者手动输入）" class="headerlink" title="5.2 编写脚本生成（或者手动输入）"></a>5.2 编写脚本生成（或者手动输入）</h3><h4 id="5-2-1-支行表"><a href="#5-2-1-支行表" class="headerlink" title="5.2.1 支行表"></a>5.2.1 支行表</h4><p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-BankBranch%E8%A1%A8.png" srcset="/img/loading.gif" lazyload alt="银行业务管理系统-BankBranch表"></p>
+<h4 id="5-2-2-部门表"><a href="#5-2-2-部门表" class="headerlink" title="5.2.2 部门表"></a>5.2.2 部门表</h4><p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-dept%E8%A1%A8.png" srcset="/img/loading.gif" lazyload alt="银行业务管理系统-dept表"></p>
+<h4 id="5-2-3-存款表"><a href="#5-2-3-存款表" class="headerlink" title="5.2.3 存款表"></a>5.2.3 存款表</h4><ul>
+<li>脚本代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 编写存储过程，生成10000条存款记录；<br><br>DELIMITER //<br><br>-- IN 关键字表示输入参数，在存储过程内部不允许修改<br>CREATE PROCEDURE generate_deposit_records(IN start_index INT, IN end_index INT)<br>BEGIN<br>    DECLARE counter INT DEFAULT start_index;<br>    DECLARE branch_name CHAR(100);<br>    DECLARE account_no_1 CHAR(50);<br><br>    WHILE counter &lt;= end_index DO<br>        -- 从另一个表中获取一个随机的bankBranch_name<br>				-- 执行过程：<br>				-- 	 1.SELECT bankBranch_name FROM whm_BankBranch：从 whm_BankBranch 表中选择所有的 bankBranch_name 列的值。<br>				--   2.ORDER BY RAND()：对选取的 bankBranch_name 值进行随机排序。RAND() 函数会生成一个 0 到 1 之间的随机数，根据这个随机数来排序，使结果随机化。<br>				--   3.LIMIT 1：返回随机后的支行名字列的第一行<br>        SET branch_name = (SELECT bankBranch_name FROM whm_BankBranch ORDER BY RAND() LIMIT 1);<br>        SET account_no_1 = (SELECT account_no FROM whm_Account WHERE account_type = &#x27;存款账户&#x27; ORDER BY RAND() LIMIT 1);<br><br>        INSERT INTO whm_Deposit (deposit_no, bankBranch_name, deposit_money, deposit_date, rate, account_no)<br>        VALUES (<br>						-- LPAD(counter, 5, &#x27;0&#x27;)：counter和左边填充的0加起来一共5位<br>            CONCAT(&#x27;DEP&#x27;, LPAD(counter, 5, &#x27;0&#x27;)),<br>            branch_name,<br>            FLOOR(RAND() * 1000000),<br>						-- INTERVAL FLOOR(RAND() * 365) DAY：指定一个以随机（0-365）天为时间间隔；<br>						-- 用当前时间减去随机天数作为随机存款时间；<br>            DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 365) DAY),<br>            ROUND(RAND() * 100, 2),<br>						account_no_1<br>        );<br><br>        SET counter = counter + 1;<br>    END WHILE;<br>END //<br><br>DELIMITER ;<br><br>DROP PROCEDURE generate_deposit_records;<br><br><br>CALL generate_deposit_records(1, 10000);<br><br><br>DELETE FROM whm_Deposit;<br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>生成结果</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Deposit%E8%A1%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png" srcset="/img/loading.gif" lazyload alt="银行业务管理系统-Deposit表的业务数据生成_1"></p>
+<h4 id="5-2-4-贷款表"><a href="#5-2-4-贷款表" class="headerlink" title="5.2.4 贷款表"></a>5.2.4 贷款表</h4><ul>
+<li>脚本代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 编写存储过程，生成10000条贷款记录；<br><br>DELIMITER //<br><br>CREATE PROCEDURE generate_loan_records(IN start_index INT, IN end_index INT)<br>BEGIN<br>		-- 循环起始下标<br>	  DECLARE counter INT DEFAULT start_index;<br>		-- 定义用于保存 当前记录支行名字 的变量<br>		DECLARE branch_name char(100);<br>		DECLARE account_no_1 CHAR(50);<br>		<br>		WHILE counter &lt;= end_index DO<br>			  SET branch_name = (SELECT bankBranch_name FROM whm_BankBranch ORDER BY RAND() LIMIT 1);<br>				SET account_no_1 = (SELECT account_no FROM whm_Account WHERE account_type = &#x27;贷款账户&#x27; ORDER BY RAND() LIMIT 1);<br>				<br>				INSERT INTO whm_Loan(loan_no, bankBranch_name, loan_money, loan_createTime, pay_times, account_no)<br>			  VALUES(<br>					  CONCAT(&#x27;LOAN&#x27;, LPAD(counter, 5,&#x27;0&#x27;)),<br>						branch_name,<br>						FLOOR(RAND() * 10000000),<br>						DATE_SUB(NOW(),INTERVAL FLOOR(RAND() * 365) DAY),<br>					  ROUND(RAND() * 360, 0),<br>						account_no_1<br>				);<br>				<br>				SET counter = counter + 1;<br>		END WHILE;<br>		<br>END //<br><br>DELIMITER ;<br><br>CALL generate_loan_records(1, 10000);<br><br>DROP PROCEDURE generate_loan_records;<br><br>DELETE FROM whm_Loan;<br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>生成结果</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Loan%E8%A1%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png" srcset="/img/loading.gif" lazyload alt="银行业务管理系统-Loan表的业务数据生成_1"></p>
+<h4 id="5-2-5-付款记录表"><a href="#5-2-5-付款记录表" class="headerlink" title="5.2.5 付款记录表"></a>5.2.5 付款记录表</h4><ul>
+<li>脚本代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建存储过程，生成付款记录数据<br><br>DELIMITER //<br><br>CREATE PROCEDURE generate_payrecord_records(IN start_index INT, IN end_index INT)<br>BEGIN <br>		DECLARE counter INT DEFAULT start_index;<br>		DECLARE loan_no_1 CHAR(50);<br>		<br>		WHILE counter &lt;= end_index DO<br>				SET loan_no_1 = (SELECT loan_no FROM whm_Loan ORDER BY RAND() LIMIT 1);<br>				<br>				INSERT INTO whm_PayRecord(payRecord_id, loan_no, pay_money, pay_date)<br>				VALUES(<br>						CONCAT(&#x27;PAYRE&#x27;,LPAD(counter, 5, &#x27;0&#x27;)),<br>						loan_no_1,<br>						FlOOR(RAND() * 1000000),<br>						DATE_SUB(NOW(),INTERVAL FLOOR(RAND() * 365) DAY)<br>				);<br>				SET counter = counter + 1;<br>		END WHILE;<br>END  //<br><br>DELIMITER ;<br><br>DROP PROCEDURE generate_payrecord_records; -- 删除该存储过程<br><br>CALL generate_payrecord_records(1, 10000);<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>生成结果</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-PayRecord%E8%A1%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png" srcset="/img/loading.gif" lazyload alt="银行业务管理系统-PayRecord表的业务数据生成_1"></p>
+<h4 id="5-2-6-员工表"><a href="#5-2-6-员工表" class="headerlink" title="5.2.6 员工表"></a>5.2.6 员工表</h4><ul>
+<li>脚本代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建存储过程，生成员工表业务数据<br><br>DELIMITER //<br><br>CREATE PROCEDURE generate_employee_records(IN start_index INT, IN end_index INT)<br>BEGIN <br>		DECLARE counter INT DEFAULT start_index; <br>		DECLARE branch_name CHAR(100);<br>		DECLARE dept_id_1 CHAR(10);<br>	<br>		DECLARE _surname VARCHAR(1024);<br>		DECLARE _name VARCHAR(1024);<br>		<br>		DECLARE _provinces VARCHAR(1024);<br>    DECLARE _cities VARCHAR(1024);<br>    DECLARE _districts VARCHAR(1024);<br>		<br>		DECLARE province VARCHAR(50);<br>		DECLARE city VARCHAR(50);<br>    DECLARE district VARCHAR(50);<br>		<br>		DECLARE address VARCHAR(200);<br>		<br>		DECLARE job_1 VARCHAR(20);<br>		<br>		<br>		<br>		<br>		WHILE counter &lt;= end_index DO<br>				SET branch_name = (SELECT bankBranch_name FROM whm_BankBranch ORDER BY RAND() LIMIT 1);<br>				SET dept_id_1 = (SELECT dept_id FROM whm_Dept ORDER BY RAND() LIMIT 1);<br>				<br>				-- 定义姓氏列表<br>				set _surname = &#x27;王李张刘陈杨黄赵吴周徐孙马朱胡郭何高林罗郑梁谢宋唐位许韩冯邓曹彭曾萧田董潘袁于蒋蔡余杜叶程苏魏吕丁任沈姚卢姜崔钟谭陆汪范金石廖贾夏韦傅方白邹孟熊秦邱江尹薛阎段雷侯龙史陶黎贺顾毛郝龚邵万钱严覃武戴莫孔向汤&#x27;;<br>				<br>				-- 定义名字列表<br>				set _name =&#x27;丹举义之乐书乾云亦从代以伟佑俊修健傲儿元光兰冬冰冷凌凝凡凯初力勤千卉半华南博又友同向君听和哲嘉国坚城夏夜天奇奥如妙子存季孤宇安宛宸寒寻尔尧山岚峻巧平幼康建开弘强彤彦彬彭心忆志念怀怜恨惜慕成擎敏文新旋旭昊明易昕映春昱晋晓晗晟景晴智曼朋朗杰松枫柏柔柳格桃梦楷槐正水沛波泽洁洋济浦浩海涛润涵渊源溥濮瀚灵灿炎烟烨然煊煜熙熠玉珊珍理琪琴瑜瑞瑶瑾璞痴皓盼真睿碧磊祥祺秉程立竹笑紫绍经绿群翠翰致航良芙芷苍苑若茂荣莲菡菱萱蓉蓝蕊蕾薇蝶觅访诚语谷豪赋超越轩辉达远邃醉金鑫锦问雁雅雨雪霖霜露青靖静风飞香驰骞高鸿鹏鹤黎&#x27;;<br>    <br>				-- 定义省份列表<br>				SET _provinces = &#x27;广东省,浙江省,江苏省,湖南省,福建省,湖北省,河南省,山东省&#x27;;<br>				<br>				-- 定义城市列表<br>				SET _cities = &#x27;广州市,深圳市,杭州市,宁波市,苏州市,南京市,长沙市,厦门市,武汉市,郑州市,青岛市&#x27;;<br>				<br>				-- 定义区/县列表<br>				SET _districts = &#x27;天河区,越秀区,萧山区,海曙区,姑苏区,鼓楼区,岳麓区,思明区,武昌区,金水区,黄岛区&#x27;;<br>				<br>				-- 随机选择省份<br>				SET province = SUBSTRING_INDEX(SUBSTRING_INDEX(_provinces, &#x27;,&#x27;, FLOOR(1 + RAND() * (LENGTH(_provinces) - LENGTH(REPLACE(_provinces, &#x27;,&#x27;, &#x27;&#x27;))))), &#x27;,&#x27;, -1);<br>				<br>				-- 随机选择城市<br>				SET city = SUBSTRING_INDEX(SUBSTRING_INDEX(_cities, &#x27;,&#x27;, FLOOR(1 + RAND() * (LENGTH(_cities) - LENGTH(REPLACE(_cities, &#x27;,&#x27;, &#x27;&#x27;))))), &#x27;,&#x27;, -1);<br>				<br>				-- 随机选择区/县<br>				SET district = SUBSTRING_INDEX(SUBSTRING_INDEX(_districts, &#x27;,&#x27;, FLOOR(1 + RAND() * (LENGTH(_districts) - LENGTH(REPLACE(_districts, &#x27;,&#x27;, &#x27;&#x27;))))), &#x27;,&#x27;, -1);<br><br>				-- 生成完整地址<br>				SET address = CONCAT(province, city, district);<br>				<br>				IF counter &lt;= 10 THEN<br>						SET job_1 = &#x27;经理&#x27;;<br>				ELSE<br>						SET job_1 = &#x27;普通职工&#x27;;<br>				END IF;<br>				<br>				INSERT INTO whm_Employee(employee_id, bankBranch_name, dept_id, job, employee_name, call_number, employee_address, joinDate)<br>				VALUES(<br>						CONCAT(&#x27;EMP&#x27;, LPAD(counter, 5, &#x27;0&#x27;)),<br>						branch_name,<br>						dept_id_1,<br>						job_1,<br>						CONCAT(<br>									 SUBSTR(_surname, FLOOR(RAND() * CHAR_LENGTH(_surname) + 1), 1),<br>									 SUBSTR(_name, FLOOR(RAND() * CHAR_LENGTH(_name) + 1), 1),<br>									 SUBSTR(_name, FLOOR(RAND() * CHAR_LENGTH(_name) + 1), 1)<br>									),<br>						CONCAT(&#x27;1&#x27;, ROUND(RAND() * 10000000000)),<br>						address,<br>						DATE_SUB(NOW(),INTERVAL FLOOR(RAND() * 3650) DAY)<br>				);<br>				SET counter = counter + 1;<br>		END WHILE;<br>END //<br><br>DELIMITER ;<br><br>CALL generate_employee_records(1, 10000);<br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>生成结果</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Employee%E8%A1%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png" srcset="/img/loading.gif" lazyload alt="银行业务管理系统-Employee表的业务数据生成_1"></p>
+<h4 id="5-2-7-账户表"><a href="#5-2-7-账户表" class="headerlink" title="5.2.7 账户表"></a>5.2.7 账户表</h4><ul>
+<li>脚本代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建存储过程，生成账户表业务数据<br><br>DELIMITER //<br><br>CREATE PROCEDURE generate_account_records(IN start_index INT, IN end_index INT)<br>BEGIN <br>		DECLARE counter INT DEFAULT start_index;<br>    DECLARE branch_name CHAR(100);<br>    DECLARE custom_id_1 CHAR(30);<br>		DECLARE account_type_1 CHAR(50);<br>		<br>	<br>		WHILE counter &lt;= end_index DO<br>				SET branch_name = (SELECT bankBranch_name FROM whm_BankBranch ORDER BY RAND() LIMIT 1);<br>				SET custom_id_1 = (SELECT custom_id FROM whm_Custom ORDER BY RAND() LIMIT 1);<br>				IF counter &lt;= 10000 THEN<br>						SET account_type_1 = &#x27;贷款账户&#x27;;<br>				ELSE<br>						SET account_type_1 = &#x27;存款账户&#x27;;<br>				END IF;<br>				<br>				INSERT INTO whm_Account(account_no, account_type, account_balance, bankBranch_name, last_access, rate, overdraft, custom_id)<br>				<br>				VALUES(<br>					CONCAT(&#x27;AC&#x27;, LPAD(counter, 5, &#x27;0&#x27;)),<br>					account_type_1,<br>					FLOOR(RAND() * 1000000),<br>					branch_name,<br>					DATE_SUB(NOW(),INTERVAL FLOOR(RAND() * 3650) DAY),<br>					ROUND(RAND() * 100, 2),<br>					FLOOR(RAND() * 1000000),<br>					custom_id_1<br>				);<br>				SET counter = counter + 1;<br>		END WHILE;	<br>END;<br><br>CALL generate_account_records(1, 20000);<br><br>DROP PROCEDURE generate_account_records;<br><br>DELETE FROM whm_Account;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>生成结果</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Account%E8%A1%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png" srcset="/img/loading.gif" lazyload alt="银行业务管理系统-Account表的业务数据生成_1"></p>
+<h4 id="5-2-8-客户表"><a href="#5-2-8-客户表" class="headerlink" title="5.2.8 客户表"></a>5.2.8 客户表</h4><ul>
+<li>脚本代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建存储过程，生成10000条客户数据<br><br>CREATE PROCEDURE generate_custom_records(IN start_index INT, IN end_index INT)<br>BEGIN <br>		DECLARE counter INT DEFAULT start_index;<br>		DECLARE employee_id_1 CHAR(50);<br>		DECLARE _surname VARCHAR(1024);<br>		DECLARE _name VARCHAR(1024);<br>		<br>		DECLARE _provinces VARCHAR(1024);<br>    DECLARE _cities VARCHAR(1024);<br>    DECLARE _districts VARCHAR(1024);<br>		<br>		DECLARE province VARCHAR(50);<br>		DECLARE city VARCHAR(50);<br>    DECLARE district VARCHAR(50);<br>		<br>		DECLARE address VARCHAR(200);<br>		<br>		WHILE counter &lt;= end_index DO<br>				SET employee_id_1 = (SELECT employee_id FROM whm_Employee ORDER BY RAND() LIMIT 1);<br>				<br>				-- 定义姓氏列表<br>				set _surname = &#x27;王李张刘陈杨黄赵吴周徐孙马朱胡郭何高林罗郑梁谢宋唐位许韩冯邓曹彭曾萧田董潘袁于蒋蔡余杜叶程苏魏吕丁任沈姚卢姜崔钟谭陆汪范金石廖贾夏韦傅方白邹孟熊秦邱江尹薛阎段雷侯龙史陶黎贺顾毛郝龚邵万钱严覃武戴莫孔向汤&#x27;;<br>				<br>				-- 定义名字列表<br>				set _name =&#x27;丹举义之乐书乾云亦从代以伟佑俊修健傲儿元光兰冬冰冷凌凝凡凯初力勤千卉半华南博又友同向君听和哲嘉国坚城夏夜天奇奥如妙子存季孤宇安宛宸寒寻尔尧山岚峻巧平幼康建开弘强彤彦彬彭心忆志念怀怜恨惜慕成擎敏文新旋旭昊明易昕映春昱晋晓晗晟景晴智曼朋朗杰松枫柏柔柳格桃梦楷槐正水沛波泽洁洋济浦浩海涛润涵渊源溥濮瀚灵灿炎烟烨然煊煜熙熠玉珊珍理琪琴瑜瑞瑶瑾璞痴皓盼真睿碧磊祥祺秉程立竹笑紫绍经绿群翠翰致航良芙芷苍苑若茂荣莲菡菱萱蓉蓝蕊蕾薇蝶觅访诚语谷豪赋超越轩辉达远邃醉金鑫锦问雁雅雨雪霖霜露青靖静风飞香驰骞高鸿鹏鹤黎&#x27;;<br>    <br>				-- 定义省份列表<br>				SET _provinces = &#x27;广东省,浙江省,江苏省,湖南省,福建省,湖北省,河南省,山东省&#x27;;<br>				<br>				-- 定义城市列表<br>				SET _cities = &#x27;广州市,深圳市,杭州市,宁波市,苏州市,南京市,长沙市,厦门市,武汉市,郑州市,青岛市&#x27;;<br>				<br>				-- 定义区/县列表<br>				SET _districts = &#x27;天河区,越秀区,萧山区,海曙区,姑苏区,鼓楼区,岳麓区,思明区,武昌区,金水区,黄岛区&#x27;;<br>				<br>				-- 随机选择省份<br>				SET province = SUBSTRING_INDEX(SUBSTRING_INDEX(_provinces, &#x27;,&#x27;, FLOOR(1 + RAND() * (LENGTH(_provinces) - LENGTH(REPLACE(_provinces, &#x27;,&#x27;, &#x27;&#x27;))))), &#x27;,&#x27;, -1);<br>				<br>				-- 随机选择城市<br>				SET city = SUBSTRING_INDEX(SUBSTRING_INDEX(_cities, &#x27;,&#x27;, FLOOR(1 + RAND() * (LENGTH(_cities) - LENGTH(REPLACE(_cities, &#x27;,&#x27;, &#x27;&#x27;))))), &#x27;,&#x27;, -1);<br>				<br>				-- 随机选择区/县<br>				SET district = SUBSTRING_INDEX(SUBSTRING_INDEX(_districts, &#x27;,&#x27;, FLOOR(1 + RAND() * (LENGTH(_districts) - LENGTH(REPLACE(_districts, &#x27;,&#x27;, &#x27;&#x27;))))), &#x27;,&#x27;, -1);<br><br>				-- 生成完整地址<br>				SET address = CONCAT(province, city, district);<br>				<br>				<br>				<br>				INSERT INTO whm_Custom(custom_id, employee_id, custom_name, custom_address)<br>				VALUES(<br>					CONCAT(&#x27;CUS&#x27;, LPAD(counter, 5, &#x27;0&#x27;)),<br>					employee_id_1,<br>					CONCAT(<br>									 SUBSTR(_surname, FLOOR(RAND() * CHAR_LENGTH(_surname) + 1), 1),<br>									 SUBSTR(_name, FLOOR(RAND() * CHAR_LENGTH(_name) + 1), 1),<br>									 SUBSTR(_name, FLOOR(RAND() * CHAR_LENGTH(_name) + 1), 1)<br>									),<br>					address<br>				);<br>				SET counter = counter + 1;<br>		END WHILE;	<br>END;<br><br>CALL generate_custom_records(1, 10000);<br><br>DROP PROCEDURE generate_custom_records;<br><br>DELETE FROM whm_Custom;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>生成结果</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Custom%E8%A1%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png" srcset="/img/loading.gif" lazyload alt="银行业务管理系统-Custom表的业务数据生成_1"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/MySQL/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8A%80%E6%9C%AF/" class="category-chain-item">高级数据库技术</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/MySQL/">#MySQL</a>
+      
+        <a href="/tags/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8A%80%E6%9C%AF/">#高级数据库技术</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数据库应用系统的设计与实现（MySQL+CentOS7环境）</div>
+      <div>http://sea-365.site/2023/05/22/数据库应用系统的设计与实现（MySQL+CentOS7环境）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>SEA</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/05/22/MySQL--%E7%BA%A6%E6%9D%9F%E7%9A%84%E4%BD%BF%E7%94%A8/" title="MySQL学习--约束的使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MySQL学习--约束的使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/20/Java-%E5%A4%9A%E7%94%A8%E6%88%B7%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F-%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E3%80%81%E9%80%80%E5%87%BA%E7%B3%BB%E7%BB%9F%E4%BB%A5%E5%8F%8A%E6%8B%89%E5%8F%96%E5%9C%A8%E7%BA%BF%E7%94%A8%E6%88%B7%E5%88%97%E8%A1%A8/" title="Java-多用户即时通信系统-用户注册、退出系统以及拉取在线用户列表">
+                        <span class="hidden-mobile">Java-多用户即时通信系统-用户注册、退出系统以及拉取在线用户列表</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        本站 总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
