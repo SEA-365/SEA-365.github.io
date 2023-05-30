@@ -21,7 +21,7 @@
     <meta name="description" content="数据库应用系统的设计与实现（MySQL+CentOS7环境）一、需求分析 收集和分析业务需求，以确定数据库的目标、范围和功能。这包括识别实体、属性和关系，并确定数据的完整性约束。  需求如下：  某银行准备开发一个银行业务管理系统，通过调查，得到以下的主要需求：  这家银行在多个城市都有支行（即各个支行位于某个城市），每个支行有唯一的名字。银行要监控每个支行的资产。  支行(名字， 所在城市， 资">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库应用系统的设计与实现（MySQL+CentOS7环境）">
-<meta property="og:url" content="http://sea-365.site/2023/05/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BA%94%E7%94%A8%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%EF%BC%88MySQL+CentOS7%E7%8E%AF%E5%A2%83%EF%BC%89/index.html">
+<meta property="og:url" content="http://sea-365.site/2023/05/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BA%94%E7%94%A8%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%EF%BC%88MySQL+CentOS7%E7%8E%AF%E5%A2%83%EF%BC%89/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
 <meta property="og:description" content="数据库应用系统的设计与实现（MySQL+CentOS7环境）一、需求分析 收集和分析业务需求，以确定数据库的目标、范围和功能。这包括识别实体、属性和关系，并确定数据的完整性约束。  需求如下：  某银行准备开发一个银行业务管理系统，通过调查，得到以下的主要需求：  这家银行在多个城市都有支行（即各个支行位于某个城市），每个支行有唯一的名字。银行要监控每个支行的资产。  支行(名字， 所在城市， 资">
 <meta property="og:locale" content="zh_CN">
@@ -35,8 +35,9 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Employee%E8%A1%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Account%E8%A1%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Custom%E8%A1%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png">
-<meta property="article:published_time" content="2023-05-22T13:47:55.000Z">
-<meta property="article:modified_time" content="2023-05-22T13:47:16.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-%E5%AE%A2%E6%88%B7%E7%AD%89%E7%BA%A7%E8%A1%A8%EF%BC%88whm_Rating%EF%BC%89%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png">
+<meta property="article:published_time" content="2023-05-30T01:28:59.000Z">
+<meta property="article:modified_time" content="2023-05-30T01:28:16.000Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="高级数据库技术">
@@ -223,8 +224,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-05-22 21:47" pubdate>
-          2023年5月22日 晚上
+        <time datetime="2023-05-30 09:28" pubdate>
+          2023年5月30日 上午
         </time>
       </span>
     
@@ -235,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          17k 字
+          18k 字
         
       </span>
     
@@ -246,7 +247,7 @@
         
         
         
-          139 分钟
+          147 分钟
         
       </span>
     
@@ -850,6 +851,19 @@
 <li>生成结果</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Custom%E8%A1%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png" srcset="/img/loading.gif" lazyload alt="银行业务管理系统-Custom表的业务数据生成_1"></p>
+<h2 id="六、客户等级评分"><a href="#六、客户等级评分" class="headerlink" title="六、客户等级评分"></a>六、客户等级评分</h2><ul>
+<li>根据贷款和存款信息，评定客户的等级，直接上mysql代码；</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建评级结果表（whm_Rating）<br>CREATE TABLE whm_Rating (<br>    custom_id CHAR(30) NOT NULL PRIMARY KEY COMMENT &#x27;客户身份证号&#x27;,<br>    rating INT COMMENT &#x27;客户评级&#x27;<br>) COMMENT &#x27;评级结果表（whm_Rating）&#x27;;<br><br>-- 分析银行优质客户并进行评级<br>INSERT INTO whm_Rating (custom_id, rating)<br>SELECT c.custom_id, <br>    CASE <br>        WHEN total_deposit &gt;= 1000000 AND total_loan = 0 THEN 5<br>        WHEN total_deposit &gt;= 500000 AND total_loan = 0 THEN 4<br>        WHEN total_deposit &gt;= 100000 AND total_loan = 0 THEN 3<br>        WHEN total_deposit &gt;= 50000 AND total_loan = 0 THEN 2<br>        ELSE 1<br>    END AS rating<br>FROM (<br>    SELECT c.custom_id, <br>        IFNULL(SUM(d.deposit_money), 0) AS total_deposit, <br>		IFNULL(SUM(l.loan_money), 0) AS total_loan<br>    FROM whm_Custom AS c<br>    LEFT JOIN whm_Account AS a ON c.custom_id = a.custom_id<br>    LEFT JOIN whm_Deposit AS d ON a.account_no = d.account_no<br>		LEFT JOIN whm_Loan AS l ON a.account_no = l.account_no<br>    GROUP BY c.custom_id<br>) AS c;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>客户等级表（whm_Rating）数据如下:</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-%E5%AE%A2%E6%88%B7%E7%AD%89%E7%BA%A7%E8%A1%A8%EF%BC%88whm_Rating%EF%BC%89%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90_1.png" srcset="/img/loading.gif" lazyload alt="银行业务管理系统-客户等级表（whm_Rating）的业务数据生成_1"></p>
+<ul>
+<li>至此，whmdb_bank数据库从需求分析到设计，再到实现，数据生成等全部完成！</li>
+<li>下一篇，主题：数据库的性能演示及优化、并发、备份等操作；</li>
+</ul>
 
                 
               </div>
@@ -905,7 +919,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>数据库应用系统的设计与实现（MySQL+CentOS7环境）</div>
-      <div>http://sea-365.site/2023/05/22/数据库应用系统的设计与实现（MySQL+CentOS7环境）/</div>
+      <div>http://sea-365.site/2023/05/30/数据库应用系统的设计与实现（MySQL+CentOS7环境）/</div>
     </div>
     <div class="license-meta">
       
@@ -917,7 +931,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年5月22日</div>
+          <div>2023年5月30日</div>
         </div>
       
       
@@ -949,18 +963,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/05/22/MySQL--%E7%BA%A6%E6%9D%9F%E7%9A%84%E4%BD%BF%E7%94%A8/" title="MySQL学习--约束的使用">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MySQL学习--约束的使用</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/05/20/Java-%E5%A4%9A%E7%94%A8%E6%88%B7%E5%8D%B3%E6%97%B6%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F-%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E3%80%81%E9%80%80%E5%87%BA%E7%B3%BB%E7%BB%9F%E4%BB%A5%E5%8F%8A%E6%8B%89%E5%8F%96%E5%9C%A8%E7%BA%BF%E7%94%A8%E6%88%B7%E5%88%97%E8%A1%A8/" title="Java-多用户即时通信系统-用户注册、退出系统以及拉取在线用户列表">
-                        <span class="hidden-mobile">Java-多用户即时通信系统-用户注册、退出系统以及拉取在线用户列表</span>
+                      <a href="/2023/05/23/Java-%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E7%9A%84%E5%BC%95%E5%85%A5/" title="Java-反射机制的引入">
+                        <span class="hidden-mobile">Java-反射机制的引入</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
