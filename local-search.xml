@@ -4,6 +4,110 @@
   
   
   <entry>
+    <title>JavaWeb-浏览器请求服务器资源过程分析</title>
+    <link href="/2023/06/06/JavaWeb-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E5%88%86%E6%9E%90/"/>
+    <url>/2023/06/06/JavaWeb-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E5%88%86%E6%9E%90/</url>
+    
+    <content type="html"><![CDATA[<h1 id="JavaWeb-浏览器请求服务器资源过程分析"><a href="#JavaWeb-浏览器请求服务器资源过程分析" class="headerlink" title="JavaWeb-浏览器请求服务器资源过程分析"></a>JavaWeb-浏览器请求服务器资源过程分析</h1><ul><li>先给出整体示意图：</li></ul><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90_1.png" alt="image-20230606161652332"></p><ul><li>以请求路径<code>http://localhost:8080/test/test.html</code>为例进行分析：</li></ul><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90_2.png" alt="浏览器请求服务器资源过程分析_2"></p><ul><li>上述webapp资源如下图：</li></ul><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90_3.png" alt="浏览器请求服务器资源过程分析_4"></p><h2 id="一、整体过程分析"><a href="#一、整体过程分析" class="headerlink" title="一、整体过程分析"></a>一、整体过程分析</h2><ul><li><p>1.根据浏览器的请求路径，解析出服务器主机名；</p></li><li><p>2.获得主机名后，先查询本地hosts文件中是否有主机ip和该主机名称的映射；</p><ul><li>例如我本地的hosts文件中是这样的：</li></ul><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90_4.png" alt="浏览器请求服务器资源过程分析_4"></p><ul><li>2.1 如果hosts文件中有该映射，则：<ul><li>封装一个http请求发送给该主机ip对应的服务器；</li><li>服务器解析该请求，得到相应的web应用; &#x3D;&#x3D;&gt; <strong>test</strong></li><li>解析出浏览器请求的资源; &#x3D;&#x3D;&gt; <strong>test.html</strong></li><li>获取该资源，并封装成一个http响应，返回给浏览器；</li><li>浏览器获得服务器返回的响应后，进行解析并显示；</li></ul></li><li>2.2 如果本地hosts文件中没有该映射，则：进行DNS域名解析获取服务器主机ip，然后重复2.1；</li></ul></li></ul><h2 id="二、http请求-x2F-响应"><a href="#二、http请求-x2F-响应" class="headerlink" title="二、http请求&#x2F;响应"></a>二、http请求&#x2F;响应</h2><ul><li><p>同样以请求路径<code>http://localhost:8080/test/test.html</code>为例进行分析</p></li><li><p>在浏览器中打开开发人员工具，可以抓取浏览器请求资源过程中发出的所有请求以及相应的响应内容；</p></li><li><p>第一次请求html</p></li><li><p>第二次请求图片</p></li><li><p>后面请求一些其他内容；</p></li></ul><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90_5.png" alt="浏览器请求服务器资源过程分析_5"></p><h3 id="2-1-http请求"><a href="#2-1-http请求" class="headerlink" title="2.1 http请求"></a>2.1 http请求</h3><ul><li>例如，请求test.html页面时，封装的http请求头如下图所示，包含请求的资源、请求服务器主机地址和端口、请求方式、http协议版本等信息；</li></ul><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90_6.png" alt="浏览器请求服务器资源过程分析_6"></p><h3 id="2-2-http响应"><a href="#2-2-http响应" class="headerlink" title="2.2 http响应"></a>2.2 http响应</h3><ul><li>接收到浏览器的请求后，根据http请求的信息，封装一个http响应返回给浏览器，http响应中会包含响应头信息，包括http协议版本、资源内容的类型，长度（字节数）等信息，以及返回的html资源，如下图所示。</li></ul><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90_7.png" alt="浏览器请求服务器资源过程分析_7"></p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90_8.png" alt="浏览器请求服务器资源过程分析_8"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaWeb</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaWeb</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>JavaWeb-Tomcat的安装和启动（Macbook M1环境）</title>
+    <link href="/2023/06/06/JavaWeb-Tomcat%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E5%8A%A8/"/>
+    <url>/2023/06/06/JavaWeb-Tomcat%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E5%8A%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="JavaWeb-Tomcat的安装和启动（Macbook-M1环境）"><a href="#JavaWeb-Tomcat的安装和启动（Macbook-M1环境）" class="headerlink" title="JavaWeb-Tomcat的安装和启动（Macbook M1环境）"></a>JavaWeb-Tomcat的安装和启动（Macbook M1环境）</h1><h2 id="一、下载Tomcat"><a href="#一、下载Tomcat" class="headerlink" title="一、下载Tomcat"></a>一、下载Tomcat</h2><ul><li>进入Tomcat官网，选择对应的版本，这里我选择的版本是<code>8.5.89</code>;</li><li>如图点击<code>zip</code>下载，并解压即可；</li></ul><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E5%8A%A8_1.png" alt="Tomcat安装和启动_1"></p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E5%8A%A8_2.png" alt="Tomcat安装和启动_2"></p><h2 id="二、配置环境变量并启动Tomcat"><a href="#二、配置环境变量并启动Tomcat" class="headerlink" title="二、配置环境变量并启动Tomcat"></a>二、配置环境变量并启动Tomcat</h2><ul><li><p>在终端输入以下命令，进入系统环境配置所在的文件，打开<code>.zshrc</code>文件进行编辑；</p><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">open ~/<br></code></pre></td></tr></table></figure></li></ul><p>​<img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E5%8A%A8_3.png" alt="Tomcat安装和启动_3"></p><ul><li>在该文件中增加以下环境变量，其中第一个变量是上一个步骤中Tomcat解压路径；</li></ul><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">CATALINA_HOME</span>=<span class="hljs-string">&quot;xxx/xx/xx/Tomcat8.5.89/apache-tomcat-8.5.89&quot;</span><br><span class="hljs-built_in">export</span> <span class="hljs-attribute">Path</span>=<span class="hljs-string">&quot;<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$CATALINA_HOME</span>/bin&quot;</span><br></code></pre></td></tr></table></figure><ul><li>保存并关闭<code>.zshrc</code>文件，然后打开终端，进入Tomcat解压路径下的bin目录：</li></ul><p>​<img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E5%8A%A8_4.png" alt="Tomcat安装和启动_4"></p><ul><li><p>执行以下命令，获取执行<code>.sh</code>脚本文件的权限，然后执行<code>startup.sh</code>文件；</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> +x *.sh<br><br>./startup.sh<br></code></pre></td></tr></table></figure></li><li><p>最后，命令行出现以下输出并且在浏览器中输入<code>http://localhost:8080</code>，出现经典页面，即表示Tomcat启动成功！</p></li></ul><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E5%8A%A8_5.png" alt="Tomcat安装和启动_5"></p><ul><li><p>如果需要关闭Tomcat服务，执行以下命令即可：</p><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">./shutdown.sh<br></code></pre></td></tr></table></figure><ul><li>注意：关闭后，访问上述地址，就没有经典页面出现了，表示Tomcat服务关闭成功！</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaWeb</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaWeb</tag>
+      
+      <tag>Tomcat</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>JavaWeb-概念介绍</title>
+    <link href="/2023/06/05/JavaWeb-%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/"/>
+    <url>/2023/06/05/JavaWeb-%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/</url>
+    
+    <content type="html"><![CDATA[<h1 id="JavaWeb-概念介绍"><a href="#JavaWeb-概念介绍" class="headerlink" title="JavaWeb-概念介绍"></a>JavaWeb-概念介绍</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul><li><p>WEB：表示WEB服务器可供浏览器访问的资源，分为以下两种：</p><ul><li>静态资源：web中供浏览器浏览的数据始终不变，如html页面；</li><li>动态资源：如servlet、php等；</li></ul></li><li><p>静态WEB开发技术：html，css；</p></li><li><p>动态WEB开发技术：Servlet，SpringBoot、SpringMVC、PHP、ASP.NET等；</p></li><li><p>B&#x2F;S开发：</p><ul><li>B：Browser（浏览器）</li><li>S：Server（服务器）</li></ul></li><li><p>C&#x2F;S开发：</p><ul><li><p>C：Client（客户端）</p></li><li><p>S：Server（服务器端）</p></li></ul></li><li><p>两种架构存在的问题和优势：</p><ul><li>兼容性：由于浏览器种类较多；</li><li>安全性：B&#x2F;S架构不好控制（相对于C&#x2F;S），数据的发送和返回受浏览器控制；</li><li>易用性：B&#x2F;S架构易用性较好，例如，版本升级时，C&#x2F;S架构两端都需要进行升级；</li></ul></li></ul><h2 id="WEB服务软件介绍"><a href="#WEB服务软件介绍" class="headerlink" title="WEB服务软件介绍"></a>WEB服务软件介绍</h2><ul><li>哪台机器安装了服务软件，就是服务器；<ul><li>如JavaWeb服务器，MySQL服务器；</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaWeb</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaWeb</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>JavaWeb-XML总结</title>
+    <link href="/2023/06/05/JavaWeb-XML%E6%80%BB%E7%BB%93/"/>
+    <url>/2023/06/05/JavaWeb-XML%E6%80%BB%E7%BB%93/</url>
+    
+    <content type="html"><![CDATA[<h1 id="JavaWeb-XML总结"><a href="#JavaWeb-XML总结" class="headerlink" title="JavaWeb-XML总结"></a>JavaWeb-XML总结</h1><h2 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h2><h3 id="1-1-为什么需要XML"><a href="#1-1-为什么需要XML" class="headerlink" title="1.1 为什么需要XML"></a>1.1 为什么需要XML</h3><ul><li>需求：<ul><li>1.两个程序之间的数据通信<strong>格式</strong>（目前基本都是json格式的数据了）；</li><li>2.作为服务器的<strong>配置文件</strong>；</li><li>3.spring系列框架中的各种<strong>配置文件</strong>；</li></ul></li></ul><h3 id="1-2-XML文件结构"><a href="#1-2-XML文件结构" class="headerlink" title="1.2 XML文件结构"></a>1.2 XML文件结构</h3><ul><li><p>xml声明</p></li><li><p>元素</p></li><li><p>属性</p></li><li><p>注释</p></li><li><p>CDATA区、特殊字符</p></li><li><p>如下：</p></li></ul><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;utf-8&quot;</span> ?&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">students</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">student</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;100&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>jack<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">age</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-name">age</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">gender</span>&gt;</span>男<span class="hljs-tag">&lt;/<span class="hljs-name">gender</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">student</span>&gt;</span><br>    <br>    <span class="hljs-tag">&lt;<span class="hljs-name">student</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;200&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>bob<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">age</span>&gt;</span>20<span class="hljs-tag">&lt;/<span class="hljs-name">age</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">gender</span>&gt;</span>女<span class="hljs-tag">&lt;/<span class="hljs-name">gender</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">student</span>&gt;</span><br>  <br>    &lt;![CDATA[<br>        这里的内容将不会被解析引擎解析<br>    ]]&gt;<br><span class="hljs-tag">&lt;/<span class="hljs-name">students</span>&gt;</span><br><br><span class="hljs-comment">&lt;!--</span><br><span class="hljs-comment">    1.xml声明：&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span><br><span class="hljs-comment">    </span><br><span class="hljs-comment">    2.元素：</span><br><span class="hljs-comment">        &lt;students&gt; </span><br><span class="hljs-comment">            ...</span><br><span class="hljs-comment">        &lt;/students&gt;</span><br><span class="hljs-comment">    3.属性</span><br><span class="hljs-comment">        id=&quot;100&quot;</span><br><span class="hljs-comment">        </span><br><span class="hljs-comment">    4.注释</span><br><span class="hljs-comment">    5.CDATA区、特殊字符</span><br><span class="hljs-comment">     </span><br><span class="hljs-comment">--&gt;</span><br></code></pre></td></tr></table></figure><h2 id="二、语法"><a href="#二、语法" class="headerlink" title="二、语法"></a>二、语法</h2><h3 id="2-1-元素"><a href="#2-1-元素" class="headerlink" title="2.1 元素"></a>2.1 元素</h3><ul><li>注意事项：<ul><li>每一个XML文件有且仅有一个根元素；</li><li>根元素是一个完全包括文档中其他所有元素的元素；</li><li>标签之间允许嵌套，不允许交叉；</li></ul></li></ul><h3 id="2-2-属性"><a href="#2-2-属性" class="headerlink" title="2.2 属性"></a>2.2 属性</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">student</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;100&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>jack<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">age</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-name">age</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">gender</span>&gt;</span>男<span class="hljs-tag">&lt;/<span class="hljs-name">gender</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">student</span>&gt;</span><br></code></pre></td></tr></table></figure><ul><li><p><code>id=&quot;100&quot;</code>即为元素<code>student</code>的一个属性；</p></li><li><p>注意事项：</p><ul><li>属性用双引号或单引号分隔，若属性值中含有<code>&quot;</code>，则使用<code>&#39;</code>分隔，反之，用<code>&quot;</code>分隔；</li><li>一个元素可以有多个属性，但是属性名称（区分大小写）不可以重复；</li><li>属性值不能包含<code>&amp;</code>字符；</li></ul></li></ul><h3 id="2-3-CDATA区"><a href="#2-3-CDATA区" class="headerlink" title="2.3 CDATA区"></a>2.3 CDATA区</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml">    <br>&lt;![CDATA[<br>    &lt;script&gt;这里的内容(包括script标签)将不会被解析引擎解析&lt;script&gt;<br>]]&gt;<br></code></pre></td></tr></table></figure><ul><li>CDATA区中所有字符都会被当做简单文本，不被XML解析引擎解析；</li><li>不允许嵌套；</li></ul><h3 id="2-4-转移字符"><a href="#2-4-转移字符" class="headerlink" title="2.4 转移字符"></a>2.4 转移字符</h3><table><thead><tr><th>转义符</th><th>符号</th></tr></thead><tbody><tr><td>&amp;lt;</td><td>&lt;</td></tr><tr><td>&amp;gt;</td><td>&gt;</td></tr><tr><td>&amp;amp;</td><td>&amp;</td></tr><tr><td>&amp;quot;</td><td>“</td></tr><tr><td>&amp;apos;</td><td>‘</td></tr></tbody></table><h2 id="三、XML解析"><a href="#三、XML解析" class="headerlink" title="三、XML解析"></a>三、XML解析</h2><ul><li><p>XML解析技术介绍</p><ul><li>早期：DOM和Sax，都已经过时了；</li><li>当前：jdom &#x3D;&#x3D;&gt; dom4j (在原来的dom基础上进行封装)<ul><li>pull &#x3D;&#x3D;&gt; Android开发中使用；</li></ul></li></ul></li><li><p>主要介绍dom4技术；</p></li></ul><h3 id="3-1-dom4j技术"><a href="#3-1-dom4j技术" class="headerlink" title="3.1 dom4j技术"></a>3.1 dom4j技术</h3><ul><li><p>获取Document对象的方式：</p><ul><li>需要下载dom4j包；</li></ul></li><li><p>1.读取XML文件，获得document对象；</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">SAXReader</span> <span class="hljs-variable">reader</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SAXReader</span>();<br><span class="hljs-type">Document</span> <span class="hljs-variable">document</span> <span class="hljs-operator">=</span> reader.read(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;xxx/xxx.xml&quot;</span>)); <br></code></pre></td></tr></table></figure></li><li><p>2.解析XML形式的文本，得到document对象；</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">text</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;xxxxxx&quot;</span>;<br><span class="hljs-type">Document</span> <span class="hljs-variable">document</span> <span class="hljs-operator">=</span> DocumentHelper.parse(text);<br></code></pre></td></tr></table></figure></li><li><p>3.手动创建document对象；</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Document</span> <span class="hljs-variable">document</span> <span class="hljs-operator">=</span> DocumentHelper.createDocument();<br><span class="hljs-type">Element</span> <span class="hljs-variable">root</span> <span class="hljs-operator">=</span> document.addElement(<span class="hljs-string">&quot;&lt;xxx&gt;&quot;</span>);<br></code></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaWeb</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaWeb</tag>
+      
+      <tag>XML</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>祝小温23岁生日快乐！</title>
     <link href="/2023/06/05/%E7%A5%9D%E5%B0%8F%E6%B8%A923%E5%B2%81%E7%94%9F%E6%97%A5%E5%BF%AB%E4%B9%90%EF%BC%81/"/>
     <url>/2023/06/05/%E7%A5%9D%E5%B0%8F%E6%B8%A923%E5%B2%81%E7%94%9F%E6%97%A5%E5%BF%AB%E4%B9%90%EF%BC%81/</url>
