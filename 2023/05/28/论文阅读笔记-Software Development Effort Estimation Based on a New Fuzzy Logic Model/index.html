@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="SEA">
+  <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
+  
+    <meta name="description" content="论文阅读笔记-Software Development Effort Estimation Based on a New Fuzzy Logic Model 中文标题：基于新的模糊逻辑模型的软件开发工作量估计 来源：International Journal of Computer Theory and Engineering（国际计算机理论与工程期刊）  一、论文结构 1.摘要（Abstruct">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读笔记-Software Development Effort Estimation Based on a New Fuzzy Logic Model">
+<meta property="og:url" content="http://sea-365.site/2023/05/28/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0-Software%20Development%20Effort%20Estimation%20Based%20on%20a%20New%20Fuzzy%20Logic%20Model/index.html">
+<meta property="og:site_name" content="SEA-365的读研日记">
+<meta property="og:description" content="论文阅读笔记-Software Development Effort Estimation Based on a New Fuzzy Logic Model 中文标题：基于新的模糊逻辑模型的软件开发工作量估计 来源：International Journal of Computer Theory and Engineering（国际计算机理论与工程期刊）  一、论文结构 1.摘要（Abstruct">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/%E8%BD%AF%E4%BB%B6%E4%BC%B0%E7%AE%97%E6%8A%80%E6%9C%AF%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/%E8%BD%AF%E4%BB%B6%E4%BC%B0%E7%AE%97%E6%8A%80%E6%9C%AF%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_2.png">
+<meta property="article:published_time" content="2023-05-28T14:49:46.000Z">
+<meta property="article:modified_time" content="2023-06-13T07:34:05.429Z">
+<meta property="article:author" content="SEA">
+<meta property="article:tag" content="论文阅读笔记">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/%E8%BD%AF%E4%BB%B6%E4%BC%B0%E7%AE%97%E6%8A%80%E6%9C%AF%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_1.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>论文阅读笔记-Software Development Effort Estimation Based on a New Fuzzy Logic Model - SEA-365的读研日记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sea-365.site","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>SEA-365</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="论文阅读笔记-Software Development Effort Estimation Based on a New Fuzzy Logic Model"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-28 22:49" pubdate>
+          2023年5月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">论文阅读笔记-Software Development Effort Estimation Based on a New Fuzzy Logic Model</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="论文阅读笔记-Software-Development-Effort-Estimation-Based-on-a-New-Fuzzy-Logic-Model"><a href="#论文阅读笔记-Software-Development-Effort-Estimation-Based-on-a-New-Fuzzy-Logic-Model" class="headerlink" title="论文阅读笔记-Software Development Effort Estimation Based on a New Fuzzy Logic Model"></a>论文阅读笔记-Software Development Effort Estimation Based on a New Fuzzy Logic Model</h1><ul>
+<li>中文标题：基于新的模糊逻辑模型的软件开发工作量估计</li>
+<li>来源：International Journal of Computer Theory and Engineering（国际计算机理论与工程期刊）</li>
+</ul>
+<h2 id="一、论文结构"><a href="#一、论文结构" class="headerlink" title="一、论文结构"></a>一、论文结构</h2><ul>
+<li>1.摘要（Abstruct）</li>
+<li>2.引言（Introduction）</li>
+<li>3.方法论（Methodology）</li>
+<li>4.结果（Result）</li>
+<li>5.结论（Conclusion）</li>
+<li>6.参考文献（Reference）</li>
+</ul>
+<h2 id="二、摘要"><a href="#二、摘要" class="headerlink" title="二、摘要"></a>二、摘要</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">软件开发一直以来都有一些衡量指标。在这个领域中，对软件开发人员来说，根据开发者的能力、规模、复杂度和其他指标预测软件系统的开发工作量是最大的挑战之一。项目经理需要能够对软件开发工作量进行准确的估计。大多数传统的技术，如功能点、回归模型、COCOMO等，需要进行长期的估计过程。模糊逻辑等新范式可能为这一挑战提供了一种替代方法。许多现有工作量估计模型的问题可以通过引入模糊逻辑来解决。本文描述了一个增强的模糊逻辑模型，用于估计软件开发工作量，并提出了一种应用模糊逻辑进行软件工作量估计的新方法。结果显示，应用模糊逻辑的相对误差幅度的平均值（MMRE）明显低于其他模糊逻辑模型应用时的MMRE值。<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>研究背景</strong>：</p>
+</li>
+<li><p>1.研究人员认为，传统的工作量估计技术需要进行长期的估计过程，而模糊逻辑可以提供一种替代方法来解决现有模型存在的问题。</p>
+</li>
+<li><p>2.这篇论文描述了一个增强的模糊逻辑模型，用于估计软件开发工作量，并提出了一种应用模糊逻辑进行软件工作量估计的新方法。</p>
+</li>
+<li><p><strong>研究结论：</strong></p>
+<ul>
+<li>研究结果表明，应用模糊逻辑的相对误差幅度的平均值（MMRE）明显低于其他模糊逻辑模型。这意味着使用增强的模糊逻辑模型进行软件工作量估计可以提供更准确的结果。</li>
+</ul>
+</li>
+</ul>
+<h2 id="三、引言"><a href="#三、引言" class="headerlink" title="三、引言"></a>三、引言</h2><ul>
+<li>引言中分为三个部分：<ul>
+<li>1.软件开发工作量估算（Software development effort estimation）</li>
+<li>2.模糊逻辑方法（Fuzzy logic approach）</li>
+<li>3.参数分析（Parameter&#96;s analysis）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-1-软件开发工作量估算（Software-development-effort-estimation）"><a href="#3-1-软件开发工作量估算（Software-development-effort-estimation）" class="headerlink" title="3.1 软件开发工作量估算（Software development effort estimation）"></a>3.1 软件开发工作量估算（Software development effort estimation）</h3><ul>
+<li><p><strong>软件度量</strong>：软件度量，尤其是软件估计，是基于对软件属性的测量，这些属性通常与软件开发的产品、过程和资源有关。</p>
+<ul>
+<li>这些测量的数据可以在项目管理的过程用作参考，以免成本超支和进度滞后等问题。</li>
+<li>软件工作量估计 是 软件度量 研究最广泛的领域之一.</li>
+</ul>
+</li>
+<li><p><strong>软件工作量估计</strong>：</p>
+<ul>
+<li><p>软件工作量估算模型主要分为两个大类：</p>
+<ul>
+<li><p>(1)算法型：使用数学公式和统计方法来计算软件工作量。</p>
+<ul>
+<li><p>特点：这些模型通常基于历史数据和经验规则，通过输入软件项目的特征和属性，如代码行数、复杂性等，来计算预期的工作量。</p>
+</li>
+<li><p>著名的算法型估算模型有：</p>
+<ul>
+<li>Boehm的COCOMO（Constructive Cost Model）</li>
+<li>Putnam的SLIM（Software Lifecycle Management）</li>
+<li>Albrecht的功能点法</li>
+</ul>
+</li>
+<li><p>适用场景：算法型估算模型提供了一种较为精确和可靠的估算方法，适用于有足够历史数据和准确输入参数的情况。</p>
+</li>
+<li><p>局限性： 算法型模型提供了一种定量的估算方法，能够在一定程度上准确地估计软件工作量。然而，这些模型需要准确的输入参数，而在软件项目早期阶段往往难以获取准确的数据，因此存在一定的局限性。</p>
+</li>
+<li><p>算法型估算模型的局限性 导致了对基于软计算的非算法技术的探索。</p>
+</li>
+</ul>
+</li>
+<li><p>(2)非算法型：采用软计算（soft computing）方法，如模糊逻辑、神经网络和遗传算法等，来进行软件工作量估计。</p>
+<ul>
+<li>特点（优势）：通过处理模糊和不确定性的信息，能够更灵活地处理复杂的关系和处理非精确的输入数据。例如，人工神经网络在软件工作量估计中的应用，它能够学习先前的数据，建模复杂的关系，并对未见过的数据产生可接受的结果。</li>
+<li>适用场景：非算法型模型则更加灵活，能够处理不确定性和复杂关系，适用于数据不完全和环境不确定的情况。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-2-模糊逻辑方法"><a href="#3-2-模糊逻辑方法" class="headerlink" title="3.2 模糊逻辑方法"></a>3.2 模糊逻辑方法</h3><ul>
+<li><p>模糊逻辑是什么？</p>
+<ul>
+<li>一种处理不确定性的<strong>数学工具</strong>，也提供了一种处理非精确性和信息粒度的技术</li>
+</ul>
+</li>
+<li><p>模糊逻辑模型使用了Lotfi Zadeh引入的模糊逻辑概念，这是模糊逻辑研究的重要里程碑。</p>
+</li>
+<li><p>模糊推理由以下三个过程组成：</p>
+<ul>
+<li>模糊化过程  【模糊化】<ul>
+<li>将客观术语转化为模糊概念的过程。</li>
+<li>将隶属函数应用于变量的实际值，以确定置信因子或隶属函数（MF）。</li>
+<li>模糊化使得输入和输出可以用语言术语来表达。</li>
+<li><strong>例如，如果我们有一个表示温度的变量，我们可以使用隶属函数将实际温度值模糊化为”冷”、”温暖”或”炎热”等模糊术语。</strong></li>
+</ul>
+</li>
+<li>模糊规则推理 【推理出模糊规则，根据模糊规则得到模糊结果】<ul>
+<li>根据规则条件的模糊化和置信因子传播，推导出规则的结论。</li>
+<li>多个规则可能被触发，推理引擎会为特定结果分配最大成员值的所有已触发规则。</li>
+</ul>
+</li>
+<li>去模糊化过程 【将模糊结果进行去模糊化，得到具体的目标值】<ul>
+<li>将模糊输出转化为具体的目标值。</li>
+<li><strong>目的</strong>是从模糊的结果中提取出一个确定性的、可理解的值。</li>
+<li>常用的方法包括计算模糊输出的重心或使用模糊积分等数学运算来计算清晰值。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>其他学者在模糊逻辑方面的研究：</p>
+<ul>
+<li>Gray 和 MacDonell：比较了<strong>功能点分析</strong>、<strong>回归技术</strong>、<strong>前馈神经网络</strong>和<strong>模糊逻辑</strong>在软件工作量估计中的应用。<ul>
+<li>他们的<strong>结果表明</strong>，模糊逻辑模型取得了良好的性能，在准确性方面仅次于具有相当多输入变量的神经网络模型。</li>
+</ul>
+</li>
+<li>Fei 和 Liu：介绍了f-COCOMO模型，该模型将<strong>模糊逻辑（fuzzy logic）</strong>应用于软件工作量估计的COCOMO模式。<ul>
+<li>由于在他们的研究中<strong>没有将f-COCOMO和其他努力估计模型之间的结果进行比较</strong>，因此前者的估计能力是未知的。</li>
+</ul>
+</li>
+<li>Roger：提出了一种模糊COCOMO模型，该模型采用模糊逻辑方法对软件努力驱动因素的不确定性进行建模；<ul>
+<li>但<strong>没有提及所提出模型的有效性</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-3-参数分析"><a href="#3-3-参数分析" class="headerlink" title="3.3 参数分析"></a>3.3 参数分析</h3><ul>
+<li><p>主要介绍了用于评估成本估算模型的主要参数——<strong>相对误差幅度</strong>（Magnitude of Relative Error，简称MRE）</p>
+<ul>
+<li><p><strong>MRE</strong>（Magnitude of Relative Error）：</p>
+<ul>
+<li>MRE是用于评估成本估算模型的关键指标之一。</li>
+<li>对于每个被预测出的观测样本i，计算其MRE值。MRE的计算公式如下：</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/%E8%BD%AF%E4%BB%B6%E4%BC%B0%E7%AE%97%E6%8A%80%E6%9C%AF%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_1.png" srcset="/img/loading.gif" lazyload alt="image-20230610100335786"></p>
+<p>其中，Predicted Effort(i)表示对样本i的预测工作量，Actual Effort(i)表示实际工作量。MRE用于衡量预测值与实际值之间的相对误差。</p>
+</li>
+<li><p><strong>MMRE</strong>（Mean MRE）：</p>
+<ul>
+<li>对于多个样本观测（N），可以通过计算平均MRE（MMRE）来对MRE进行聚合。</li>
+<li>MMRE的计算公式如下：</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/%E8%BD%AF%E4%BB%B6%E4%BC%B0%E7%AE%97%E6%8A%80%E6%9C%AF%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB_2.png" srcset="/img/loading.gif" lazyload alt="软件估算技术论文_MRE"></p>
+<p>其中，Σ表示对所有样本的MRE求和。</p>
+</li>
+<li><p>**Pred(l)**：Pred(l)是另一个衡量预测准确度的指标。它表示MRE小于或等于l的观测样本数k占总观测样本数N的比例。</p>
+</li>
+</ul>
+</li>
+<li><p>综合来看，对于成本估算模型的评估，可以使用MRE、MMRE和Pred(l)这三个指标。</p>
+</li>
+<li><p>MRE用于计算单个样本的相对误差，MMRE用于计算所有样本的平均相对误差，而Pred(l)则表示预测值与实际值之间的误差在某个阈值（l）内的样本所占的比例。</p>
+</li>
+<li><p>一般而言，预测技术的准确度与Pred(l)成正比，与MMRE成反比。</p>
+</li>
+</ul>
+<h2 id="四、方法论"><a href="#四、方法论" class="headerlink" title="四、方法论"></a>四、方法论</h2><ul>
+<li>使用了系统开发项目集。对于系统的41个模块，记录了每个模块的开发时间。同时，还记录了每个模块的耦合度（Dhama）、复杂度（McCabe）和代码行数等度量指标用于统计和分析。</li>
+</ul>
+<h2 id="五、结果"><a href="#五、结果" class="headerlink" title="五、结果"></a>五、结果</h2><ul>
+<li>作者通过：</li>
+<li>选择项目的子集，即10个项目；</li>
+<li>分别统计了 <strong>实际开发时间（Actual DT）</strong> 和 <strong>使用模糊逻辑估算的开发时间（Fuzzy Logic）</strong>；</li>
+<li>计算了每一个项目的<strong>相对误差幅度[Magnitude of Relative Error (MRE) ]</strong></li>
+<li>最后计算出<strong>平均相对误差幅度（MMRE）</strong>；</li>
+<li>在这个过程中，使用了双侧高斯隶属函数进行模糊数据的处理，得出实验结果：<strong>应用该模糊逻辑的相对误差均值（MMRE）明显低于其他模糊逻辑模型</strong>。</li>
+</ul>
+<h2 id="六、结论"><a href="#六、结论" class="headerlink" title="六、结论"></a>六、结论</h2><ul>
+<li>本文提出了一种估算软件开发时间的新方法，关键点在于：<strong>模糊技术中的双侧高斯隶属函数用于软件开发时间的估计；</strong></li>
+<li>作者通过收集数据对该方法的有效性进行了验证，得出模糊逻辑的优点和良好的推广性。</li>
+<li>主要优点：<ul>
+<li>使用的模糊规则具有很好的可解释性；</li>
+<li>可以将专家知识（模糊规则）项目数据组合成一个通用框架，在软件评估中具有广泛的适用性。</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" class="category-chain-item">论文阅读笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">#论文阅读笔记</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>论文阅读笔记-Software Development Effort Estimation Based on a New Fuzzy Logic Model</div>
+      <div>http://sea-365.site/2023/05/28/论文阅读笔记-Software Development Effort Estimation Based on a New Fuzzy Logic Model/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>SEA</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/05/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BA%94%E7%94%A8%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%EF%BC%88MySQL+CentOS7%E7%8E%AF%E5%A2%83%EF%BC%89/" title="数据库应用系统的设计与实现（MySQL+CentOS7环境）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据库应用系统的设计与实现（MySQL+CentOS7环境）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/23/Java-%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E7%9A%84%E5%BC%95%E5%85%A5/" title="Java-反射机制的引入">
+                        <span class="hidden-mobile">Java-反射机制的引入</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        本站 总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
