@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Spring-IoC%E6%A1%88%E4%BE%8B_1.png">
 <meta property="article:published_time" content="2023-06-24T08:13:46.910Z">
-<meta property="article:modified_time" content="2023-06-24T09:23:38.774Z">
+<meta property="article:modified_time" content="2023-06-25T06:30:03.844Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="Spring">
 <meta name="twitter:card" content="summary_large_image">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.9k 字
+          4k 字
         
       </span>
     
@@ -356,7 +356,7 @@
 <ul>
 <li>在App_1.java中进行容器初始化并通过容器来获取bean</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/6/24 16:41</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">App_1</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">//获取IoC容器</span><br>        <span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">ctx</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;applicationContext.xml&quot;</span>);<br>        <span class="hljs-comment">//获取Bean</span><br>        <span class="hljs-type">BookDao</span> <span class="hljs-variable">bookDao</span> <span class="hljs-operator">=</span> (BookDao)ctx.getBean(<span class="hljs-string">&quot;bookDao_&quot;</span>);<br>        bookDao.save();<br><span class="hljs-comment">//        BookService bookService = (BookService)ctx.getBean(&quot;bookService&quot;);</span><br><span class="hljs-comment">//        bookService.save();</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/6/24 16:41</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">App_1</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">//获取IoC容器</span><br>        <span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">ctx</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;applicationContext.xml&quot;</span>);<span class="hljs-comment">//通过接口的实现类获取IoC容器</span><br>        <span class="hljs-comment">//获取Bean</span><br>        <span class="hljs-type">BookDao</span> <span class="hljs-variable">bookDao</span> <span class="hljs-operator">=</span> (BookDao)ctx.getBean(<span class="hljs-string">&quot;bookDao_&quot;</span>);<span class="hljs-comment">//通过接口的方法获取bean</span><br>        bookDao.save();<br><span class="hljs-comment">//        BookService bookService = (BookService)ctx.getBean(&quot;bookService&quot;);</span><br><span class="hljs-comment">//        bookService.save();</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
 <li><p><strong>注意：</strong>此时，BookServiceImpl仍然是通过<code>private BookDao bookDao = new BookDaoImpl();</code>来手动创建BookDao的，这个依赖关系目前在容器中还没有进行绑定。</p>
 </li>
