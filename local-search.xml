@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Spring-核心容器</title>
+    <link href="/2023/07/03/Spring-%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8/"/>
+    <url>/2023/07/03/Spring-%E6%A0%B8%E5%BF%83%E5%AE%B9%E5%99%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Spring-核心容器"><a href="#Spring-核心容器" class="headerlink" title="Spring-核心容器"></a>Spring-核心容器</h1><h2 id="一、创建容器"><a href="#一、创建容器" class="headerlink" title="一、创建容器"></a>一、创建容器</h2><ul><li>创建Spring容器，目前先使用加载Spring配置文件的方式进行创建。</li></ul><h3 id="方式一：加载类路径下的配置文件【常用】"><a href="#方式一：加载类路径下的配置文件【常用】" class="headerlink" title="方式一：加载类路径下的配置文件【常用】"></a>方式一：加载类路径下的配置文件【常用】</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//1.加载类路径下的配置文件</span><br><span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">context</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;applicationContext.xml&quot;</span>);<br></code></pre></td></tr></table></figure><h3 id="方式二：加载文件系统中的配置文件"><a href="#方式二：加载文件系统中的配置文件" class="headerlink" title="方式二：加载文件系统中的配置文件"></a>方式二：加载文件系统中的配置文件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//2.加载文件系统中的配置文件（即使用文件路径加载）</span><br><span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">context1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileSystemXmlApplicationContext</span>(<span class="hljs-string">&quot;/Spring_08_container/src/main/resources/applicationContext.xml&quot;</span>);<br></code></pre></td></tr></table></figure><h3 id="加载多个配置文件"><a href="#加载多个配置文件" class="headerlink" title="加载多个配置文件"></a>加载多个配置文件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//加载多个配置文件</span><br><span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">context</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;applicationContext1.xml, applicationContext2.xml&quot;</span>);<br></code></pre></td></tr></table></figure><h2 id="二、容器类的层次结构"><a href="#二、容器类的层次结构" class="headerlink" title="二、容器类的层次结构"></a>二、容器类的层次结构</h2><ul><li><p>容器接口的继承和实现类结构：</p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Spring_%E5%AE%B9%E5%99%A8_1.png" alt="Spring_容器_1"></p></li><li><p>从图中可以看出，使用<code>BeanFactory</code>接口也可以创建容器，与<code>ApplicationContext</code>的区别是：</p><ul><li><code>BeanFactory</code>接口创建的容器是<strong>懒加载</strong>；</li><li><code>ApplicationContext</code>接口创建的容器是<strong>立即加载</strong>；</li></ul></li><li><p>在Spring发展过程中，需要增加新的功能时，通过子接口形式进行增加，符合**”开闭原则”**。</p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Spring</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Spring</tag>
+      
+      <tag>容器</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Spring-依赖注入(DI)相关</title>
     <link href="/2023/06/30/Spring-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5(DI)%E7%9B%B8%E5%85%B3/"/>
     <url>/2023/06/30/Spring-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5(DI)%E7%9B%B8%E5%85%B3/</url>
