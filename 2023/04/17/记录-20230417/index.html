@@ -18,25 +18,24 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="Java-处理（包装）流中的“装饰器模式” 包装流对节点流进行包装： 使用了装饰器模式； 既可以消除不同节点流的实现差异，也可以提供更加方便的方法来完成数据的输入输出； 且不直接与数据源相连接。    模拟包装流中的”装饰器模式“抽象父类Reader1234567891011&#x2F;** * @author: sea-365 * @date: 2023&#x2F;4&#x2F;17 16:46 *&#x2F;&#x2F;** * 模拟Read">
+    <meta name="description" content="Welcome to my blog, enter password to read.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java-处理（包装）流中的“装饰器模式”">
-<meta property="og:url" content="http://sea-365.site/2023/04/21/Java-%E5%A4%84%E7%90%86%EF%BC%88%E5%8C%85%E8%A3%85%EF%BC%89%E6%B5%81%E4%B8%AD%E7%9A%84%E2%80%9C%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F%E2%80%9D/index.html">
+<meta property="og:title" content="记录-20230417">
+<meta property="og:url" content="http://sea-365.site/2023/04/17/%E8%AE%B0%E5%BD%95-20230417/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="Java-处理（包装）流中的“装饰器模式” 包装流对节点流进行包装： 使用了装饰器模式； 既可以消除不同节点流的实现差异，也可以提供更加方便的方法来完成数据的输入输出； 且不直接与数据源相连接。    模拟包装流中的”装饰器模式“抽象父类Reader1234567891011&#x2F;** * @author: sea-365 * @date: 2023&#x2F;4&#x2F;17 16:46 *&#x2F;&#x2F;** * 模拟Read">
+<meta property="og:description" content="Welcome to my blog, enter password to read.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-21T06:34:55.578Z">
-<meta property="article:modified_time" content="2023-04-21T07:04:06.750Z">
+<meta property="article:published_time" content="2023-04-17T10:35:31.597Z">
+<meta property="article:modified_time" content="2023-07-12T07:15:41.576Z">
 <meta property="article:author" content="SEA">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="IO流">
+<meta property="article:tag" content="记录">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Java-处理（包装）流中的“装饰器模式” - SEA-365的读研日记</title>
+  <title>记录-20230417 - SEA-365的读研日记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java-处理（包装）流中的“装饰器模式”"></span>
+            <span id="subtitle" data-typed-text="记录-20230417"></span>
           
         </div>
 
@@ -212,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-21 14:34" pubdate>
-          2023年4月21日 下午
+        <time datetime="2023-04-17 18:35" pubdate>
+          2023年4月17日 晚上
         </time>
       </span>
     
@@ -224,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          3.3k 字
         
       </span>
     
@@ -235,7 +234,7 @@
         
         
         
-          13 分钟
+          28 分钟
         
       </span>
     
@@ -273,37 +272,25 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Java-处理（包装）流中的“装饰器模式”</h1>
+            <h1 style="display: none">记录-20230417</h1>
             
             
-              <div class="markdown-body">
-                
-                <h1 id="Java-处理（包装）流中的“装饰器模式”"><a href="#Java-处理（包装）流中的“装饰器模式”" class="headerlink" title="Java-处理（包装）流中的“装饰器模式”"></a>Java-处理（包装）流中的“装饰器模式”</h1><ul>
-<li><strong>包装流</strong>对节点流进行包装：<ul>
-<li>使用了装饰器模式；</li>
-<li>既可以消除不同节点流的实现差异，也可以提供更加方便的方法来完成数据的输入输出；</li>
-<li>且不直接与数据源相连接。</li>
-</ul>
-</li>
-</ul>
-<h2 id="模拟包装流中的”装饰器模式“"><a href="#模拟包装流中的”装饰器模式“" class="headerlink" title="模拟包装流中的”装饰器模式“"></a>模拟包装流中的”装饰器模式“</h2><h3 id="抽象父类Reader"><a href="#抽象父类Reader" class="headerlink" title="抽象父类Reader"></a>抽象父类Reader</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea-365</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/4/17 16:46</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 模拟Reader类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Reader_</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">read</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+              
+              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="231138fd50690910546c872ed9944f96fb6995674caa3af3e887a3f6cc6a8902">7ccdbd9a8d189922813fab3f8512bc1ba07a1c23a49e2159bc35f6bdbc2c1d2348276a6e4ef92353fbc7a8cec838f57e9a9f8b5da17624e0fe150dfcba2acfe735b42e188a694b5ecb1e759fa709de0fab60d7d38aa3d3a40e4f6f5b5eeb0ad317ff69c518dc2d79597f82cdea4631d6895ef742ba35528abb16727115e4f201d1800b24f5b90e32b016df799c3bb550f31608a4883386a411f925a88763b9bc271fab74a3b5494bf0acee65447d93c6685ff65465bb2a8f488e5e384aa1f86a97a006651ccdbbfffa8b1a6a792c95558896419e73c69784acccf23febdb9aa4dd33099690d8daa48a6dfe724db1b4a6862690a3aa8a1a5f9604d01465efb1eb3a776ef467a51fa694fc30caa70e4e98eeebc38773af35abea00109692a27c62914fa716a74d7f297b4b4922c04d2e21f5987f95e089f8b8a40c9504eb54b76147850feca28ccc77a4360b18e4f30da400b27c0b87379c09d3fc85a142988636f8fbab8b70bf296790a848c95692b682b1b11b122a38538e898c6f2dc0be9da174b8f3779e9b49f9aa07513a31f566d0ad72b235e1107f097e042eca1df1c21362785fdf8e2d3bdf4d88da1cef36a811d2efb009400cfff229747ee14ea03f74021c1bce530d996f62147cff5582d91f8162f899f3d172f324cdcf4a47f4ddd3dbc61db55bbc35234eb3dfb64f791fb95be6f72f22eabde16da966b9e8ede7e6162fdf2d1d45a98cadd433c089d573b4bc2dab75a4139c8df3007f836b1751c742751ad3d5de30124289d1fee33cddb4a434eff2d7116f311c29ce3620a45e20b9424d9122992a1ea9e170f11f1e5b9cef946c859b9846f3b755d89324a7d56a466ebe9a2d4a7d5911d04104a02034a5b93988f33edd2c8a8d8983c62d5e76c62fdafa2d02e0e0886d26c56800e7509570d8df3b5a58bcf7188371ec94635f72be240f2b9265ce7ce4e083e03deb61fdc8ec1b34630c6956bd3488939953a82f7447f7363f63b07bfb61de2580848c45ad8ebb30504103c6a89e1f24f49b0e557437b1cd3dd89f3215e6e120ba7809b6625e86b8df680ebe59ab2d3c94bbedc60f80d071e40c71ef86e6dff37826490fe922ca2c3a5988f5509d45c08de83569a13eb084c4f6674c1c10a45a748f2df87881b1987a3fc782ec099427b8d021de51456587db39cee13febac946f931a23ef3cab78ff0f06fb742291415cf4e665c451988f124538b088d9f8498a12c89d9413d9353cf1c7f1e6229bcf7c4a587e68dc061f31580542f5a8e93dd336deb0c9a463bde1f970ea7ab492b09b5732fc2b331f21769738013ccf43d3899f0b456696c96ef9c2aab33dc95c3e12fc40318e8cd9b9f9aba185291bc58720d50c0e8316eebbc65c8052a87daa74e6d7174e32fd5b4157cec22c909ad237f95bd5d529dd81798aaa932afbb00726b3b947a468d1dfa08ece72786f9910b338c541ed35c9cf3c8cce7278ae8749efbfb1a593192bcf847c0658b145d11d5f792dd1c78161dabba4c284169e96bde56f6b8ec3f41e8ac436b5be63d5d00ab3154410f749d577ad53c72b12b1d099c6dbcd7b2d2e6e28c36ca27d6b95fc4f52b6254ebdfb49b5fe59d72b0f81cae7549d7c1e47466c2dfbcb913dc00eee4492d2f6f2a7bd5902258b24cc3e5c25592cad31ac2735ee895317e39bbff5360344961f1da8c97e7f73e9609dceb09c8dc41e8efa9d194b2576155c32037bef19bc74c9781fde2351d2e2e2f10eb79d09d1e057ea4ce551b44d6dcd27c245fe769cdc67df5afaf71ac31d7259f2fb02dc435fdc1d6eb4f25b8b2bd4de9e798ac492ef5caeebe003498a155e510df185858a5a254a44a021c9ad845f8b66101b8a0cb2e560ef6347d892c8fe60628b596907136d093adf8da499269807e7ac5eaef3b1c777048a0aad77593f63fd7a449cfcbbf64758fb1b93795caffbc0f3a1748f34c5c8240986972087face11fa0beb473654e7ff5acda3ae167be9c47f614d997bdacbd7cc316fe4e4f8aeb78f5289b193666247830936caf441a5a3c60296d317d05233df3625ce1b93b0cbbc846d54efa9d8fc25c5dbb7013abe22fbb3550ffcc5d1724c3f26f65a2f84d38594f7666b9fce728ef29157aef060d12f3335daf76729653e98aa3da2c7e95f02a94d1fc5b75859b6575597f07a2f3b957ebc14c72a10a7df274a780165829d6b5d08b6aa3a96c2d67c8490580be5295f843d719ad42579054fdc3875756f7af29c09d882ec1cfd9b935c5c95d2e70ed1833d74188c068a3e7d1385d026961b79cef8f9c7d09bb3</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">文章已加密，请输入密码阅读！</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+              
 
-<h3 id="文件读取-节点流FileReader"><a href="#文件读取-节点流FileReader" class="headerlink" title="文件读取 节点流FileReader"></a>文件读取 节点流FileReader</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea-365</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/4/17 16:47</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 模拟FileReader类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FileReader_</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Reader_</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">read</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-comment">//实现读取文件</span><br>        System.out.println(<span class="hljs-string">&quot;读取文件。。。&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="字符串读取-节点流StringReader"><a href="#字符串读取-节点流StringReader" class="headerlink" title="字符串读取 节点流StringReader"></a>字符串读取 节点流StringReader</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea-365</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/4/17 16:49</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StringReader_</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Reader_</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">read</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-comment">//实现读取字符串</span><br>        System.out.println(<span class="hljs-string">&quot;读取字符串。。。&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="包装流BufferedReader"><a href="#包装流BufferedReader" class="headerlink" title="包装流BufferedReader"></a>包装流BufferedReader</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea-365</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/4/17 16:50</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BufferedReader_</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Reader_</span> &#123;<br>    <span class="hljs-keyword">private</span> Reader_ reader_;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">BufferedReader_</span><span class="hljs-params">(Reader_ reader_)</span> &#123;<br>        <span class="hljs-built_in">this</span>.reader_ = reader_;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">read</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-built_in">this</span>.reader_.read();<span class="hljs-comment">//动态绑定机制，调用不同节点的读取方式</span><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
-
-<h3 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea-365</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/4/17 17:00</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">test_Decorator</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Reader_</span> <span class="hljs-variable">fr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader_</span>();<span class="hljs-comment">//文件读取 节点流</span><br><br>        <span class="hljs-type">Reader_</span> <span class="hljs-variable">sr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringReader_</span>();<span class="hljs-comment">//字符串读取 节点流</span><br><br>        <span class="hljs-type">BufferedReader_</span> <span class="hljs-variable">br_f</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader_</span>(fr);<span class="hljs-comment">//包装了 文件读取 节点流的包装流</span><br><br>        br_f.read();<br>        <br>        <span class="hljs-type">BufferedReader_</span> <span class="hljs-variable">br_s</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader_</span>(sr);<span class="hljs-comment">//包装了 字符串读取 节点流的包装流</span><br><br>        br_s.read();<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>通过给BufferedReader包装流传入不同的节点流，根据<strong>动态绑定机制</strong>，可以获得不同节点流的数据输入输出方法；</li>
-<li>包装流中读取数据实际是 <strong>被包装的节点流</strong> 来读取；</li>
-<li>关闭包装流时会调用 <strong>被包装的节点流</strong> 的关闭方法；</li>
-</ul>
-
-                
-              </div>
+              
             
             <hr/>
             <div>
@@ -319,15 +306,8 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/" class="category-chain-item">Java学习</a>
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%BD%95/" class="category-chain-item">学习路上的一些记录</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/IO%E6%B5%81/" class="category-chain-item">IO流</a>
-  
-  
-
   
 
       </span>
@@ -341,9 +321,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java/">#Java</a>
-      
-        <a href="/tags/IO%E6%B5%81/">#IO流</a>
+        <a href="/tags/%E8%AE%B0%E5%BD%95/">#记录</a>
       
     </div>
   
@@ -355,8 +333,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java-处理（包装）流中的“装饰器模式”</div>
-      <div>http://sea-365.site/2023/04/21/Java-处理（包装）流中的“装饰器模式”/</div>
+      <div>记录-20230417</div>
+      <div>http://sea-365.site/2023/04/17/记录-20230417/</div>
     </div>
     <div class="license-meta">
       
@@ -368,7 +346,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月21日</div>
+          <div>2023年4月17日</div>
         </div>
       
       
@@ -400,9 +378,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/21/Java-BufferedReader%E5%92%8CBufferedWriter%E7%BB%84%E5%90%88%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D%EF%BC%88%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%EF%BC%89/" title="Java-BufferedReader和BufferedWriter组合实现文件拷贝（文本文件）">
+                      <a href="/2023/04/21/Java-%E5%A4%84%E7%90%86%EF%BC%88%E5%8C%85%E8%A3%85%EF%BC%89%E6%B5%81%E4%B8%AD%E7%9A%84%E2%80%9C%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F%E2%80%9D/" title="Java-处理（包装）流中的“装饰器模式”">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java-BufferedReader和BufferedWriter组合实现文件拷贝（文本文件）</span>
+                        <span class="hidden-mobile">Java-处理（包装）流中的“装饰器模式”</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -410,8 +388,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/17/%E8%AE%B0%E5%BD%95-20230417/" title="记录-20230417">
-                        <span class="hidden-mobile">记录-20230417</span>
+                      <a href="/2023/04/14/%E8%AE%B0%E5%BD%95-20230221/" title="记录-20230221">
+                        <span class="hidden-mobile">记录-20230221</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -588,6 +566,23 @@
   
 
 
+
+
+  
+  <script defer>
+    if (document.getElementById('hbePass')) {
+      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
+        var hbePrefix = document.querySelector('hbe-prefix');
+        hbePrefix.parentElement.classList.add('markdown-body');
+        Fluid.utils.retry(function() {
+          if (Fluid.boot && Fluid.boot.refresh) {
+            Fluid.boot.refresh();
+            return true;
+          }
+        }, 100, 10);
+      })
+    }
+  </script>
 
 
   
