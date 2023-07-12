@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Spring-Spring整合Junit</title>
+    <link href="/2023/07/11/Spring-Spring%E6%95%B4%E5%90%88Junit/"/>
+    <url>/2023/07/11/Spring-Spring%E6%95%B4%E5%90%88Junit/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Spring-Spring整合Junit"><a href="#Spring-Spring整合Junit" class="headerlink" title="Spring-Spring整合Junit"></a>Spring-Spring整合Junit</h1><h3 id="1-1-导入坐标"><a href="#1-1-导入坐标" class="headerlink" title="1.1 导入坐标"></a>1.1 导入坐标</h3><ul><li><p>除了druid、mysql、spring以及整合Mybatis用到的mybatis、mybatis-spring、spring-jdbc外，还需要引入两个坐标：</p><ul><li>spring-test</li><li>junit</li></ul><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.2.1.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.12<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure></li></ul><h3 id="1-2-编写测试类"><a href="#1-2-编写测试类" class="headerlink" title="1.2 编写测试类"></a>1.2 编写测试类</h3><ul><li><p>在src&#x2F;test目录下新建与待测试的类同路径的测试类，以<code>com.sea.service.AccountService</code>类为例，在src&#x2F;test目录下新建<code>com.sea.service.AccountServiceTest</code>类进行测试：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/7/11 15:50</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@RunWith(SpringJUnit4ClassRunner.class)</span>  <span class="hljs-comment">//设定类运行器</span><br><span class="hljs-meta">@ContextConfiguration(classes= SpringConfig.class)</span> <span class="hljs-comment">//指定Spring配置类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AccountServiceTest</span> &#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> AccountService accountService;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testAccountService</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(accountService.findAll());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li><li><p>需要配置两个注解：</p><ul><li><p>指定测试类的运行器为 <code>SpringJUnit4ClassRunner</code>，它是 JUnit 的一个扩展类，用于在测试过程中启动 Spring 容器。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RunWith(SpringJUnit4ClassRunner.class)</span>  <span class="hljs-comment">//设定测试类的运行器</span><br></code></pre></td></tr></table></figure></li><li><p>指定 Spring 的配置类为 <code>SpringConfig</code>，它告诉测试类在运行之前需要加载指定的 Spring 配置，以便创建和管理相应的 bean。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ContextConfiguration(classes= SpringConfig.class)</span> <span class="hljs-comment">//指定Spring配置类</span><br></code></pre></td></tr></table></figure></li></ul></li><li><p>结果：</p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Spring-Spring%E6%95%B4%E5%90%88Junit_1.png" alt="Spring-Spring整合Junit_1"></p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Spring</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Spring</tag>
+      
+      <tag>Junit</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Mybatis-快速开始</title>
     <link href="/2023/07/05/Mybatis-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/"/>
     <url>/2023/07/05/Mybatis-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/</url>
