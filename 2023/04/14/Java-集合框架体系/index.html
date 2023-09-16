@@ -1,0 +1,1002 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://github.com/SEA-365/imgList/blob/main/website_img/fluid.png?raw=true">
+  <link rel="icon" href="https://github.com/SEA-365/imgList/blob/main/website_img/fluid.png?raw=true">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="SEA">
+  <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
+  
+    <meta name="description" content="集合框架体系Collection  (单列集合)Collection接口实现类的特点 1.可以存放多个Object类型的元素； 2.有些可以存放重复元素，有些不行； 3.有些是有序的（List），有些不是有序的（Set）； 4.没有直接的实现子类，是通过实现它的子接口Set和List实现的；  List 1.List接口是Collection接口的子接口，特点： 1)List集合类中的元素有序，即">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集合框架体系整理（整理完毕！！）">
+<meta property="og:url" content="http://sea-365.site/2023/04/14/Java-%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%BD%93%E7%B3%BB/index.html">
+<meta property="og:site_name" content="SEA-365的读研日记">
+<meta property="og:description" content="集合框架体系Collection  (单列集合)Collection接口实现类的特点 1.可以存放多个Object类型的元素； 2.有些可以存放重复元素，有些不行； 3.有些是有序的（List），有些不是有序的（Set）； 4.没有直接的实现子类，是通过实现它的子接口Set和List实现的；  List 1.List接口是Collection接口的子接口，特点： 1)List集合类中的元素有序，即">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-14T05:18:42.356Z">
+<meta property="article:modified_time" content="2023-04-14T05:18:42.356Z">
+<meta property="article:author" content="SEA">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="集合">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>集合框架体系整理（整理完毕！！） - SEA-365的读研日记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sea-365.site","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>SEA-365</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://github.com/SEA-365/imgList/blob/main/website_img/default.png?raw=true') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="集合框架体系整理（整理完毕！！）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-14 13:18" pubdate>
+          2023年4月14日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          72 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">集合框架体系整理（整理完毕！！）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="集合框架体系"><a href="#集合框架体系" class="headerlink" title="集合框架体系"></a>集合框架体系</h1><h2 id="Collection-单列集合"><a href="#Collection-单列集合" class="headerlink" title="Collection  (单列集合)"></a>Collection  (单列集合)</h2><h3 id="Collection接口实现类的特点"><a href="#Collection接口实现类的特点" class="headerlink" title="Collection接口实现类的特点"></a>Collection接口实现类的特点</h3><ul>
+<li>1.可以存放多个Object类型的元素；</li>
+<li>2.有些可以存放重复元素，有些不行；</li>
+<li>3.有些是有序的（List），有些不是有序的（Set）；</li>
+<li>4.没有直接的实现子类，是通过实现它的子接口Set和List实现的；</li>
+</ul>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><ul>
+<li>1.List接口是Collection接口的子接口，特点：<ul>
+<li>1)List集合类中的元素有序，即添加顺序和取出顺序一直，且元素可以重复；</li>
+<li>2)List集合类中的元素支持索引，例如list.get(index)，返回的是集合中的第index+1个元素;</li>
+</ul>
+</li>
+<li>2.遍历方式<ul>
+<li>1)Iterator</li>
+<li>2)增强for</li>
+<li>3)普通for（即支持索引）</li>
+</ul>
+</li>
+</ul>
+<h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList *"></a>ArrayList *</h4><ul>
+<li>1.List接口的实现类；</li>
+<li>2.可以存放任意类型的数据，包括null；</li>
+<li>3.底层数据存储是由数组实现的；</li>
+<li>4.基本等同于Vector，但是它线程不安全 &#x3D;&gt; 执行效率（源码中没有使用synchronized关键字修饰）；</li>
+<li>5.在多线程情况下，不建议使用ArrayList；</li>
+<li>6.扩容机制<ul>
+<li>1）ArrayList维护了一个Object类型的数组elementData;</li>
+<li>2）创建ArrayList对象时：<ul>
+<li>如果使用的是无参构造器，则初始elementData数组容量为0，第一次添加元素，则扩容elementData数组容量为<strong>10</strong>，如需再次扩容，则扩容原elementData数组容量的<strong>1.5倍</strong>；</li>
+<li>如果使用的是指定大小的构造器，则初始elementData容量为指定大小，如需再次扩容，则扩容原elementData数组容量的<strong>1.5倍</strong>；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><ul>
+<li><p>1.List接口的实现类</p>
+</li>
+<li><p>2.LinkedList底层实现了双向链表和双端队列的特点：</p>
+<ul>
+<li>1）每个节点都是Node对象；</li>
+<li>2）底层维护了first，last，分别指向链表的首、尾节点；</li>
+<li>3）节点内部维护了prev，next，item三个属性，prev指向前一个节点，next指向后一个节点，实现双向链表；</li>
+</ul>
+</li>
+<li><p>3.可以添加任意类型的元素，包括null，且可以重复；</p>
+</li>
+<li><p>4.线程不安全，没有同步；</p>
+</li>
+<li><p>5.添加和删除操作效率较高（链表的优势）,不涉及到扩容问题；</p>
+</li>
+</ul>
+<h4 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h4><ul>
+<li><p>1.实现了List接口，并且继承了ArrayList类；</p>
+</li>
+<li><p>2.底层和ArrayList一样维护了一个Object类型的数组，elementData；</p>
+</li>
+<li><p>3.Vector支持线程同步，即线程安全，Vector类的操作方法（如setXXX()，getXXX()方法）带有synchronized关键字修饰；</p>
+</li>
+<li><p>4.扩容机制</p>
+<ul>
+<li><p>创建ArrayList对象时：</p>
+<ul>
+<li>如果使用的是无参构造器，则初始elementData数组容量为0，第一次添加元素，则扩容elementData数组容量为<strong>10</strong>，如需再次扩容，则扩容原elementData数组容量的<strong>2倍</strong>；</li>
+<li>如果使用的是指定大小的构造器，则初始elementData容量为指定大小，如需再次扩容，则扩容原elementData数组容量的<strong>2倍</strong>；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="ArrayList和LinkedList比较"><a href="#ArrayList和LinkedList比较" class="headerlink" title="ArrayList和LinkedList比较"></a>ArrayList和LinkedList比较</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>底层结构</th>
+<th>增删的效率</th>
+<th>改查的效率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ArrayList</td>
+<td>可变数组</td>
+<td>较低，数组扩容</td>
+<td>较高</td>
+</tr>
+<tr>
+<td>LinkedList</td>
+<td>双向链表</td>
+<td>较高，链表直接追加</td>
+<td>较低</td>
+</tr>
+</tbody></table>
+<p><strong>上述是比较常用的实现子类，还有很多其他的实现子类；</strong></p>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><ul>
+<li>1.无序（添加和取出顺序不一致），且没有索引（例如：不能使用普通for进行遍历）；<ul>
+<li>添加的顺序与取出顺序不一致，<strong>但是取出的顺序是固定的；</strong></li>
+</ul>
+</li>
+<li>2.不允许有重复元素，因此Set中最多包含一个null值；</li>
+<li>3.JDK API中Set接口的实现类有：<ul>
+<li>HashSet</li>
+<li>TreeSet</li>
+<li>还有很多其他实现类和子接口；</li>
+</ul>
+</li>
+<li>4.遍历方式<ul>
+<li>1)Iterator</li>
+<li>2)增强for</li>
+<li><strong>3)不能使用普通for遍历（即不支持索引）</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet *"></a>HashSet *</h4><ul>
+<li><p>1.Set接口的实现类；</p>
+</li>
+<li><p>2.HashSet底层实现实际上是一个HashMap；</p>
+</li>
+<li><p>3.不能有重复元素（Set接口的实现类），可以存放null值，但是只能存放一个；</p>
+</li>
+<li><p>4.HashSet不保证元素有序，取决于hash后的索引结果；</p>
+</li>
+<li><p>5.<strong>低层扩容机制</strong>，底层是一个HashMap &#x3D;&gt; <strong>数组+链表+红黑树</strong></p>
+<ul>
+<li><p><strong>HashSet与HashMap的扩容机制不一样的地方：</strong></p>
+<ul>
+<li><strong>HashSet在add元素时，传入的key是待添加元素，而value是一个常量值，遍历HashSet时，HashSet的迭代器返回的是keySet的迭代器，因此仅遍历key；</strong></li>
+<li><strong>HashMap在add元素时，传入的是一个程序员自定义的键值对；</strong></li>
+</ul>
+</li>
+<li><p>1）添加一个元素时，先通过hash算法得到hash值，通过<strong>某个</strong>算法转成索引值；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//hash()方法，获得hash值</span><br><span class="hljs-keyword">return</span> (key == <span class="hljs-literal">null</span>) ? <span class="hljs-number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="hljs-number">16</span>);<br><br><span class="hljs-comment">//“某个算法”即i = (n - 1) &amp; hash  实现：hash值 ==&gt; table的索引值</span><br>tab[i = (n - <span class="hljs-number">1</span>) &amp; hash]<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>2）找到存储数据表table，检查该索引位置是否已经存放有元素：</p>
+<ul>
+<li>若没有元素，直接加入；</li>
+<li>若有元素，调用equals()方法进行比较，如果相同则放弃添加，如果不相同则添加到链表最后；</li>
+</ul>
+</li>
+<li><p>3）在Java8中，如果一条链表的元素个数 &gt;&#x3D; TREEIFY_THRESHOLD值（默认值是8），<strong>并且</strong>table的大小 &gt;&#x3D; MIN_TREEIFY_CAPACITY值(默认值是64)时，会将该链表转化为一颗红黑树；</p>
+</li>
+<li><p>4）若仅该链表元素个数 &gt; 8，而table的大小仍 &lt; 64时，先对table数组进行扩容；</p>
+<ul>
+<li><strong>table数组扩容机制</strong>：</li>
+<li>（1）HashMap初始化时设定了一个loadFactor值，默认初始为0.75；</li>
+<li>（2）table的容量默认初始为16；</li>
+<li>（3）当table中的元素个数(包括链表中的节点) &gt; 阈值（即threshold值，此时为16 * 0.75&#x3D;12）时，table容量扩大为原来的2倍，阈值threshold为 loadFactor * table的容量；</li>
+<li>（4）数组扩容后，元素的位置也会进行重新分布(具体见源码中的resize()方法)；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h4><ul>
+<li>1.HashSet的子类；</li>
+<li>2.底层是一个<strong>LinkedHashMap</strong>（HashMap的子类），底层维护了一个<strong>数组+双向链表</strong>；</li>
+<li>3.根据元素的<strong>hashCode值</strong>来决定元素的存储位置，同时使用链表维护元素的次序，即<strong>加入顺序和取出顺序一致</strong>；</li>
+<li>4.不允许插入重复元素；</li>
+</ul>
+<h4 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h4><ul>
+<li>1.Set接口的实现类；</li>
+<li>2.底层是TreeMap；</li>
+<li>3.通过构造函数创建TreeSet对象时，可以传入一个比较器进行排序：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TreeSet01</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">//TreeSet源码分析</span><br><br>        <span class="hljs-type">TreeSet</span> <span class="hljs-variable">treeSet</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeSet</span>();<span class="hljs-comment">//无参构造器，不排序</span><br><br>        treeSet.add(<span class="hljs-string">&quot;a345bc&quot;</span>);<br>        treeSet.add(<span class="hljs-string">&quot;46bsd&quot;</span>);<br>        treeSet.add(<span class="hljs-string">&quot;f23&quot;</span>);<br>        treeSet.add(<span class="hljs-string">&quot;12t&quot;</span>);<br><br>        System.out.println(treeSet);<br><br>        <span class="hljs-comment">//TreeSet最大的特点就是，排序</span><br>        <span class="hljs-comment">//在初始化时，使用TreeSet提供的一个构造器，可以传入一个比较器（匿名内部类）</span><br><br>        <span class="hljs-type">TreeSet</span> <span class="hljs-variable">treeSet1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeSet</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Comparator</span>() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(Object o1, Object o2)</span> &#123;<br>                <span class="hljs-keyword">return</span> ((String) o1).compareTo((String) o2);<span class="hljs-comment">//字典序</span><br>            &#125;<br>        &#125;);<br><br>        treeSet1.add(<span class="hljs-string">&quot;bhy&quot;</span>);<br>        treeSet1.add(<span class="hljs-string">&quot;7hy&quot;</span>);<br>        treeSet1.add(<span class="hljs-string">&quot;why&quot;</span>);<br>        treeSet1.add(<span class="hljs-string">&quot;ahy&quot;</span>);<br><br>        System.out.println(treeSet1);<br><br><br>        <span class="hljs-type">TreeSet</span> <span class="hljs-variable">treeSet2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeSet</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Comparator</span>() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(Object o1, Object o2)</span> &#123;<br>                <span class="hljs-keyword">return</span> ((String)o1).length() - ((String)o2).length();<span class="hljs-comment">//字符串长度进行比较</span><br>            &#125;<br>        &#125;);<br><br>        treeSet2.add(<span class="hljs-string">&quot;bhy&quot;</span>);<br>        treeSet2.add(<span class="hljs-string">&quot;7hy&quot;</span>);<br>        treeSet2.add(<span class="hljs-string">&quot;why&quot;</span>);<br>        treeSet2.add(<span class="hljs-string">&quot;ahy&quot;</span>);<br>        <span class="hljs-comment">//由于长度都为3，因此根据比较规则，后面三个元素判断为与第一个元素重复，添加失败</span><br><br>        System.out.println(treeSet2);<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="Map（双列集合）"><a href="#Map（双列集合）" class="headerlink" title="Map（双列集合）"></a>Map（双列集合）</h2><h3 id="Map接口实现类的特点"><a href="#Map接口实现类的特点" class="headerlink" title="Map接口实现类的特点"></a>Map接口实现类的特点</h3><ul>
+<li>1.用于保存具有映射关系的数据：key-value（即双列元素）;</li>
+<li>2.Map中的key和value可以是<strong>任意引用类型（Object类型）</strong>，会封装到HashMap$Node对象中；</li>
+<li>3.Map中的key不允许重复，原因和HashSet（本质是HashMap）一致：<ul>
+<li>key相同时，后面加入的元素的value值会进行覆盖原value值；</li>
+<li>key不同时，value允许相同；</li>
+<li>key和value可以为null，主要注意的是，Map中只能有一个元素的key为null，但可以有多个value为null；</li>
+</ul>
+</li>
+<li>4.常用String来作为key值；</li>
+<li>5.key和value之间是一对一关系，即通过特定的key可以找到对应的value；</li>
+<li>6.六种遍历方式，Map的遍历主要通过获取keySet，entrySet，values并分别使用<strong>迭代器或者增强for（原理也是迭代器）</strong>来实现；</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Map</span> <span class="hljs-variable">map</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>();<br>map.put(<span class="hljs-number">1</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Employee</span>(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-number">1000</span>, <span class="hljs-number">1</span>));<br>map.put(<span class="hljs-number">2</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Employee</span>(<span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-number">2000</span>, <span class="hljs-number">2</span>));<br>map.put(<span class="hljs-number">3</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Employee</span>(<span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-number">3000</span>, <span class="hljs-number">3</span>));<br>map.put(<span class="hljs-number">4</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Employee</span>(<span class="hljs-string">&quot;d&quot;</span>, <span class="hljs-number">4000</span>, <span class="hljs-number">4</span>));<br>map.put(<span class="hljs-number">5</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Employee</span>(<span class="hljs-string">&quot;e&quot;</span>, <span class="hljs-number">5000</span>, <span class="hljs-number">5</span>));<br>map.put(<span class="hljs-number">6</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Employee</span>(<span class="hljs-string">&quot;f&quot;</span>, <span class="hljs-number">6000</span>, <span class="hljs-number">6</span>));<br><br><span class="hljs-comment">//1.获取keySet</span><br><span class="hljs-type">Set</span> <span class="hljs-variable">set</span> <span class="hljs-operator">=</span> map.keySet();<br><br><span class="hljs-comment">//增强for遍历</span><br><span class="hljs-keyword">for</span> (Object key : set) &#123;<br>    System.out.println(key + <span class="hljs-string">&quot;-&quot;</span> + map.get(key));<br>&#125;<br><br><span class="hljs-type">Iterator</span> <span class="hljs-variable">iterator</span> <span class="hljs-operator">=</span> set.iterator();<br><span class="hljs-keyword">while</span> (iterator.hasNext()) &#123;<br>    <span class="hljs-type">Object</span> <span class="hljs-variable">next</span> <span class="hljs-operator">=</span> iterator.next();<br>    System.out.println(next + <span class="hljs-string">&quot;-&quot;</span> + map.get(next));<br>&#125;<br><br><span class="hljs-comment">//2.获取values</span><br><span class="hljs-type">Collection</span> <span class="hljs-variable">values</span> <span class="hljs-operator">=</span> map.values();<br><br><span class="hljs-comment">//增强for</span><br><span class="hljs-keyword">for</span> (Object o : values) &#123;<br>    System.out.println(o);<br>&#125;<br><br><span class="hljs-comment">//迭代器</span><br><span class="hljs-type">Iterator</span> <span class="hljs-variable">iterator1</span> <span class="hljs-operator">=</span> values.iterator();<br><span class="hljs-keyword">while</span> (iterator1.hasNext()) &#123;<br>    <span class="hljs-type">Object</span> <span class="hljs-variable">next</span> <span class="hljs-operator">=</span> iterator1.next();<br>    System.out.println(next);<br>&#125;<br><br><span class="hljs-comment">//3.获取entrySet</span><br><span class="hljs-type">Set</span> <span class="hljs-variable">set1</span> <span class="hljs-operator">=</span> map.entrySet();<br><br><span class="hljs-comment">//增强for</span><br><span class="hljs-keyword">for</span> (Object o : set1) &#123;<br>    Map.<span class="hljs-type">Entry</span> <span class="hljs-variable">entry</span> <span class="hljs-operator">=</span> (Map.Entry) o;<br>    System.out.println(entry.getKey() + <span class="hljs-string">&quot;-&quot;</span> + entry.getValue());<br>&#125;<br><br><span class="hljs-comment">//迭代器</span><br><span class="hljs-type">Iterator</span> <span class="hljs-variable">iterator2</span> <span class="hljs-operator">=</span> set1.iterator();<br><span class="hljs-keyword">while</span> (iterator2.hasNext()) &#123;<br>    Map.<span class="hljs-type">Entry</span> <span class="hljs-variable">next</span> <span class="hljs-operator">=</span> (Map.Entry)iterator2.next();<br>    System.out.println(next.getKey() + <span class="hljs-string">&quot;-&quot;</span> + next.getValue());<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap *"></a>HashMap *</h4><ul>
+<li><p>1.Map接口的实现类，使用频率最高；</p>
+</li>
+<li><p>2.数据以键值对（key-value）的形式存储，key和value是Object类型；</p>
+</li>
+<li><p>3.HashMap没有实现同步，因此是线程不安全的，没有synchronized关键字；</p>
+</li>
+<li><p>4.底层机制：</p>
+<ul>
+<li>1）键值对（key-value）是一个Node类，Node类实现了Map.Entry&lt;K, V&gt;接口；</li>
+<li>2）JDK7.0中，HashMap底层实现是数组+链表；JDK8.0中，HashMap底层实现是数组+链表+红黑树；</li>
+</ul>
+</li>
+<li><p>5.扩容机制</p>
+<ul>
+<li><strong>HashSet与HashMap的扩容机制不一样的地方：</strong><ul>
+<li>1）HashSet在add元素时，传入的key是待添加元素，而<strong>value是一个常量值</strong>；</li>
+<li>2）HashMap在add元素时，传入的是一个程序员<strong>自定义的Object类型的键值对（key-value）</strong>，若add操作时，key发生冲突，则用<strong>待添加元素的value</strong>替换<strong>HashMap中相应位置元素的value</strong>；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Hashtable"><a href="#Hashtable" class="headerlink" title="Hashtable"></a>Hashtable</h4><ul>
+<li><p>1.Map接口的实现类；</p>
+</li>
+<li><p>2.存放的元素是键值对（key-value）；</p>
+</li>
+<li><p><strong>3.Hashtable的键和值都不能为null；</strong></p>
+</li>
+<li><p>4.使用方法和HashMap基本一样；</p>
+</li>
+<li><p>5.<strong>Hashtable是线程安全的</strong>，而HashMap是线程不安全的，因此，<strong>Hashtable效率低于HashMap</strong>;</p>
+</li>
+<li><p>6.扩容机制：<strong>原容量的2倍+1</strong></p>
+<ul>
+<li>1）通过hashCode()得到hash值，再通过某种算法得到索引值；</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//获得hash值</span><br><span class="hljs-type">int</span> <span class="hljs-variable">hash</span> <span class="hljs-operator">=</span> key.hashCode();<br><span class="hljs-comment">//获得索引值</span><br><span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> (hash &amp; <span class="hljs-number">0x7FFFFFFF</span>) % tab.length;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>2）在存储数据的表table中，检查该索引位置是否已经存放有元素：</p>
+<ul>
+<li>若没有元素，直接调用addEntry()添加元素；</li>
+<li>若有元素，即发生冲突，调用equals()方法进行对key进行比较，如果相同则将原value替换为当前value；</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//源码分析</span><br><span class="hljs-comment">//put()方法中，若冲突，则替换value；</span><br><span class="hljs-keyword">for</span>(; entry != <span class="hljs-literal">null</span> ; entry = entry.next) &#123;<br>    <span class="hljs-keyword">if</span> ((entry.hash == hash) &amp;&amp; entry.key.equals(key)) &#123;<br>        <span class="hljs-type">V</span> <span class="hljs-variable">old</span> <span class="hljs-operator">=</span> entry.value;<br>        entry.value = value;<br>        <span class="hljs-keyword">return</span> old;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>3）若Hashtable中的节点（Hashtable中的节点是Entry类型）数量 &gt;&#x3D; table表的阈值(threshold)则进行扩容</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//源码分析</span><br><span class="hljs-comment">//addEntry()方法中的部分代码</span><br><span class="hljs-keyword">if</span> (count &gt;= threshold) &#123;<br>    <span class="hljs-comment">// Rehash the table if the threshold is exceeded</span><br>    rehash();<span class="hljs-comment">//这里实现扩容</span><br><br>    tab = table;<br>    hash = key.hashCode();<br>    index = (hash &amp; <span class="hljs-number">0x7FFFFFFF</span>) % tab.length;<br>&#125;<br><br><span class="hljs-comment">//rehash()方法中的部分代码：</span><br><span class="hljs-type">int</span> <span class="hljs-variable">oldCapacity</span> <span class="hljs-operator">=</span> table.length;<br>Entry&lt;?,?&gt;[] oldMap = table;<br><br><span class="hljs-comment">// overflow-conscious code</span><br><span class="hljs-type">int</span> <span class="hljs-variable">newCapacity</span> <span class="hljs-operator">=</span> (oldCapacity &lt;&lt; <span class="hljs-number">1</span>) + <span class="hljs-number">1</span>;<span class="hljs-comment">//原容量2倍+1</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>4）Hashtable不会树化；</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h4><ul>
+<li>1.底层是HashMap实现；</li>
+</ul>
+<h4 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h4><ul>
+<li>1.TreeMap，HashMap都继承自AbstractMap，因此两者很多具体方法实现都大同小异；</li>
+<li>2.TreeSet的底层是TreeMap，<strong>两者的区别</strong>是：<ul>
+<li>TreeSet在add元素时，key是待添加的元素的值，value是常量；</li>
+<li>TreeMap在add元素时，key是待添加元素的键，value是待添加元素的值;</li>
+</ul>
+</li>
+<li>3.HashMap底层通过调用equals()方法判断key是否冲突，而TreeMap则通过调用比较器中定义的比较规则进行判断key是否冲突。<ul>
+<li>TreeMap与HashMap在发生key冲突时，均会将待添加元素的value替换冲突位置元素的value；</li>
+<li>若给TreeMap添加一个自定义类时，如map.put(new Person(), “asasa”)，由于自定义类没有实现Comparable接口的comparaTo方法，因此会报错；</li>
+</ul>
+</li>
+<li>4.源码分析与TreeSet处一致；</li>
+</ul>
+<h4 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h4><ul>
+<li>1.Properties继承自Hashtable类，并且实现了Map接口，也是使用一种键值对的形式来保存数据；</li>
+<li>2.Properties还可以用于从  <strong>外部xx.properties文件</strong> 中加载数据到 <strong>Properties类对象</strong> ，并且进行读取和修改；</li>
+<li>3.使用特点与Hashtable类似；</li>
+</ul>
+<h2 id="Collections"><a href="#Collections" class="headerlink" title="Collections"></a>Collections</h2><ul>
+<li>1.Collections是一个操作Set、List和Map等集合的工具类；</li>
+<li>2.Collections中提供了一系列静态的方法对集合元素进行排序、查询和修改等操作；</li>
+<li>3.常用的方法介绍：<ul>
+<li>排序操作<ul>
+<li>reverse(List)：反转List中元素的顺序；</li>
+<li>shuffle(List)：对List集合中的元素进行随机排序；</li>
+<li>sort(List)：根据元素的自然顺序对指定的List集合元素按升序排序；</li>
+<li>sort(List, Comparator)：根据指定的Comparator产生的顺序对List集合元素进行排序；</li>
+<li>swap(List, int, int)：将指定List集合中的 i 处元素和 j 元素进行交换；</li>
+</ul>
+</li>
+<li>查找、替换操作<ul>
+<li>Object max(Collecton)：根据元素自然顺序，返回给定集合中的最大元素；</li>
+<li>Object max(Collection, Comparator)：根据Comparator指定的顺序，返回给定集合中的最大元素；</li>
+<li>Object min(Collection)：同理，max;</li>
+<li>Object min(Collection, Comparator)：同理，max;</li>
+<li>int frequency(Collection, Object)：返回指定集合中指定元素的出现次数；</li>
+<li>void copy(List dest, List src)：将集合src中的内容复制到集合dest中；</li>
+<li>boolean replaceAll(List list, Object oldValue, Object newVal)：使用新值替换List集合中的所有旧值；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="集合选型规则"><a href="#集合选型规则" class="headerlink" title="集合选型规则"></a>集合选型规则</h2><ul>
+<li>选择什么集合实现类，主要取决于业务操作特点，根据集合实现类的特性选择。</li>
+</ul>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
+<li><p>1）先判断数据存储类型：</p>
+<ul>
+<li>一组对象 &#x3D;&gt; 单列集合Collection</li>
+<li>一组键值对 &#x3D;&gt; 双列集合Map</li>
+</ul>
+</li>
+<li><p>2）若是一组对象，即单列集合Collection，判断是否允许重复：</p>
+<ul>
+<li>允许重复 &#x3D;&gt; List<ul>
+<li>增删多：LinkedList，底层维护了双向链表；</li>
+<li>改查多：ArrayList， 底层维护了Object类型的可变数组；</li>
+</ul>
+</li>
+<li>不允许重复 &#x3D;&gt; Set<ul>
+<li>无序：HashSet，底层是HashMap实现，即数组+链表+红黑树；</li>
+<li>排序：TreeSet，</li>
+<li>插入顺序和取出顺序一致：LinkedHashSet，数组+双向链表，底层使用LinkedHashMap实现，而LinkedHashMap的底层是HashMap实现的；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>3）若是一组键值对，即双列集合Map：</p>
+<ul>
+<li>键(value)无序：HashMap；</li>
+<li>键(value)排序：TreeMap</li>
+<li>键(value)插入顺序和取出顺序一致：LinkedHashMap，底层使用HashMap实现；</li>
+<li>读取文件：Properties</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/" class="category-chain-item">Java学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java%E5%AD%A6%E4%B9%A0/%E9%9B%86%E5%90%88/" class="category-chain-item">集合</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+        <a href="/tags/%E9%9B%86%E5%90%88/">#集合</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>集合框架体系整理（整理完毕！！）</div>
+      <div>http://sea-365.site/2023/04/14/Java-集合框架体系/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>SEA</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/04/14/%E8%AE%B0%E5%BD%95-20230401/" title="记录-20230401">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">记录-20230401</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/14/Java-transient%E5%85%B3%E9%94%AE%E5%AD%97/" title="Java-transient关键字">
+                        <span class="hidden-mobile">Java-transient关键字</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        本站 总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
