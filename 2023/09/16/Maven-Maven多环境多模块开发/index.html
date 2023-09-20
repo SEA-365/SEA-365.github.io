@@ -1,0 +1,924 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://github.com/SEA-365/imgList/blob/main/website_img/fluid.png?raw=true">
+  <link rel="icon" href="https://github.com/SEA-365/imgList/blob/main/website_img/fluid.png?raw=true">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="SEA">
+  <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
+  
+    <meta name="description" content="Maven-Maven多模块多环境开发一、分模块开发与设计1.1 分模块开发的意义 分模块开发前，项目的目录结构如下：   分模块开发：将原始模块按照功能拆分为若干个子模块，方便模块间的相互调用以及接口共享；    1.2 分模块开发 分模块开发的一般步骤：  （1）创建Maven模块：   （2）编写各个模块的代码：  分模块开发需要针对模块功能进行设计，再进行编码。  例如，将domain包以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven-Maven多模块多环境开发">
+<meta property="og:url" content="http://sea-365.site/2023/09/16/Maven-Maven%E5%A4%9A%E7%8E%AF%E5%A2%83%E5%A4%9A%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="SEA-365的读研日记">
+<meta property="og:description" content="Maven-Maven多模块多环境开发一、分模块开发与设计1.1 分模块开发的意义 分模块开发前，项目的目录结构如下：   分模块开发：将原始模块按照功能拆分为若干个子模块，方便模块间的相互调用以及接口共享；    1.2 分模块开发 分模块开发的一般步骤：  （1）创建Maven模块：   （2）编写各个模块的代码：  分模块开发需要针对模块功能进行设计，再进行编码。  例如，将domain包以">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/Maven-%E5%88%86%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/Maven-%E5%88%86%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/Maven-%E5%88%86%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/Maven-%E5%88%86%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91-4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/Maven-%E5%88%86%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91-5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/Maven-%E4%BE%9D%E8%B5%96_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/Maven-%E4%BE%9D%E8%B5%96_2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Maven-%E8%81%9A%E5%90%88%E5%B7%A5%E7%A8%8B%E5%BC%80%E5%8F%91%E6%AD%A5%E9%AA%A4.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Nexus-%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Nexus-%E8%AE%BF%E9%97%AEweb%E6%9C%8D%E5%8A%A1%E5%99%A8.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Maven-%E7%A7%81%E6%9C%8D%E4%BB%93%E5%BA%93%E5%88%86%E7%B1%BB_1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Maven-%E5%BB%BA%E7%AB%8B%E7%A7%81%E6%9C%8D%E4%BB%93%E5%BA%93.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Maven-%E7%A7%81%E6%9C%8D%E4%BB%93%E5%BA%93%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Maven-%E5%8F%91%E5%B8%83%E5%88%B0%E7%A7%81%E6%9C%8D%E4%BB%93%E5%BA%93_1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Maven-%E8%B5%84%E6%BA%90%E4%B8%8A%E4%BC%A0%E5%92%8C%E4%B8%8B%E8%BD%BD.png">
+<meta property="article:published_time" content="2023-09-16T01:18:43.287Z">
+<meta property="article:modified_time" content="2023-09-20T13:22:18.900Z">
+<meta property="article:author" content="SEA">
+<meta property="article:tag" content="Maven">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/Maven-%E5%88%86%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91-1.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Maven-Maven多模块多环境开发 - SEA-365的读研日记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sea-365.site","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>SEA-365</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://github.com/SEA-365/imgList/blob/main/website_img/default.png?raw=true') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Maven-Maven多模块多环境开发"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-16 09:18" pubdate>
+          2023年9月16日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          64 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Maven-Maven多模块多环境开发</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Maven-Maven多模块多环境开发"><a href="#Maven-Maven多模块多环境开发" class="headerlink" title="Maven-Maven多模块多环境开发"></a>Maven-Maven多模块多环境开发</h1><h2 id="一、分模块开发与设计"><a href="#一、分模块开发与设计" class="headerlink" title="一、分模块开发与设计"></a>一、分模块开发与设计</h2><h3 id="1-1-分模块开发的意义"><a href="#1-1-分模块开发的意义" class="headerlink" title="1.1 分模块开发的意义"></a>1.1 分模块开发的意义</h3><ul>
+<li><p>分模块开发前，项目的目录结构如下：</p>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/Maven-%E5%88%86%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91-1.png" srcset="/img/loading.gif" lazyload alt="Maven-分模块开发-1"></p>
+</li>
+<li><p>分模块开发：将原始模块按照功能拆分为若干个子模块，<strong>方便模块间的相互调用以及接口共享；</strong></p>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/Maven-%E5%88%86%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91-2.png" srcset="/img/loading.gif" lazyload alt="Maven-分模块开发-2"></p>
+</li>
+</ul>
+<h3 id="1-2-分模块开发"><a href="#1-2-分模块开发" class="headerlink" title="1.2 分模块开发"></a>1.2 分模块开发</h3><ul>
+<li><p>分模块开发的一般步骤：</p>
+<ul>
+<li><p>（1）创建Maven模块：</p>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/Maven-%E5%88%86%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91-3.png" srcset="/img/loading.gif" lazyload alt="Maven-分模块开发-3"></p>
+</li>
+<li><p>（2）编写各个模块的代码：</p>
+<ul>
+<li><p>分模块开发需要针对模块功能进行设计，再进行编码。</p>
+</li>
+<li><p>例如，将<code>domain</code>包以及<code>dao</code>包作为单独的模块进行编写：</p>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/Maven-%E5%88%86%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91-4.png" srcset="/img/loading.gif" lazyload alt="Maven-分模块开发-4"></p>
+</li>
+</ul>
+</li>
+<li><p>（3）将各个模块通过Maven生命周期指令<code>install</code>安装到本地仓库：</p>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/Maven-%E5%88%86%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91-5.png" srcset="/img/loading.gif" lazyload alt="Maven-分模块开发-5"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、依赖管理"><a href="#二、依赖管理" class="headerlink" title="二、依赖管理"></a>二、依赖管理</h2><ul>
+<li>依赖：指当前项目运行所需要的<code>jar</code>包，一个项目可以设置多个依赖；</li>
+</ul>
+<h3 id="2-1-依赖传递"><a href="#2-1-依赖传递" class="headerlink" title="2.1 依赖传递"></a>2.1 依赖传递</h3><ul>
+<li><p>依赖具有传递性：即项目A设置了依赖<code>demo1</code>，而依赖<code>demo1</code>同时需要依赖<code>demo2</code>，则项目A中可以直接使用依赖<code>demo2</code>，不用重新在<code>pom.xml</code>文件中设置依赖<code>demo2</code>；</p>
+<ul>
+<li>其中，依赖<code>demo1</code>称为项目A的<strong>直接依赖</strong>；</li>
+<li>依赖<code>demo2</code>称为项目A的<strong>间接依赖</strong>；</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/Maven-%E4%BE%9D%E8%B5%96_1.png" srcset="/img/loading.gif" lazyload alt="Maven-依赖_1"></p>
+</li>
+</ul>
+<h3 id="2-2-可选依赖与排除依赖"><a href="#2-2-可选依赖与排除依赖" class="headerlink" title="2.2 可选依赖与排除依赖"></a>2.2 可选依赖与排除依赖</h3><ul>
+<li><p>可选依赖：对外隐藏当前锁依赖的资源【<strong>隐藏自己设置的某些依赖</strong>】</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--分模块开发--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.sea<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>maven_02_pojo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--可选依赖，该资源不在具有传递性--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">optional</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">optional</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>排除依赖：主动断开依赖的资源，被排除的资源无需指定版本【<strong>去掉间接依赖中不需要的依赖</strong>】</p>
+<ul>
+<li><p>例如：需要排除工程<code>maven_02_pojo</code>中的<code>log4j</code>依赖：</p>
+<p><img src="https://raw.githubusercontent.com/SEA-365/imgList/main/imgList/Maven-%E4%BE%9D%E8%B5%96_2.png" srcset="/img/loading.gif" lazyload alt="Maven-依赖_2"></p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--分模块开发--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.sea<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>maven_02_pojo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--排除依赖--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">exclusions</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">exclusion</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">exclusion</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">exclusions</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="三、聚合与继承"><a href="#三、聚合与继承" class="headerlink" title="三、聚合与继承"></a>三、聚合与继承</h2><h3 id="3-1-聚合【快速构建】"><a href="#3-1-聚合【快速构建】" class="headerlink" title="3.1 聚合【快速构建】"></a>3.1 聚合【快速构建】</h3><ul>
+<li><p>聚合：将<strong>多个模块[module]<strong>组织成</strong>一个整体</strong>，<strong>同时进行项目构建</strong>的过程称为聚合；</p>
+</li>
+<li><p>聚合工程：通常是一个不具有业务功能的”空“工程，有且仅有一个<code>pom.xml</code>文件；</p>
+</li>
+<li><p>聚合的作用：使用聚合工程可以将多个业务工程编组，通过聚合工程进行构建，实现多个模块同步构建；</p>
+<ul>
+<li>当工程中某个模块更新时，必须保障工程中与该更新模块关联的模块同步更新，此时使用聚合工程可以完成同步更新构建的操作；</li>
+</ul>
+</li>
+<li><p>聚合工程开发步骤：</p>
+<ul>
+<li><p>步骤1：创建<code>Maven</code>模块，设置打包类型为<code>pom</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.sea<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>maven_00_parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">packaging</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">packaging</span>&gt;</span><span class="hljs-comment">&lt;!--聚合工程打包类型为pom，web工程打包类型为war，默认打包类型为jar--&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>步骤2：设置当前聚合工程所包含的子模块</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">modules</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">module</span>&gt;</span>../maven_01_ssm<span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">module</span>&gt;</span>../maven_02_pojo<span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">module</span>&gt;</span>../maven_03_dao<span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">modules</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>此处书写顺序不代表模块的构建顺序，聚合工程在进行构建时，会<strong>根据模块之间的依赖关系进行依次构建</strong>；</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Maven-%E8%81%9A%E5%90%88%E5%B7%A5%E7%A8%8B%E5%BC%80%E5%8F%91%E6%AD%A5%E9%AA%A4.png" srcset="/img/loading.gif" lazyload alt="Maven-聚合工程开发步骤"></p>
+</li>
+</ul>
+<h3 id="3-2-继承【配置管理】"><a href="#3-2-继承【配置管理】" class="headerlink" title="3.2 继承【配置管理】"></a>3.2 继承【配置管理】</h3><ul>
+<li>继承：描述的是两个工程之间的关系【类似<code>Java</code>中的父类和子类】，子工程可以继承父类工程中的配置信息，一般是依赖关系的继承；</li>
+<li>继承的作用：<ul>
+<li>（1）简化工程的配置：父工程配置的依赖，子工程可以继承；</li>
+<li>（2）减少版本冲突：子工程继承父工程的依赖，版本修改时只需要修改父工程的版本号，子工程自动同步修改；</li>
+</ul>
+</li>
+</ul>
+<h2 id="四、属性管理"><a href="#四、属性管理" class="headerlink" title="四、属性管理"></a>四、属性管理</h2><h3 id="4-1-属性"><a href="#4-1-属性" class="headerlink" title="4.1 属性"></a>4.1 属性</h3><ul>
+<li><p>属性：相当于定义变量，集中统一设置和修改依赖版本；</p>
+</li>
+<li><p>一般使用步骤：</p>
+<ul>
+<li><p>步骤1：定义属性</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">spring.version</span>&gt;</span>5.2.6.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">spring.version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>步骤2：引用属性</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--Spring--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-context<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>分类：</p>
+<ul>
+<li>自定义属性：如上<code>$&#123;spring.version&#125;</code>;</li>
+<li>内置属性：如<code>$&#123;project.basedir&#125;</code>表示当前项目[或module]的根目录；</li>
+<li><code>Settings</code>属性：<code>$&#123;settings.localRepository&#125;</code>表示引用本地maven仓库中的依赖项以及构建产物的本地存储位置；</li>
+<li><code>Java</code>系统属性</li>
+<li>环境变量属性</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2-版本管理"><a href="#4-2-版本管理" class="headerlink" title="4.2 版本管理"></a>4.2 版本管理</h3><ul>
+<li><p>工程版本：</p>
+</li>
+<li><p><code>SNAPSHOT</code>：快照版本</p>
+<ul>
+<li>项目开发过程中临时输出的版本；</li>
+<li>随着开发过程不断更新；</li>
+</ul>
+</li>
+<li><p><code>RELEASE</code>：发布版本</p>
+<ul>
+<li>项目开发进入阶段里程碑后，向团队外部发布较为稳定的版本；</li>
+<li>此版本对应的构建文件是稳定的，即便进行后续的开发，也不会影响当前发布版本的内容；</li>
+</ul>
+</li>
+<li><p>发布版本：</p>
+<ul>
+<li><p><code>alpha</code>版：内部测试版本</p>
+</li>
+<li><p><code>beta</code>版：公开测试版本</p>
+</li>
+<li><p>纯数字版：例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>8.0.33<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="五、多环境配置与应用"><a href="#五、多环境配置与应用" class="headerlink" title="五、多环境配置与应用"></a>五、多环境配置与应用</h2><ul>
+<li><code>Maven</code>提供了配置多种环境的设定，可以快速切换环境；</li>
+</ul>
+<h3 id="5-1-多环境开发步骤"><a href="#5-1-多环境开发步骤" class="headerlink" title="5.1 多环境开发步骤"></a>5.1 多环境开发步骤</h3><ul>
+<li><p><strong>步骤1：定义多环境</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br>		<br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.sea<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>maven_00_parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">packaging</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">packaging</span>&gt;</span><br><br>		<span class="hljs-comment">&lt;!--聚合工程管理的子模块--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modules</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">module</span>&gt;</span>../maven_01_ssm<span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">module</span>&gt;</span>../maven_02_pojo<span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">module</span>&gt;</span>../maven_03_dao<span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">modules</span>&gt;</span><br><br>  	<span class="hljs-comment">&lt;!--自定义参数--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.source</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.source</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.target</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.target</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">project.build.sourceEncoding</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">spring.version</span>&gt;</span>5.2.6.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">spring.version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br><br>		<span class="hljs-comment">&lt;!--依赖项配置坐标配置--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!--可选依赖项配置，子工程可选择继承的依赖项--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencyManagement</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">dependencyManagement</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!--多环境配置--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">profiles</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--开发环境--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">profile</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>env_dev<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">jdbc.url</span>&gt;</span>jdbc:mysql://localhost:3306/springdb?useSSL=false<span class="hljs-symbol">&amp;amp;</span>serverTimezone=Asia/Shanghai<span class="hljs-tag">&lt;/<span class="hljs-name">jdbc.url</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br>						<span class="hljs-comment">&lt;!--设置为默认启动环境--&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">activation</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">activeByDefault</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">activeByDefault</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">activation</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">profile</span>&gt;</span><br><br>        <span class="hljs-comment">&lt;!--生产环境--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">profile</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>env_pro<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">jdbc.url</span>&gt;</span>jdbc:mysql://192.106.3.1:3306/springdb?useSSL=false<span class="hljs-symbol">&amp;amp;</span>serverTimezone=Asia/Shanghai<span class="hljs-tag">&lt;/<span class="hljs-name">jdbc.url</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">profile</span>&gt;</span><br><br>        <span class="hljs-comment">&lt;!--测试环境--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">profile</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>env_test<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">jdbc.url</span>&gt;</span>jdbc:mysql://192.105.0.2:3306/springdb?useSSL=false<span class="hljs-symbol">&amp;amp;</span>serverTimezone=Asia/Shanghai<span class="hljs-tag">&lt;/<span class="hljs-name">jdbc.url</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">profile</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">profiles</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>步骤2：使用多环境</strong></p>
+<ul>
+<li><p>通过maven指令进行构建，并指定构建环境，maven指令如下：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-comment">//指令格式</span><br><span class="hljs-keyword">mvn</span> 指令 -P 环境定义的id值<br><br><span class="hljs-comment">//案例：以测试环境构建工程</span><br><span class="hljs-keyword">mvn</span> install -P env_test<br><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="六、私服"><a href="#六、私服" class="headerlink" title="六、私服"></a>六、私服</h2><h3 id="6-1-私服简介"><a href="#6-1-私服简介" class="headerlink" title="6.1 私服简介"></a>6.1 私服简介</h3><ul>
+<li>私服：一台独立的服务器，用于解决<strong>团队内部的资源共享与资源同步</strong>问题；【相当于在团队内部增加一台代替maven中央仓库的服务器】<ul>
+<li>一方面，私服可以作为中央仓库的代理，第一次访问私服时没有该资源，私服会去中央仓库下载；<strong>【中央仓库代理】</strong></li>
+<li>另一方面，私服可以共享已开发完成的服务接口的jar包供其他项目进行调用；<strong>【共享已开发完成的服务接口】</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="6-2-Nexus搭建私服仓库服务器"><a href="#6-2-Nexus搭建私服仓库服务器" class="headerlink" title="6.2 Nexus搭建私服仓库服务器"></a>6.2 Nexus搭建私服仓库服务器</h3><ul>
+<li><p>Nexus：一个强大的、开箱即用的 Maven 仓库管理器，它极大地简化了本地内部仓库的维护和外部仓库的访问</p>
+</li>
+<li><p>Nexus下载安装:</p>
+<ul>
+<li><p>下载地址：<a target="_blank" rel="noopener" href="https://help.sonatype.com/repomanager3/product-information/download/download-archives---repository-manager-3">Download Archives - Repository Manager 3 (sonatype.com)</a></p>
+</li>
+<li><p>下载完成后，进入<code>bin</code>目录下，打开终端执行命令<code>./nexus start</code>即可启动Nexus服务；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Nexus-%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8.png" srcset="/img/loading.gif" lazyload alt="Nexus-安装启动"></p>
+</li>
+<li><p>启动后，在浏览器输入<code>localhost:8081</code>访问该web服务器【Jetty是一个开源的Java HTTP服务器和Servlet容器，可以嵌入Java程序中而不需要独立安装和配置Web服务器，具有<strong>嵌入式和轻量级</strong>特点】：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Nexus-%E8%AE%BF%E9%97%AEweb%E6%9C%8D%E5%8A%A1%E5%99%A8.png" srcset="/img/loading.gif" lazyload alt="Nexus-访问web服务器"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-3-私服仓库分类"><a href="#6-3-私服仓库分类" class="headerlink" title="6.3 私服仓库分类"></a>6.3 私服仓库分类</h3><ul>
+<li><p>私服仓库可分为以下三种：</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>英文名称</th>
+<th>功能</th>
+<th>关联操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>宿主仓库</td>
+<td>hosted</td>
+<td>保存自主研发的项目以及第三方资源</td>
+<td>上传</td>
+</tr>
+<tr>
+<td>代理仓库</td>
+<td>proxy</td>
+<td>代理链接中央仓库</td>
+<td>下载</td>
+</tr>
+<tr>
+<td>仓库组</td>
+<td>group</td>
+<td>为仓库编组，简化下载操作【所有的下载操作不需要指定仓库，而是向仓库组请求资源】</td>
+<td>下载</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>如下图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Maven-%E7%A7%81%E6%9C%8D%E4%BB%93%E5%BA%93%E5%88%86%E7%B1%BB_1.png" srcset="/img/loading.gif" lazyload alt="Maven-私服仓库分类_1"></p>
+</li>
+</ul>
+<h3 id="6-3-资源上传与下载"><a href="#6-3-资源上传与下载" class="headerlink" title="6.3 资源上传与下载"></a>6.3 资源上传与下载</h3><h4 id="6-3-1-私服仓库配置"><a href="#6-3-1-私服仓库配置" class="headerlink" title="6.3.1 私服仓库配置"></a>6.3.1 私服仓库配置</h4><ul>
+<li><p>步骤1：新建两个私服仓库<code>sea-snapshot</code>和<code>sea-release</code>：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Maven-%E5%BB%BA%E7%AB%8B%E7%A7%81%E6%9C%8D%E4%BB%93%E5%BA%93.png" srcset="/img/loading.gif" lazyload alt="Maven-建立私服仓库"></p>
+</li>
+<li><p>步骤2：在本地maven仓库所在位置找到<code>settings.xml</code>文件，添加上述两个私服仓库配置：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Maven-%E7%A7%81%E6%9C%8D%E4%BB%93%E5%BA%93%E9%85%8D%E7%BD%AE.png" srcset="/img/loading.gif" lazyload alt="Maven-私服仓库配置"></p>
+</li>
+</ul>
+<h4 id="6-3-2-资源上传和下载"><a href="#6-3-2-资源上传和下载" class="headerlink" title="6.3.2 资源上传和下载"></a>6.3.2 资源上传和下载</h4><ul>
+<li><p>步骤1：在工程的<code>pom.xml</code>文件中添加配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.sea<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>maven_00_parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><span class="hljs-comment">&lt;!--当前为snapshot版本，发布时会上传到私服仓库sea-snapshot--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">packaging</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">packaging</span>&gt;</span><br><br><br>    <span class="hljs-comment">&lt;!--聚合工程管理的子模块--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modules</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">module</span>&gt;</span>../maven_01_ssm<span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">module</span>&gt;</span>../maven_02_pojo<span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">module</span>&gt;</span>../maven_03_dao<span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">modules</span>&gt;</span><br><br>  	<span class="hljs-comment">&lt;!--自定义参数--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br><br>		<span class="hljs-comment">&lt;!--依赖项配置坐标配置--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!--可选依赖项配置，子工程可选择继承的依赖项--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencyManagement</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">dependencyManagement</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!--多环境配置--&gt;</span><br>  	<span class="hljs-tag">&lt;<span class="hljs-name">profiles</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">profiles</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!--配置当前工程发布到私服的具体位置--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">distributionManagement</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">repository</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>sea-release<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>http://localhost:8081/repository/sea-release/<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">repository</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">snapshotRepository</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>sea-snapshot<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>http://localhost:8081/repository/sea-snapshot/<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">snapshotRepository</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">distributionManagement</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>步骤2：点击Maven生命周期的<code>deploy</code>操作，将工程发布上传到私服仓库：</p>
+<ul>
+<li>第一次发布时，私服仓库会从maven中央下载相关资源；</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Maven-%E5%8F%91%E5%B8%83%E5%88%B0%E7%A7%81%E6%9C%8D%E4%BB%93%E5%BA%93_1.png" srcset="/img/loading.gif" lazyload alt="Maven-发布到私服仓库_1"></p>
+</li>
+<li><p>此时，私服仓库中的内容如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Maven-%E8%B5%84%E6%BA%90%E4%B8%8A%E4%BC%A0%E5%92%8C%E4%B8%8B%E8%BD%BD.png" srcset="/img/loading.gif" lazyload alt="Maven-资源上传和下载"></p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/" class="category-chain-item">Java开发框架学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/Maven/" class="category-chain-item">Maven</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Maven/">#Maven</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Maven-Maven多模块多环境开发</div>
+      <div>http://sea-365.site/2023/09/16/Maven-Maven多环境多模块开发/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>SEA</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/09/16/Mybatis-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/" title="Mybatis-快速开始">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Mybatis-快速开始</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/16/Java-%E6%B3%9B%E5%9E%8B/" title="Java-泛型">
+                        <span class="hidden-mobile">Java-泛型</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        本站 总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
