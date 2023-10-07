@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>SEA-Blog-项目需求</title>
+    <link href="/2023/10/04/SEA-Blog-%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82/"/>
+    <url>/2023/10/04/SEA-Blog-%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82/</url>
+    
+    <content type="html"><![CDATA[<h1 id="SEA-Blog-项目需求"><a href="#SEA-Blog-项目需求" class="headerlink" title="SEA-Blog-项目需求"></a>SEA-Blog-项目需求</h1><ul><li><p>2023年10月4日，着手开始准备个人博客网站的开发，mark一下；</p></li><li><p>整体参考github开源项目：<a href="https://github.com/linhaojun857/aurora/tree/master">linhaojun857&#x2F;aurora: 基于SpringBoot+Vue开发的个人博客系统 (github.com)</a></p></li><li><p>分为前台展示端和后台管理端；</p></li><li><p>当前版本实现：:white_check_mark: </p></li><li><p>下一版本实现：:bell:</p></li></ul><h2 id="前台展示端"><a href="#前台展示端" class="headerlink" title="前台展示端"></a>前台展示端</h2><ul><li><p>参考：<a href="https://www.linhaojun.top/">花未眠的个人博客 (linhaojun.top)</a></p></li><li><p>前端页面：</p><ul><li><p>首页:white_check_mark:：首页展示推荐文章、文章列表、个人简介信息、网站信息、最近评论、标签目录；</p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E9%A6%96%E9%A1%B5_1.png" alt="Blog-首页_1"></p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E9%A6%96%E9%A1%B5_2.png" alt="Blog-首页_2"></p></li><li><p>归档:white_check_mark:：根据博客文章的发布时间顺序构造进度树；</p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E5%BD%92%E6%A1%A3_1.png" alt="Blog-归档_1"></p></li><li><p>分类:white_check_mark:：</p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E5%88%86%E7%B1%BB_1.png" alt="Blog-分类_1"></p></li><li><p>标签:white_check_mark:：展示文章标签词云</p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E6%A0%87%E7%AD%BE_1.png" alt="Blog-标签_1"></p></li><li><p>关于:white_check_mark:：展示个人介绍和联系方式；</p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog.png" alt="Blog-关于_1"></p></li><li><p>留言:white_check_mark:：增加</p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E5%85%B3%E4%BA%8E_1.png" alt="image-20231004153147579"></p></li><li><p>友链:bell:：后续增加；</p></li></ul></li><li><p>登录注册:white_check_mark:：用户登录、用户注册；</p></li><li><p>后端提供接口:white_check_mark:</p></li></ul><h2 id="后台管理端"><a href="#后台管理端" class="headerlink" title="后台管理端"></a>后台管理端</h2><ul><li><p>参考<a href="https://admin.linhaojun.top/">后台管理系统 (linhaojun.top)</a></p></li><li><p>包括：</p><ul><li>内容管理；</li><li>可视化展示；</li><li>在线编辑md文档</li></ul></li></ul><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E5%90%8E%E5%8F%B0_1.png" alt="Blog-后台_1"></p><h2 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h2><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/SEA-Blog-%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1_1.png" alt="SEA-Blog-总体设计_1"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>SEA-Blog</category>
+      
+      <category>项目需求</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>SEA-Blog</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>MybatisPlus-入门案例</title>
     <link href="/2023/10/03/MybatisPlus-%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B/"/>
     <url>/2023/10/03/MybatisPlus-%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B/</url>
