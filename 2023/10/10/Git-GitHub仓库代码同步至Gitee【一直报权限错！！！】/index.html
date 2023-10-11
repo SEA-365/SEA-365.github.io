@@ -18,34 +18,28 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="SEA-Blog-项目需求 2023年10月4日，着手开始准备个人博客网站的开发，mark一下；  整体参考github开源项目：linhaojun857&#x2F;aurora: 基于SpringBoot+Vue开发的个人博客系统 (github.com)  分为前台展示端和后台管理端；  当前版本实现：:white_check_mark:   下一版本实现：:bell:   前台展示端 参考：">
+    <meta name="description" content="Git-GitHub仓库代码同步至Gitee【一直报权限错！！！】 如题，最近想写一个个人博客项目，想着希望能在GitHub和Gitee上都能够同步更新我提交的代码，于是开始去捣鼓。。。 第一次接触这个，弄了我俩小时，尝试了20次左右还是不断地报各种各样的错误，真的很烦啊，现在弄完了，记录一下！！   一、生成Gitee账号的私人令牌 登录Gitee账号，进入设置，点击私人令牌&#x3D;&gt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SEA-Blog-项目需求">
-<meta property="og:url" content="http://sea-365.site/2023/10/04/SEA-Blog-%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82/index.html">
+<meta property="og:title" content="Git-GitHub仓库代码同步至Gitee【一直报权限错！！！】">
+<meta property="og:url" content="http://sea-365.site/2023/10/10/Git-GitHub%E4%BB%93%E5%BA%93%E4%BB%A3%E7%A0%81%E5%90%8C%E6%AD%A5%E8%87%B3Gitee%E3%80%90%E4%B8%80%E7%9B%B4%E6%8A%A5%E6%9D%83%E9%99%90%E9%94%99%EF%BC%81%EF%BC%81%EF%BC%81%E3%80%91/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="SEA-Blog-项目需求 2023年10月4日，着手开始准备个人博客网站的开发，mark一下；  整体参考github开源项目：linhaojun857&#x2F;aurora: 基于SpringBoot+Vue开发的个人博客系统 (github.com)  分为前台展示端和后台管理端；  当前版本实现：:white_check_mark:   下一版本实现：:bell:   前台展示端 参考：">
+<meta property="og:description" content="Git-GitHub仓库代码同步至Gitee【一直报权限错！！！】 如题，最近想写一个个人博客项目，想着希望能在GitHub和Gitee上都能够同步更新我提交的代码，于是开始去捣鼓。。。 第一次接触这个，弄了我俩小时，尝试了20次左右还是不断地报各种各样的错误，真的很烦啊，现在弄完了，记录一下！！   一、生成Gitee账号的私人令牌 登录Gitee账号，进入设置，点击私人令牌&#x3D;&gt;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E9%A6%96%E9%A1%B5_1.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E9%A6%96%E9%A1%B5_2.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E5%BD%92%E6%A1%A3_1.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E5%88%86%E7%B1%BB_1.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E6%A0%87%E7%AD%BE_1.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E5%85%B3%E4%BA%8E_1.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E5%90%8E%E5%8F%B0_1.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/SEA-Blog-%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1_1.png">
-<meta property="article:published_time" content="2023-10-04T01:40:51.250Z">
-<meta property="article:modified_time" content="2023-10-07T08:14:21.018Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Git-GitHub%E4%BB%93%E5%BA%93%E4%BB%A3%E7%A0%81%E5%90%8C%E6%AD%A5%E8%87%B3Gitee_1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Git-GitHub%E4%BB%93%E5%BA%93%E4%BB%A3%E7%A0%81%E5%90%8C%E6%AD%A5%E8%87%B3Gitee_2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Git-GitHub%E4%BB%93%E5%BA%93%E4%BB%A3%E7%A0%81%E5%90%8C%E6%AD%A5%E8%87%B3Gitee_3.png">
+<meta property="article:published_time" content="2023-10-10T06:54:42.822Z">
+<meta property="article:modified_time" content="2023-10-10T07:38:14.374Z">
 <meta property="article:author" content="SEA">
-<meta property="article:tag" content="SEA-Blog">
+<meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E9%A6%96%E9%A1%B5_1.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Git-GitHub%E4%BB%93%E5%BA%93%E4%BB%A3%E7%A0%81%E5%90%8C%E6%AD%A5%E8%87%B3Gitee_1.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>SEA-Blog-项目需求 - SEA-365的读研日记</title>
+  <title>Git-GitHub仓库代码同步至Gitee【一直报权限错！！！】 - SEA-365的读研日记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="SEA-Blog-项目需求"></span>
+            <span id="subtitle" data-typed-text="Git-GitHub仓库代码同步至Gitee【一直报权限错！！！】"></span>
           
         </div>
 
@@ -221,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-04 09:40" pubdate>
-          2023年10月4日 上午
+        <time datetime="2023-10-10 14:54" pubdate>
+          2023年10月10日 下午
         </time>
       </span>
     
@@ -233,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          541 字
+          2k 字
         
       </span>
     
@@ -244,7 +238,7 @@
         
         
         
-          5 分钟
+          17 分钟
         
       </span>
     
@@ -282,69 +276,53 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">SEA-Blog-项目需求</h1>
+            <h1 style="display: none">Git-GitHub仓库代码同步至Gitee【一直报权限错！！！】</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="SEA-Blog-项目需求"><a href="#SEA-Blog-项目需求" class="headerlink" title="SEA-Blog-项目需求"></a>SEA-Blog-项目需求</h1><ul>
-<li><p>2023年10月4日，着手开始准备个人博客网站的开发，mark一下；</p>
+                <h1 id="Git-GitHub仓库代码同步至Gitee【一直报权限错！！！】"><a href="#Git-GitHub仓库代码同步至Gitee【一直报权限错！！！】" class="headerlink" title="Git-GitHub仓库代码同步至Gitee【一直报权限错！！！】"></a>Git-GitHub仓库代码同步至Gitee【一直报权限错！！！】</h1><ul>
+<li>如题，最近想写一个个人博客项目，想着希望能在GitHub和Gitee上都能够同步更新我提交的代码，于是开始去捣鼓。。。</li>
+<li>第一次接触这个，弄了我俩小时，尝试了20次左右还是不断地报各种各样的错误，真的很烦啊，现在弄完了，记录一下！！</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Git-GitHub%E4%BB%93%E5%BA%93%E4%BB%A3%E7%A0%81%E5%90%8C%E6%AD%A5%E8%87%B3Gitee_1.png" srcset="/img/loading.gif" lazyload alt="Git-GitHub仓库代码同步至Gitee_1"></p>
+<h2 id="一、生成Gitee账号的私人令牌"><a href="#一、生成Gitee账号的私人令牌" class="headerlink" title="一、生成Gitee账号的私人令牌"></a>一、生成Gitee账号的私人令牌</h2><ul>
+<li><p>登录Gitee账号，进入设置，点击私人令牌&#x3D;&gt;生成新令牌：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Git-GitHub%E4%BB%93%E5%BA%93%E4%BB%A3%E7%A0%81%E5%90%8C%E6%AD%A5%E8%87%B3Gitee_2.png" srcset="/img/loading.gif" lazyload alt="Git-GitHub仓库代码同步至Gitee_2"></p>
 </li>
-<li><p>整体参考github开源项目：<a target="_blank" rel="noopener" href="https://github.com/linhaojun857/aurora/tree/master">linhaojun857&#x2F;aurora: 基于SpringBoot+Vue开发的个人博客系统 (github.com)</a></p>
-</li>
-<li><p>分为前台展示端和后台管理端；</p>
-</li>
-<li><p>当前版本实现：:white_check_mark: </p>
-</li>
-<li><p>下一版本实现：:bell:</p>
+<li><p>注意，生成的令牌仅显示一次，记得保存好！</p>
 </li>
 </ul>
-<h2 id="前台展示端"><a href="#前台展示端" class="headerlink" title="前台展示端"></a>前台展示端</h2><ul>
-<li><p>参考：<a target="_blank" rel="noopener" href="https://www.linhaojun.top/">花未眠的个人博客 (linhaojun.top)</a></p>
-</li>
-<li><p>前端页面：</p>
+<h2 id="二、生成本地SSH私钥"><a href="#二、生成本地SSH私钥" class="headerlink" title="二、生成本地SSH私钥"></a>二、生成本地SSH私钥</h2><ul>
+<li><p>1、通过命令 <code>ssh-keygen</code> 生成 SSH Key：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh-keygen -t ed25519 -C <span class="hljs-string">&quot;Gitee SSH Key&quot;</span><br></code></pre></td></tr></table></figure>
+
 <ul>
-<li><p>首页:white_check_mark:：首页展示推荐文章、文章列表、个人简介信息、网站信息、最近评论、标签目录；</p>
-<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E9%A6%96%E9%A1%B5_1.png" srcset="/img/loading.gif" lazyload alt="Blog-首页_1"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E9%A6%96%E9%A1%B5_2.png" srcset="/img/loading.gif" lazyload alt="Blog-首页_2"></p>
-</li>
-<li><p>归档:white_check_mark:：根据博客文章的发布时间顺序构造进度树；</p>
-<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E5%BD%92%E6%A1%A3_1.png" srcset="/img/loading.gif" lazyload alt="Blog-归档_1"></p>
-</li>
-<li><p>分类:white_check_mark:：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E5%88%86%E7%B1%BB_1.png" srcset="/img/loading.gif" lazyload alt="Blog-分类_1"></p>
-</li>
-<li><p>标签:white_check_mark:：展示文章标签词云</p>
-<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E6%A0%87%E7%AD%BE_1.png" srcset="/img/loading.gif" lazyload alt="Blog-标签_1"></p>
-</li>
-<li><p>关于:white_check_mark:：展示个人介绍和联系方式；</p>
-<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog.png" srcset="/img/loading.gif" lazyload alt="Blog-关于_1"></p>
-</li>
-<li><p>留言:white_check_mark:：增加</p>
-<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E5%85%B3%E4%BA%8E_1.png" srcset="/img/loading.gif" lazyload alt="image-20231004153147579"></p>
-</li>
-<li><p>友链:bell:：后续增加；</p>
-</li>
+<li><code>-t</code> key 类型</li>
+<li><code>-C</code> 注释</li>
 </ul>
-</li>
-<li><p>登录注册:white_check_mark:：用户登录、用户注册；</p>
-</li>
-<li><p>后端提供接口:white_check_mark:</p>
-</li>
-</ul>
-<h2 id="后台管理端"><a href="#后台管理端" class="headerlink" title="后台管理端"></a>后台管理端</h2><ul>
-<li><p>参考<a target="_blank" rel="noopener" href="https://admin.linhaojun.top/">后台管理系统 (linhaojun.top)</a></p>
-</li>
-<li><p>包括：</p>
+<p>输出，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs shellscript">Generating public/private ed25519 key pair.<br>Enter file in which to save the key (/home/git/.ssh/id_ed25519):<br>Enter passphrase (empty for no passphrase):<br>Enter same passphrase again:<br>Your identification has been saved in /home/git/.ssh/id_ed25519<br>Your public key has been saved in /home/git/.ssh/id_ed25519.pub<br>The key fingerprint is:<br>SHA256:ohDd0OK5WG2dx4gST/j35HjvlJlGHvihyY+Msl6IC8I Gitee SSH Key<br>The key&#x27;s randomart image is:<br>+--[ED25519 256]--+<br>|    .o           |<br>|   .+oo          |<br>|  ...O.o +       |<br>|   .= * = +.     |<br>|  .o +..S*. +    |<br>|. ...o o..+* *   |<br>|.E. o . ..+.O    |<br>| . . ... o =.    |<br>|    ..oo. o.o    |<br>+----[SHA256]-----+<br></code></pre></td></tr></table></figure>
+
 <ul>
-<li>内容管理；</li>
-<li>可视化展示；</li>
-<li>在线编辑md文档；</li>
+<li>中间通过三次<strong>回车键</strong>确定;</li>
 </ul>
 </li>
+<li><p>2.公钥和私钥一般在<code>~/.ssh/</code>文件夹下；</p>
+</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E5%90%8E%E5%8F%B0_1.png" srcset="/img/loading.gif" lazyload alt="Blog-后台_1"></p>
-<h2 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h2><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/SEA-Blog-%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1_1.png" srcset="/img/loading.gif" lazyload alt="SEA-Blog-总体设计_1"></p>
+<h2 id="三、在Github的仓库设置中添加私人令牌和私钥"><a href="#三、在Github的仓库设置中添加私人令牌和私钥" class="headerlink" title="三、在Github的仓库设置中添加私人令牌和私钥"></a>三、在Github的仓库设置中添加私人令牌和私钥</h2><ul>
+<li><p>进入Github仓库的设置页面进行添加：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Git-GitHub%E4%BB%93%E5%BA%93%E4%BB%A3%E7%A0%81%E5%90%8C%E6%AD%A5%E8%87%B3Gitee_3.png" srcset="/img/loading.gif" lazyload alt="Git-GitHub仓库代码同步至Gitee_3"></p>
+</li>
+</ul>
+<h2 id="四、项目工程目录新建工作流"><a href="#四、项目工程目录新建工作流" class="headerlink" title="四、项目工程目录新建工作流"></a>四、项目工程目录新建工作流</h2><ul>
+<li><p>一般是在项目根目录下的<code>.github/workflows</code>下面，新建文件<code>sync-to-gitee.yml</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">name:</span> <span class="hljs-string">syncToGitee</span><br><span class="hljs-attr">on:</span><br>  <span class="hljs-attr">push:</span><br>    <span class="hljs-attr">branches:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">main</span> <span class="hljs-comment">#Github仓库分支名称</span><br><span class="hljs-attr">jobs:</span><br>  <span class="hljs-attr">repo-sync:</span><br>    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span><br>    <span class="hljs-attr">steps:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Set</span> <span class="hljs-string">up</span> <span class="hljs-string">SSH</span> <span class="hljs-string">key</span> <span class="hljs-comment"># 1.设置SSH私钥</span><br>        <span class="hljs-attr">run:</span> <span class="hljs-string">|</span><br><span class="hljs-string">          mkdir -p ~/.ssh</span><br><span class="hljs-string">          echo &quot;$SSH_PRIVATE_KEY&quot; &gt; ~/.ssh/id_rsa</span><br><span class="hljs-string">          chmod 600 ~/.ssh/id_rsa</span><br><span class="hljs-string">          ssh-keyscan -H gitee.com &gt;&gt; ~/.ssh/known_hosts</span><br><span class="hljs-string"></span>        <span class="hljs-attr">env:</span><br>          <span class="hljs-attr">SSH_PRIVATE_KEY:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.SSH_PRIVATE_KEY</span> <span class="hljs-string">&#125;&#125;</span><br><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Check</span> <span class="hljs-string">loaded</span> <span class="hljs-string">SSH</span> <span class="hljs-string">key</span> <span class="hljs-comment"># 2.检查SSH私钥是否设置成功</span><br>        <span class="hljs-attr">run:</span> <span class="hljs-string">|</span><br><span class="hljs-string">          cat ~/.ssh/id_rsa</span><br><span class="hljs-string"></span>        <span class="hljs-attr">env:</span><br>          <span class="hljs-attr">SSH_PRIVATE_KEY:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.SSH_PRIVATE_KEY</span> <span class="hljs-string">&#125;&#125;</span><br><br><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Test</span> <span class="hljs-string">SSH</span> <span class="hljs-string">connection</span> <span class="hljs-comment"># 3.测试通过该私钥是否能够访问Gitee</span><br>        <span class="hljs-attr">run:</span> <span class="hljs-string">ssh</span> <span class="hljs-string">-vT</span> <span class="hljs-string">git@gitee.com</span><br>        <span class="hljs-attr">env:</span><br>          <span class="hljs-attr">SSH_PRIVATE_KEY:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.SSH_PRIVATE_KEY</span> <span class="hljs-string">&#125;&#125;</span><br><br><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Mirror</span> <span class="hljs-string">to</span> <span class="hljs-string">Gitee.</span> <span class="hljs-comment"># 4.将Github仓库镜像至Gitee</span><br>        <span class="hljs-attr">uses:</span> <span class="hljs-string">Yikun/hub-mirror-action@master</span><br>        <span class="hljs-attr">with:</span><br>          <span class="hljs-attr">src:</span> <span class="hljs-string">&#x27;github/GitHub用户名&#x27;</span><br>          <span class="hljs-attr">dst:</span> <span class="hljs-string">&#x27;gitee/Gitee用户名&#x27;</span><br>          <span class="hljs-attr">dst_key:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.SSH_PRIVATE_KEY</span> <span class="hljs-string">&#125;&#125;</span><br>          <span class="hljs-attr">dst_token:</span>  <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.GITEE_TOKEN</span> <span class="hljs-string">&#125;&#125;</span><br>          <span class="hljs-attr">static_list:</span> <span class="hljs-string">&quot;需要同步的GitHub仓库名&quot;</span><br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>以上，就是整个过程，在这个过程中，可能会出现各种各样的问题，出现问题不要着急，好好查看日志，查看工作流中的报错，去搜索引擎，去问问ChatGPT，肯定能够解决的。</p>
+</li>
+</ul>
 
                 
               </div>
@@ -363,15 +341,8 @@
     
       <span class="category-chain">
         
-  <a href="/categories/SEA-Blog/" class="category-chain-item">SEA-Blog</a>
+  <a href="/categories/Git%E6%93%8D%E4%BD%9C/" class="category-chain-item">Git操作</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/SEA-Blog/%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82/" class="category-chain-item">项目需求</a>
-  
-  
-
   
 
       </span>
@@ -385,7 +356,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/SEA-Blog/">#SEA-Blog</a>
+        <a href="/tags/Git/">#Git</a>
       
     </div>
   
@@ -397,8 +368,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>SEA-Blog-项目需求</div>
-      <div>http://sea-365.site/2023/10/04/SEA-Blog-项目需求/</div>
+      <div>Git-GitHub仓库代码同步至Gitee【一直报权限错！！！】</div>
+      <div>http://sea-365.site/2023/10/10/Git-GitHub仓库代码同步至Gitee【一直报权限错！！！】/</div>
     </div>
     <div class="license-meta">
       
@@ -410,7 +381,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月4日</div>
+          <div>2023年10月10日</div>
         </div>
       
       
@@ -442,18 +413,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/10/Git-GitHub%E4%BB%93%E5%BA%93%E4%BB%A3%E7%A0%81%E5%90%8C%E6%AD%A5%E8%87%B3Gitee%E3%80%90%E4%B8%80%E7%9B%B4%E6%8A%A5%E6%9D%83%E9%99%90%E9%94%99%EF%BC%81%EF%BC%81%EF%BC%81%E3%80%91/" title="Git-GitHub仓库代码同步至Gitee【一直报权限错！！！】">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Git-GitHub仓库代码同步至Gitee【一直报权限错！！！】</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/03/MybatisPlus-%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B/" title="MybatisPlus-入门案例">
-                        <span class="hidden-mobile">MybatisPlus-入门案例</span>
+                      <a href="/2023/10/04/SEA-Blog-%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82/" title="SEA-Blog-项目需求">
+                        <span class="hidden-mobile">SEA-Blog-项目需求</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
