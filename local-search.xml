@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>SEA-Blog-引入Swagger生成接口文档</title>
+    <link href="/2023/10/13/SEA-Blog-%E5%BC%95%E5%85%A5Swagger%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/"/>
+    <url>/2023/10/13/SEA-Blog-%E5%BC%95%E5%85%A5Swagger%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/</url>
+    
+    <content type="html"><![CDATA[<h1 id="SEA-Blog-引入Swagger生成接口文档"><a href="#SEA-Blog-引入Swagger生成接口文档" class="headerlink" title="SEA-Blog-引入Swagger生成接口文档"></a>SEA-Blog-引入Swagger生成接口文档</h1><h2 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h2><ul><li>Swagger 是一个开源的规范和工具集，用于设计、构建、记录和使用 <code>RESTful API</code>。</li><li>它提供了一组工具和约定，以便开发人员和团队可以更轻松地定义、测试和文档化 API。</li><li>简单来说就是：Swagger是一个能够管理后端开发的接口，给前端开发人员提供一个接口文档地址，实现前后端接口联调；【总不能后端每次写完一个接口就向前端沟通一次吧？】</li></ul><h2 id="二-、快速使用"><a href="#二-、快速使用" class="headerlink" title="二 、快速使用"></a>二 、快速使用</h2><h3 id="2-1-导入依赖项坐标"><a href="#2-1-导入依赖项坐标" class="headerlink" title="2.1 导入依赖项坐标"></a>2.1 导入依赖项坐标</h3><ul><li><p>此时，需要注意一个比较重要的点：SpringBoot版本需要与Swagger的版本进行兼容！</p><ul><li>关于这一点，我网上看到有人说SpringBoot 2.5.6版本与Swagger 2.6.1及以上版本能适配兼容，我在SpringBoot的官方文档中没有找到该对应关系。</li></ul><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br>    ...<br>    <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">spring-boot.version</span>&gt;</span>2.7.16<span class="hljs-tag">&lt;/<span class="hljs-name">spring-boot.version</span>&gt;</span><br>        ...<br>        <span class="hljs-tag">&lt;<span class="hljs-name">springfox.version</span>&gt;</span>2.9.2<span class="hljs-tag">&lt;/<span class="hljs-name">springfox.version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>...<br>        <span class="hljs-comment">&lt;!--Swagger2生成接口文档--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springfox-swagger2<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;springfox.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;springfox.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br>...<br><br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br><br></code></pre></td></tr></table></figure></li><li><p><strong>兼容性问题解决方案：</strong></p><ul><li>在<code>application.yml</code>配置文件中进行以下配置：</li></ul><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment">#application.yml配置文件</span><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">datasource:</span><br>    <span class="hljs-attr">type:</span> <span class="hljs-string">com.alibaba.druid.pool.DruidDataSource</span><br>    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br>    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://localhost:3306/sea_blog?useSSL=false&amp;serverTimezone=Asia/Shanghai</span><br>    <span class="hljs-attr">username:</span> <span class="hljs-string">root</span><br>    <span class="hljs-attr">password:</span> <span class="hljs-number">12345678</span><br>  <span class="hljs-attr">mvc:</span><br>    <span class="hljs-attr">pathmatch:</span><br>      <span class="hljs-attr">matching-strategy:</span> <span class="hljs-string">ant_path_matcher</span> <span class="hljs-comment">#解决Swagger2 和 SpringBoot版本之间的冲突</span><br><br><span class="hljs-attr">server:</span><br>  <span class="hljs-attr">servlet:</span><br>    <span class="hljs-attr">context-path:</span> <span class="hljs-string">/SEA-Blog</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">8080</span> <br></code></pre></td></tr></table></figure></li></ul><h3 id="2-2-编写Swagger2配置类"><a href="#2-2-编写Swagger2配置类" class="headerlink" title="2.2 编写Swagger2配置类"></a>2.2 编写Swagger2配置类</h3><ul><li><p>用于启用Swagger并配置一些参数【文档标题，简介，联系人等信息】；</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: sea</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span>: 2023/10/13 19:45</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@EnableSwagger2</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Swagger2Config</span> &#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Docket <span class="hljs-title function_">api</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Docket</span>(DocumentationType.SWAGGER_2)<br>                .apiInfo(apiInfo())<br>                .pathMapping(<span class="hljs-string">&quot;/&quot;</span>)<br>                .select()<br>                .apis(RequestHandlerSelectors.basePackage(<span class="hljs-string">&quot;com.sea.controller&quot;</span>))<br>                .paths(PathSelectors.any())<br>                .build();<br>    &#125;<br>    <span class="hljs-keyword">private</span> ApiInfo <span class="hljs-title function_">apiInfo</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ApiInfoBuilder</span>()<br>                .title(<span class="hljs-string">&quot;SEA-Blog后端接口文档&quot;</span>)<br>                .description(<span class="hljs-string">&quot;SEA-Blog后端&quot;</span>)<br>                .contact(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Contact</span>(<span class="hljs-string">&quot;SEA&quot;</span>, <span class="hljs-string">&quot;https://gitee.com/sea-365&quot;</span>, <span class="hljs-string">&quot;Email&quot;</span>))<br>                .version(<span class="hljs-string">&quot;1.0&quot;</span>)<br>                .build();<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure></li></ul><h3 id="2-3-访问Swagger-UI"><a href="#2-3-访问Swagger-UI" class="headerlink" title="2.3 访问Swagger UI"></a>2.3 访问Swagger UI</h3><ul><li><p>启动项目，在浏览器输入<code>http://localhost:8080/SEA-Blog/swagger-ui.html</code>即可查看生成的API文档，如下图：</p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/SEA-Blog-Swagger%E7%94%9F%E6%88%90API%E6%96%87%E6%A1%A3.png" alt="SEA-Blog-Swagger生成API文档"></p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>SEA-Blog</category>
+      
+      <category>后端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>SEA-Blog</tag>
+      
+      <tag>Swagger</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Java-正则表达式</title>
     <link href="/2023/10/13/Java-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     <url>/2023/10/13/Java-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
@@ -81,6 +110,35 @@
       <tag>SEA-Blog</tag>
       
       <tag>数据库设计</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>SEA-Blog-项目包结构</title>
+    <link href="/2023/10/10/SEA-Blog-%E9%A1%B9%E7%9B%AE%E5%8C%85%E7%BB%93%E6%9E%84/"/>
+    <url>/2023/10/10/SEA-Blog-%E9%A1%B9%E7%9B%AE%E5%8C%85%E7%BB%93%E6%9E%84/</url>
+    
+    <content type="html"><![CDATA[<h1 id="SEA-Blog-后端项目包结构"><a href="#SEA-Blog-后端项目包结构" class="headerlink" title="SEA-Blog-后端项目包结构"></a>SEA-Blog-后端项目包结构</h1><ul><li><p>20231010，目前将后端项目部署到了GitHub和Gitee上，接下来开始写后端代码；</p></li><li><p>根据前一段时间所学的SpringBoot框架，建立以下后端项目的包结构，后续还会修改：</p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E5%90%8E%E7%AB%AF%E9%A1%B9%E7%9B%AE%E5%8C%85%E7%BB%93%E6%9E%84.png" alt="Blog-后端项目包结构"></p></li><li><p>20231012，目前的包结构：</p><ul><li>1.<code>domain</code>改为<code>entity</code>，原因如下：<ul><li><code>domain</code>包名：<ul><li><code>domain</code>包通常用于存放表示领域模型的类，这些类代表了业务领域中的实体和概念。</li><li>这些类通常包括与业务逻辑紧密相关的对象，如领域对象、值对象、实体等。</li><li>通常，这些类不应该包含与持久性或数据存储相关的代码，而应该专注于业务逻辑。</li></ul></li><li><code>entity</code>包名：<ul><li><code>entity</code>包通常用于存放与数据库实体或数据持久性相关的类。</li><li>这些类通常与数据库表或其他数据存储结构相对应，包含了数据访问和持久性操作的代码。</li><li>在一些持久化框架（如JPA、Hibernate）中，<code>entity</code>类通常用来映射数据库表。</li></ul></li><li><code>pojo</code>包名：<ul><li><code>pojo</code>（Plain Old Java Object）包通常用于存放普通的Java对象，这些对象通常是用来封装数据或进行数据传输的。</li><li>这些对象通常不包含业务逻辑或数据持久性代码，只包含属性和对属性的访问方法（getter和setter）。</li><li><code>pojo</code>通常用于在不同层之间传递数据，例如在业务逻辑层和表示层之间传递数据。</li></ul></li></ul></li><li>2.增加存放数据库脚本的目录<code>src/resources/sql</code>；</li></ul><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/Blog-%E5%90%8E%E7%AB%AF%E9%A1%B9%E7%9B%AE%E5%8C%85%E7%BB%93%E6%9E%84_20231012.png" alt="image-20231012145410186"></p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>SEA-Blog</category>
+      
+      <category>后端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>SEA-Blog</tag>
+      
+      <tag>项目包结构</tag>
       
     </tags>
     
