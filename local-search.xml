@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>20231016-面试记录</title>
+    <link href="/2023/10/16/20231016-%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/"/>
+    <url>/2023/10/16/20231016-%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/</url>
+    
+    <content type="html"><![CDATA[<h2 id="企业信息"><a href="#企业信息" class="headerlink" title="企业信息"></a>企业信息</h2><table><thead><tr><th>公司名称</th><th>面试官</th><th>岗位</th></tr></thead><tbody><tr><td>北京衍动科技有限公司</td><td>冯佳明</td><td>Java开发工程师</td></tr></tbody></table><ul><li><p>岗位要求</p><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-number">1</span>.软件工程、计算机相关专业本科或硕士在读；<br><span class="hljs-number">2</span>.<span class="hljs-keyword">Java基础扎实，熟悉掌握SpringBoot/SpringCloud框架；</span><br><span class="hljs-keyword"></span><span class="hljs-number">3</span>.熟练使用MySQL、<span class="hljs-keyword">Oracle等数据库；</span><br><span class="hljs-keyword"></span><span class="hljs-number">4</span>.连接使用git项目管理工具和Maven项目构建工具；<br><span class="hljs-number">5</span>.熟练使用Linux操作系统，掌握基本<span class="hljs-keyword">Shell命令；</span><br></code></pre></td></tr></table></figure></li></ul><h2 id="面试记录"><a href="#面试记录" class="headerlink" title="面试记录"></a>面试记录</h2><ul><li><p>1.自我介绍一下</p><ul><li><p>自我介绍（提前准备的）</p><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs gradle">您好，非常荣幸能够与您进行这一次的交流，我叫温海敏，目前是研究生二年级学生，就读于北京林业大学软件工程专业，本科毕业于江西师范大学，也是软件工程专业。<br><br>在本科阶段我主修的是Java编程语言，做Android开发方向，这个过程中，打下了较好地Java基础，以及学习了目前主流的SSM开发框架。<br><br>目前研究生阶段在保证完成学校课程学习的基础上，自己学习了SpringBoot、Mybatis-<span class="hljs-keyword">Plus</span>等一系列框架，同时也掌握了Git/GitLab等版本管理工具、Maven包管理工具等。<br><br>最后，结合贵公司招聘要求，希望能够在贵公司进行实际项目的开发学习，谢谢！<br></code></pre></td></tr></table></figure></li></ul></li><li><p>2.你的简历好像没有写项目经历？</p><ul><li><p>回答</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">是的，因为我是从本科然后一直到研究生一直没有出去工作过，就只有校园经历；<br></code></pre></td></tr></table></figure></li></ul></li><li><p>3.你目前在学校时间上比较闲吗？</p><ul><li><p>回答（瞎编）</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">是的，由于我们导师的课题组比较的大，大约有二三十个人，之前有接到一些项目，现在处于维护和培训阶段，没有开发任务，还有就是后续项目的申请以及材料撰写工作，我就想着能够去外边找一些实际项目，提升一下自己的开发能力；<br></code></pre></td></tr></table></figure></li></ul></li><li><p>4.你是学硕还是专硕，今年是研究生阶段第几年？</p><ul><li><p>回答</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">专硕，今年是第二年；（还提到是否有github账号，当然有！）<br></code></pre></td></tr></table></figure></li></ul></li><li><p>5.平时是否有查阅过API文档？</p><ul><li><p>回答</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">请问您指的是哪一方面的API文档呢？（面试官回答：比如各个技术的官方文档）<br>在学习过程中有遇到还是会去查阅的；<br></code></pre></td></tr></table></figure></li></ul></li><li><p>6.你平时使用什么工具进行接口测试？还有其他的吗？</p><ul><li><p>回答</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">我有用过PostMan工具；<br>我只用过这一种，因为我觉得它比较好用，有一个在线同步的功能；<br></code></pre></td></tr></table></figure></li></ul></li><li><p>7.有在SpringBoot中使用多线程吗？</p><ul><li><p>回答</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">没有，目前处于刚学完SpringBoot阶段，自己在写一些小项目，比如我目前在写一个个人博客项目，还没有写完；<br></code></pre></td></tr></table></figure></li></ul></li><li><p>8.前端有了解过吗？</p><ul><li><p>回答</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">基础的<span class="hljs-selector-tag">HTML</span>、CSS、JavaScript了解过，但是例如Vue、React这种没有了解过；<br></code></pre></td></tr></table></figure></li></ul></li><li><p>9.英语六级考了多少分？</p><ul><li><p>回答</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">490多一点；<br></code></pre></td></tr></table></figure></li></ul></li><li><p>10.一周能来多少天实习？</p><ul><li><p>回答</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">大概是4天及以上；<br></code></pre></td></tr></table></figure></li></ul></li><li><p>11.是否能够到岗实习？</p><ul><li><p>回答</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">不能到岗实习，因为导师不让校外实习；<br></code></pre></td></tr></table></figure></li></ul></li></ul><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul><li><p>感受：</p><ul><li>后面聊着聊着他说他也是北林的硕士研究生毕业，高宝老师的学生，然后就开始聊学校的事情了哈哈哈，这位学长建议我多刷算法题，并且举了一些身边同学例子；</li><li>第一次面试体验还不错，以后多去参加这种面试，锻炼一下；</li></ul></li><li><p>缺点：</p><ul><li>1.说话声音不够洪亮和自信；</li><li>2.比较多的停顿词，比如“额”、“就是”、“然后”等等，不够流畅；</li><li>3.还需要多学习专业知识，不然人家面试也没啥问的；</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Job</category>
+      
+      <category>面试记录</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>面试记录</tag>
+      
+      <tag>Job</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>SEA-Blog-引入Swagger生成接口文档</title>
     <link href="/2023/10/13/SEA-Blog-%E5%BC%95%E5%85%A5Swagger%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/"/>
     <url>/2023/10/13/SEA-Blog-%E5%BC%95%E5%85%A5Swagger%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/</url>
