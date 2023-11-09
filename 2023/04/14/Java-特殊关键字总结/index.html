@@ -18,15 +18,15 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="Java-transient关键字 1.在 Java 中，transient 是一个关键字，用于修饰类的成员变量，表示该变量不参与序列化过程。  2.在 Java 中，当需要将一个对象序列化为字节流并在网络或者文件中传输时，会使用 ObjectOutputStream 进行序列化操作。而 transient 关键字可以用来控制序列化过程中哪些成员变量需要被序列化，哪些成员变量不需要被序列化。  3">
+    <meta name="description" content="Java-特殊关键字总结1.transient 关键字 1.在 Java 中，transient 是一个关键字，用于修饰类的成员变量，表示该变量不参与序列化过程。  2.在 Java 中，当需要将一个对象序列化为字节流并在网络或者文件中传输时，会使用 ObjectOutputStream 进行序列化操作。而 transient 关键字可以用来控制序列化过程中哪些成员变量需要被序列化，哪些成员变量不">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java-transient关键字">
-<meta property="og:url" content="http://sea-365.site/2023/04/14/Java-transient%E5%85%B3%E9%94%AE%E5%AD%97/index.html">
+<meta property="og:title" content="Java-特殊关键字总结">
+<meta property="og:url" content="http://sea-365.site/2023/04/14/Java-%E7%89%B9%E6%AE%8A%E5%85%B3%E9%94%AE%E5%AD%97%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="Java-transient关键字 1.在 Java 中，transient 是一个关键字，用于修饰类的成员变量，表示该变量不参与序列化过程。  2.在 Java 中，当需要将一个对象序列化为字节流并在网络或者文件中传输时，会使用 ObjectOutputStream 进行序列化操作。而 transient 关键字可以用来控制序列化过程中哪些成员变量需要被序列化，哪些成员变量不需要被序列化。  3">
+<meta property="og:description" content="Java-特殊关键字总结1.transient 关键字 1.在 Java 中，transient 是一个关键字，用于修饰类的成员变量，表示该变量不参与序列化过程。  2.在 Java 中，当需要将一个对象序列化为字节流并在网络或者文件中传输时，会使用 ObjectOutputStream 进行序列化操作。而 transient 关键字可以用来控制序列化过程中哪些成员变量需要被序列化，哪些成员变量不">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-04-14T05:18:42.355Z">
-<meta property="article:modified_time" content="2023-04-14T05:18:42.355Z">
+<meta property="article:modified_time" content="2023-11-09T07:39:36.895Z">
 <meta property="article:author" content="SEA">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +35,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Java-transient关键字 - SEA-365的读研日记</title>
+  <title>Java-特殊关键字总结 - SEA-365的读研日记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java-transient关键字"></span>
+            <span id="subtitle" data-typed-text="Java-特殊关键字总结"></span>
           
         </div>
 
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          349 字
+          1.1k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          3 分钟
+          9 分钟
         
       </span>
     
@@ -272,12 +272,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Java-transient关键字</h1>
+            <h1 style="display: none">Java-特殊关键字总结</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Java-transient关键字"><a href="#Java-transient关键字" class="headerlink" title="Java-transient关键字"></a>Java-transient关键字</h1><ul>
+                <h1 id="Java-特殊关键字总结"><a href="#Java-特殊关键字总结" class="headerlink" title="Java-特殊关键字总结"></a>Java-特殊关键字总结</h1><h2 id="1-transient-关键字"><a href="#1-transient-关键字" class="headerlink" title="1.transient 关键字"></a>1.transient 关键字</h2><ul>
 <li><p>1.在 Java 中，<code>transient</code> 是一个关键字，用于修饰类的成员变量，表示该变量不参与序列化过程。</p>
 </li>
 <li><p>2.在 Java 中，当需要将一个对象序列化为字节流并在网络或者文件中传输时，会使用 <code>ObjectOutputStream</code> 进行序列化操作。而 <code>transient</code> 关键字可以用来控制序列化过程中哪些成员变量需要被序列化，哪些成员变量不需要被序列化。</p>
@@ -285,6 +285,35 @@
 <li><p>3.具体来说，被 <code>transient</code> 修饰的变量，当对象被序列化时，这个变量的值不会被写入到序列化输出流中；而当对象被反序列化时，这个变量的值会被默认初始化，也就是赋予该变量类型的默认值。</p>
 </li>
 <li><p>4.使用 <code>transient</code> 的场景通常是当某个成员变量不应该被序列化时，例如一些敏感信息、临时计算结果等，这些信息不需要被存储在序列化的字节流中。</p>
+</li>
+</ul>
+<h2 id="2-volatile-关键字"><a href="#2-volatile-关键字" class="headerlink" title="2.volatile 关键字"></a>2.volatile 关键字</h2><ul>
+<li><p><strong>作用</strong>：</p>
+<ul>
+<li><code>volatile</code> 关键字主要用于确保多个线程可以正确地处理共享变量。</li>
+<li>它保证了线程之间的可见性和禁止指令重排序，确保共享变量的修改能够及时被其他线程看到。</li>
+</ul>
+</li>
+<li><p><strong>特点</strong>：</p>
+<ul>
+<li>当一个变量被声明为 <code>volatile</code>，在一个线程修改了这个变量后，其它线程可以立即看到这个变量的修改。</li>
+<li><code>volatile</code> 适用于特定情况下的简单变量访问，如 boolean 标志位或计数器，而不适用于复合操作的原子性保证。</li>
+<li>不具备原子性：例如 <code>volatile int count = 0;</code>，多个线程对 <code>count</code> 进行自增操作，<code>volatile</code> 无法保证线程安全，因为自增操作是非原子性的。【<strong>适用于单一变量的简单操作</strong>】</li>
+</ul>
+</li>
+<li><p><strong>示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SharedResource</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">flag</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">modifyFlag</span><span class="hljs-params">()</span> &#123;<br>        flag = <span class="hljs-literal">true</span>; <span class="hljs-comment">// 可能被其他线程立即看到变化</span><br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isFlag</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> flag; <span class="hljs-comment">// 其他线程可以立即看到修改</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="3-synchronized-关键字"><a href="#3-synchronized-关键字" class="headerlink" title="3.synchronized 关键字"></a>3.synchronized 关键字</h2><ul>
+<li><strong>作用</strong>：<ul>
+<li><code>synchronized</code> 用于创建临界区（Critical Section），确保同一时刻只有一个线程可以访问被 <code>synchronized</code> 修饰的代码块或方法。</li>
+<li>它提供了原子性和互斥锁，防止多个线程同时访问共享资源，保证线程安全。</li>
+</ul>
+</li>
+<li><strong>特点</strong>：<ul>
+<li>保证了线程安全，但也可能引起性能问题，因为在进入 synchronized 区域的线程会阻塞其他线程的访问。</li>
+<li>可以用于修饰方法和代码块，使用关键字 <code>synchronized</code> 加锁。</li>
+</ul>
 </li>
 </ul>
 
@@ -339,8 +368,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java-transient关键字</div>
-      <div>http://sea-365.site/2023/04/14/Java-transient关键字/</div>
+      <div>Java-特殊关键字总结</div>
+      <div>http://sea-365.site/2023/04/14/Java-特殊关键字总结/</div>
     </div>
     <div class="license-meta">
       
@@ -384,9 +413,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/14/Java-%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%BD%93%E7%B3%BB/" title="集合框架体系整理（整理完毕！！）">
+                      <a href="/2023/04/14/Java-%E4%BB%A3%E7%A0%81%E5%9D%97%E4%BB%8B%E7%BB%8D/" title="Java-代码块介绍">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">集合框架体系整理（整理完毕！！）</span>
+                        <span class="hidden-mobile">Java-代码块介绍</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -394,8 +423,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/14/Java-JUnit%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6/" title="Java-JUnit单元测试框架">
-                        <span class="hidden-mobile">Java-JUnit单元测试框架</span>
+                      <a href="/2023/04/14/Java-%E7%BB%98%E5%9B%BE/" title="Java-绘图">
+                        <span class="hidden-mobile">Java-绘图</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
