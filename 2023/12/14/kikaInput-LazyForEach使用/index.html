@@ -1,0 +1,734 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://github.com/SEA-365/imgList/blob/main/website_img/fluid.png?raw=true">
+  <link rel="icon" href="https://github.com/SEA-365/imgList/blob/main/website_img/fluid.png?raw=true">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="SEA">
+  <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
+  
+    <meta name="description" content="输入法应用性能优化-LazyForEach：数据懒加载 由于输入法应用涉及到中文拼音输入，而中文有几万个字符，当用户输入’a’时，匹配能够匹配到几百上千个字符，若一次性进行渲染加载如此数量的Text组件，则不可避免的会占用硬件资源，影响用户体验，因此采用以下懒加载方式进行优化。  懒加载：即LazyForEach，从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。  当在滚动容器中使">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenHarmony-性能优化-LazyForEach：数据懒加载">
+<meta property="og:url" content="http://sea-365.site/2023/12/14/kikaInput-LazyForEach%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="SEA-365的读研日记">
+<meta property="og:description" content="输入法应用性能优化-LazyForEach：数据懒加载 由于输入法应用涉及到中文拼音输入，而中文有几万个字符，当用户输入’a’时，匹配能够匹配到几百上千个字符，若一次性进行渲染加载如此数量的Text组件，则不可避免的会占用硬件资源，影响用户体验，因此采用以下懒加载方式进行优化。  懒加载：即LazyForEach，从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。  当在滚动容器中使">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/sea-365/kika-input-method/raw/master/screenshot/device/IMG_show_pinyin.jpg">
+<meta property="article:published_time" content="2023-12-14T03:14:09.111Z">
+<meta property="article:modified_time" content="2024-01-10T11:39:08.195Z">
+<meta property="article:author" content="SEA">
+<meta property="article:tag" content="OpenHarmony">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/sea-365/kika-input-method/raw/master/screenshot/device/IMG_show_pinyin.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>OpenHarmony-性能优化-LazyForEach：数据懒加载 - SEA-365的读研日记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sea-365.site","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>SEA-365</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://github.com/SEA-365/imgList/blob/main/website_img/default.png?raw=true') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="OpenHarmony-性能优化-LazyForEach：数据懒加载"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-12-14 11:14" pubdate>
+          2023年12月14日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          52 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">OpenHarmony-性能优化-LazyForEach：数据懒加载</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="输入法应用性能优化-LazyForEach：数据懒加载"><a href="#输入法应用性能优化-LazyForEach：数据懒加载" class="headerlink" title="输入法应用性能优化-LazyForEach：数据懒加载"></a>输入法应用性能优化-LazyForEach：数据懒加载</h1><ul>
+<li><p>由于输入法应用涉及到中文拼音输入，而中文有几万个字符，当用户输入’a’时，匹配能够匹配到几百上千个字符，若一次性进行渲染加载如此数量的<code>Text</code>组件，则不可避免的会占用硬件资源，影响用户体验，因此采用以下懒加载方式进行优化。</p>
+</li>
+<li><p>懒加载：即LazyForEach，从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。</p>
+<ul>
+<li>当在<strong>滚动容器</strong>中使用了LazyForEach，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会进行组件销毁回收以降低内存占用。</li>
+</ul>
+</li>
+<li><p>接口描述：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-title class_">LazyForEach</span>(<br>    <span class="hljs-attr">dataSource</span>: <span class="hljs-title class_">IDataSource</span>,             <span class="hljs-comment">// 需要进行数据迭代的数据源</span><br>    <span class="hljs-attr">itemGenerator</span>: <span class="hljs-function">(<span class="hljs-params">item: <span class="hljs-built_in">any</span>, index?: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>,  <span class="hljs-comment">// 子组件生成函数</span><br>    keyGenerator?: <span class="hljs-function">(<span class="hljs-params">item: <span class="hljs-built_in">any</span>, index?: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">string</span> <span class="hljs-comment">// 键值生成函数</span><br>): <span class="hljs-built_in">void</span><br><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="一、懒加载实现步骤"><a href="#一、懒加载实现步骤" class="headerlink" title="一、懒加载实现步骤"></a>一、懒加载实现步骤</h2><ul>
+<li>准备数据源；</li>
+<li>遍历数据源创建组件项；</li>
+<li>为组件项指定唯一的键值编码；</li>
+</ul>
+<h2 id="二、以输入法应用为例进行分析"><a href="#二、以输入法应用为例进行分析" class="headerlink" title="二、以输入法应用为例进行分析"></a>二、以输入法应用为例进行分析</h2><h3 id="1-准备数据源"><a href="#1-准备数据源" class="headerlink" title="1.准备数据源"></a>1.准备数据源</h3><ul>
+<li><p>基础数据源类定义，包括数据源数组定义、数据源监听器数组定义、监听器注册绑定&#x2F;解绑方法、一些监听方法的具体实现；</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 基础数据源</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">const</span> <span class="hljs-attr">TAG</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;=====sea===&gt; BasicDataSource ===&gt; &quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BasicDataSource</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">IDataSource</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-attr">listeners</span>: <span class="hljs-title class_">DataChangeListener</span>[] = []; <span class="hljs-comment">// 监听器数组定义</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-attr">originDataArray</span>: <span class="hljs-built_in">string</span>[] = []; <span class="hljs-comment">// 原数据数组定义，即没有变更之前的数组，方便观察数据变化</span><br><br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">totalCount</span>(): <span class="hljs-built_in">number</span> &#123; <br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取数据源中的数据</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> <span class="hljs-variable">index</span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@returns</span> </span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">getData</span>(<span class="hljs-attr">index</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">string</span> &#123;<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">originDataArray</span>[index];<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 注册数据变更监听器</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> <span class="hljs-variable">listener</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-title function_">registerDataChangeListener</span>(<span class="hljs-attr">listener</span>: <span class="hljs-title class_">DataChangeListener</span>): <span class="hljs-built_in">void</span> &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">listeners</span>.<span class="hljs-title function_">indexOf</span>(listener) &lt; <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">info</span>(<span class="hljs-variable constant_">TAG</span> + <span class="hljs-string">&#x27;add listener&#x27;</span>);<br>            <span class="hljs-variable language_">this</span>.<span class="hljs-property">listeners</span>.<span class="hljs-title function_">push</span>(listener);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 解除注册 数据变更监听器</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> <span class="hljs-variable">listener</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-title function_">unregisterDataChangeListener</span>(<span class="hljs-attr">listener</span>: <span class="hljs-title class_">DataChangeListener</span>): <span class="hljs-built_in">void</span> &#123;<br>        <span class="hljs-keyword">const</span> pos = <span class="hljs-variable language_">this</span>.<span class="hljs-property">listeners</span>.<span class="hljs-title function_">indexOf</span>(listener);<br>        <span class="hljs-keyword">if</span> (pos &gt;= <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">info</span>(<span class="hljs-variable constant_">TAG</span> + <span class="hljs-string">&#x27;remove listener&#x27;</span>);<br>            <span class="hljs-variable language_">this</span>.<span class="hljs-property">listeners</span>.<span class="hljs-title function_">splice</span>(pos, <span class="hljs-number">1</span>);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 通知数据重新加载</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-title function_">notifyDataReload</span>(): <span class="hljs-built_in">void</span> &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">listeners</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">listener</span> =&gt;</span> &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">info</span>(<span class="hljs-variable constant_">TAG</span> + <span class="hljs-string">&#x27;notifyDataReload() -&gt; onDataReloaded()&#x27;</span>);<br>            listener.<span class="hljs-title function_">onDataReloaded</span>();<br>        &#125;)<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 通知数据增加</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> index 指定在数组中新增数据的位置</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-title function_">notifyDataAdd</span>(<span class="hljs-attr">index</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span> &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">listeners</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">listener</span> =&gt;</span> &#123;<br>            listener.<span class="hljs-title function_">onDataAdd</span>(index);<br>        &#125;)<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 通知数据变化</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> index 变化的数据在数组中的位置</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-title function_">notifyDataChange</span>(<span class="hljs-attr">index</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span> &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">listeners</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">listener</span> =&gt;</span> &#123;<br>            listener.<span class="hljs-title function_">onDataChange</span>(index);<br>        &#125;)<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 通知数据删除</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> index 删除的数据在数组中的位置</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-title function_">notifyDataDelete</span>(<span class="hljs-attr">index</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span> &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">listeners</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">listener</span> =&gt;</span> &#123;<br>            listener.<span class="hljs-title function_">onDataDelete</span>(index);<br>        &#125;)<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 通知数据移动</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> index 在数组中变化的数据的起始位置</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-title function_">notifyDataMove</span>(<span class="hljs-attr">from</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">to</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span> &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">listeners</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">listener</span> =&gt;</span> &#123;<br>            listener.<span class="hljs-title function_">onDataMove</span>(<span class="hljs-keyword">from</span>, to);<br>        &#125;)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>自定义数据源类定义，继承基础数据源类，自定义相关的数据增删改查的操作逻辑；</p>
+</li>
+<li><p>下面以输入法的拼音数据源为例：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 汉字字符数据源</span><br><span class="hljs-comment"> *    1.支持数据懒加载</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">BasicDataSource</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./BasicDataSource&#x27;</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-attr">TAG</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;=====sea===&gt; ChineseDataSource ===&gt; &quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ChineseDataSource</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">BasicDataSource</span> &#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-attr">dataArray</span>: <span class="hljs-built_in">string</span>[] = [];<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">totalCount</span>(): <span class="hljs-built_in">number</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">dataArray</span>.<span class="hljs-property">length</span>;<br>  &#125;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">getAllData</span>(): <span class="hljs-built_in">any</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">dataArray</span>;<br>  &#125;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">getData</span>(<span class="hljs-attr">index</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">any</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">dataArray</span>[index];<br>  &#125;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">addData</span>(<span class="hljs-attr">index</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">data</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">dataArray</span>.<span class="hljs-title function_">splice</span>(index, <span class="hljs-number">0</span>, data);<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">notifyDataAdd</span>(index);<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">notifyDataReload</span>();<br>  &#125;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">setData</span>(<span class="hljs-attr">data</span>: <span class="hljs-built_in">string</span>[]): <span class="hljs-built_in">void</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable constant_">TAG</span> + <span class="hljs-string">&quot; before add, dataArray: &quot;</span> + <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">dataArray</span>));<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable constant_">TAG</span> + <span class="hljs-string">&quot; add data:&quot;</span> + <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(data))<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">dataArray</span>.<span class="hljs-title function_">splice</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">addAllData</span>(data);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable constant_">TAG</span> + <span class="hljs-string">&quot;after add, dataArray: &quot;</span> + <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">dataArray</span>));<br>  &#125;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">addAllData</span>(<span class="hljs-attr">data</span>: <span class="hljs-built_in">string</span>[]): <span class="hljs-built_in">void</span> &#123;<br>    data.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">dataArray</span>.<span class="hljs-title function_">push</span>(item);<br>    &#125;)<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">notifyDataReload</span>();<br>  &#125;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">pushData</span>(<span class="hljs-attr">data</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">dataArray</span>.<span class="hljs-title function_">push</span>(data);<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">notifyDataAdd</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">dataArray</span>.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>);<br>  &#125;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">deleteData</span>(<span class="hljs-attr">index</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span> &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">dataArray</span>.<span class="hljs-title function_">splice</span>(index, <span class="hljs-number">1</span>);<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">notifyDataDelete</span>(index);<br>  &#125;<br><br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">reloadData</span>(): <span class="hljs-built_in">void</span> &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">notifyDataReload</span>();<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-遍历数据源创建组件项"><a href="#2-遍历数据源创建组件项" class="headerlink" title="2.遍历数据源创建组件项"></a>2.遍历数据源创建组件项</h3><ul>
+<li><p>以输入法的UI面板加载拼音字符为例，每次选择后需要更新面板字符：</p>
+<p><img src="https://gitee.com/sea-365/kika-input-method/raw/master/screenshot/device/IMG_show_pinyin.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>懒加载部分的代码实现</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-title class_">Grid</span>() &#123;<br>  <span class="hljs-title class_">LazyForEach</span>(<span class="hljs-title class_">InputHandler</span>.<span class="hljs-title function_">getInstance</span>().<span class="hljs-title function_">getDataSource</span>(), <span class="hljs-function">(<span class="hljs-params">item: <span class="hljs-built_in">string</span>, index: <span class="hljs-built_in">number</span></span>) =&gt;</span> &#123;<br>    <span class="hljs-title class_">GridItem</span>() &#123;<br>      <span class="hljs-title class_">Column</span>(&#123; <span class="hljs-attr">space</span>: <span class="hljs-number">1</span> &#125;) &#123;<br>        <span class="hljs-keyword">if</span>(index &lt; <span class="hljs-number">5</span>)&#123;<br>          <span class="hljs-title class_">Text</span>((index+<span class="hljs-number">1</span>) + <span class="hljs-string">&quot; &quot;</span> +  item)<br>            .<span class="hljs-title function_">fontSize</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">inputStyle</span>.<span class="hljs-property">switchNumberFontSize</span>)<br>            .<span class="hljs-title function_">fontColor</span>(<span class="hljs-string">&#x27;#333333&#x27;</span>)<br>            .<span class="hljs-title function_">fontWeight</span>(<span class="hljs-title class_">FontWeight</span>.<span class="hljs-property">Regular</span>)<br>            .<span class="hljs-title function_">textAlign</span>(<span class="hljs-title class_">TextAlign</span>.<span class="hljs-property">Center</span>)<br>            .<span class="hljs-title function_">maxLines</span>(<span class="hljs-number">1</span>)<br>          <span class="hljs-comment">// .textOverflow(&#123;overflow: TextOverflow.Ellipsis&#125;)</span><br>            .<span class="hljs-title function_">margin</span>(&#123;<span class="hljs-attr">top</span>: <span class="hljs-string">&quot;10%&quot;</span>&#125;)<br>        &#125;<br>      &#125;<br>      .<span class="hljs-title function_">height</span>(<span class="hljs-string">&quot;100%&quot;</span>)<br>      .<span class="hljs-title function_">backgroundColor</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">bg_color</span>[index])  <br>      .<span class="hljs-title function_">padding</span>(&#123; <span class="hljs-attr">left</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">right</span>: <span class="hljs-number">10</span> &#125;)<br>    &#125;<br>    .<span class="hljs-title function_">height</span>(<span class="hljs-number">50</span>)<br>  &#125;, <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-comment">// 键值生成规则：给数组的每一个 item 生成唯一的uuid，避免相同的item生成的键相同导致UI无法正常更新！！</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx&#x27;</span>.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/[xy]/g</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">c</span>) &#123;<br>      <span class="hljs-keyword">const</span> r = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * <span class="hljs-number">16</span> | <span class="hljs-number">0</span>,<br>            v = c === <span class="hljs-string">&#x27;x&#x27;</span> ? r : (r &amp; <span class="hljs-number">0x3</span> | <span class="hljs-number">0x8</span>);<br>      <span class="hljs-keyword">return</span> v.<span class="hljs-title function_">toString</span>(<span class="hljs-number">16</span>);<br>    &#125;);<br>  &#125; )<br>&#125;<br>.<span class="hljs-title function_">enableScrollInteraction</span>(<span class="hljs-literal">false</span>)<br>.<span class="hljs-title function_">columnsTemplate</span>(<span class="hljs-string">&#x27;1fr 1fr 1fr 1fr 1fr&#x27;</span>)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>分析：</p>
+<ul>
+<li><code>InputHandler.getInstance().getDataSource()</code>获取拼音字符数据源；</li>
+<li><code>LazyForEach(InputHandler.getInstance().getDataSource(), (item: string, index: number) =&gt; &#123;......&#125;);</code>懒加载渲染组件项；</li>
+<li>键值唯一编码：见下一小节。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-为组件项指定唯一的键值编码"><a href="#3-为组件项指定唯一的键值编码" class="headerlink" title="3.为组件项指定唯一的键值编码"></a>3.为组件项指定唯一的键值编码</h3><ul>
+<li><p>懒加载的接口描述：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-title class_">LazyForEach</span>(<br>    <span class="hljs-attr">dataSource</span>: <span class="hljs-title class_">IDataSource</span>,             <span class="hljs-comment">// 需要进行数据迭代的数据源</span><br>    <span class="hljs-attr">itemGenerator</span>: <span class="hljs-function">(<span class="hljs-params">item: <span class="hljs-built_in">any</span>, index?: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>,  <span class="hljs-comment">// 子组件生成函数</span><br>    keyGenerator?: <span class="hljs-function">(<span class="hljs-params">item: <span class="hljs-built_in">any</span>, index?: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">string</span> <span class="hljs-comment">// 键值生成函数</span><br>): <span class="hljs-built_in">void</span><br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>关于键值生成函数，以下是官方给出的解释：</p>
+<ul>
+<li><h2 id="键值生成规则"><a href="#键值生成规则" class="headerlink" title="键值生成规则"></a>键值生成规则</h2><ul>
+<li><p>在<code>LazyForEach</code>循环渲染过程中，系统会为每个item生成一个唯一且持久的键值，用于标识对应的组件。当这个键值变化时，ArkUI框架将视为该数组元素已被替换或修改，并会基于新的键值创建一个新的组件。</p>
+</li>
+<li><p><code>LazyForEach</code>提供了一个名为<code>keyGenerator</code>的参数，这是一个函数，开发者可以通过它自定义键值的生成规则。如果开发者没有定义<code>keyGenerator</code>函数，则ArkUI框架会使用默认的键值生成函数，即<code>(item: any, index: number) =&gt; &#123; return viewId + &#39;-&#39; + index.toString(); &#125;</code>, viewId在编译器转换过程中生成，同一个LazyForEach组件内其viewId是一致的。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>意思就是：给数据源数组的每一个 item 生成唯一的uuid，避免相同的item生成的键相同导致UI无法正常更新！！</p>
+</li>
+<li><p>具体实现：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><br><span class="hljs-title class_">LazyForEach</span>(<span class="hljs-title class_">InputHandler</span>.<span class="hljs-title function_">getInstance</span>().<span class="hljs-title function_">getDataSource</span>(), <span class="hljs-function">(<span class="hljs-params">item: <span class="hljs-built_in">string</span>, index: <span class="hljs-built_in">number</span></span>) =&gt;</span> &#123;<br>  <span class="hljs-comment">//省略渲染的组件</span><br>&#125;, <span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-comment">// 键值生成规则：给数组的每一个 item 生成唯一的uuid，避免相同的item生成的键相同导致UI无法正常更新！！</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx&#x27;</span>.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/[xy]/g</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">c</span>) &#123;<br>    <span class="hljs-keyword">const</span> r = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * <span class="hljs-number">16</span> | <span class="hljs-number">0</span>,<br>          v = c === <span class="hljs-string">&#x27;x&#x27;</span> ? r : (r &amp; <span class="hljs-number">0x3</span> | <span class="hljs-number">0x8</span>);<br>    <span class="hljs-keyword">return</span> v.<span class="hljs-title function_">toString</span>(<span class="hljs-number">16</span>);<br>  &#125;);<br>&#125;)<br></code></pre></td></tr></table></figure></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/OpenHarmony/" class="category-chain-item">OpenHarmony</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/OpenHarmony/">#OpenHarmony</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>OpenHarmony-性能优化-LazyForEach：数据懒加载</div>
+      <div>http://sea-365.site/2023/12/14/kikaInput-LazyForEach使用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>SEA</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年12月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/01/10/%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%E4%BD%93%E7%B3%BB%E8%B0%83%E7%A0%94/" title="OpenHarmony-账号密码体系调研">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">OpenHarmony-账号密码体系调研</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/06/Git-%E6%8F%90%E4%BA%A4%E6%97%B6%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9Bemoji/" title="Git-提交时常用的一些emoji">
+                        <span class="hidden-mobile">Git-提交时常用的一些emoji</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        本站 总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
