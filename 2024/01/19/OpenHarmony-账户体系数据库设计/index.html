@@ -18,24 +18,31 @@
   <meta name="author" content="SEA">
   <meta name="keywords" content="Java,SpringBoot,JavaScript,HTML,OphenHarmony,HarmonyOS">
   
-    <meta name="description" content="VUE-Callback回调函数一、简介 回调（Callback）是一种在 JavaScript 中处理异步操作的方式； 通过将一个函数作为参数传递给另一个函数，以便在某个操作完成时调用该函数；  二、用法 案例： 1234567891011121314151617&#x2F;&#x2F;1.定义一个函数，用于模拟获取数据function fetchData(callback) &amp;#123;  &#x2F;&#x2F; 模拟异步操作，比">
+    <meta name="description" content="OpenHarmony-账密体系数据库设计1.应用账号表（app_account） 由于应用账号只需传入用户名即可创建，因此设计字段如下： id：主键，应用账号id username：应用账号名称，不可重复   这里的用户自定义信息由于字段不确定，需要建立一张表进行存储，用户自定义数据表(app_account_custom_data)设计字段如下： id：主键自动生成，用户自定义数据表id ap">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VUE-Callback回调函数">
-<meta property="og:url" content="http://sea-365.site/2024/01/10/VUE-callback%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:title" content="OpenHarmony-账密体系数据库设计">
+<meta property="og:url" content="http://sea-365.site/2024/01/19/OpenHarmony-%E8%B4%A6%E6%88%B7%E4%BD%93%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/index.html">
 <meta property="og:site_name" content="SEA-365的读研日记">
-<meta property="og:description" content="VUE-Callback回调函数一、简介 回调（Callback）是一种在 JavaScript 中处理异步操作的方式； 通过将一个函数作为参数传递给另一个函数，以便在某个操作完成时调用该函数；  二、用法 案例： 1234567891011121314151617&#x2F;&#x2F;1.定义一个函数，用于模拟获取数据function fetchData(callback) &amp;#123;  &#x2F;&#x2F; 模拟异步操作，比">
+<meta property="og:description" content="OpenHarmony-账密体系数据库设计1.应用账号表（app_account） 由于应用账号只需传入用户名即可创建，因此设计字段如下： id：主键，应用账号id username：应用账号名称，不可重复   这里的用户自定义信息由于字段不确定，需要建立一张表进行存储，用户自定义数据表(app_account_custom_data)设计字段如下： id：主键自动生成，用户自定义数据表id ap">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-01-10T07:00:22.044Z">
-<meta property="article:modified_time" content="2024-01-10T07:15:23.340Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E5%88%86%E5%B8%83%E5%BC%8F%E8%B4%A6%E5%8F%B7%E5%AD%97%E6%AE%B5.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E5%88%86%E5%B8%83%E5%BC%8F%E8%B4%A6%E5%8F%B7%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E7%B3%BB%E7%BB%9F%E8%B4%A6%E5%8F%B7%E5%AD%97%E6%AE%B5.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E7%B3%BB%E7%BB%9F%E8%B4%A6%E5%8F%B7%E6%9E%9A%E4%B8%BE%E5%AD%97%E6%AE%B5.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E7%B3%BB%E7%BB%9F%E8%B4%A6%E5%8F%B7%E7%BA%A6%E6%9D%9F%E5%88%97%E8%A1%A8.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E5%9F%9F%E8%B4%A6%E5%8F%B7%E5%AD%97%E6%AE%B5.png">
+<meta property="article:published_time" content="2024-01-19T03:26:24.856Z">
+<meta property="article:modified_time" content="2024-01-19T11:19:27.906Z">
 <meta property="article:author" content="SEA">
-<meta property="article:tag" content="VUE">
+<meta property="article:tag" content="OpenHarmony">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E5%88%86%E5%B8%83%E5%BC%8F%E8%B4%A6%E5%8F%B7%E5%AD%97%E6%AE%B5.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>VUE-Callback回调函数 - SEA-365的读研日记</title>
+  <title>OpenHarmony-账密体系数据库设计 - SEA-365的读研日记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +207,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="VUE-Callback回调函数"></span>
+            <span id="subtitle" data-typed-text="OpenHarmony-账密体系数据库设计"></span>
           
         </div>
 
@@ -211,8 +218,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-01-10 15:00" pubdate>
-          2024年1月10日 下午
+        <time datetime="2024-01-19 11:26" pubdate>
+          2024年1月19日 上午
         </time>
       </span>
     
@@ -223,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          681 字
+          511 字
         
       </span>
     
@@ -234,7 +241,7 @@
         
         
         
-          6 分钟
+          5 分钟
         
       </span>
     
@@ -272,25 +279,61 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">VUE-Callback回调函数</h1>
+            <h1 style="display: none">OpenHarmony-账密体系数据库设计</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="VUE-Callback回调函数"><a href="#VUE-Callback回调函数" class="headerlink" title="VUE-Callback回调函数"></a>VUE-Callback回调函数</h1><h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><ul>
-<li>回调（Callback）是一种在 JavaScript 中处理异步操作的方式；</li>
-<li>通过将一个函数作为参数传递给另一个函数，以便在某个操作完成时调用该函数；</li>
+                <h1 id="OpenHarmony-账密体系数据库设计"><a href="#OpenHarmony-账密体系数据库设计" class="headerlink" title="OpenHarmony-账密体系数据库设计"></a>OpenHarmony-账密体系数据库设计</h1><h2 id="1-应用账号表（app-account）"><a href="#1-应用账号表（app-account）" class="headerlink" title="1.应用账号表（app_account）"></a>1.应用账号表（app_account）</h2><ul>
+<li>由于应用账号只需传入用户名即可创建，因此设计字段如下：<ul>
+<li><code>id</code>：主键，应用账号id</li>
+<li><code>username</code>：应用账号名称，不可重复</li>
 </ul>
-<h2 id="二、用法"><a href="#二、用法" class="headerlink" title="二、用法"></a>二、用法</h2><ul>
-<li><p>案例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//1.定义一个函数，用于模拟获取数据</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchData</span>(<span class="hljs-params">callback</span>) &#123;<br>  <span class="hljs-comment">// 模拟异步操作，比如从服务器获取数据</span><br>  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> data = <span class="hljs-string">&quot;Hello, world!&quot;</span>;<br>    <span class="hljs-comment">// 异步操作完成后调用回调函数，并将数据传递给它</span><br>    <span class="hljs-title function_">callback</span>(data);<br>  &#125;, <span class="hljs-number">1000</span>);<br>&#125;<br><br><span class="hljs-comment">// 2.定义获取数据完成后需要执行的函数（即”回调函数“）</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">processData</span>(<span class="hljs-params">data</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Processed data:&quot;</span>, data);<br>&#125;<br><br><span class="hljs-comment">// 3.调用 fetchData 函数获取数据，并将 processData 函数作为回调函数传递进去</span><br><span class="hljs-title function_">fetchData</span>(processData);<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>执行过程：</p>
-<ul>
-<li>1.调用 fetchData 函数获取数据：<code>fetchData(processData);</code>，将 processData 函数作为参数传递；</li>
-<li>2.执行 fetchData 函数模拟获取数据过程；</li>
-<li>3.获取数据完成后，调用<code>callback(data)</code>函数，由于callback就是 processData 函数，因此相当于执行<code>processData(data)</code>；【这个过程就叫回调】</li>
+<li>这里的用户自定义信息由于字段不确定，需要建立一张表进行存储，用户自定义数据表(app_account_custom_data)设计字段如下：<ul>
+<li><code>id</code>：主键自动生成，用户自定义数据表id</li>
+<li><code>app_account_id</code>：应用账号表id</li>
+<li><code>data_key</code>：字段名称</li>
+<li><code>data_value</code>： 字段值</li>
 </ul>
+</li>
+</ul>
+<h2 id="2-分布式账号表（distributed-account）"><a href="#2-分布式账号表（distributed-account）" class="headerlink" title="2.分布式账号表（distributed_account）"></a>2.分布式账号表（distributed_account）</h2><ul>
+<li><p>字段如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E5%88%86%E5%B8%83%E5%BC%8F%E8%B4%A6%E5%8F%B7%E5%AD%97%E6%AE%B5.png" srcset="/img/loading.gif" lazyload alt="image-20240119153806162"></p>
+</li>
+<li><p>枚举字段<code>status</code>：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E5%88%86%E5%B8%83%E5%BC%8F%E8%B4%A6%E5%8F%B7%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B.png" srcset="/img/loading.gif" lazyload alt="image-20240119153930404"></p>
+</li>
+</ul>
+<h2 id="3-系统账号表（os-account）"><a href="#3-系统账号表（os-account）" class="headerlink" title="3.系统账号表（os_account）"></a>3.系统账号表（os_account）</h2><ul>
+<li>字段如下：</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E7%B3%BB%E7%BB%9F%E8%B4%A6%E5%8F%B7%E5%AD%97%E6%AE%B5.png" srcset="/img/loading.gif" lazyload alt="image-20240119154632198"></p>
+<ul>
+<li><p>枚举字段<code>type</code>:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E7%B3%BB%E7%BB%9F%E8%B4%A6%E5%8F%B7%E6%9E%9A%E4%B8%BE%E5%AD%97%E6%AE%B5.png" srcset="/img/loading.gif" lazyload alt="image-20240119155218726"></p>
+</li>
+<li><p>系统账号约束列表：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E7%B3%BB%E7%BB%9F%E8%B4%A6%E5%8F%B7%E7%BA%A6%E6%9D%9F%E5%88%97%E8%A1%A8.png" srcset="/img/loading.gif" lazyload alt="image-20240119180053000"></p>
+</li>
+<li><p>分布式账号信息：通过分布式账号表的<code>id</code>字段进行关联；</p>
+</li>
+<li><p>域账号信息：</p>
+<ul>
+<li><p>域账号是把账号存储于域中的某一台服务器，分享给同一个域中的所有计算机使用。如果想更改域账号的有关数据，直接修改域账号服务器中的账号，其他计算机就可立即获取更新后的账号数据。【百度百科】</p>
+</li>
+<li><p>目前先参考分布式账号，使用域账号表<code>id</code>字段进行关联；</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-域账号表"><a href="#4-域账号表" class="headerlink" title="4.域账号表"></a>4.域账号表</h2><ul>
+<li><p>字段如下：</p>
+<ul>
+<li>没有<code>id</code>字段，使用自动生成的<code>id</code>与系统账号绑定；</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E5%9F%9F%E8%B4%A6%E5%8F%B7%E5%AD%97%E6%AE%B5.png" srcset="/img/loading.gif" lazyload alt="image-20240119155529269"></p>
 </li>
 </ul>
 
@@ -311,7 +354,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/VUE/" class="category-chain-item">VUE</a>
+  <a href="/categories/OpenHarmony/" class="category-chain-item">OpenHarmony</a>
   
   
 
@@ -326,7 +369,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/VUE/">#VUE</a>
+        <a href="/tags/OpenHarmony/">#OpenHarmony</a>
       
     </div>
   
@@ -338,8 +381,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>VUE-Callback回调函数</div>
-      <div>http://sea-365.site/2024/01/10/VUE-callback回调函数/</div>
+      <div>OpenHarmony-账密体系数据库设计</div>
+      <div>http://sea-365.site/2024/01/19/OpenHarmony-账户体系数据库设计/</div>
     </div>
     <div class="license-meta">
       
@@ -351,7 +394,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年1月10日</div>
+          <div>2024年1月19日</div>
         </div>
       
       
@@ -383,18 +426,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/01/19/OpenHarmony-%E8%B4%A6%E6%88%B7%E4%BD%93%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/" title="OpenHarmony-账密体系数据库设计">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">OpenHarmony-账密体系数据库设计</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/01/10/OpenHarmony-%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%E4%BD%93%E7%B3%BB%E8%B0%83%E7%A0%94/" title="OpenHarmony-账号密码体系调研">
-                        <span class="hidden-mobile">OpenHarmony-账号密码体系调研</span>
+                      <a href="/2024/01/10/VUE-callback%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/" title="VUE-Callback回调函数">
+                        <span class="hidden-mobile">VUE-Callback回调函数</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

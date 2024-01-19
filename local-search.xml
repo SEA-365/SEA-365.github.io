@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>OpenHarmony-账密体系数据库设计</title>
+    <link href="/2024/01/19/OpenHarmony-%E8%B4%A6%E6%88%B7%E4%BD%93%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/"/>
+    <url>/2024/01/19/OpenHarmony-%E8%B4%A6%E6%88%B7%E4%BD%93%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/</url>
+    
+    <content type="html"><![CDATA[<h1 id="OpenHarmony-账密体系数据库设计"><a href="#OpenHarmony-账密体系数据库设计" class="headerlink" title="OpenHarmony-账密体系数据库设计"></a>OpenHarmony-账密体系数据库设计</h1><h2 id="1-应用账号表（app-account）"><a href="#1-应用账号表（app-account）" class="headerlink" title="1.应用账号表（app_account）"></a>1.应用账号表（app_account）</h2><ul><li>由于应用账号只需传入用户名即可创建，因此设计字段如下：<ul><li><code>id</code>：主键，应用账号id</li><li><code>username</code>：应用账号名称，不可重复</li></ul></li><li>这里的用户自定义信息由于字段不确定，需要建立一张表进行存储，用户自定义数据表(app_account_custom_data)设计字段如下：<ul><li><code>id</code>：主键自动生成，用户自定义数据表id</li><li><code>app_account_id</code>：应用账号表id</li><li><code>data_key</code>：字段名称</li><li><code>data_value</code>： 字段值</li></ul></li></ul><h2 id="2-分布式账号表（distributed-account）"><a href="#2-分布式账号表（distributed-account）" class="headerlink" title="2.分布式账号表（distributed_account）"></a>2.分布式账号表（distributed_account）</h2><ul><li><p>字段如下：</p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E5%88%86%E5%B8%83%E5%BC%8F%E8%B4%A6%E5%8F%B7%E5%AD%97%E6%AE%B5.png" alt="image-20240119153806162"></p></li><li><p>枚举字段<code>status</code>：</p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E5%88%86%E5%B8%83%E5%BC%8F%E8%B4%A6%E5%8F%B7%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B.png" alt="image-20240119153930404"></p></li></ul><h2 id="3-系统账号表（os-account）"><a href="#3-系统账号表（os-account）" class="headerlink" title="3.系统账号表（os_account）"></a>3.系统账号表（os_account）</h2><ul><li>字段如下：</li></ul><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E7%B3%BB%E7%BB%9F%E8%B4%A6%E5%8F%B7%E5%AD%97%E6%AE%B5.png" alt="image-20240119154632198"></p><ul><li><p>枚举字段<code>type</code>:</p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E7%B3%BB%E7%BB%9F%E8%B4%A6%E5%8F%B7%E6%9E%9A%E4%B8%BE%E5%AD%97%E6%AE%B5.png" alt="image-20240119155218726"></p></li><li><p>系统账号约束列表：</p><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E7%B3%BB%E7%BB%9F%E8%B4%A6%E5%8F%B7%E7%BA%A6%E6%9D%9F%E5%88%97%E8%A1%A8.png" alt="image-20240119180053000"></p></li><li><p>分布式账号信息：通过分布式账号表的<code>id</code>字段进行关联；</p></li><li><p>域账号信息：</p><ul><li><p>域账号是把账号存储于域中的某一台服务器，分享给同一个域中的所有计算机使用。如果想更改域账号的有关数据，直接修改域账号服务器中的账号，其他计算机就可立即获取更新后的账号数据。【百度百科】</p></li><li><p>目前先参考分布式账号，使用域账号表<code>id</code>字段进行关联；</p></li></ul></li></ul><h2 id="4-域账号表"><a href="#4-域账号表" class="headerlink" title="4.域账号表"></a>4.域账号表</h2><ul><li><p>字段如下：</p><ul><li>没有<code>id</code>字段，使用自动生成的<code>id</code>与系统账号绑定；</li></ul><p><img src="https://cdn.jsdelivr.net/gh/SEA-365/imgList@main/imgList/OpenHarmony-%E5%9F%9F%E8%B4%A6%E5%8F%B7%E5%AD%97%E6%AE%B5.png" alt="image-20240119155529269"></p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>OpenHarmony</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>OpenHarmony</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>VUE-Callback回调函数</title>
     <link href="/2024/01/10/VUE-callback%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/"/>
     <url>/2024/01/10/VUE-callback%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/</url>
